@@ -2,7 +2,7 @@
 
 :root {
   --mr-color-bg: #f4f2ff;
-  --mr-color-surface: rgba(255, 255, 255, 0.55);
+  --mr-color-surface: rgba(255, 255, 255, 0.24);
   --mr-color-surface-solid: #fff;
   --mr-color-border: rgba(197, 197, 216, 0.5);
   --mr-color-primary: #2d3fd7;
@@ -37,8 +37,8 @@
 body {
   margin: 0;
   background-color: var(--mr-color-bg);
-  background-image: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(248, 220, 196, 0.48) 0%, rgba(248, 220, 196, 0) 50%),
-    linear-gradient(135deg, rgba(216, 210, 248, 0.65) 0%, rgba(207, 228, 250, 0.65) 100%);
+  background-image: radial-gradient(ellipse 90% 70% at 100% 100%, rgba(246, 199, 146, 0.85) 0%, rgba(246, 199, 146, 0) 65%),
+    linear-gradient(135deg, rgba(196, 186, 248, 0.75) 0%, rgba(177, 213, 250, 0.85) 100%);
   background-attachment: fixed;
   color: var(--mr-color-text);
   font-family: var(--mr-font);
@@ -119,9 +119,36 @@ a {
   color: var(--mr-color-success);
 }
 
+.mr-badge--primary {
+  background-color: #4a5bf0;
+  color: #fff;
+}
+
+/* Sentence-case override for badges quoting exact copy (e.g. a status label) */
+.mr-badge--case-normal {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.mr-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
 .mr-badge img {
   width: 14px;
   height: 14px;
+}
+
+/* Small inline icon preceding a heading's text (e.g. a pin before "Delivery Context") */
+.mr-heading-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.4rem;
+  vertical-align: -2px;
 }
 
 /* Buttons */
@@ -129,6 +156,7 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   border: none;
   border-radius: var(--mr-radius-pill);
   padding: 0.85rem 2rem;
@@ -142,6 +170,11 @@ a {
 .mr-btn:hover {
   transform: translateY(-1px);
   opacity: 0.92;
+}
+
+.mr-btn img {
+  width: 18px;
+  height: 18px;
 }
 
 .mr-btn--sm {
@@ -174,8 +207,12 @@ a {
 .mr-btn--light {
   background-color: #fff;
   color: var(--mr-color-primary-dark);
-  font-weight: 700;
+  font-weight: 600;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.mr-btn--block {
+  width: 100%;
 }
 
 .mr-link {
@@ -350,7 +387,7 @@ a {
 
 .mr-tracking-card__head h3 {
   font-size: 1.375rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .mr-timeline {
@@ -472,7 +509,7 @@ a {
 .mr-stat strong {
   display: block;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--mr-color-primary-dark);
 }
@@ -496,7 +533,7 @@ a {
 
 .mr-section > h2 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--mr-color-text);
 }
@@ -571,7 +608,7 @@ a {
 
 .mr-role-card h3 {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: 0.25rem;
 }
@@ -628,7 +665,7 @@ a {
 
 .mr-bar-chart__col strong {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mr-color-text);
 }
 
@@ -703,7 +740,7 @@ a {
 .mr-feature h3,
 .mr-feature h4 {
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
@@ -915,7 +952,7 @@ a {
 .mr-timer-ring span {
   position: relative;
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--mr-color-primary-dark);
 }
@@ -1081,7 +1118,7 @@ a {
   border-radius: 50%;
   background-color: #e3e1ee;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mr-color-text-muted);
 }
 
@@ -1113,7 +1150,7 @@ a {
 .mr-faq summary {
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   list-style: none;
 }
 
@@ -1381,7 +1418,7 @@ a {
 }
 
 .mr-link--strong {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mr-color-primary);
 }
 
@@ -1825,7 +1862,7 @@ a {
 
 .mr-dash-header h1 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
@@ -1860,7 +1897,7 @@ a {
 
 .mr-dash-stat__value {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
@@ -1954,7 +1991,7 @@ a {
 
 .mr-dash-card__head h2 {
   font-size: 1.375rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
@@ -1974,6 +2011,12 @@ a {
 
 .mr-icon-badge--success {
   background-color: #e4f6ee;
+}
+
+.mr-icon-badge--white {
+  background-color: rgba(255, 255, 255, 0.32);
+  backdrop-filter: var(--mr-blur-card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .mr-icon-badge--lg {
@@ -2159,7 +2202,7 @@ a {
 
 .mr-upload-card h2 {
   font-size: 1.375rem;
-  font-weight: 650;
+  font-weight: 600;
   color: #000965;
 }
 
@@ -2204,6 +2247,143 @@ a {
 .mr-help-card p {
   margin-top: 0.15rem;
   font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+}
+
+/* New order — prescription drop zone */
+.mr-dash-card__lede {
+  margin-top: -0.5rem;
+  color: var(--mr-color-text-muted);
+  font-size: 0.9rem;
+}
+
+.mr-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  border: 2px dashed rgba(45, 63, 215, 0.3);
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.mr-dropzone h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.mr-dropzone p {
+  color: var(--mr-color-text-muted);
+}
+
+.mr-dropzone__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* "What happens next" section, stacked below the drop zone */
+.mr-next-steps {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(197, 197, 216, 0.4);
+}
+
+/* Small icon + number stat card (e.g. Today's uploads) */
+.mr-mini-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+}
+
+.mr-mini-stat strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Static, decorative location preview — no map engine/API involved */
+.mr-map-preview {
+  position: relative;
+  margin-top: 1rem;
+  height: 128px;
+  border-radius: var(--mr-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  overflow: hidden;
+  background-color: #eef0ff;
+  background-image:
+    linear-gradient(rgba(197, 197, 216, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 197, 216, 0.4) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.mr-map-preview__pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-color: var(--mr-color-primary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+}
+
+.mr-map-preview__pin::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.mr-map-preview__label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.32);
+  backdrop-filter: var(--mr-blur-card);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--mr-color-text-muted);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+/* Sticky-looking action bar closing out the order flow */
+.mr-order-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-surface);
+  backdrop-filter: var(--mr-blur-card);
+  box-shadow: var(--mr-shadow-card);
+}
+
+.mr-order-footer__copy {
+  margin-right: auto;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
   color: var(--mr-color-text-muted);
 }
 
@@ -2343,6 +2523,34 @@ a {
 
   .mr-card {
     border-radius: var(--mr-radius-xl);
+  }
+
+  .mr-dropzone {
+    padding: 2rem 1rem;
+  }
+
+  .mr-dropzone__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .mr-dropzone__actions .mr-btn {
+    width: 100%;
+  }
+
+  .mr-order-footer {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: var(--mr-radius-xl);
+  }
+
+  .mr-order-footer__copy {
+    margin: 0 0 0.25rem;
+    text-align: center;
+  }
+
+  .mr-order-footer .mr-btn {
+    width: 100%;
   }
 }
 
