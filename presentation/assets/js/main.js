@@ -223,3 +223,72 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var list = document.querySelector('.mr-history-list');
+  if (!list) return;
+
+  var cards = list.querySelectorAll('.mr-history-card');
+  var listEmpty = list.querySelector('.mr-history-list__empty');
+  var sidebarEmpty = document.querySelector('.mr-history-empty');
+  var search = document.querySelector('.mr-history-toolbar .mr-pharm-search input');
+  var filters = document.querySelector('.mr-history-filters');
+  var activeFilter = null;
+
+  function applyFilters() {
+    var term = search ? search.value.trim().toLowerCase() : '';
+    var visibleCount = 0;
+
+    cards.forEach(function (card) {
+      var matchesStatus = !activeFilter || card.dataset.status === activeFilter;
+      var matchesSearch = !term || card.dataset.name.toLowerCase().indexOf(term) !== -1;
+      var match = matchesStatus && matchesSearch;
+      card.hidden = !match;
+      if (match) visibleCount++;
+    });
+
+    if (listEmpty) listEmpty.hidden = visibleCount !== 0;
+    if (sidebarEmpty) sidebarEmpty.hidden = visibleCount !== 0;
+  }
+
+  cards.forEach(function (card) {
+    var toggle = card.querySelector('.mr-history-card__toggle');
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        card.classList.toggle('is-open');
+      });
+    }
+
+    card.querySelectorAll('.mr-star-rating__btn').forEach(function (star, index) {
+      star.addEventListener('click', function () {
+        var rating = index + 1;
+        var stars = card.querySelectorAll('.mr-star-rating__btn img');
+        stars.forEach(function (img, i) {
+          img.src = i < rating
+            ? 'https://img.icons8.com/ios-filled/50/dd8e1c/star.png'
+            : 'https://img.icons8.com/ios/50/c5c5d8/star.png';
+        });
+        card.querySelector('.mr-star-rating').dataset.rating = rating;
+      });
+    });
+  });
+
+  if (search) search.addEventListener('input', applyFilters);
+
+  if (filters) {
+    filters.querySelectorAll('.mr-history-filters__btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var turningOn = !btn.classList.contains('is-active');
+
+        filters.querySelectorAll('.mr-history-filters__btn').forEach(function (other) {
+          other.classList.remove('is-active');
+        });
+
+        activeFilter = turningOn ? btn.dataset.filter : null;
+        if (turningOn) btn.classList.add('is-active');
+
+        applyFilters();
+      });
+    });
+  }
+});

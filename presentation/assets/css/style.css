@@ -2126,6 +2126,7 @@ a {
 
 .mr-order__tags {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -2967,6 +2968,250 @@ a {
   gap: 0.75rem;
 }
 
+/* Order history — toolbar, status filters, expandable order cards, and
+   the "most ordered medicines" sidebar card */
+.mr-history-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.mr-history-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mr-history-filters__btn {
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.4);
+  font-family: var(--mr-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--mr-color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.mr-history-filters__btn:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.mr-history-filters__btn--delivered {
+  border-color: rgba(31, 157, 107, 0.25);
+  background-color: rgba(228, 246, 238, 0.6);
+  color: var(--mr-color-success);
+}
+
+.mr-history-filters__btn--delivered.is-active {
+  border-color: var(--mr-color-success);
+  background-color: var(--mr-color-success);
+  color: #fff;
+}
+
+.mr-history-filters__btn--processing {
+  border-color: rgba(221, 142, 28, 0.25);
+  background-color: rgba(252, 240, 220, 0.6);
+  color: var(--mr-color-accent);
+}
+
+.mr-history-filters__btn--processing.is-active {
+  border-color: var(--mr-color-accent);
+  background-color: var(--mr-color-accent);
+  color: #fff;
+}
+
+.mr-history-filters__btn--canceled {
+  border-color: rgba(214, 83, 74, 0.25);
+  background-color: rgba(253, 233, 231, 0.6);
+  color: var(--mr-color-danger);
+}
+
+.mr-history-filters__btn--canceled.is-active {
+  border-color: var(--mr-color-danger);
+  background-color: var(--mr-color-danger);
+  color: #fff;
+}
+
+.mr-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mr-history-list__empty {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-history-card--canceled {
+  opacity: 0.75;
+}
+
+.mr-history-card__price {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.mr-history-card__no-rating {
+  font-size: 0.75rem;
+  color: var(--mr-color-text-soft);
+}
+
+/* Card 2's header doubles as the expand/collapse toggle */
+.mr-history-card__toggle {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mr-history-card__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(45, 63, 215, 0.1);
+  flex-shrink: 0;
+}
+
+.mr-history-card__chevron img {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.15s ease;
+}
+
+.mr-history-card.is-open .mr-history-card__chevron img {
+  transform: rotate(180deg);
+}
+
+.mr-history-card__body {
+  display: none;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.mr-history-card.is-open .mr-history-card__body {
+  display: flex;
+}
+
+.mr-history-card__details {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.mr-history-card__rate {
+  flex: 1 1 220px;
+  min-width: 220px;
+  padding-left: 2rem;
+  border-left: 1px solid rgba(197, 197, 216, 0.4);
+}
+
+.mr-history-card__details h3,
+.mr-history-card__rate h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mr-history-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.mr-star-rating {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.mr-star-rating__btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mr-star-rating__btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.mr-history-card__submit {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .mr-history-card__rate {
+    padding-left: 0;
+    border-left: none;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(197, 197, 216, 0.4);
+  }
+}
+
+/* Most ordered medicines — gradient summary card in the sidebar */
+.mr-med-stats {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--mr-radius-sm);
+  background-image: linear-gradient(135deg, #bdc2ff 0%, #66d9ff 100%);
+  box-shadow: var(--mr-shadow-card);
+}
+
+.mr-med-stats h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-med-stats__row + .mr-med-stats__row {
+  margin-top: 1.1rem;
+}
+
+.mr-med-stats__label {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-med-stats__bar {
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.mr-med-stats__fill {
+  height: 100%;
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-primary-dark);
+}
+
 /* On wide displays the whole dashboard is pinned to the viewport height
    (scoped to this page only) so the toolbar stays put and only the card
    list scrolls internally instead of growing the page. */
@@ -3464,6 +3709,15 @@ a {
 /* Order tracking — itemised receipt (items, subtotal, fee, promo, total) */
 .mr-order-lines {
   margin-top: 1.25rem;
+}
+
+/* Short, non-scrolling item list (order history) — no scroll-fade, since
+   the fade gradient shows as a stray shadow when there's nothing to scroll */
+.mr-history-card__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
 }
 
 /* Scrollable item list — fades at the bottom edge to signal there's more
