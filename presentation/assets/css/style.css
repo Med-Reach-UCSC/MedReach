@@ -2,25 +2,26 @@
 
 :root {
   --mr-color-bg: #f4f2ff;
-  --mr-color-surface: rgba(255, 255, 255, 0.24);
+  --mr-color-surface: rgba(255, 255, 255, 0.45);
   --mr-color-surface-solid: #fff;
   --mr-color-border: rgba(197, 197, 216, 0.5);
   --mr-color-primary: #2d3fd7;
   --mr-color-primary-dark: #2b1fd6;
   --mr-color-accent: #dd8e1c;
   --mr-color-success: #1f9d6b;
+  --mr-color-danger: #d6534a;
   --mr-color-text: #1a1b24;
   --mr-color-text-muted: #454655;
   --mr-color-text-soft: #5c5e67;
 
-  --mr-radius-sm: 12px;
-  --mr-radius-md: 20px;
-  --mr-radius-lg: 24px;
-  --mr-radius-xl: 28px;
+  --mr-radius-sm: 10px;
+  --mr-radius-md: 10px;
+  --mr-radius-lg: 10px;
+  --mr-radius-xl: 10px;
   --mr-radius-pill: 9999px;
 
   --mr-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.06);
-  --mr-blur-card: blur(10px);
+  --mr-blur-card: blur(15px);
 
   --mr-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mr-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -34,11 +35,34 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(69, 70, 85, 0.25) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(69, 70, 85, 0.25);
+  border-radius: var(--mr-radius-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(69, 70, 85, 0.45);
+}
+
 body {
   margin: 0;
   background-color: var(--mr-color-bg);
   background-image: radial-gradient(ellipse 90% 70% at 100% 100%, rgba(246, 199, 146, 0.85) 0%, rgba(246, 199, 146, 0) 65%),
-    linear-gradient(135deg, rgba(196, 186, 248, 0.75) 0%, rgba(177, 213, 250, 0.85) 100%);
+    linear-gradient(135deg, rgba(196, 186, 248, 0.5) 0%, rgba(177, 213, 250, 0.85) 100%);
   background-attachment: fixed;
   color: var(--mr-color-text);
   font-family: var(--mr-font);
@@ -159,7 +183,7 @@ a {
   gap: 0.5rem;
   border: none;
   border-radius: var(--mr-radius-pill);
-  padding: 0.85rem 2rem;
+  padding: 0.5rem 1.5rem;
   font-family: var(--mr-font);
   font-size: 0.95rem;
   font-weight: 500;
@@ -375,7 +399,7 @@ a {
 
 /* Delivery tracking preview card */
 .mr-tracking-card {
-  padding: 1.5rem;
+  padding: 1.75rem 2.25rem;
 }
 
 .mr-tracking-card__head {
@@ -393,7 +417,7 @@ a {
 .mr-timeline {
   list-style: none;
   margin: 1.5rem 0 0;
-  padding: 0 0 0 1.25rem;
+  padding: 0 0 0 2.75rem;
   border-left: 1px solid var(--mr-color-border);
   display: flex;
   flex-direction: column;
@@ -407,18 +431,24 @@ a {
 }
 
 .mr-timeline__step::before {
-  content: "";
+  content: "\2713";
   position: absolute;
-  left: -1.5rem;
-  top: 0.2rem;
-  width: 12px;
-  height: 12px;
+  left: -3.75rem;
+  top: 0.05rem;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
   border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
   background-color: var(--mr-color-success);
   box-shadow: 0 0 0 4px #e4f6ee;
 }
 
 .mr-timeline__step--active::before {
+  content: "";
   background-color: var(--mr-color-primary);
   box-shadow: 0 0 0 4px #dfe0ff;
 }
@@ -439,6 +469,17 @@ a {
 .mr-timeline__step small {
   color: var(--mr-color-text-muted);
   font-size: 0.875rem;
+}
+
+/* Not-yet-reached step (e.g. "Delivered" while an order is still en route) */
+.mr-timeline__step--pending {
+  opacity: 0.5;
+}
+
+.mr-timeline__step--pending::before {
+  content: "";
+  background-color: var(--mr-color-border);
+  box-shadow: none;
 }
 
 /* New request floating card */
@@ -1413,6 +1454,22 @@ a {
   color: #c5c5d8;
 }
 
+.mr-field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font: inherit;
+  font-size: 0.9375rem;
+  resize: vertical;
+}
+
+.mr-field textarea::placeholder {
+  color: #c5c5d8;
+}
+
 .mr-link--sm {
   font-size: 0.75rem;
 }
@@ -1546,7 +1603,7 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .mr-auth-card {
     flex-direction: column;
     min-height: 0;
@@ -1569,7 +1626,7 @@ a {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .mr-auth {
     padding: 1rem;
   }
@@ -1633,7 +1690,7 @@ a {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .mr-hero__banner {
     grid-template-columns: 1fr;
   }
@@ -1694,7 +1751,7 @@ a {
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 576px) {
   html, body {
     /* clip (not hidden/auto) avoids implicitly making html/body a scroll
        container on the y-axis too, which silently breaks position:sticky
@@ -1755,7 +1812,7 @@ a {
 /* ---------------------------------------------------------------- */
 
 .mr-dashboard {
-  padding: 2.5rem 3.5rem;
+  padding: 2.5rem 2rem;
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 3.25rem;
@@ -2034,6 +2091,11 @@ a {
   color: var(--mr-color-accent);
 }
 
+.mr-badge--danger {
+  background-color: #fce8e8;
+  color: var(--mr-color-danger);
+}
+
 /* Active order card */
 .mr-order {
   padding: 1rem;
@@ -2235,24 +2297,32 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Support card */
+/* Support card — icon, text and the action button all sit on one compact row */
 .mr-help-card {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 1.5rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.mr-help-card > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.mr-help-card .mr-btn {
+  flex-shrink: 0;
 }
 
 .mr-help-card p {
-  margin-top: 0.15rem;
-  font-size: 0.875rem;
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
   color: var(--mr-color-text-muted);
 }
 
 /* New order — prescription drop zone */
 .mr-dash-card__lede {
-  margin-top: -0.5rem;
+  margin: 1.25rem 0 1rem;
   color: var(--mr-color-text-muted);
   font-size: 0.9rem;
 }
@@ -2365,35 +2435,1109 @@ a {
   white-space: nowrap;
 }
 
-/* Sticky-looking action bar closing out the order flow */
+/* Compact action card closing out the order flow — sits stacked in the
+   right-hand column alongside the other cards (surface/border/shadow
+   come from the shared .mr-card class on the element). */
 .mr-order-footer {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding: 1rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: var(--mr-radius-pill);
-  background-color: var(--mr-color-surface);
-  backdrop-filter: var(--mr-blur-card);
-  box-shadow: var(--mr-shadow-card);
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
 }
 
 .mr-order-footer__copy {
-  margin-right: auto;
   font-family: var(--mr-font-mono);
   font-size: 0.75rem;
   color: var(--mr-color-text-muted);
 }
 
-@media (max-width: 900px) {
-  .mr-dash-content {
-    grid-template-columns: 1fr;
+.mr-order-footer__links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mr-order-footer__links .mr-btn {
+  flex: 1 1 0;
+}
+
+.mr-order-footer > .mr-btn {
+  width: 100%;
+}
+
+/* Pharmacy responses — patient reviews pharmacy replies to a broadcast prescription */
+.mr-resp-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.mr-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-price--was {
+  font-size: 1rem;
+  color: var(--mr-color-text-muted);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Right-aligned, bordered action row — the exact-width pill buttons from
+   the original design, not a stretched request-card split */
+.mr-resp-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* Suggested-alternative box inside a substitution card */
+.mr-resp-suggestion {
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(221, 142, 28, 0.2);
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(252, 240, 220, 0.5);
+}
+
+.mr-resp-suggestion__label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--mr-color-accent);
+}
+
+.mr-resp-suggestion__label img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-resp-suggestion__name {
+  font-size: 1.1rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.mr-resp-suggestion p {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--mr-color-text-muted);
+}
+
+/* Request Summary — gradient island, same diagonal purple-to-cyan as source */
+.mr-resp-summary {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-lg);
+  background-image: linear-gradient(135deg, #bdc2ff 0%, #66d9ff 100%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.mr-resp-summary h2 {
+  color: var(--mr-color-primary-dark);
+  margin-bottom: 1.25rem;
+}
+
+.mr-resp-summary__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: rgba(0, 9, 101, 0.8);
+}
+
+.mr-resp-summary__row strong {
+  font-size: 1.1rem;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-resp-summary__rule {
+  flex: 1;
+  height: 0;
+  border-bottom: 1px dashed rgba(43, 31, 214, 0.3);
+}
+
+/* Auto-forwarding chain — two pharmacy stops joined by a dashed line with
+   a clock badge centered on it; flex-based rebuild of the source's
+   absolute/percentage layout (which had broken negative-percent offsets) */
+.mr-resp-forward {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 86px;
+  padding: 0 1rem;
+  border: 1px solid rgba(197, 197, 216, 0.3);
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(244, 242, 255, 0.5);
+}
+
+.mr-resp-forward__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.mr-resp-forward__node--next {
+  opacity: 0.6;
+}
+
+.mr-resp-forward__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--mr-color-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mr-resp-forward__icon img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-resp-forward__node--next .mr-resp-forward__icon {
+  background-color: #e3e1ee;
+  border: 1px solid var(--mr-color-border);
+}
+
+.mr-resp-forward__node small {
+  font-family: var(--mr-font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-resp-forward__track {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  border-top: 1px dashed var(--mr-color-border);
+}
+
+.mr-resp-forward__clock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background-color: #fbf8ff;
+}
+
+.mr-resp-forward__clock img {
+  width: 11px;
+  height: 11px;
+}
+
+/* Pharmacy name + distance line under an item title on a response card */
+.mr-resp-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-resp-meta img {
+  width: 12px;
+  height: 13px;
+}
+
+.mr-resp-meta__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--mr-color-border);
+}
+
+/* Original prescription card — thumbnail + the extracted item list, so the
+   patient can see what was broadcast alongside the pharmacies' responses */
+.mr-resp-rx {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.mr-resp-rx__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(244, 242, 255, 0.5);
+}
+
+.mr-resp-rx__thumb img {
+  width: 28px;
+  height: 28px;
+}
+
+.mr-resp-rx__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.mr-resp-rx__meta {
+  font-size: 0.85rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-resp-rx__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  list-style: none;
+}
+
+.mr-resp-rx__items li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+}
+
+.mr-resp-rx__items li strong {
+  font-weight: 600;
+}
+
+.mr-resp-rx__items li span {
+  flex-shrink: 0;
+  font-family: var(--mr-font-mono);
+  font-size: 0.7rem;
+  color: var(--mr-color-text-muted);
+}
+
+/* Status filter — Approved / Not Available / Suggestions pills that toggle
+   which response cards are shown (see main.js) */
+.mr-resp-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mr-resp-filters__btn {
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.4);
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--mr-color-text-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.mr-resp-filters__btn:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.mr-resp-filters__btn.is-active {
+  border-color: var(--mr-color-primary);
+  background-color: var(--mr-color-primary);
+  color: #fff;
+}
+
+/* Tint each filter to match the status badge colour it filters for */
+.mr-resp-filters__btn--available {
+  border-color: rgba(31, 157, 107, 0.25);
+  background-color: rgba(228, 246, 238, 0.6);
+  color: var(--mr-color-success);
+}
+
+.mr-resp-filters__btn--available.is-active {
+  border-color: var(--mr-color-success);
+  background-color: var(--mr-color-success);
+  color: #fff;
+}
+
+.mr-resp-filters__btn--unavailable {
+  border-color: rgba(214, 83, 74, 0.25);
+  background-color: rgba(253, 233, 231, 0.6);
+  color: var(--mr-color-danger);
+}
+
+.mr-resp-filters__btn--unavailable.is-active {
+  border-color: var(--mr-color-danger);
+  background-color: var(--mr-color-danger);
+  color: #fff;
+}
+
+.mr-resp-filters__btn--suggestion {
+  border-color: rgba(221, 142, 28, 0.25);
+  background-color: rgba(252, 240, 220, 0.6);
+  color: var(--mr-color-accent);
+}
+
+.mr-resp-filters__btn--suggestion.is-active {
+  border-color: var(--mr-color-accent);
+  background-color: var(--mr-color-accent);
+  color: #fff;
+}
+
+/* Two response cards per row instead of one full-width stack */
+.mr-resp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.mr-resp-grid__empty {
+  grid-column: 1 / -1;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+}
+
+/* Tint each response card to match its status filter colour */
+.mr-resp-grid [data-status] {
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.mr-resp-grid [data-status="available"] {
+  border-left-color: var(--mr-color-success);
+  background-color: rgba(228, 246, 238, 0.35);
+}
+
+.mr-resp-grid [data-status="suggestion"] {
+  border-left-color: var(--mr-color-accent);
+  background-color: rgba(252, 240, 220, 0.35);
+}
+
+.mr-resp-grid [data-status="unavailable"] {
+  border-left-color: var(--mr-color-danger);
+  background-color: rgba(253, 233, 231, 0.35);
+}
+
+/* Nearby pharmacies — directory search/filter toolbar, list, and map panel */
+.mr-pharm-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mr-pharm-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1 1 auto;
+  min-width: 240px;
+  max-width: 640px;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-surface);
+  backdrop-filter: var(--mr-blur-card);
+}
+
+.mr-pharm-search img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.mr-pharm-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  color: var(--mr-color-text);
+  width: 100%;
+}
+
+.mr-pharm-search input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  background: url("https://img.icons8.com/ios-filled/50/1a1b24/multiply.png") center / contain no-repeat;
+}
+
+.mr-pharm-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mr-pharm-filters__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-surface);
+  backdrop-filter: var(--mr-blur-card);
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--mr-color-text);
+  cursor: pointer;
+}
+
+.mr-pharm-filters__btn img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-pharm-filters__btn.is-active {
+  border-color: rgba(45, 63, 215, 0.2);
+  background-color: rgba(45, 63, 215, 0.1);
+  color: var(--mr-color-primary);
+}
+
+/* Tint each filter to match the status badge colour it filters for */
+.mr-pharm-filters__btn--open {
+  border-color: rgba(31, 157, 107, 0.25);
+  background-color: rgba(228, 246, 238, 0.6);
+  color: var(--mr-color-success);
+}
+
+.mr-pharm-filters__btn--open.is-active {
+  border-color: var(--mr-color-success);
+  background-color: var(--mr-color-success);
+  color: #fff;
+}
+
+.mr-pharm-filters__btn--closing {
+  border-color: rgba(221, 142, 28, 0.25);
+  background-color: rgba(252, 240, 220, 0.6);
+  color: var(--mr-color-accent);
+}
+
+.mr-pharm-filters__btn--closing.is-active {
+  border-color: var(--mr-color-accent);
+  background-color: var(--mr-color-accent);
+  color: #fff;
+}
+
+.mr-pharm-filters__btn--closed {
+  border-color: rgba(214, 83, 74, 0.25);
+  background-color: rgba(253, 233, 231, 0.6);
+  color: var(--mr-color-danger);
+}
+
+.mr-pharm-filters__btn--closed.is-active {
+  border-color: var(--mr-color-danger);
+  background-color: var(--mr-color-danger);
+  color: #fff;
+}
+
+.mr-pharm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* On wide displays the whole dashboard is pinned to the viewport height
+   (scoped to this page only) so the toolbar stays put and only the card
+   list scrolls internally instead of growing the page. */
+@media (min-width: 993px) {
+  .mr-page-nearby .mr-dashboard {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .mr-page-nearby .mr-dash-main {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mr-page-nearby .mr-dash-header {
+    flex-shrink: 0;
+  }
+
+  .mr-page-nearby .mr-pharm-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .mr-pharm-list-col {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .mr-pharm-info {
+    align-self: start;
+  }
+
+  .mr-pharm-toolbar {
+    flex-shrink: 0;
+  }
+
+  .mr-pharm-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1rem 1.25rem 1rem 1rem;
   }
 }
 
-@media (max-width: 720px) {
+/* On wide displays the order-tracking dashboard is also pinned to the
+   viewport height so the medicine item list scrolls internally instead
+   of the whole page growing past the viewport. */
+@media (min-width: 993px) {
+  .mr-page-track .mr-dashboard {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .mr-page-track .mr-dash-main {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mr-page-track .mr-dash-header {
+    flex-shrink: 0;
+  }
+
+  .mr-page-track .mr-dash-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    grid-template-rows: 1fr;
+    align-items: stretch;
+  }
+
+  .mr-page-track .mr-dash-col {
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+  }
+
+  .mr-page-track .mr-courier-card,
+  .mr-page-track .mr-help-card {
+    flex-shrink: 0;
+  }
+
+  .mr-page-track .mr-order-details-card {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mr-page-track .mr-order-lines {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mr-page-track .mr-order-lines__items {
+    flex: 1 1 auto;
+    min-height: 60px;
+    max-height: none;
+  }
+
+  .mr-page-track .mr-order-lines__summary {
+    flex-shrink: 0;
+  }
+}
+
+/* On wide displays the right-hand column stretches to match the left
+   column's height, and the footer card is pinned to the bottom of that
+   column via margin-top: auto — filling the empty space below "Today's
+   Uploads" instead of leaving it blank. */
+@media (min-width: 993px) {
+  .mr-page-order .mr-dash-content {
+    align-items: stretch;
+  }
+
+  .mr-page-order .mr-order-footer {
+    margin-top: auto;
+  }
+}
+
+.mr-pharm-card {
+  padding: 1rem;
+  cursor: pointer;
+  border-left-width: 4px;
+  border-left-style: solid;
+  transition: box-shadow 0.15s ease;
+}
+
+.mr-pharm-card.is-selected {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.mr-pharm-card[data-status="open"] {
+  border-left-width: 6px;
+  border-left-color: var(--mr-color-success);
+  background-color: rgba(228, 246, 238, 0.5);
+}
+
+.mr-pharm-card[data-status="closing"] {
+  border-left-width: 6px;
+  border-left-color: var(--mr-color-accent);
+  background-color: rgba(252, 240, 220, 0.5);
+}
+
+.mr-pharm-card[data-status="closed"] {
+  border-left-width: 6px;
+  border-left-color: var(--mr-color-danger);
+  background-color: rgba(253, 233, 231, 0.5);
+  opacity: 0.7;
+}
+
+.mr-pharm-card.is-selected[data-status="open"] {
+  box-shadow: 0 0 0 2px var(--mr-color-success), 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.mr-pharm-card.is-selected[data-status="closing"] {
+  box-shadow: 0 0 0 2px var(--mr-color-accent), 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.mr-pharm-card.is-selected[data-status="closed"] {
+  box-shadow: 0 0 0 2px var(--mr-color-danger), 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+
+.mr-pharm-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.mr-pharm-card__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.mr-pharm-card__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.mr-pharm-card__head h2 {
+  font-size: 1.125rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.mr-pharm-card__addr {
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-pharm-card__category {
+  margin-bottom: 0.2rem;
+}
+
+.mr-pharm-card__phone {
+  margin-top: 0.15rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.8rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-pharm-card__hours {
+  font-size: 0.8rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-pharm-card__tags {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-pharm-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.mr-pharm-rating img {
+  width: 12px;
+  height: 12px;
+}
+
+/* Illustrative location panel — a static styled surface, not a live map/GPS
+   integration (MedReach has no mapping API per project constraints). */
+.mr-pharm-map {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background-image: radial-gradient(circle at 20% 30%, rgba(45, 63, 215, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 75% 65%, rgba(221, 142, 28, 0.08) 0%, transparent 45%),
+    linear-gradient(rgba(69, 70, 85, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(69, 70, 85, 0.06) 1px, transparent 1px);
+  background-size: auto, auto, 40px 40px, 40px 40px;
+}
+
+.mr-pharm-map__pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fbf8ff;
+  border-radius: 50%;
+  background-color: rgba(69, 70, 85, 0.6);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+}
+
+.mr-pharm-map__pin--active {
+  width: 18px;
+  height: 18px;
+  background-color: var(--mr-color-primary);
+}
+
+.mr-pharm-map__pin--closed {
+  background-color: var(--mr-color-danger);
+}
+
+.mr-pharm-detail__addr {
+  margin-bottom: 1rem;
+}
+
+.mr-pharm-detail__stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(244, 242, 255, 0.6);
+}
+
+.mr-pharm-detail__wait {
+  display: block;
+}
+
+.mr-pharm-detail__stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--mr-color-success);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mr-pharm-detail__stock img {
+  width: 13px;
+  height: 13px;
+}
+
+.mr-pharm-info__close {
+  display: none;
+}
+
+.mr-modal-backdrop {
+  display: none;
+}
+
+.mr-modal-backdrop.is-open {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 27, 36, 0.45);
+}
+
+/* Tailwind's "lg" breakpoint — eases the two-column squeeze on small
+   laptop widths before the content grid fully stacks at the Bootstrap
+   "lg" breakpoint below. */
+@media (max-width: 1024px) {
+  .mr-dash-content {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .mr-dash-content {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pharmacy info, avg-wait stat and map become one tap-to-open modal
+     group instead of sitting buried below the (now stacked) card list. */
+  .mr-pharm-info {
+    display: none;
+  }
+
+  .mr-pharm-info.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 420px);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 1.5rem 1rem 1rem;
+    border-radius: var(--mr-radius-lg);
+    background-color: var(--mr-color-bg);
+    z-index: 60;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  }
+
+  .mr-pharm-info__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(69, 70, 85, 0.08);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 61;
+  }
+
+  .mr-pharm-info__close img {
+    width: 12px;
+    height: 12px;
+  }
+
+  .mr-pharm-backdrop.is-open {
+    z-index: 55;
+  }
+}
+
+/* Order tracking — page title + status badge sitting on one line */
+.mr-track-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mr-track-title + .mr-order__tags {
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.mr-track-title + .mr-order__tags img {
+  width: 12px;
+  height: 12px;
+}
+
+/* Order tracking — courier profile card */
+.mr-courier-card {
+  padding: 1.5rem;
+  border: none;
+  color: #fff;
+  background-image: linear-gradient(135deg, #4a5bf0 0%, #2b1fd6 100%);
+}
+
+.mr-courier-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mr-courier-card__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.mr-courier-card__avatar {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.mr-courier-card__label {
+  display: block;
+  font-family: var(--mr-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mr-courier-card__name {
+  display: block;
+  margin: 0.15rem 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.2px;
+}
+
+.mr-courier-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.mr-courier-card__rating img {
+  width: 12px;
+  height: 12px;
+}
+
+/* ETA — plain text, right-aligned next to the courier profile */
+.mr-courier-card__eta {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.mr-courier-card__eta span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.mr-courier-card__eta small {
+  display: block;
+  font-family: var(--mr-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mr-courier-card__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.mr-courier-card__actions .mr-btn {
+  flex: 1;
+}
+
+/* Order tracking — itemised receipt (items, subtotal, fee, promo, total) */
+.mr-order-lines {
+  margin-top: 1.25rem;
+}
+
+/* Scrollable item list — fades at the bottom edge to signal there's more
+   to scroll to, so the card never pushes past the viewport on long orders */
+.mr-order-lines__items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 190px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-right: -0.5rem;
+  background-image:
+    linear-gradient(to bottom, transparent, var(--mr-color-surface) 85%),
+    linear-gradient(to bottom, transparent, rgba(26, 27, 36, 0.18));
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 32px, 100% 22px;
+  background-attachment: local, scroll;
+}
+
+.mr-order-lines__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.mr-order-lines__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--mr-color-text-soft);
+}
+
+.mr-order-lines__row strong {
+  font-weight: 500;
+  color: var(--mr-color-text);
+}
+
+.mr-order-lines__row small {
+  margin-left: 0.25rem;
+  color: var(--mr-color-text-soft);
+}
+
+.mr-order-lines__rule {
+  flex: 1;
+  height: 0;
+  border-bottom: 1px dashed rgba(197, 197, 216, 0.5);
+}
+
+.mr-order-lines__row--success {
+  color: var(--mr-color-success);
+}
+
+.mr-order-lines__row--success strong {
+  color: var(--mr-color-success);
+}
+
+.mr-order-lines__row--total {
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(197, 197, 216, 0.4);
+  font-size: 1.1rem;
+}
+
+.mr-order-lines__row--total strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--mr-color-primary);
+}
+
+@media (max-width: 768px) {
   /* CSS Grid gives each item its own row's containing block — with the
      sidebar and main stacked as separate implicit grid rows, the sidebar's
      sticky containing block collapses to its own (short) height and it
@@ -2402,6 +3546,10 @@ a {
   .mr-dashboard {
     display: block;
     padding: 1rem;
+  }
+
+  .mr-resp-grid {
+    grid-template-columns: 1fr;
   }
 
   .mr-dash-main {
@@ -2416,9 +3564,13 @@ a {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border-radius: var(--mr-radius-xl);
+    border-radius: 28px;
     padding: 0.75rem 1.25rem;
     z-index: 20;
+  }
+
+  .mr-sidebar-backdrop.is-open {
+    z-index: 15;
   }
 
   .mr-notif-btn--sidebar {
@@ -2467,7 +3619,7 @@ a {
     gap: 1rem;
     padding: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.65);
-    border-radius: var(--mr-radius-xl);
+    border-radius: 28px;
     background-color: var(--mr-color-bg);
     box-shadow: var(--mr-shadow-card);
   }
@@ -2495,7 +3647,7 @@ a {
     justify-content: flex-start;
     gap: 0.85rem;
     padding: 0.7rem 0.75rem;
-    border-radius: var(--mr-radius-sm);
+    border-radius: 12px;
   }
 
   .mr-sidebar__link img {
@@ -2538,19 +3690,171 @@ a {
     width: 100%;
   }
 
-  .mr-order-footer {
+  .mr-pharm-toolbar {
     flex-direction: column;
     align-items: stretch;
-    border-radius: var(--mr-radius-xl);
   }
 
-  .mr-order-footer__copy {
-    margin: 0 0 0.25rem;
-    text-align: center;
+  .mr-pharm-filters {
+    flex-wrap: wrap;
   }
+}
 
-  .mr-order-footer .mr-btn {
-    width: 100%;
+/* ---------------------------------------------------------------- */
+/* Order confirmation                                                */
+/* ---------------------------------------------------------------- */
+
+.mr-confirm-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 2.5rem;
+}
+
+.mr-confirm-hero h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-confirm-hero p {
+  max-width: 640px;
+  color: var(--mr-color-text-muted);
+  font-size: 1.1rem;
+}
+
+.mr-confirm-ref {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.mr-confirm-ref__value {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mr-confirm-ref__eta {
+  text-align: right;
+}
+
+.mr-confirm-ref__eta strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: var(--mr-color-primary);
+}
+
+.mr-confirm-methods {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mr-confirm-method {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: var(--mr-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.7;
+}
+
+.mr-confirm-method img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.mr-confirm-method strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.mr-confirm-method small {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  color: var(--mr-color-text-soft);
+}
+
+.mr-confirm-method.is-selected {
+  opacity: 1;
+  border-color: transparent;
+  color: #fff;
+  background-image: linear-gradient(135deg, #4a5bf0 0%, #2b1fd6 100%);
+  box-shadow: 0 10px 15px -3px rgba(45, 63, 215, 0.2), 0 4px 6px -4px rgba(45, 63, 215, 0.2);
+}
+
+.mr-confirm-method.is-selected small {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Payment status card — layered on .mr-courier-card for its blue gradient/padding */
+.mr-payment-card__label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mr-payment-card__label img {
+  width: 16px;
+  height: 16px;
+}
+
+.mr-payment-card h2 {
+  margin: 0.6rem 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mr-payment-card p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mr-payment-card__due {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border-radius: var(--mr-radius-md);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mr-payment-card__due strong {
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.mr-confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .mr-confirm-methods {
+    flex-direction: column;
   }
 }
 
