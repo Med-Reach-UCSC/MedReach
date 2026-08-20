@@ -3858,3 +3858,224 @@ a {
   }
 }
 
+/* ---------------------------------------------------------------- */
+/* Payments                                                          */
+/* ---------------------------------------------------------------- */
+
+.mr-pay-table-wrap {
+  overflow-x: auto;
+}
+
+.mr-pay-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mr-pay-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-family: var(--mr-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mr-color-text-muted);
+  white-space: nowrap;
+}
+
+.mr-pay-table td {
+  padding: 0.9rem 1rem;
+  border-top: 1px solid rgba(197, 197, 216, 0.4);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.mr-pay-table__amount {
+  text-align: right;
+  font-weight: 500;
+}
+
+.mr-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(197, 197, 216, 0.4);
+}
+
+.mr-pagination__count {
+  font-size: 0.85rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-pagination__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mr-pagination__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+  color: var(--mr-color-text);
+}
+
+.mr-pagination__btn img {
+  width: 10px;
+  height: 10px;
+}
+
+.mr-pagination__btn.is-active {
+  border: none;
+  background-color: var(--mr-color-primary);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(45, 63, 215, 0.2);
+}
+
+.mr-pagination__btn[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Donut ring built from a native conic-gradient — no chart library needed */
+.mr-spend-ring {
+  width: 128px;
+  height: 128px;
+  margin: 0.5rem auto 1.25rem;
+  border-radius: 50%;
+  background: conic-gradient(var(--mr-color-primary) var(--mr-spend-pct, 0%), #e9e7f3 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mr-spend-ring__inner {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mr-spend-ring__inner span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-spend-ring__inner strong {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.mr-spend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.mr-spend-row__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-spend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mr-spend-dot--primary {
+  background-color: var(--mr-color-primary);
+}
+
+.mr-spend-dot--light {
+  background-color: #bdc2ff;
+}
+
+.mr-spend-bar {
+  margin-top: 0.5rem;
+  height: 4px;
+  border-radius: var(--mr-radius-pill);
+  background-color: #e9e7f3;
+  overflow: hidden;
+}
+
+.mr-spend-bar__fill {
+  height: 100%;
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-primary);
+}
+
+/* Light-tint info card — same info blue used by .mr-icon-badge--info,
+   just spread across the whole surface instead of an icon chip */
+.mr-policy-card {
+  padding: 1.5rem;
+  background-color: rgba(207, 228, 250, 0.35);
+}
+
+.mr-policy-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.mr-policy-card__head h2 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.mr-policy-card p {
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-policy-card__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.mr-policy-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-policy-card__list li img {
+  width: 14px;
+  height: 14px;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .mr-pagination__count {
+    display: none;
+  }
+}
+
