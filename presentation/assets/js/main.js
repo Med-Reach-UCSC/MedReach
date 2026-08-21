@@ -309,3 +309,45 @@ document.addEventListener('DOMContentLoaded', function () {
     sidebarDots.forEach(function (dot) { dot.remove(); });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var toggle = document.querySelector('.mr-pref-toggle');
+  if (!toggle) return;
+
+  toggle.querySelectorAll('[data-pref-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      toggle.querySelectorAll('[data-pref-toggle]').forEach(function (other) {
+        other.classList.remove('is-active');
+      });
+      btn.classList.add('is-active');
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var openers = document.querySelectorAll('[data-modal-open]');
+  if (!openers.length) return;
+
+  openers.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var modal = document.getElementById(btn.dataset.modalOpen);
+      if (modal) modal.classList.add('is-open');
+    });
+  });
+
+  document.querySelectorAll('.mr-modal').forEach(function (modal) {
+    modal.querySelectorAll('[data-modal-close]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        modal.classList.remove('is-open');
+      });
+    });
+
+    var form = modal.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        modal.classList.remove('is-open');
+      });
+    }
+  });
+});
