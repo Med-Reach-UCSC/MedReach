@@ -292,3 +292,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var markAll = document.getElementById('mr-notif-mark-all');
+  var list = document.querySelector('.mr-notif-list');
+  if (!markAll || !list) return;
+
+  markAll.addEventListener('click', function () {
+    list.querySelectorAll('.mr-notif-item.is-unread').forEach(function (item) {
+      item.classList.remove('is-unread');
+      var dot = item.querySelector('.mr-notif-item__dot');
+      if (dot) dot.remove();
+    });
+
+    var sidebarDots = document.querySelectorAll('.mr-notif-btn__dot');
+    sidebarDots.forEach(function (dot) { dot.remove(); });
+  });
+});

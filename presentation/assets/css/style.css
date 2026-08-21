@@ -2096,6 +2096,114 @@ a {
   color: var(--mr-color-danger);
 }
 
+.mr-icon-badge--danger {
+  background-color: #fce8e8;
+}
+
+.mr-icon-badge--muted {
+  background-color: #e3e1ee;
+}
+
+/* Notifications list */
+.mr-notif-list__section {
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(244, 242, 255, 0.3);
+  border-bottom: 1px solid var(--mr-color-border);
+}
+
+.mr-notif-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--mr-color-border);
+}
+
+.mr-notif-item.is-unread {
+  background-color: rgba(223, 224, 255, 0.2);
+}
+
+.mr-notif-item__info {
+  flex: 1;
+}
+
+.mr-notif-item__title {
+  color: var(--mr-color-text-muted);
+}
+
+.mr-notif-item.is-unread .mr-notif-item__title {
+  color: var(--mr-color-text);
+  font-weight: 500;
+}
+
+.mr-notif-item__time {
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-notif-item.is-unread .mr-notif-item__time {
+  color: var(--mr-color-primary);
+}
+
+.mr-notif-item__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--mr-color-primary);
+}
+
+/* Toggle switch — used for notification preferences */
+.mr-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.mr-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.mr-switch__track {
+  position: absolute;
+  inset: 0;
+  background-color: #e3e1ee;
+  border: 1px solid var(--mr-color-border);
+  border-radius: var(--mr-radius-pill);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) inset;
+  transition: background-color 0.15s;
+}
+
+.mr-switch__track::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s;
+}
+
+.mr-switch input:checked + .mr-switch__track {
+  background-color: var(--mr-color-primary);
+  border-color: var(--mr-color-primary);
+}
+
+.mr-switch input:checked + .mr-switch__track::before {
+  transform: translateX(16px);
+}
+
 /* Active order card */
 .mr-order {
   padding: 1rem;
