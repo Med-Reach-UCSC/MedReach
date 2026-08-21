@@ -4441,3 +4441,177 @@ a {
   }
 }
 
+/* ---------------------------------------------------------------- */
+/* Profile & Settings page                                          */
+/* ---------------------------------------------------------------- */
+
+.mr-pref-toggle {
+  margin-top: 0.5rem;
+}
+
+.mr-profile-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.mr-profile-card__identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mr-avatar--profile {
+  width: 64px;
+  height: 64px;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.mr-profile-card__identity h2 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.mr-profile-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.mr-profile-details__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mr-profile-details__item strong {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.mr-profile-details__item--span2 {
+  grid-column: span 2;
+}
+
+.mr-danger-card {
+  border-color: rgba(214, 83, 74, 0.3);
+  background-color: rgba(214, 83, 74, 0.06);
+}
+
+.mr-danger-card h2 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  color: var(--mr-color-danger);
+  margin-bottom: 0.5rem;
+}
+
+.mr-danger-card p {
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.mr-btn--danger-outline {
+  border: 1px solid var(--mr-color-danger);
+  background-color: transparent;
+  color: var(--mr-color-danger);
+}
+
+.mr-btn--danger-outline:hover {
+  background-color: rgba(214, 83, 74, 0.08);
+}
+
+/* Reusable modal — opened via [data-modal-open], closed via [data-modal-close] */
+.mr-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.mr-modal.is-open {
+  display: flex;
+}
+
+.mr-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 27, 36, 0.45);
+}
+
+.mr-modal__card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+}
+
+.mr-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mr-modal__head h2 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.mr-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mr-modal__close:hover {
+  background-color: rgba(74, 91, 240, 0.08);
+}
+
+.mr-modal__close img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-modal__form {
+  max-width: none;
+}
+
+.mr-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 576px) {
+  .mr-profile-details {
+    grid-template-columns: 1fr;
+  }
+
+  .mr-profile-details__item--span2 {
+    grid-column: span 1;
+  }
+}
+
