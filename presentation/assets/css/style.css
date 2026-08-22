@@ -4763,3 +4763,20 @@ a {
   }
 }
 
+/* Guardian control tower — action-required + adherence mini cards */
+.mr-guardian-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.mr-help-card--alert {
+  border-left: 4px solid var(--mr-color-accent);
+}
+
+@media (max-width: 576px) {
+  .mr-guardian-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
