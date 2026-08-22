@@ -42,6 +42,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+  var sidebar = document.querySelector('.mr-sidebar');
+  var collapseBtn = document.querySelector('.mr-sidebar__collapse');
+  if (!sidebar || !collapseBtn) return;
+
+  var STORAGE_KEY = 'mr-sidebar-compact';
+
+  function setCompact(isCompact) {
+    sidebar.classList.toggle('is-compact', isCompact);
+    collapseBtn.setAttribute('aria-pressed', isCompact ? 'true' : 'false');
+  }
+
+  setCompact(localStorage.getItem(STORAGE_KEY) === 'true');
+
+  collapseBtn.addEventListener('click', function () {
+    var isCompact = !sidebar.classList.contains('is-compact');
+    setCompact(isCompact);
+    localStorage.setItem(STORAGE_KEY, isCompact);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
   var tabs = document.querySelector('.mr-auth-tabs');
   if (!tabs) return;
 
