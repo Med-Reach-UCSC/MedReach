@@ -8,7 +8,7 @@ $mr_sidebar_links = [
   'dashboard'     => ['label' => 'Dashboard',     'icon' => 'home',        'href' => 'patient-dashboard.php'],
   'prescriptions' => ['label' => 'Prescriptions',  'icon' => 'clipboard', 'href' => '#'],
   'orders'        => ['label' => 'Orders',         'icon' => 'list',        'href' => 'patient-order.php'],
-  'pharmacies'    => ['label' => 'Pharmacies',     'icon' => 'shop',        'href' => '#'],
+  'pharmacies'    => ['label' => 'Pharmacies',     'icon' => 'shop',        'href' => 'nearby-pharmacies.php'],
 ];
 ?>
 <aside class="mr-sidebar" aria-label="Patient navigation">
@@ -54,3 +54,5 @@ $mr_sidebar_links = [
     </div>
   </div>
 </aside>
+
+<div class="mr-modal-backdrop mr-sidebar-backdrop"></div>
