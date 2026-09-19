@@ -9,6 +9,7 @@ $mr_sidebar_links = [
   'prescriptions' => ['label' => 'Prescriptions',  'icon' => 'clipboard', 'href' => '#'],
   'orders'        => ['label' => 'Orders',         'icon' => 'list',        'href' => 'patient-order.php'],
   'pharmacies'    => ['label' => 'Pharmacies',     'icon' => 'shop',        'href' => 'nearby-pharmacies.php'],
+  'payments'      => ['label' => 'Payments',       'icon' => 'cash',        'href' => 'payments.php'],
 ];
 ?>
 <aside class="mr-sidebar" aria-label="Patient navigation">
