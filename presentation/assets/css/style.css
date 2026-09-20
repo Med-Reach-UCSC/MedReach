@@ -1470,6 +1470,18 @@ a {
   color: #c5c5d8;
 }
 
+.mr-field__input select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--mr-color-text-muted);
+}
+
 .mr-link--sm {
   font-size: 0.75rem;
 }
