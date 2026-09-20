@@ -4431,16 +4431,21 @@ a {
   pointer-events: none;
 }
 
-/* Donut ring built from a native conic-gradient — no chart library needed */
+/* Donut ring — Chart.js doughnut canvas, centered behind the % readout */
 .mr-spend-ring {
+  position: relative;
   width: 128px;
   height: 128px;
   margin: 0.5rem auto 1.25rem;
   border-radius: 50%;
-  background: conic-gradient(var(--mr-color-primary) var(--mr-spend-pct, 0%), #e9e7f3 0);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mr-spend-ring canvas {
+  position: absolute;
+  inset: 0;
 }
 
 .mr-spend-ring__inner {
@@ -4493,20 +4498,6 @@ a {
 
 .mr-spend-dot--light {
   background-color: #bdc2ff;
-}
-
-.mr-spend-bar {
-  margin-top: 0.5rem;
-  height: 4px;
-  border-radius: var(--mr-radius-pill);
-  background-color: #e9e7f3;
-  overflow: hidden;
-}
-
-.mr-spend-bar__fill {
-  height: 100%;
-  border-radius: var(--mr-radius-pill);
-  background-color: var(--mr-color-primary);
 }
 
 /* Light-tint info card — same info blue used by .mr-icon-badge--info,
