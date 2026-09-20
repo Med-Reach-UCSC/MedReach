@@ -426,3 +426,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var list = document.querySelector('[data-request-list]');
+  if (!list) return;
+
+  var count = document.querySelector('[data-request-count]');
+  var empty = document.querySelector('[data-request-empty]');
+
+  function updateCount() {
+    var remaining = list.querySelectorAll('.mr-request-card').length;
+    if (count) count.textContent = remaining + ' new';
+    if (empty) empty.hidden = remaining !== 0;
+  }
+
+  list.querySelectorAll('[data-request-action]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.mr-request-card');
+      if (card) card.remove();
+      updateCount();
+    });
+  });
+});
+
+// Shared by every Chart.js init below — reads a design token straight off
+// :root so charts always match the current --mr-color-* palette.
+function mrColor(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-earnings-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: ['8a', '10a', '12p', '2p', '4p', '6p'],
+      datasets: [{
+        data: [1200, 2600, 4800, 9400, 6100, 2400],
+        backgroundColor: mrColor('--mr-color-primary'),
+        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
+        borderRadius: 6,
+        maxBarThickness: 36
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
+        y: {
+          grid: { color: mrColor('--mr-color-border') },
+          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+        }
+      }
+    }
+  });
+});
