@@ -127,28 +127,7 @@
           <div>
             <h3>Network Growth</h3>
             <p>240 partner pharmacies now cover 40+ cities.</p>
-            <div class="mr-bar-chart">
-              <div class="mr-bar-chart__col">
-                <span class="mr-bar-chart__bar" style="--mr-bar-value:25%"></span>
-                <strong>60</strong>
-                <small>Q1</small>
-              </div>
-              <div class="mr-bar-chart__col">
-                <span class="mr-bar-chart__bar" style="--mr-bar-value:58%"></span>
-                <strong>140</strong>
-                <small>Q2</small>
-              </div>
-              <div class="mr-bar-chart__col">
-                <span class="mr-bar-chart__bar" style="--mr-bar-value:79%"></span>
-                <strong>190</strong>
-                <small>Q3</small>
-              </div>
-              <div class="mr-bar-chart__col">
-                <span class="mr-bar-chart__bar" style="--mr-bar-value:100%"></span>
-                <strong>240</strong>
-                <small>Q4</small>
-              </div>
-            </div>
+            <canvas id="mr-network-chart" height="160" role="img" aria-label="Partner pharmacies onboarded by quarter: 60 in Q1, 140 in Q2, 190 in Q3, 240 in Q4"></canvas>
           </div>
           <div>
             <h3>Top Partner Pharmacies</h3>
@@ -388,6 +367,7 @@
     <a class="mr-attribution" href="https://icons8.com" target="_blank" rel="noopener">Icons by Icons8</a>
   </footer>
 
+  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
   <script src="presentation/assets/js/main.js"></script>
 </body>
 </html>

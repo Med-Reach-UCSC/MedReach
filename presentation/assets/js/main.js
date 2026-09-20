@@ -484,3 +484,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-network-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+      datasets: [{
+        data: [60, 140, 190, 240],
+        backgroundColor: mrColor('--mr-color-primary'),
+        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
+        borderRadius: 6,
+        maxBarThickness: 48
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
+        y: { grid: { color: mrColor('--mr-color-border') }, ticks: { color: mrColor('--mr-color-text-muted') } }
+      }
+    }
+  });
+});
