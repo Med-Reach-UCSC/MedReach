@@ -4745,3 +4745,162 @@ a {
   }
 }
 
+/* Manage patients — roster table toolbar, sortable headers, actions menu */
+.mr-roster-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.mr-roster-toolbar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mr-roster-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.mr-roster-filter img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-roster-filter select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mr-color-text);
+}
+
+.mr-roster-toolbar .mr-btn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mr-patient-id {
+  display: block;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mr-color-primary);
+}
+
+.mr-pay-table th[data-sort] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.mr-pay-table th[data-sort]::after {
+  content: '\2195';
+  margin-left: 0.35rem;
+  opacity: 0.4;
+}
+
+.mr-pay-table th[data-sort][aria-sort="ascending"]::after {
+  content: '\2191';
+  opacity: 1;
+  color: var(--mr-color-primary);
+}
+
+.mr-pay-table th[data-sort][aria-sort="descending"]::after {
+  content: '\2193';
+  opacity: 1;
+  color: var(--mr-color-primary);
+}
+
+.mr-pay-table tbody tr:hover {
+  background-color: rgba(74, 91, 240, 0.04);
+}
+
+.mr-table-menu-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: var(--mr-radius-pill);
+}
+
+.mr-table-menu-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mr-roster-empty {
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--mr-color-text-muted);
+}
+
+/* Manage patients — right rail: wellness stat card, alert card, activity log */
+.mr-fleet-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.mr-fleet-card__stat strong {
+  font-size: 1.75rem;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-fleet-card__caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(0, 9, 101, 0.8);
+}
+
+.mr-mini-bars {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 1.25rem;
+}
+
+.mr-activity-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.mr-activity-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.mr-activity-list__dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--mr-color-border);
+}
+
+.mr-activity-list__item--active .mr-activity-list__dot {
+  background-color: var(--mr-color-primary);
+}
+
+.mr-activity-list__item p {
+  font-size: 0.9rem;
+}
+

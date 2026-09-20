@@ -534,3 +534,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-adherence-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  var values = [30, 45, 40, 60, 55, 75, 90];
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
+      datasets: [{
+        data: values,
+        backgroundColor: values.map(function (_, i) {
+          return i === values.length - 1 ? mrColor('--mr-color-primary') : 'rgba(45, 63, 215, 0.55)';
+        }),
+        borderRadius: 3,
+        maxBarThickness: 18
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: {
+        x: { display: false },
+        y: { display: false, beginAtZero: true }
+      }
+    }
+  });
+});
