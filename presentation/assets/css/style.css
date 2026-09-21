@@ -2607,6 +2607,11 @@ a {
   letter-spacing: -0.02em;
 }
 
+/* Flags a mini-stat needing attention (e.g. cash to collect on delivery) */
+.mr-mini-stat--accent {
+  border-top: 3px solid var(--mr-color-accent);
+}
+
 /* Static, decorative location preview — no map engine/API involved */
 .mr-map-preview {
   position: relative;
@@ -2644,6 +2649,12 @@ a {
   height: 8px;
   border-radius: 50%;
   background-color: #fff;
+}
+
+/* Taller variant for a route card that's the main focus of a page (delivery
+   dashboard) rather than a small confirmation aside */
+.mr-map-preview--lg {
+  height: 320px;
 }
 
 .mr-map-preview__label {
@@ -4796,6 +4807,20 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+}
+
+/* Top-of-page status row (e.g. delivery dashboard's active-node/ETA/cash cards) */
+.mr-stat-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .mr-stat-grid-3 {
+    grid-template-columns: 1fr;
+  }
 }
 
 .mr-help-card--alert {
