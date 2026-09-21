@@ -4659,6 +4659,51 @@ a {
   color: #fff;
 }
 
+/* Read-only fields (e.g. a pharmacy's license number) — dimmed to look
+   locked instead of just relying on the lock icon */
+.mr-field__input input:read-only {
+  background-color: rgba(69, 70, 85, 0.06);
+  color: var(--mr-color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Let the 2-column field grid fill its container when it's the main
+   content of a full-width dashboard card (settings/profile forms),
+   instead of staying capped at the narrower modal width it was
+   originally sized for */
+.mr-dash-card .mr-auth-form--grid {
+  max-width: none;
+}
+
+/* Wide variant of the info card — lays the icon/heading/text block and
+   its action button out side by side instead of stacked, for when the
+   card spans a full-width column instead of a narrow sidebar rail */
+.mr-policy-card--wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.mr-policy-card--wide .mr-policy-card__body {
+  max-width: 560px;
+}
+
+.mr-policy-card--wide .mr-policy-card__head {
+  margin-bottom: 0.5rem;
+}
+
+.mr-policy-card--wide .mr-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .mr-policy-card--wide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* Reusable modal — opened via [data-modal-open], closed via [data-modal-close] */
 .mr-modal {
   display: none;
