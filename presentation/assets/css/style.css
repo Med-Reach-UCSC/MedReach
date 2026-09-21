@@ -1339,6 +1339,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: var(--mr-radius-pill);
   background-color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 1.5rem;
 }
 
 .mr-auth-tabs__btn {
@@ -4902,5 +4903,204 @@ a {
 
 .mr-activity-list__item p {
   font-size: 0.9rem;
+}
+
+/* Pharmacist request review — collapsed row expands into a substitution form */
+.mr-order-row--expandable {
+  display: block;
+}
+
+.mr-order-row--expandable summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.mr-order-row--expandable summary::-webkit-details-marker {
+  display: none;
+}
+
+.mr-order-row__form {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Pharmacist request review — priced input chip (checklist rows + substitution form) */
+.mr-price-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mr-price-field--block {
+  display: flex;
+  width: 100%;
+}
+
+.mr-price-field__prefix {
+  flex-shrink: 0;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-price-field input {
+  flex: 1;
+  min-width: 0;
+  width: 90px;
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: right;
+  font-family: var(--mr-font-mono);
+  font-size: 0.9375rem;
+  color: var(--mr-color-text);
+}
+
+.mr-price-field input:focus {
+  outline: none;
+}
+
+.mr-price-field input::placeholder {
+  color: #c5c5d8;
+}
+
+/* Pharmacist request review — literal 3-column bento (document+note | checklist
+   | summary+delivery), page-scoped like .mr-page-order/.mr-page-track so the
+   shared 2-column .mr-dash-content used elsewhere is untouched. */
+.mr-page-request .mr-dash-main {
+  padding-bottom: 7rem;
+}
+
+/* Patient note reads as clinically relevant context, not fine print — bump
+   it past the default .mr-help-card p size/muting for this page only. */
+.mr-page-request .mr-help-card--alert p {
+  font-size: 0.9375rem;
+  color: var(--mr-color-text);
+}
+
+@media (min-width: 993px) {
+  .mr-page-request .mr-dash-content {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr) minmax(0, 360px);
+    gap: 2rem;
+  }
+}
+
+/* .mr-order-row was built for a narrow ~380-420px rail, where
+   margin-right: auto on the info block collapsing to its own width and
+   shoving the badge/price to the far edge reads fine. The checklist column
+   here is fluid and much wider, so let the info block grow with it instead
+   of leaving a hollow gap between the medicine name and its price. */
+.mr-page-request .mr-order-row__info {
+  flex: 1;
+  margin-right: 0;
+}
+
+/* Delivery method value is a short label ("Standard Pharmacy Delivery"),
+   not a headline number — .mr-mini-stat strong's 1.75rem is sized for the
+   latter and wraps this into three oversized lines. */
+.mr-page-request .mr-mini-stat strong {
+  font-size: 1rem;
+}
+
+/* Round icon button (print) in the request-detail header, matching the
+   existing 40px circular .mr-notif-btn treatment. */
+.mr-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--mr-color-surface);
+  cursor: pointer;
+}
+
+.mr-icon-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Back link + patient/timer chips read as fine print at the shared
+   mr-link--sm/mr-badge sizes — bumped up for this page only. */
+.mr-page-request .mr-dash-header .mr-link--sm {
+  font-size: 0.9375rem;
+}
+
+.mr-page-request .mr-dash-header__actions .mr-badge--pill {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8125rem;
+}
+
+/* Floating capsule footer for the accept/decline decision — sized to the
+   content column (viewport minus the sidebar's own column + grid gap), not
+   the full viewport, so it never overlaps the sidebar rail. */
+.mr-decision-bar {
+  position: fixed;
+  left: calc(240px + 3.25rem);
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem 2rem;
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-surface);
+  backdrop-filter: var(--mr-blur-card);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--mr-shadow-card);
+}
+
+/* Sidebar collapses to its 100px icon-only dock via the existing
+   .is-compact toggle — follow it so the capsule keeps hugging the rail. */
+.mr-dashboard:has(.mr-sidebar.is-compact) + .mr-decision-bar {
+  left: calc(100px + 3.25rem);
+}
+
+.mr-decision-bar__note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-decision-bar__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.mr-decision-bar__actions .mr-btn {
+  min-width: 160px;
+}
+
+@media (max-width: 768px) {
+  .mr-decision-bar,
+  .mr-dashboard:has(.mr-sidebar.is-compact) + .mr-decision-bar {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .mr-decision-bar {
+    padding: 1rem 1.25rem;
+  }
+
+  .mr-decision-bar__note {
+    display: none;
+  }
 }
 
