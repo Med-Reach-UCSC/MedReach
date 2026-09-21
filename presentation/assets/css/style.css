@@ -38,6 +38,7 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(69, 70, 85, 0.25) transparent;
+  background-color: var(--mr-color-bg);
 }
 
 *::-webkit-scrollbar {
@@ -60,13 +61,26 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--mr-color-bg);
-  background-image: radial-gradient(ellipse 90% 70% at 100% 100%, rgba(246, 199, 146, 0.85) 0%, rgba(246, 199, 146, 0) 65%),
-    linear-gradient(135deg, rgba(196, 186, 248, 0.5) 0%, rgba(177, 213, 250, 0.85) 100%);
-  background-attachment: fixed;
   color: var(--mr-color-text);
   font-family: var(--mr-font);
   line-height: 1.5;
+  position: relative;
+}
+
+/* The gradient used to live on `body` via `background-attachment: fixed`,
+   but that combination is a known Chrome/Windows repaint bug: fast
+   scrolling (or dragging the scrollbar and holding) outruns the fixed
+   background's repaint and flashes plain white until it catches up —
+   reported on every page since they all share this one background. A
+   fixed-position pseudo-element gets its own compositor layer instead of
+   being repainted on scroll, so it can't lag behind. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(ellipse 90% 70% at 100% 100%, rgba(246, 199, 146, 0.85) 0%, rgba(246, 199, 146, 0) 65%),
+    linear-gradient(135deg, rgba(196, 186, 248, 0.5) 0%, rgba(177, 213, 250, 0.85) 100%);
 }
 
 h1, h2, h3, h4, p, ul, ol, figure {
