@@ -17,10 +17,10 @@ $mr_sidebar_links = [
     <img src="presentation/assets/images/logo-symbol.png" alt="">
   </a>
 
-  <button type="button" class="mr-notif-btn mr-notif-btn--sidebar" aria-label="Notifications">
-    <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-    <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-  </button>
+  <a class="mr-notif-btn mr-notif-btn--sidebar" href="notifications.php" aria-label="Notifications">
+     <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+  <span class="mr-notif-btn__dot" aria-hidden="true"></span>
+  </a>
 
   <button type="button" class="mr-sidebar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-sidebar-menu">
     <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
@@ -44,7 +44,13 @@ $mr_sidebar_links = [
     </nav>
 
     <div class="mr-sidebar__footer">
-      <a class="mr-sidebar__link mr-sidebar__link--profile" href="#" title="Nimal Perera" aria-label="Profile">
+      
+        <a class="mr-sidebar__link mr-sidebar__link--profile<?= $active === 'profile' ? ' is-active' : '' ?>"
+        href="profile.php"
+        title="Nimal Perera"
+        aria-label="Profile"
+        <?= $active === 'profile' ? 'aria-current="page"' : '' ?>
+        >
         <span class="mr-avatar mr-avatar--dash">N</span>
         <span class="mr-sidebar__label">Profile</span>
       </a>
