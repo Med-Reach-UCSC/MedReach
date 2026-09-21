@@ -536,6 +536,59 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-earnings-trend-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      datasets: [{
+        data: [9600, 11200, 12450, 12630],
+        backgroundColor: mrColor('--mr-color-primary'),
+        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
+        borderRadius: 6,
+        maxBarThickness: 56
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
+        y: {
+          grid: { color: mrColor('--mr-color-border') },
+          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+        }
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-earnings-target-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Earned', 'Remaining'],
+      datasets: [{
+        data: [83, 17],
+        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '75%',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
   var canvas = document.getElementById('mr-adherence-chart');
   if (!canvas || typeof Chart === 'undefined') return;
 
