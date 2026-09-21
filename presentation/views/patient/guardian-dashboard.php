@@ -41,7 +41,7 @@ $active = 'family';
       <div class="mr-dash-content">
         <div class="mr-dash-col">
 
-          <section class="mr-card mr-dash-card mr-pay-table-card">
+          <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Active logistics</h2>
               <span class="mr-badge mr-badge--info">4 in transit</span>
@@ -149,7 +149,7 @@ $active = 'family';
           <section class="mr-card mr-med-stats">
             <div class="mr-dash-card__head">
               <h2>Patient roster</h2>
-              <a href="#">+ Add</a>
+              <a href="manage-patients.php">+ Add</a>
             </div>
 
             <div class="mr-pharmacy-row" style="align-items: center;">
