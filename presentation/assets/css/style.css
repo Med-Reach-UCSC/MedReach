@@ -4629,13 +4629,14 @@ a {
 }
 
 .mr-danger-card {
-  border-color: rgba(214, 83, 74, 0.3);
-  background-color: rgba(214, 83, 74, 0.06);
+  border-color: rgba(214, 83, 74, 0.5);
+  border-left: 4px solid var(--mr-color-danger);
+  background-color: rgba(214, 83, 74, 0.12);
 }
 
 .mr-danger-card h2 {
   font-size: 1.25rem;
-  font-weight: 650;
+  font-weight: 700;
   color: var(--mr-color-danger);
   margin-bottom: 0.5rem;
 }
@@ -4647,13 +4648,15 @@ a {
 }
 
 .mr-btn--danger-outline {
-  border: 1px solid var(--mr-color-danger);
-  background-color: transparent;
+  border: 1.5px solid var(--mr-color-danger);
+  background-color: rgba(214, 83, 74, 0.08);
   color: var(--mr-color-danger);
+  font-weight: 600;
 }
 
 .mr-btn--danger-outline:hover {
-  background-color: rgba(214, 83, 74, 0.08);
+  background-color: var(--mr-color-danger);
+  color: #fff;
 }
 
 /* Reusable modal — opened via [data-modal-open], closed via [data-modal-close] */
