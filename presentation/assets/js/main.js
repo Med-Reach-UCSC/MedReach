@@ -618,3 +618,57 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var table = document.getElementById('mr-pharmacy-table');
+  if (!table) return;
+
+  var tbody = table.querySelector('tbody');
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  var search = document.getElementById('mr-pharmacy-search');
+  var statusFilter = document.getElementById('mr-pharmacy-status-filter');
+  var empty = document.querySelector('.mr-roster-empty');
+  var count = document.getElementById('mr-pharmacy-count');
+
+  function applyFilters() {
+    var term = search ? search.value.trim().toLowerCase() : '';
+    var status = statusFilter ? statusFilter.value : '';
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
+      var matchesStatus = !status || row.dataset.status === status;
+      var match = matchesSearch && matchesStatus;
+      row.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (empty) empty.hidden = visible !== 0;
+    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
+  }
+
+  if (search) search.addEventListener('input', applyFilters);
+  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+
+  table.querySelectorAll('th[data-sort]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var key = th.dataset.sort;
+      var ascending = th.getAttribute('aria-sort') !== 'ascending';
+
+      table.querySelectorAll('th[data-sort]').forEach(function (other) {
+        other.removeAttribute('aria-sort');
+      });
+      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+
+      rows.sort(function (a, b) {
+        var valA = a.dataset[key];
+        var valB = b.dataset[key];
+        if (valA < valB) return ascending ? -1 : 1;
+        if (valA > valB) return ascending ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(function (row) { tbody.appendChild(row); });
+    });
+  });
+});
