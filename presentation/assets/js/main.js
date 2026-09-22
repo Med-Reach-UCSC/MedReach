@@ -726,3 +726,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-role-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Patients', 'Pharmacists', 'Delivery', 'Admins'],
+      datasets: [{
+        data: [65, 18, 12, 5],
+        backgroundColor: [
+          mrColor('--mr-color-primary'),
+          '#bdc2ff',
+          mrColor('--mr-color-accent'),
+          mrColor('--mr-color-text-muted')
+        ],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '75%',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+});
