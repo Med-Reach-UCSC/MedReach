@@ -10,6 +10,7 @@ $mr_sidebar_links = [
   'prescriptions' => ['label' => 'Prescriptions', 'icon' => 'pill',          'href' => '#'],
   'pharmacies'    => ['label' => 'Pharmacies',    'icon' => 'shop',          'href' => 'manage-pharmacies.php'],
   'users'         => ['label' => 'Users',         'icon' => 'conference-call', 'href' => 'manage-users.php'],
+  'settings'      => ['label' => 'Settings',      'icon' => 'settings',      'href' => 'admin-settings.php'],
 ];
 ?>
 <aside class="mr-sidebar" aria-label="Admin navigation">
