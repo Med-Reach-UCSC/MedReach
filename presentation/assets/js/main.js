@@ -672,3 +672,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var table = document.getElementById('mr-user-table');
+  if (!table) return;
+
+  var tbody = table.querySelector('tbody');
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  var search = document.getElementById('mr-user-search');
+  var roleFilter = document.getElementById('mr-user-role-filter');
+  var empty = document.querySelector('.mr-roster-empty');
+  var count = document.getElementById('mr-user-count');
+
+  function applyFilters() {
+    var term = search ? search.value.trim().toLowerCase() : '';
+    var role = roleFilter ? roleFilter.value : '';
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
+      var matchesRole = !role || row.dataset.role === role;
+      var match = matchesSearch && matchesRole;
+      row.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (empty) empty.hidden = visible !== 0;
+    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
+  }
+
+  if (search) search.addEventListener('input', applyFilters);
+  if (roleFilter) roleFilter.addEventListener('change', applyFilters);
+
+  table.querySelectorAll('th[data-sort]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var key = th.dataset.sort;
+      var ascending = th.getAttribute('aria-sort') !== 'ascending';
+
+      table.querySelectorAll('th[data-sort]').forEach(function (other) {
+        other.removeAttribute('aria-sort');
+      });
+      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+
+      rows.sort(function (a, b) {
+        var valA = a.dataset[key];
+        var valB = b.dataset[key];
+        if (valA < valB) return ascending ? -1 : 1;
+        if (valA > valB) return ascending ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(function (row) { tbody.appendChild(row); });
+    });
+  });
+});
