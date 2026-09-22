@@ -5216,3 +5216,109 @@ a {
   }
 }
 
+/* Admin settings — numeric stepper control (Broadcast Routing Engine) */
+.mr-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem;
+  border-radius: var(--mr-radius-sm);
+  border: 1px solid var(--mr-color-border);
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.mr-stepper__btn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--mr-color-surface-solid);
+  color: var(--mr-color-text-muted);
+  cursor: pointer;
+}
+
+.mr-stepper__btn:hover {
+  background-color: var(--mr-color-primary);
+  color: #fff;
+}
+
+.mr-stepper__btn img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-stepper__btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.mr-stepper__value {
+  min-width: 3.5rem;
+  text-align: center;
+  font-family: var(--mr-font-mono);
+  font-weight: 700;
+}
+
+/* Admin settings — dark configuration readout (System Manifest / Routing
+   Summary rail cards, inside the reused .mr-courier-card gradient shell) */
+.mr-manifest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 1rem;
+}
+
+.mr-manifest__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.mr-manifest__leader {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.3rem;
+}
+
+.mr-manifest__row strong {
+  color: #66d9ff;
+}
+
+/* Admin settings — dispatch radius / response timeout sliders under the
+   .mr-spend-ring gauges; accent-color themes the native control, no custom
+   thumb/track markup needed */
+.mr-range {
+  width: 100%;
+  accent-color: var(--mr-color-primary);
+}
+
+/* Admin settings — literal 3-column bento. Every card here is a compact
+   control (steppers, two toggles, a form field or two) rather than a
+   full-width section, so the shared 2-column .mr-dash-content used
+   elsewhere leaves most of each card empty. Same page-scoped-override
+   convention as .mr-page-request's 3-column bento. */
+@media (min-width: 993px) {
+  .mr-page-settings .mr-dash-content {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .mr-page-settings .mr-span-2 {
+    grid-column: span 2;
+  }
+
+  .mr-page-settings .mr-span-3 {
+    grid-column: span 3;
+  }
+}
+
