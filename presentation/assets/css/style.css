@@ -4925,6 +4925,11 @@ a {
   border-radius: var(--mr-radius-pill);
 }
 
+.mr-table-menu-btn img {
+  width: 18px;
+  height: 18px;
+}
+
 .mr-table-menu-btn:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
