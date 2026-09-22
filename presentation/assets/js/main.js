@@ -754,3 +754,62 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+// Admin settings — Broadcast Routing Engine +/- steppers
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.mr-stepper').forEach(function (stepper) {
+    var valueEl = stepper.querySelector('.mr-stepper__value');
+    if (!valueEl) return;
+    var step = parseFloat(stepper.dataset.step || '1');
+    var decimals = (stepper.dataset.step || '1').split('.')[1]?.length || 0;
+
+    stepper.querySelectorAll('[data-stepper-action]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var current = parseFloat(valueEl.textContent);
+        var next = btn.dataset.stepperAction === 'inc' ? current + step : current - step;
+        valueEl.textContent = next.toFixed(decimals);
+      });
+    });
+  });
+});
+
+// Admin settings — dispatch radius / response timeout gauges, live-linked
+// to the range slider underneath each one (same doughnut-gauge pattern as
+// mr-earnings-target-chart, just re-wired to redraw on slider input)
+document.addEventListener('DOMContentLoaded', function () {
+  function wireRoutingGauge(canvasId, sliderId, max, colorToken, suffix) {
+    var canvas = document.getElementById(canvasId);
+    var slider = document.getElementById(sliderId);
+    if (!canvas || !slider || typeof Chart === 'undefined') return;
+
+    var value = parseFloat(slider.value);
+    var chart = new Chart(canvas, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [value, max - value],
+          backgroundColor: [mrColor(colorToken), '#e9e7f3'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '75%',
+        plugins: { legend: { display: false }, tooltip: { enabled: false } }
+      }
+    });
+
+    var label = canvas.closest('.mr-spend-ring').querySelector('.mr-spend-ring__inner strong');
+
+    slider.addEventListener('input', function () {
+      value = parseFloat(slider.value);
+      chart.data.datasets[0].data = [value, max - value];
+      chart.update();
+      if (label) label.textContent = value + suffix;
+    });
+  }
+
+  wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' mi');
+  wireRoutingGauge('mr-timeout-gauge-chart', 'mr-timeout-slider', 180, '--mr-color-accent', 's');
+});
