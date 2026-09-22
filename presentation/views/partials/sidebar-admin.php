@@ -8,7 +8,7 @@ $mr_sidebar_links = [
   'dashboard'     => ['label' => 'Dashboard',     'icon' => 'home',          'href' => 'admin-dashboard.php'],
   'orders'        => ['label' => 'Orders',        'icon' => 'delivery',      'href' => '#'],
   'prescriptions' => ['label' => 'Prescriptions', 'icon' => 'pill',          'href' => '#'],
-  'pharmacies'    => ['label' => 'Pharmacies',    'icon' => 'shop',          'href' => '#'],
+  'pharmacies'    => ['label' => 'Pharmacies',    'icon' => 'shop',          'href' => 'manage-pharmacies.php'],
 ];
 ?>
 <aside class="mr-sidebar" aria-label="Admin navigation">
