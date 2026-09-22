@@ -9,7 +9,7 @@ $mr_sidebar_links = [
   'orders'        => ['label' => 'Orders',        'icon' => 'delivery',      'href' => '#'],
   'prescriptions' => ['label' => 'Prescriptions', 'icon' => 'pill',          'href' => '#'],
   'pharmacies'    => ['label' => 'Pharmacies',    'icon' => 'shop',          'href' => 'manage-pharmacies.php'],
-  'users'         => ['label' => 'Users',         'icon' => 'group',         'href' => 'manage-users.php'],
+  'users'         => ['label' => 'Users',         'icon' => 'conference-call', 'href' => 'manage-users.php'],
 ];
 ?>
 <aside class="mr-sidebar" aria-label="Admin navigation">
