@@ -4823,6 +4823,26 @@ a {
   }
 }
 
+/* Same top-of-page status row, widened to 4 (e.g. user management's KPIs) */
+.mr-stat-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .mr-stat-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .mr-stat-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
 .mr-help-card--alert {
   border-left: 4px solid var(--mr-color-accent);
 }
