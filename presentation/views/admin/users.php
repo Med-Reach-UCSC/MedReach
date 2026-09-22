@@ -12,11 +12,9 @@
 // link via mr-avatar, so no header avatar was re-added); dropped the
 // decorative dark-mode toggle (project has no dark theme anywhere, so a
 // button that does nothing was left out rather than shipped for looks);
-// reused mr-auth-tabs (sign-in page's pill-tab pattern) for the
-// Overview/User List/Permissions header tabs instead of one-off nav markup
-// — Overview links to the real dashboard, Permissions is a "#" placeholder
-// the same way sidebar-admin.php already placeholders Orders/Prescriptions;
-// reused mr-stat-grid-3/mr-mini-stat icon-badge pattern (widened to 4 via
+// dropped the mockup's Overview/User List/Permissions header tab strip
+// (redundant with the sidebar nav — Overview/Permissions had nowhere real
+// to go); reused mr-stat-grid-3/mr-mini-stat icon-badge pattern (widened to 4 via
 // the new mr-stat-grid-4) instead of the mockup's one-off gradient hero
 // card, and dropped the mockup's fabricated trend chips (no existing
 // mini-stat in this codebase carries a delta sub-line); reused the
@@ -50,14 +48,7 @@ $active = 'users';
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
-        <div>
-          <h1>User Management</h1>
-          <nav class="mr-auth-tabs" aria-label="User management sections">
-            <a class="mr-auth-tabs__btn" href="admin-dashboard.php">Overview</a>
-            <a class="mr-auth-tabs__btn is-active" href="manage-users.php" aria-current="page">User List</a>
-            <a class="mr-auth-tabs__btn" href="#">Permissions</a>
-          </nav>
-        </div>
+        <h1>User Management</h1>
 
         <div class="mr-dash-header__actions">
           <label class="mr-pharm-search">
