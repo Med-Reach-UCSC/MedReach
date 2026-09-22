@@ -109,7 +109,7 @@ $active = 'users';
             <strong>1,412</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/group.png" alt="">
+            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/conference-call.png" alt="">
           </span>
         </section>
       </div>
@@ -336,7 +336,7 @@ $active = 'users';
 
               <div class="mr-notif-item" data-read="true">
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/2d3fd7/group.png" alt="">
+                  <img src="https://img.icons8.com/ios-filled/50/2d3fd7/conference-call.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
                   <span class="mr-notif-item__title">New pharmacist account created by Admin: Jane</span>
