@@ -8,7 +8,7 @@ $mr_sidebar_links = [
   'dashboard'  => ['label' => 'Dashboard', 'icon' => 'home',          'href' => 'delivery-dashboard.php'],
   'manifest'   => ['label' => 'Deliveries', 'icon' => 'delivery',      'href' => 'delivery-details.php'],
   'route'      => ['label' => 'Route',      'icon' => 'route',         'href' => '#'],
-  'earnings'   => ['label' => 'Earnings',   'icon' => 'cash',          'href' => '#'],
+  'earnings'   => ['label' => 'Earnings',   'icon' => 'cash',          'href' => 'delivery-earnings.php'],
 ];
 ?>
 <aside class="mr-sidebar" aria-label="Delivery navigation">
