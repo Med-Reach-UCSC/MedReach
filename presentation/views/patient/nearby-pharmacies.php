@@ -174,13 +174,6 @@ $active = 'pharmacies';
             </span>
           </section>
 
-          <section class="mr-card mr-pharm-map" aria-label="Pharmacy locations">
-            <span class="mr-pharm-map__pin mr-pharm-map__pin--active" style="left: 40%; top: 32%;" data-name="Osu Sala" aria-label="Osu Sala"></span>
-            <span class="mr-pharm-map__pin" style="left: 62%; top: 22%;" data-name="Healthguard Pharmacy" aria-label="Healthguard Pharmacy"></span>
-            <span class="mr-pharm-map__pin" style="left: 25%; top: 60%;" data-name="Union Chemists" aria-label="Union Chemists"></span>
-            <span class="mr-pharm-map__pin mr-pharm-map__pin--closed" style="left: 75%; top: 68%;" data-name="Lanka Pharmacy" aria-label="Lanka Pharmacy"></span>
-          </section>
-
         </div>
       </div>
     </main>

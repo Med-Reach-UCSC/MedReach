@@ -149,54 +149,49 @@ $active = 'orders';
                 <div class="mr-order-lines__row">
                   <span>Amoxicillin 500mg <small>x2</small></span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 24.00</strong>
+                  <strong>LKR 1,200.00</strong>
                 </div>
                 <div class="mr-order-lines__row">
                   <span>Ibuprofen 400mg <small>x1</small></span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 8.50</strong>
+                  <strong>LKR 425.00</strong>
                 </div>
                 <div class="mr-order-lines__row">
                   <span>Vitamin D3 Drops <small>x1</small></span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 12.00</strong>
+                  <strong>LKR 600.00</strong>
                 </div>
                 <div class="mr-order-lines__row">
                   <span>Paracetamol 500mg <small>x2</small></span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 6.00</strong>
+                  <strong>LKR 300.00</strong>
                 </div>
                 <div class="mr-order-lines__row">
                   <span>Cetirizine 10mg <small>x1</small></span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 9.50</strong>
+                  <strong>LKR 475.00</strong>
                 </div>
                 <div class="mr-order-lines__row">
                   <span>Omeprazole 20mg <small>x1</small></span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 15.00</strong>
+                  <strong>LKR 750.00</strong>
                 </div>
               </div>
               <div class="mr-order-lines__summary">
                 <div class="mr-order-lines__row">
                   <span>Subtotal</span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 75.00</strong>
+                  <strong>LKR 3,750.00</strong>
                 </div>
                 <div class="mr-order-lines__row">
                   <span>Delivery Fee</span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 4.99</strong>
-                </div>
-                <div class="mr-order-lines__row mr-order-lines__row--success">
-                  <span>Promo (FIRST10)</span>
-                  <i class="mr-order-lines__rule"></i>
-                  <strong>-LKR 7.50</strong>
+                  <strong>LKR 300.00</strong>
                 </div>
                 <div class="mr-order-lines__row mr-order-lines__row--total">
                   <span>Total (Cash)</span>
                   <i class="mr-order-lines__rule"></i>
-                  <strong>LKR 72.49</strong>
+                  <strong>LKR 4,050.00</strong>
                 </div>
               </div>
             </div>

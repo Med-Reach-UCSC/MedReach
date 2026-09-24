@@ -160,7 +160,7 @@ $active = 'pharmacies';
 
           <div class="mr-map-preview mr-map-preview--lg">
             <span class="mr-map-preview__pin" aria-hidden="true"></span>
-            <span class="mr-map-preview__label">84% coverage &middot; Pacific NW region</span>
+            <span class="mr-map-preview__label">84% coverage &middot; Western Province</span>
           </div>
 
           <section class="mr-card mr-dash-card">

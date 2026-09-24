@@ -112,10 +112,6 @@ $active = 'orders';
               <strong>Current Patient Location</strong>
               <p>Determined by default clinic location. Will be updated if patient overrides.</p>
             </div>
-            <div class="mr-map-preview">
-              <span class="mr-map-preview__pin" aria-hidden="true"></span>
-              <span class="mr-map-preview__label">Confirm Pharmacy Location</span>
-            </div>
           </section>
 
           <section class="mr-card mr-mini-stat">

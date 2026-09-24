@@ -83,16 +83,6 @@ $active = 'dashboard';
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>Route overview</h2>
-            </div>
-            <div class="mr-map-preview mr-map-preview--lg">
-              <span class="mr-map-preview__pin" aria-hidden="true"></span>
-              <span class="mr-map-preview__label">Next stop: 45 Baseline Rd &middot; 2.4 km</span>
-            </div>
-          </section>
-
-          <section class="mr-card mr-dash-card">
-            <div class="mr-dash-card__head">
               <h2>Manifest queue</h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">2 stops</span>
             </div>

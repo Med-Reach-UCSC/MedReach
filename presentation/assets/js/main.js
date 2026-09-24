@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!list) return;
 
   var cards = list.querySelectorAll('.mr-pharm-card');
-  var pins = document.querySelectorAll('.mr-pharm-map__pin');
   var search = document.querySelector('.mr-pharm-search input');
   var filters = document.querySelector('.mr-pharm-filters');
 
@@ -146,11 +145,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function selectCard(card) {
     cards.forEach(function (c) { c.classList.remove('is-selected'); });
-    pins.forEach(function (p) { p.classList.remove('mr-pharm-map__pin--active'); });
 
     card.classList.add('is-selected');
-    var pin = document.querySelector('.mr-pharm-map__pin[data-name="' + card.dataset.name + '"]');
-    if (pin) pin.classList.add('mr-pharm-map__pin--active');
 
     if (detailName) detailName.textContent = card.dataset.name;
     if (detailAddr) detailAddr.lastChild.textContent = ' ' + card.dataset.addr;

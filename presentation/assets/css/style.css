@@ -3685,40 +3685,6 @@ a {
   height: 12px;
 }
 
-/* Illustrative location panel — a static styled surface, not a live map/GPS
-   integration (MedReach has no mapping API per project constraints). */
-.mr-pharm-map {
-  position: relative;
-  height: 320px;
-  overflow: hidden;
-  background-image: radial-gradient(circle at 20% 30%, rgba(45, 63, 215, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 75% 65%, rgba(221, 142, 28, 0.08) 0%, transparent 45%),
-    linear-gradient(rgba(69, 70, 85, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(69, 70, 85, 0.06) 1px, transparent 1px);
-  background-size: auto, auto, 40px 40px, 40px 40px;
-}
-
-.mr-pharm-map__pin {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 2px solid #fbf8ff;
-  border-radius: 50%;
-  background-color: rgba(69, 70, 85, 0.6);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transform: translate(-50%, -50%);
-}
-
-.mr-pharm-map__pin--active {
-  width: 18px;
-  height: 18px;
-  background-color: var(--mr-color-primary);
-}
-
-.mr-pharm-map__pin--closed {
-  background-color: var(--mr-color-danger);
-}
-
 .mr-pharm-detail__addr {
   margin-bottom: 1rem;
 }
