@@ -18,7 +18,7 @@ $active = 'requests';
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
-          <a class="mr-link mr-link--sm" href="pharmacy-dashboard.php">&larr; Back to requests</a>
+          <a class="mr-link mr-link--sm" href="orders.php">&larr; Back to orders</a>
           <h1>Request RQ-2318</h1>
         </div>
 

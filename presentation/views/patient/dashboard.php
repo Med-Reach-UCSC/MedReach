@@ -76,7 +76,7 @@ $active = 'dashboard';
               </ol>
             </article>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
                 <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clipboard.png" alt="">
               </span>
@@ -87,7 +87,7 @@ $active = 'dashboard';
               <span class="mr-badge mr-badge--accent">Awaiting Pharmacy</span>
             </a>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/broadcasting.png" alt="">
               </span>

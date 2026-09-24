@@ -97,7 +97,7 @@ $active = 'dashboard';
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">2 stops</span>
             </div>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="delivery-details.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
                 <img src="https://img.icons8.com/ios-filled/50/454655/hospital-3.png" alt="">
               </span>
@@ -108,7 +108,7 @@ $active = 'dashboard';
               <span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span>
             </a>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="delivery-details.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
                 <img src="https://img.icons8.com/ios-filled/50/454655/pill.png" alt="">
               </span>

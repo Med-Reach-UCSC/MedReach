@@ -175,16 +175,16 @@ $active = 'profile';
                 <strong>Amara Silva</strong>
                 <span class="mr-eyebrow mr-eyebrow--mono">Daughter · Age 9</span>
               </div>
-              <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
+              <a href="manage-patients.php" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong>Sunil Perera</strong>
                 <span class="mr-eyebrow mr-eyebrow--mono">Father · Age 71</span>
               </div>
-              <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
+              <a href="manage-patients.php" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
             </div>
-            <a href="#" class="mr-btn mr-btn--light mr-btn--sm mr-btn--block">+ Add Dependent</a>
+            <a href="manage-patients.php" class="mr-btn mr-btn--light mr-btn--sm mr-btn--block">+ Add Dependent</a>
           </section>
 
           <section class="mr-card mr-dash-card">

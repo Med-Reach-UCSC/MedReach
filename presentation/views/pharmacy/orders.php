@@ -144,8 +144,8 @@ $active = 'requests';
                 </div>
               </div>
               <div class="mr-courier-card__eta">
-                <span>12 min</span>
-                <small>away</small>
+                <span>11:00 AM</span>
+                <small>est. pickup</small>
               </div>
             </div>
 
