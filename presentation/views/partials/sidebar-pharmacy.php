@@ -6,7 +6,7 @@ $active = $active ?? 'dashboard';
 
 $mr_sidebar_links = [
   'dashboard'      => ['label' => 'Dashboard',      'icon' => 'home',      'href' => 'pharmacy-dashboard.php'],
-  'requests'       => ['label' => 'Requests',        'icon' => 'checklist', 'href' => '#'],
+  'requests'       => ['label' => 'Requests',        'icon' => 'checklist', 'href' => 'orders.php'],
   'history'        => ['label' => 'Order History',   'icon' => 'clock',     'href' => '#'],
   'substitutions'  => ['label' => 'Substitutions',    'icon' => 'exchange',  'href' => '#'],
 ];

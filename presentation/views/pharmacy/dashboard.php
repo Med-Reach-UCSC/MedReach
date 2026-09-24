@@ -105,7 +105,7 @@ $active = 'dashboard';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Orders in progress</h2>
-              <a href="order-history.php">View all</a>
+              <a href="orders.php">View all</a>
             </div>
 
             <article class="mr-order">
