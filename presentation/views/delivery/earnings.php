@@ -1,20 +1,5 @@
 <?php
 // MedReach - Delivery rider earnings & payouts (presentation tier: HTML output only)
-// Converted from docs/delivery-earnings.php (Tailwind mockup) onto the same
-// mr- component system as pharmacy/earnings.php — reuses mr-dash-stats
-// (header capsules), mr-pay-table + mr-pagination, mr-spend-ring (the same
-// Chart.js canvas ids pharmacy/earnings.php already wires up in main.js),
-// mr-med-stats bars, and mr-pharmacy-row (dashboard.php's "Total Distance"
-// row) for the leader-line metrics. No new CSS, no new JS.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config for the project's own --mr- token system; dropped the
-// standalone glass side-nav and hotlinked avatar for the shared
-// sidebar-delivery.php partial; replaced the hand-coded inline-SVG progress
-// ring and CSS bar-placeholder chart with the project's existing Chart.js
-// spend-ring/trend patterns (same canvas ids pharmacy/earnings.php uses, so
-// no new chart config is needed); replaced the fabricated order-id/pharmacy
-// pairings with ones consistent with dashboard.php's manifest queue.
 $active = 'earnings';
 ?>
 <!DOCTYPE html>

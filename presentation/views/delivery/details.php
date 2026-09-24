@@ -1,22 +1,5 @@
 <?php
 // MedReach - Delivery task details page (presentation tier: HTML output only)
-// Converted from docs/delivery-details.php (Tailwind mockup) onto the same
-// mr- component system as the rest of the delivery module — no new markup
-// patterns invented, and no new CSS at all: reuses .mr-timeline (already
-// built for patient order tracking) for the route, .mr-order-lines__summary
-// for the cash-to-collect breakdown, .mr-payment-card + .mr-confirm-actions
-// for the handover CTA, .mr-profile-details for the package spec grid, and
-// .mr-modal for the confirmation dialog.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config and the standalone glass side-nav for the shared
-// sidebar-delivery.php partial, matching every other delivery page; swapped
-// the USD pricing ("$61.75", "CUR: USD") for MedReach's LKR/cash-on-delivery
-// model; swapped the hospital drop-off ("St. Jude Medical Center") for a
-// patient home address, since MedReach delivers to patients, not
-// facilities; replaced the hand-rolled JS that enabled/disabled the confirm
-// button for a native `required` checkbox (same pattern already used for
-// the sign-up terms checkbox) instead of adding more JS.
 $active = 'manifest';
 ?>
 <!DOCTYPE html>

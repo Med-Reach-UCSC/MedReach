@@ -1,21 +1,5 @@
 <?php
 // MedReach - Delivery rider dashboard (presentation tier: HTML output only)
-// Converted from docs/delivery-dahsboard.php (Tailwind mockup) onto the same
-// mr- component system as the patient/pharmacy modules — no new markup
-// patterns invented, only 3 small CSS additions (grid-3 row, a mini-stat
-// accent border, a taller map-preview) layered onto existing components.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config for the project's own --mr- token system; dropped the
-// standalone glass side-nav and hotlinked avatar for the shared
-// sidebar-delivery.php partial, matching every other role's dashboard;
-// replaced the live embedded map screenshot with the project's existing
-// static .mr-map-preview placeholder — no mapping engine/GPS wired in yet
-// (OpenStreetMap routing is planned for a later pass, once the UI is done);
-// reused .mr-order-row for the manifest queue instead of one-off markup;
-// reused .mr-courier-card/.mr-payment-card's gradient for the cold-chain
-// alert and .mr-med-stats for the weekly metrics, instead of the mockup's
-// hand-rolled progress bars.
 $active = 'dashboard';
 ?>
 <!DOCTYPE html>

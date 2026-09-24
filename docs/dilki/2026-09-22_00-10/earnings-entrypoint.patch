@@ -1,9 +1,0 @@
-diff --git a/delivery-earnings.php b/delivery-earnings.php
-new file mode 100644
-index 0000000..edd5037
---- /dev/null
-+++ b/delivery-earnings.php
-@@ -0,0 +1,3 @@
-+<?php
-+// MedReach - Delivery rider earnings entry point
-+require __DIR__ . '/presentation/views/delivery/earnings.php';
