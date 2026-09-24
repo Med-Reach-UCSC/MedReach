@@ -38,6 +38,7 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(69, 70, 85, 0.25) transparent;
+  background-color: var(--mr-color-bg);
 }
 
 *::-webkit-scrollbar {
@@ -60,13 +61,26 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--mr-color-bg);
-  background-image: radial-gradient(ellipse 90% 70% at 100% 100%, rgba(246, 199, 146, 0.85) 0%, rgba(246, 199, 146, 0) 65%),
-    linear-gradient(135deg, rgba(196, 186, 248, 0.5) 0%, rgba(177, 213, 250, 0.85) 100%);
-  background-attachment: fixed;
   color: var(--mr-color-text);
   font-family: var(--mr-font);
   line-height: 1.5;
+  position: relative;
+}
+
+/* The gradient used to live on `body` via `background-attachment: fixed`,
+   but that combination is a known Chrome/Windows repaint bug: fast
+   scrolling (or dragging the scrollbar and holding) outruns the fixed
+   background's repaint and flashes plain white until it catches up —
+   reported on every page since they all share this one background. A
+   fixed-position pseudo-element gets its own compositor layer instead of
+   being repainted on scroll, so it can't lag behind. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(ellipse 90% 70% at 100% 100%, rgba(246, 199, 146, 0.85) 0%, rgba(246, 199, 146, 0) 65%),
+    linear-gradient(135deg, rgba(196, 186, 248, 0.5) 0%, rgba(177, 213, 250, 0.85) 100%);
 }
 
 h1, h2, h3, h4, p, ul, ol, figure {
@@ -676,44 +690,6 @@ a {
   font-size: 0.875rem;
   color: var(--mr-color-text-muted);
   margin: 0.25rem 0 1rem;
-}
-
-.mr-bar-chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 1.5rem;
-  height: 160px;
-}
-
-.mr-bar-chart__col {
-  flex: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.4rem;
-}
-
-.mr-bar-chart__bar {
-  display: block;
-  width: 100%;
-  max-width: 2.5rem;
-  height: var(--mr-bar-value);
-  border-radius: var(--mr-radius-sm) var(--mr-radius-sm) 0 0;
-  background-image: linear-gradient(180deg, var(--mr-color-primary) 0%, var(--mr-color-primary-dark) 100%);
-}
-
-.mr-bar-chart__col strong {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--mr-color-text);
-}
-
-.mr-bar-chart__col small {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--mr-color-text-muted);
 }
 
 .mr-pharmacy-list {
@@ -1377,6 +1353,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: var(--mr-radius-pill);
   background-color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 1.5rem;
 }
 
 .mr-auth-tabs__btn {
@@ -1468,6 +1445,18 @@ a {
 
 .mr-field textarea::placeholder {
   color: #c5c5d8;
+}
+
+.mr-field__input select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--mr-color-text-muted);
 }
 
 .mr-link--sm {
@@ -1812,33 +1801,52 @@ a {
 /* ---------------------------------------------------------------- */
 
 .mr-dashboard {
-  padding: 2.5rem 2rem;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 3.25rem;
   align-items: start;
 }
 
-/* Icon rail — independent of the public .mr-nav. Sticky "island": pinned
+.mr-dashboard:has(.mr-sidebar.is-compact) {
+  grid-template-columns: 100px 1fr;
+}
+
+/* Rail — independent of the public .mr-nav. Sticky "island": pinned
    to the viewport with equal top/bottom margin, filling the height
-   between them, rounded into a pill for the floating-card look. */
+   between them. Expanded (labeled) by default; .is-compact reverts to
+   the icon-only pill dock via the overrides below. */
 .mr-sidebar {
   position: sticky;
-  top: 2.5rem;
-  height: calc(100dvh - 5rem);
+  top: 1.5rem;
+  height: calc(100dvh - 3rem);
+  margin: 1.5rem 0 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.5rem 0;
+  align-items: stretch;
+  gap: 1.85rem;
+  padding: 2.1rem 1rem 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: var(--mr-radius-pill);
+  border-radius: var(--mr-radius-lg);
   background-color: rgba(255, 255, 255, 0.55);
   backdrop-filter: var(--mr-blur-card);
   box-shadow: var(--mr-shadow-card);
 }
 
+.mr-sidebar__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .mr-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.mr-sidebar__brand-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1850,51 +1858,160 @@ a {
   flex-shrink: 0;
 }
 
-.mr-sidebar__brand img {
+.mr-sidebar__brand-icon img {
   width: 28px;
   height: 28px;
   object-fit: contain;
 }
 
+.mr-sidebar__brand-text {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mr-sidebar__collapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.mr-sidebar__collapse img {
+  width: 16px;
+  height: 16px;
+}
+
+.mr-sidebar__collapse-icon--expand {
+  display: none;
+}
+
 .mr-sidebar__nav {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.65rem;
+  padding-top: 1.85rem;
+  border-top: 1px solid rgba(197, 197, 216, 0.6);
 }
 
 .mr-sidebar__footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(197, 197, 216, 0.6);
 }
 
 .mr-sidebar__link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  gap: 0.85rem;
+  width: 100%;
+  height: auto;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--mr-radius-md);
 }
 
 .mr-sidebar__link img {
   width: 24px;
   height: 24px;
+  flex-shrink: 0;
 }
 
-/* Text label — hidden on the icon-only desktop rail, shown in the
-   full-width mobile dropdown list. */
+/* Shown by default on the expanded rail; .is-compact hides it below. */
 .mr-sidebar__label {
-  display: none;
+  display: inline;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.mr-sidebar__link.is-active .mr-sidebar__label {
+  font-weight: 600;
 }
 
 .mr-sidebar__link.is-active {
   background-color: var(--mr-color-primary);
+  color: #fff;
 }
 
-/* Hamburger toggle — hidden on desktop, shown on the mobile top bar */
+.mr-sidebar__link--danger {
+  color: #ff0000;
+}
+
+.mr-sidebar__icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.mr-sidebar__link--profile .mr-sidebar__label,
+.mr-sidebar__link--danger .mr-sidebar__label {
+  font-weight: 600;
+}
+
+/* Hamburger toggle — hidden on desktop (compact/expanded both use the
+   collapse button instead), shown on the mobile top bar */
 .mr-sidebar__toggle {
+  display: none;
+}
+
+/* Compact override — the original icon-only pill dock, toggled via JS
+   (main.js) and persisted in localStorage. */
+.mr-sidebar.is-compact {
+  align-items: center;
+  padding: 1.75rem 1rem 1.5rem;
+  border-radius: var(--mr-radius-lg);
+}
+
+.mr-sidebar.is-compact .mr-sidebar__top {
+  flex-direction: column-reverse;
+  gap: 0.75rem;
+}
+
+.mr-sidebar.is-compact .mr-sidebar__brand-text {
+  display: none;
+}
+
+.mr-sidebar.is-compact .mr-sidebar__collapse-icon--collapse {
+  display: none;
+}
+
+.mr-sidebar.is-compact .mr-sidebar__collapse-icon--expand {
+  display: block;
+}
+
+.mr-sidebar.is-compact .mr-sidebar__nav {
+  gap: 1.25rem;
+}
+
+/* Keep the same link box height as expanded (icon + vertical padding)
+   so the footer's total height doesn't shrink and shift Profile/Log
+   out up or down when toggling. */
+.mr-sidebar.is-compact .mr-sidebar__footer .mr-sidebar__link {
+  width: 100%;
+  height: auto;
+  padding: 0.6rem 0.75rem;
+}
+
+.mr-sidebar.is-compact .mr-sidebar__link {
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--mr-radius-md);
+}
+
+.mr-sidebar.is-compact .mr-sidebar__label {
   display: none;
 }
 
@@ -1906,6 +2023,7 @@ a {
 
 .mr-dash-main {
   min-width: 0;
+  padding: 2.5rem 2rem 2.5rem 0;
 }
 
 .mr-dash-header {
@@ -2489,6 +2607,11 @@ a {
   letter-spacing: -0.02em;
 }
 
+/* Flags a mini-stat needing attention (e.g. cash to collect on delivery) */
+.mr-mini-stat--accent {
+  border-top: 3px solid var(--mr-color-accent);
+}
+
 /* Static, decorative location preview — no map engine/API involved */
 .mr-map-preview {
   position: relative;
@@ -2526,6 +2649,12 @@ a {
   height: 8px;
   border-radius: 50%;
   background-color: #fff;
+}
+
+/* Taller variant for a route card that's the main focus of a page (delivery
+   dashboard) rather than a small confirmation aside */
+.mr-map-preview--lg {
+  height: 320px;
 }
 
 .mr-map-preview__label {
@@ -3916,6 +4045,7 @@ a {
 
   .mr-dash-main {
     margin-top: 1rem;
+    padding: 0;
   }
 
   .mr-sidebar {
@@ -3923,12 +4053,27 @@ a {
     top: 1rem;
     height: auto;
     width: 100%;
+    margin: 0;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     border-radius: 28px;
     padding: 0.75rem 1.25rem;
     z-index: 20;
+  }
+
+  /* Mobile keeps its own hamburger/dropdown UX — the desktop expand/collapse
+     button and its wrapper row are not part of that flow. */
+  .mr-sidebar__top {
+    display: contents;
+  }
+
+  .mr-sidebar__collapse {
+    display: none;
+  }
+
+  .mr-sidebar__brand-text {
+    display: none;
   }
 
   .mr-sidebar-backdrop.is-open {
@@ -3993,6 +4138,9 @@ a {
   .mr-sidebar__nav {
     flex-direction: column;
     gap: 0.25rem;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
   }
 
   .mr-sidebar__footer {
@@ -4309,16 +4457,21 @@ a {
   pointer-events: none;
 }
 
-/* Donut ring built from a native conic-gradient — no chart library needed */
+/* Donut ring — Chart.js doughnut canvas, centered behind the % readout */
 .mr-spend-ring {
+  position: relative;
   width: 128px;
   height: 128px;
   margin: 0.5rem auto 1.25rem;
   border-radius: 50%;
-  background: conic-gradient(var(--mr-color-primary) var(--mr-spend-pct, 0%), #e9e7f3 0);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mr-spend-ring canvas {
+  position: absolute;
+  inset: 0;
 }
 
 .mr-spend-ring__inner {
@@ -4371,20 +4524,6 @@ a {
 
 .mr-spend-dot--light {
   background-color: #bdc2ff;
-}
-
-.mr-spend-bar {
-  margin-top: 0.5rem;
-  height: 4px;
-  border-radius: var(--mr-radius-pill);
-  background-color: #e9e7f3;
-  overflow: hidden;
-}
-
-.mr-spend-bar__fill {
-  height: 100%;
-  border-radius: var(--mr-radius-pill);
-  background-color: var(--mr-color-primary);
 }
 
 /* Light-tint info card — same info blue used by .mr-icon-badge--info,
@@ -4501,13 +4640,14 @@ a {
 }
 
 .mr-danger-card {
-  border-color: rgba(214, 83, 74, 0.3);
-  background-color: rgba(214, 83, 74, 0.06);
+  border-color: rgba(214, 83, 74, 0.5);
+  border-left: 4px solid var(--mr-color-danger);
+  background-color: rgba(214, 83, 74, 0.12);
 }
 
 .mr-danger-card h2 {
   font-size: 1.25rem;
-  font-weight: 650;
+  font-weight: 700;
   color: var(--mr-color-danger);
   margin-bottom: 0.5rem;
 }
@@ -4519,13 +4659,60 @@ a {
 }
 
 .mr-btn--danger-outline {
-  border: 1px solid var(--mr-color-danger);
-  background-color: transparent;
+  border: 1.5px solid var(--mr-color-danger);
+  background-color: rgba(214, 83, 74, 0.08);
   color: var(--mr-color-danger);
+  font-weight: 600;
 }
 
 .mr-btn--danger-outline:hover {
-  background-color: rgba(214, 83, 74, 0.08);
+  background-color: var(--mr-color-danger);
+  color: #fff;
+}
+
+/* Read-only fields (e.g. a pharmacy's license number) — dimmed to look
+   locked instead of just relying on the lock icon */
+.mr-field__input input:read-only {
+  background-color: rgba(69, 70, 85, 0.06);
+  color: var(--mr-color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Let the 2-column field grid fill its container when it's the main
+   content of a full-width dashboard card (settings/profile forms),
+   instead of staying capped at the narrower modal width it was
+   originally sized for */
+.mr-dash-card .mr-auth-form--grid {
+  max-width: none;
+}
+
+/* Wide variant of the info card — lays the icon/heading/text block and
+   its action button out side by side instead of stacked, for when the
+   card spans a full-width column instead of a narrow sidebar rail */
+.mr-policy-card--wide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.mr-policy-card--wide .mr-policy-card__body {
+  max-width: 560px;
+}
+
+.mr-policy-card--wide .mr-policy-card__head {
+  margin-bottom: 0.5rem;
+}
+
+.mr-policy-card--wide .mr-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .mr-policy-card--wide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Reusable modal — opened via [data-modal-open], closed via [data-modal-close] */
@@ -4612,6 +4799,526 @@ a {
 
   .mr-profile-details__item--span2 {
     grid-column: span 1;
+  }
+}
+
+/* Guardian control tower — action-required + adherence mini cards */
+.mr-guardian-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Top-of-page status row (e.g. delivery dashboard's active-node/ETA/cash cards) */
+.mr-stat-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .mr-stat-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Same top-of-page status row, widened to 4 (e.g. user management's KPIs) */
+.mr-stat-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .mr-stat-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .mr-stat-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mr-help-card--alert {
+  border-left: 4px solid var(--mr-color-accent);
+}
+
+@media (max-width: 576px) {
+  .mr-guardian-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Manage patients — roster table toolbar, sortable headers, actions menu */
+.mr-roster-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.mr-roster-toolbar__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mr-roster-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: var(--mr-radius-pill);
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.mr-roster-filter img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-roster-filter select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mr-color-text);
+}
+
+.mr-roster-toolbar .mr-btn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mr-patient-id {
+  display: block;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mr-color-primary);
+}
+
+.mr-pay-table th[data-sort] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.mr-pay-table th[data-sort]::after {
+  content: '\2195';
+  margin-left: 0.35rem;
+  opacity: 0.4;
+}
+
+.mr-pay-table th[data-sort][aria-sort="ascending"]::after {
+  content: '\2191';
+  opacity: 1;
+  color: var(--mr-color-primary);
+}
+
+.mr-pay-table th[data-sort][aria-sort="descending"]::after {
+  content: '\2193';
+  opacity: 1;
+  color: var(--mr-color-primary);
+}
+
+.mr-pay-table tbody tr:hover {
+  background-color: rgba(74, 91, 240, 0.04);
+}
+
+.mr-table-menu-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: var(--mr-radius-pill);
+}
+
+.mr-table-menu-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.mr-table-menu-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mr-roster-empty {
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--mr-color-text-muted);
+}
+
+/* Manage patients — right rail: wellness stat card, alert card, activity log */
+.mr-fleet-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.mr-fleet-card__stat strong {
+  font-size: 1.75rem;
+  color: var(--mr-color-primary-dark);
+}
+
+.mr-fleet-card__caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(0, 9, 101, 0.8);
+}
+
+.mr-mini-bars {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 1.25rem;
+}
+
+.mr-activity-list {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.mr-activity-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.mr-activity-list__dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--mr-color-border);
+}
+
+.mr-activity-list__item--active .mr-activity-list__dot {
+  background-color: var(--mr-color-primary);
+}
+
+.mr-activity-list__item p {
+  font-size: 0.9rem;
+}
+
+/* Pharmacist request review — collapsed row expands into a substitution form */
+.mr-order-row--expandable {
+  display: block;
+}
+
+.mr-order-row--expandable summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.mr-order-row--expandable summary::-webkit-details-marker {
+  display: none;
+}
+
+.mr-order-row__form {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Pharmacist request review — priced input chip (checklist rows + substitution form) */
+.mr-price-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mr-price-field--block {
+  display: flex;
+  width: 100%;
+}
+
+.mr-price-field__prefix {
+  flex-shrink: 0;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-price-field input {
+  flex: 1;
+  min-width: 0;
+  width: 90px;
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: right;
+  font-family: var(--mr-font-mono);
+  font-size: 0.9375rem;
+  color: var(--mr-color-text);
+}
+
+.mr-price-field input:focus {
+  outline: none;
+}
+
+.mr-price-field input::placeholder {
+  color: #c5c5d8;
+}
+
+/* Pharmacist request review — literal 3-column bento (document+note | checklist
+   | summary+delivery), page-scoped like .mr-page-order/.mr-page-track so the
+   shared 2-column .mr-dash-content used elsewhere is untouched. */
+.mr-page-request .mr-dash-main {
+  padding-bottom: 7rem;
+}
+
+/* Patient note reads as clinically relevant context, not fine print — bump
+   it past the default .mr-help-card p size/muting for this page only. */
+.mr-page-request .mr-help-card--alert p {
+  font-size: 0.9375rem;
+  color: var(--mr-color-text);
+}
+
+@media (min-width: 993px) {
+  .mr-page-request .mr-dash-content {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr) minmax(0, 360px);
+    gap: 2rem;
+  }
+}
+
+/* .mr-order-row was built for a narrow ~380-420px rail, where
+   margin-right: auto on the info block collapsing to its own width and
+   shoving the badge/price to the far edge reads fine. The checklist column
+   here is fluid and much wider, so let the info block grow with it instead
+   of leaving a hollow gap between the medicine name and its price. */
+.mr-page-request .mr-order-row__info {
+  flex: 1;
+  margin-right: 0;
+}
+
+/* Delivery method value is a short label ("Standard Pharmacy Delivery"),
+   not a headline number — .mr-mini-stat strong's 1.75rem is sized for the
+   latter and wraps this into three oversized lines. */
+.mr-page-request .mr-mini-stat strong {
+  font-size: 1rem;
+}
+
+/* Round icon button (print) in the request-detail header, matching the
+   existing 40px circular .mr-notif-btn treatment. */
+.mr-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--mr-color-surface);
+  cursor: pointer;
+}
+
+.mr-icon-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Back link + patient/timer chips read as fine print at the shared
+   mr-link--sm/mr-badge sizes — bumped up for this page only. */
+.mr-page-request .mr-dash-header .mr-link--sm {
+  font-size: 0.9375rem;
+}
+
+.mr-page-request .mr-dash-header__actions .mr-badge--pill {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8125rem;
+}
+
+/* Floating capsule footer for the accept/decline decision — sized to the
+   content column (viewport minus the sidebar's own column + grid gap), not
+   the full viewport, so it never overlaps the sidebar rail. */
+.mr-decision-bar {
+  position: fixed;
+  left: calc(240px + 3.25rem);
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem 2rem;
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-surface);
+  backdrop-filter: var(--mr-blur-card);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--mr-shadow-card);
+}
+
+/* Sidebar collapses to its 100px icon-only dock via the existing
+   .is-compact toggle — follow it so the capsule keeps hugging the rail. */
+.mr-dashboard:has(.mr-sidebar.is-compact) + .mr-decision-bar {
+  left: calc(100px + 3.25rem);
+}
+
+.mr-decision-bar__note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.75rem;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-decision-bar__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.mr-decision-bar__actions .mr-btn {
+  min-width: 160px;
+}
+
+@media (max-width: 768px) {
+  .mr-decision-bar,
+  .mr-dashboard:has(.mr-sidebar.is-compact) + .mr-decision-bar {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .mr-decision-bar {
+    padding: 1rem 1.25rem;
+  }
+
+  .mr-decision-bar__note {
+    display: none;
+  }
+}
+
+/* Admin settings — numeric stepper control (Broadcast Routing Engine) */
+.mr-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem;
+  border-radius: var(--mr-radius-sm);
+  border: 1px solid var(--mr-color-border);
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.mr-stepper__btn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--mr-color-surface-solid);
+  color: var(--mr-color-text-muted);
+  cursor: pointer;
+}
+
+.mr-stepper__btn:hover {
+  background-color: var(--mr-color-primary);
+  color: #fff;
+}
+
+.mr-stepper__btn img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-stepper__btn:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.mr-stepper__value {
+  min-width: 3.5rem;
+  text-align: center;
+  font-family: var(--mr-font-mono);
+  font-weight: 700;
+}
+
+/* Admin settings — dark configuration readout (System Manifest / Routing
+   Summary rail cards, inside the reused .mr-courier-card gradient shell) */
+.mr-manifest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  border-radius: var(--mr-radius-sm);
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 1rem;
+}
+
+.mr-manifest__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--mr-font-mono);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.mr-manifest__leader {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.3rem;
+}
+
+.mr-manifest__row strong {
+  color: #66d9ff;
+}
+
+/* Admin settings — dispatch radius / response timeout sliders under the
+   .mr-spend-ring gauges; accent-color themes the native control, no custom
+   thumb/track markup needed */
+.mr-range {
+  width: 100%;
+  accent-color: var(--mr-color-primary);
+}
+
+/* Admin settings — literal 3-column bento. Every card here is a compact
+   control (steppers, two toggles, a form field or two) rather than a
+   full-width section, so the shared 2-column .mr-dash-content used
+   elsewhere leaves most of each card empty. Same page-scoped-override
+   convention as .mr-page-request's 3-column bento. */
+@media (min-width: 993px) {
+  .mr-page-settings .mr-dash-content {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .mr-page-settings .mr-span-2 {
+    grid-column: span 2;
+  }
+
+  .mr-page-settings .mr-span-3 {
+    grid-column: span 3;
   }
 }
 

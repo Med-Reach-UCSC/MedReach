@@ -42,6 +42,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+  var sidebar = document.querySelector('.mr-sidebar');
+  var collapseBtn = document.querySelector('.mr-sidebar__collapse');
+  if (!sidebar || !collapseBtn) return;
+
+  var STORAGE_KEY = 'mr-sidebar-compact';
+
+  function setCompact(isCompact) {
+    sidebar.classList.toggle('is-compact', isCompact);
+    collapseBtn.setAttribute('aria-pressed', isCompact ? 'true' : 'false');
+  }
+
+  setCompact(localStorage.getItem(STORAGE_KEY) === 'true');
+
+  collapseBtn.addEventListener('click', function () {
+    var isCompact = !sidebar.classList.contains('is-compact');
+    setCompact(isCompact);
+    localStorage.setItem(STORAGE_KEY, isCompact);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
   var tabs = document.querySelector('.mr-auth-tabs');
   if (!tabs) return;
 
@@ -350,4 +371,445 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var table = document.getElementById('mr-patient-table');
+  if (!table) return;
+
+  var tbody = table.querySelector('tbody');
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  var search = document.getElementById('mr-patient-search');
+  var statusFilter = document.getElementById('mr-patient-status-filter');
+  var empty = document.querySelector('.mr-roster-empty');
+  var count = document.getElementById('mr-patient-count');
+
+  function applyFilters() {
+    var term = search ? search.value.trim().toLowerCase() : '';
+    var status = statusFilter ? statusFilter.value : '';
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
+      var matchesStatus = !status || row.dataset.status === status;
+      var match = matchesSearch && matchesStatus;
+      row.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (empty) empty.hidden = visible !== 0;
+    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
+  }
+
+  if (search) search.addEventListener('input', applyFilters);
+  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+
+  table.querySelectorAll('th[data-sort]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var key = th.dataset.sort;
+      var ascending = th.getAttribute('aria-sort') !== 'ascending';
+
+      table.querySelectorAll('th[data-sort]').forEach(function (other) {
+        other.removeAttribute('aria-sort');
+      });
+      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+
+      rows.sort(function (a, b) {
+        var valA = key === 'age' ? parseInt(a.dataset.age, 10) : a.dataset[key];
+        var valB = key === 'age' ? parseInt(b.dataset.age, 10) : b.dataset[key];
+        if (valA < valB) return ascending ? -1 : 1;
+        if (valA > valB) return ascending ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(function (row) { tbody.appendChild(row); });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var list = document.querySelector('[data-request-list]');
+  if (!list) return;
+
+  var count = document.querySelector('[data-request-count]');
+  var empty = document.querySelector('[data-request-empty]');
+
+  function updateCount() {
+    var remaining = list.querySelectorAll('.mr-request-card').length;
+    if (count) count.textContent = remaining + ' new';
+    if (empty) empty.hidden = remaining !== 0;
+  }
+
+  list.querySelectorAll('[data-request-action]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.mr-request-card');
+      if (card) card.remove();
+      updateCount();
+    });
+  });
+});
+
+// Shared by every Chart.js init below — reads a design token straight off
+// :root so charts always match the current --mr-color-* palette.
+function mrColor(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-earnings-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: ['8a', '10a', '12p', '2p', '4p', '6p'],
+      datasets: [{
+        data: [1200, 2600, 4800, 9400, 6100, 2400],
+        backgroundColor: mrColor('--mr-color-primary'),
+        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
+        borderRadius: 6,
+        maxBarThickness: 36
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
+        y: {
+          grid: { color: mrColor('--mr-color-border') },
+          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+        }
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-network-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+      datasets: [{
+        data: [60, 140, 190, 240],
+        backgroundColor: mrColor('--mr-color-primary'),
+        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
+        borderRadius: 6,
+        maxBarThickness: 48
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
+        y: { grid: { color: mrColor('--mr-color-border') }, ticks: { color: mrColor('--mr-color-text-muted') } }
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-spend-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Completed', 'Pending'],
+      datasets: [{
+        data: [3650, 1200],
+        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '75%',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-earnings-trend-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      datasets: [{
+        data: [9600, 11200, 12450, 12630],
+        backgroundColor: mrColor('--mr-color-primary'),
+        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
+        borderRadius: 6,
+        maxBarThickness: 56
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
+        y: {
+          grid: { color: mrColor('--mr-color-border') },
+          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+        }
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-earnings-target-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Earned', 'Remaining'],
+      datasets: [{
+        data: [83, 17],
+        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '75%',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-adherence-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  var values = [30, 45, 40, 60, 55, 75, 90];
+
+  new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
+      datasets: [{
+        data: values,
+        backgroundColor: values.map(function (_, i) {
+          return i === values.length - 1 ? mrColor('--mr-color-primary') : 'rgba(45, 63, 215, 0.55)';
+        }),
+        borderRadius: 3,
+        maxBarThickness: 18
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: {
+        x: { display: false },
+        y: { display: false, beginAtZero: true }
+      }
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var table = document.getElementById('mr-pharmacy-table');
+  if (!table) return;
+
+  var tbody = table.querySelector('tbody');
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  var search = document.getElementById('mr-pharmacy-search');
+  var statusFilter = document.getElementById('mr-pharmacy-status-filter');
+  var empty = document.querySelector('.mr-roster-empty');
+  var count = document.getElementById('mr-pharmacy-count');
+
+  function applyFilters() {
+    var term = search ? search.value.trim().toLowerCase() : '';
+    var status = statusFilter ? statusFilter.value : '';
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
+      var matchesStatus = !status || row.dataset.status === status;
+      var match = matchesSearch && matchesStatus;
+      row.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (empty) empty.hidden = visible !== 0;
+    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
+  }
+
+  if (search) search.addEventListener('input', applyFilters);
+  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+
+  table.querySelectorAll('th[data-sort]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var key = th.dataset.sort;
+      var ascending = th.getAttribute('aria-sort') !== 'ascending';
+
+      table.querySelectorAll('th[data-sort]').forEach(function (other) {
+        other.removeAttribute('aria-sort');
+      });
+      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+
+      rows.sort(function (a, b) {
+        var valA = a.dataset[key];
+        var valB = b.dataset[key];
+        if (valA < valB) return ascending ? -1 : 1;
+        if (valA > valB) return ascending ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(function (row) { tbody.appendChild(row); });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var table = document.getElementById('mr-user-table');
+  if (!table) return;
+
+  var tbody = table.querySelector('tbody');
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  var search = document.getElementById('mr-user-search');
+  var roleFilter = document.getElementById('mr-user-role-filter');
+  var empty = document.querySelector('.mr-roster-empty');
+  var count = document.getElementById('mr-user-count');
+
+  function applyFilters() {
+    var term = search ? search.value.trim().toLowerCase() : '';
+    var role = roleFilter ? roleFilter.value : '';
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
+      var matchesRole = !role || row.dataset.role === role;
+      var match = matchesSearch && matchesRole;
+      row.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (empty) empty.hidden = visible !== 0;
+    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
+  }
+
+  if (search) search.addEventListener('input', applyFilters);
+  if (roleFilter) roleFilter.addEventListener('change', applyFilters);
+
+  table.querySelectorAll('th[data-sort]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var key = th.dataset.sort;
+      var ascending = th.getAttribute('aria-sort') !== 'ascending';
+
+      table.querySelectorAll('th[data-sort]').forEach(function (other) {
+        other.removeAttribute('aria-sort');
+      });
+      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+
+      rows.sort(function (a, b) {
+        var valA = a.dataset[key];
+        var valB = b.dataset[key];
+        if (valA < valB) return ascending ? -1 : 1;
+        if (valA > valB) return ascending ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(function (row) { tbody.appendChild(row); });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('mr-role-chart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Patients', 'Pharmacists', 'Delivery', 'Admins'],
+      datasets: [{
+        data: [65, 18, 12, 5],
+        backgroundColor: [
+          mrColor('--mr-color-primary'),
+          '#bdc2ff',
+          mrColor('--mr-color-accent'),
+          mrColor('--mr-color-text-muted')
+        ],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '75%',
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+});
+
+// Admin settings — Broadcast Routing Engine +/- steppers
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.mr-stepper').forEach(function (stepper) {
+    var valueEl = stepper.querySelector('.mr-stepper__value');
+    if (!valueEl) return;
+    var step = parseFloat(stepper.dataset.step || '1');
+    var decimals = (stepper.dataset.step || '1').split('.')[1]?.length || 0;
+
+    stepper.querySelectorAll('[data-stepper-action]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var current = parseFloat(valueEl.textContent);
+        var next = btn.dataset.stepperAction === 'inc' ? current + step : current - step;
+        valueEl.textContent = next.toFixed(decimals);
+      });
+    });
+  });
+});
+
+// Admin settings — dispatch radius / response timeout gauges, live-linked
+// to the range slider underneath each one (same doughnut-gauge pattern as
+// mr-earnings-target-chart, just re-wired to redraw on slider input)
+document.addEventListener('DOMContentLoaded', function () {
+  function wireRoutingGauge(canvasId, sliderId, max, colorToken, suffix) {
+    var canvas = document.getElementById(canvasId);
+    var slider = document.getElementById(sliderId);
+    if (!canvas || !slider || typeof Chart === 'undefined') return;
+
+    var value = parseFloat(slider.value);
+    var chart = new Chart(canvas, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [value, max - value],
+          backgroundColor: [mrColor(colorToken), '#e9e7f3'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '75%',
+        plugins: { legend: { display: false }, tooltip: { enabled: false } }
+      }
+    });
+
+    var label = canvas.closest('.mr-spend-ring').querySelector('.mr-spend-ring__inner strong');
+
+    slider.addEventListener('input', function () {
+      value = parseFloat(slider.value);
+      chart.data.datasets[0].data = [value, max - value];
+      chart.update();
+      if (label) label.textContent = value + suffix;
+    });
+  }
+
+  wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' mi');
+  wireRoutingGauge('mr-timeout-gauge-chart', 'mr-timeout-slider', 180, '--mr-color-accent', 's');
 });
