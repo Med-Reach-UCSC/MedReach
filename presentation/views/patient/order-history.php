@@ -57,20 +57,20 @@ $active = 'orders';
 
             <article class="mr-card mr-order mr-history-card is-open" data-status="delivered" data-name="ORD-7392 CityHealth Pharmacy">
               <button type="button" class="mr-order__head mr-history-card__toggle">
-                <div class="mr-order__id">
+                <span class="mr-order__id">
                   <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7392</span>
-                  <div>
+                  <span>
                     <strong>CityHealth Pharmacy</strong>
                     <span class="mr-eyebrow">Oct 24, 2023 &bull; 3 items</span>
-                  </div>
-                </div>
-                <div class="mr-order__tags">
-                  <strong class="mr-history-card__price">$45.20</strong>
+                  </span>
+                </span>
+                <span class="mr-order__tags">
+                  <strong class="mr-history-card__price">LKR 4,520.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
                     <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
                   </span>
-                </div>
+                </span>
               </button>
 
               <div class="mr-history-card__body">
@@ -80,17 +80,17 @@ $active = 'orders';
                     <div class="mr-order-lines__row">
                       <strong>Amoxicillin 500mg (20 caps)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$20.20</span>
+                      <span>LKR 2,020.00</span>
                     </div>
                     <div class="mr-order-lines__row">
                       <strong>Ibuprofen 400mg (30 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$15.00</span>
+                      <span>LKR 1,500.00</span>
                     </div>
                     <div class="mr-order-lines__row">
                       <strong>Cetirizine 10mg (10 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$10.00</span>
+                      <span>LKR 1,000.00</span>
                     </div>
                   </div>
                   <div class="mr-history-card__actions">
@@ -128,20 +128,20 @@ $active = 'orders';
 
             <article class="mr-card mr-order mr-history-card" data-status="delivered" data-name="ORD-7391 MediCare Plus">
               <button type="button" class="mr-order__head mr-history-card__toggle">
-                <div class="mr-order__id">
+                <span class="mr-order__id">
                   <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7391</span>
-                  <div>
+                  <span>
                     <strong>MediCare Plus</strong>
                     <span class="mr-eyebrow">Oct 12, 2023 &bull; 2 items</span>
-                  </div>
-                </div>
-                <div class="mr-order__tags">
-                  <strong class="mr-history-card__price">$112.50</strong>
+                  </span>
+                </span>
+                <span class="mr-order__tags">
+                  <strong class="mr-history-card__price">LKR 11,250.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
                     <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
                   </span>
-                </div>
+                </span>
               </button>
 
               <div class="mr-history-card__body">
@@ -151,12 +151,12 @@ $active = 'orders';
                     <div class="mr-order-lines__row">
                       <strong>Lisinopril 10mg (30 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$15.00</span>
+                      <span>LKR 1,500.00</span>
                     </div>
                     <div class="mr-order-lines__row">
                       <strong>Atorvastatin 20mg (90 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$97.50</span>
+                      <span>LKR 9,750.00</span>
                     </div>
                   </div>
                   <div class="mr-history-card__actions">
@@ -202,7 +202,7 @@ $active = 'orders';
                   </div>
                 </div>
                 <div class="mr-order__tags">
-                  <strong class="mr-history-card__price">$22.00</strong>
+                  <strong class="mr-history-card__price">LKR 2,200.00</strong>
                   <span class="mr-badge mr-badge--danger mr-badge--case-normal">Canceled</span>
                   <span class="mr-history-card__no-rating">No rating</span>
                 </div>
