@@ -1,11 +1,5 @@
 <?php
 // MedReach - Pharmacist dashboard (presentation tier: HTML output only)
-// Converted from docs/pharmacy-dashboard.php (Tailwind mockup) onto the same
-// mr- component system as the patient module — no new CSS classes needed.
-//
-// Defects fixed vs the mockup: dropped the Inventory nav item and Low Stock
-// Alerts widget (MedReach has no MEDICINE/INVENTORY table per CLAUDE.md — out
-// of scope), replaced with the real UC-18 substitution-approval workflow.
 $active = 'dashboard';
 ?>
 <!DOCTYPE html>

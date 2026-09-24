@@ -1,17 +1,5 @@
 <?php
 // MedReach - Pharmacist single-request review (presentation tier: HTML output only)
-// Converted from docs/prescription-request.php (Tailwind mockup) onto the mr-
-// component system — reuses mr-order-row, mr-resp-summary, mr-mini-stat and
-// mr-help-card from the patient module instead of introducing new classes.
-//
-// Defects fixed vs the mockup: dropped the Inventory nav item (no
-// MEDICINE/INVENTORY table per CLAUDE.md); substitution proposal is a native
-// <details> disclosure instead of scripted show/hide, matching mr-faq.
-//
-// Body carries a page-scoped class (mr-page-request), same convention as
-// mr-page-order/mr-page-track/mr-page-nearby — lets this page override
-// .mr-dash-content into a literal 3-column bento without touching the
-// shared 2-column grid every other dashboard page relies on.
 $active = 'requests';
 ?>
 <!DOCTYPE html>

@@ -1,19 +1,5 @@
 <?php
 // MedReach - Pharmacist order queue (presentation tier: HTML output only)
-// Converted from docs/pharmacist-orders.php (Tailwind mockup) onto the mr-
-// component system — reuses mr-order/mr-order-row/mr-order-progress from the
-// dashboard, mr-auth-tabs for the stage filter, mr-courier-card for the
-// handover widget, and mr-pharmacy-row for the stat rows. No new CSS.
-//
-// Defects fixed vs the mockup: dropped the Inventory nav item (no
-// MEDICINE/INVENTORY table per CLAUDE.md); dropped the hardcoded "always on"
-// toast banner — nothing in this static prototype pushes that update, so a
-// permanently-visible success toast misrepresents the page as live; swapped
-// the hotlinked stock-photo avatars for mr-avatar initials, matching every
-// other pharmacy view; dropped the decorative SVG progress rings (Daily
-// Volume / Accuracy Rate) for the plain mr-pharmacy-row stat rows already
-// used one section up on this exact page in dashboard.php, instead of
-// standing up a second chart pattern for two numbers.
 $active = 'requests';
 ?>
 <!DOCTYPE html>

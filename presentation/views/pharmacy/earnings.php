@@ -1,22 +1,5 @@
 <?php
 // MedReach - Pharmacist earnings & payouts (presentation tier: HTML output only)
-// Converted from docs/pharmacy-earnings.php (Tailwind mockup) onto the mr-
-// component system — reuses mr-dash-stats (header capsules), mr-pay-table +
-// mr-pagination (payments.php), mr-spend-ring (payments.php doughnut), and
-// mr-med-stats bars (order-history.php "most ordered" widget). No new CSS.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config (external library, not project CSS per CLAUDE.md) for the
-// project's own --mr- token system; dropped the standalone glass side-nav
-// and hotlinked avatar for the shared sidebar-pharmacy.php partial (added an
-// "Earnings" entry) so every pharmacist page uses one nav component; dropped
-// the Inventory nav item, same reasoning as dashboard.php/orders.php (no
-// MEDICINE/INVENTORY table); reworked "Top Yield Meds" from stock-margin %
-// framing to revenue-by-medicine (aggregated from free-text ORDER_ITEM
-// names, not a catalog); replaced the fabricated TXN-XXXX id format with the
-// #MR-XXXX order id convention payments.php already uses; replaced the
-// hand-coded inline-SVG line chart with the project's existing Chart.js
-// bar-chart pattern (matches the dashboard's earnings chart).
 $active = 'earnings';
 ?>
 <!DOCTYPE html>

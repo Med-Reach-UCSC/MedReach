@@ -1,40 +1,5 @@
 <?php
 // MedReach - Pharmacy profile & settings (presentation tier: HTML output only)
-// Converted from docs/pharmacist-setting.php (Tailwind mockup) onto the mr-
-// component system — this is the pharmacist's equivalent of
-// patient/profile.php, so it reuses that page's exact components: mr-field
-// / mr-auth-form--grid (profile fields), mr-switch (notification toggles),
-// mr-auth-form (password fields), mr-policy-card (earnings.php's policy
-// widget, repurposed as a support card). No new CSS.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config (external library, not project CSS per CLAUDE.md) for the
-// project's own --mr- token system; dropped the standalone glass side-nav
-// and hotlinked avatar for the shared sidebar-pharmacy.php partial, wired
-// to the footer "Profile" link exactly like sidebar-patient.php does for
-// profile.php (was a dead "#" link); dropped the decorative gradient
-// "Need assistance?" promo card rather than invent a one-off CSS component
-// for it — replaced with the project's existing mr-policy-card treatment
-// (same one earnings.php uses) so support info reuses a real component;
-// moved the license-number lock icon to the left of the field to match
-// every other icon-field in the project (profile.php's password fields)
-// instead of the mockup's one-off right-side icon; added a Confirm New
-// Password field to match profile.php's password form exactly instead of
-// the mockup's unconfirmed 2-field version.
-//
-// Follow-up pass (defects flagged after first render): the field grid was
-// still capped at the modal's 431px width inside a much wider dash card,
-// leaving a dead gap and truncating values — widened via a scoped
-// .mr-dash-card .mr-auth-form--grid CSS rule instead of resizing the
-// shared modal grid; folded the pharmacist identity (avatar/name/pharmacy)
-// into the profile card head via the existing mr-profile-card__identity
-// pattern from patient/profile.php, since this page is the sidebar's
-// "Profile" destination but previously showed no name anywhere; added the
-// same order-fulfillment stat capsules orders.php uses in its header;
-// added a Danger Zone card (mr-danger-card, same component as
-// patient/profile.php's) and a Recent Login Activity card (mr-notif-list,
-// same data pattern as patient/profile.php's) — both existed on the
-// patient profile page but were missing here.
 $active = 'profile';
 ?>
 <!DOCTYPE html>
