@@ -116,7 +116,7 @@ $active = 'profile';
                 </span>
                 <h2>Need assistance with MedReach?</h2>
               </div>
-              <p>Our support team is available to help you with delivery workflows, substitution approvals, and payout questions.</p>
+              <p>Our support team is available to help you with delivery workflows, substitution approvals, and cash settlement questions.</p>
             </div>
             <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">Contact Support</a>
           </section>
@@ -139,21 +139,21 @@ $active = 'profile';
             <div class="mr-pharmacy-row">
               <strong>Order Alerts</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Order Alerts" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Substitution Responses</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Substitution Responses" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Delivery Exceptions</strong>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Delivery Exceptions">
                 <span class="mr-switch__track"></span>
               </label>
             </div>

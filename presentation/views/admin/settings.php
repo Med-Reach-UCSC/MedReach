@@ -104,7 +104,7 @@ $active = 'settings';
                 <span class="mr-pharmacy-row__muted">Capture complete stack traces in central DB</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Verbose Error Logging" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -114,7 +114,7 @@ $active = 'settings';
                 <span class="mr-pharmacy-row__muted">Maintain websocket connection to mobile fleet</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Background Sync Ping" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -136,7 +136,7 @@ $active = 'settings';
                 <span class="mr-pharmacy-row__muted">Immediate push notifications</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Critical System Errors" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -146,7 +146,7 @@ $active = 'settings';
                 <span class="mr-pharmacy-row__muted">Daily digest email</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Provider Status Updates">
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -156,7 +156,7 @@ $active = 'settings';
                 <span class="mr-pharmacy-row__muted">In-app alerts only</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Routing Optimization Sync">
                 <span class="mr-switch__track"></span>
               </label>
             </div>

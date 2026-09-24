@@ -119,7 +119,7 @@ $active = 'orders';
                     </button>
                   </div>
                   <label class="mr-field">
-                    <textarea rows="2" placeholder="Leave a comment (optional)..."></textarea>
+                    <textarea rows="2" aria-label="Order comment" placeholder="Leave a comment (optional)..."></textarea>
                   </label>
                   <button type="button" class="mr-btn mr-btn--primary mr-btn--sm mr-history-card__submit">Submit</button>
                 </div>
@@ -185,7 +185,7 @@ $active = 'orders';
                     </button>
                   </div>
                   <label class="mr-field">
-                    <textarea rows="2" placeholder="Leave a comment (optional)..."></textarea>
+                    <textarea rows="2" aria-label="Order comment" placeholder="Leave a comment (optional)..."></textarea>
                   </label>
                   <button type="button" class="mr-btn mr-btn--primary mr-btn--sm mr-history-card__submit">Submit</button>
                 </div>

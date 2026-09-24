@@ -86,28 +86,28 @@ $active = 'profile';
             <div class="mr-pharmacy-row">
               <strong>Order Updates</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Order Updates" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Substitution Alerts</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Substitution Alerts" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Delivery Updates</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Delivery Updates" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Promotional Offers</strong>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Promotional Offers">
                 <span class="mr-switch__track"></span>
               </label>
             </div>

@@ -114,21 +114,21 @@ $active = 'notifications';
             <div class="mr-pharmacy-row">
               <strong>Order Updates</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Order Updates" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Delivery Tracking</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Delivery Tracking" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>System Alerts</strong>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="System Alerts">
                 <span class="mr-switch__track"></span>
               </label>
             </div>

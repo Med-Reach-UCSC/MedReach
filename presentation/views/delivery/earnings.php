@@ -1,5 +1,5 @@
 <?php
-// MedReach - Delivery rider earnings & payouts (presentation tier: HTML output only)
+// MedReach - Delivery rider earnings & cash collected (presentation tier: HTML output only)
 $active = 'earnings';
 ?>
 <!DOCTYPE html>

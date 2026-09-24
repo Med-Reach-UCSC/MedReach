@@ -1,5 +1,5 @@
 <?php
-// MedReach - Pharmacist earnings & payouts (presentation tier: HTML output only)
+// MedReach - Pharmacist earnings & settlements (presentation tier: HTML output only)
 $active = 'earnings';
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ $active = 'earnings';
       <header class="mr-dash-header">
         <div>
           <h1>Earnings</h1>
-          <p class="mr-eyebrow">Payout ledger synced 2 min ago</p>
+          <p class="mr-eyebrow">Cash on delivery settlements this month</p>
         </div>
 
         <div class="mr-dash-header__actions">
@@ -30,7 +30,7 @@ $active = 'earnings';
             </div>
             <div class="mr-dash-stat">
               <strong class="mr-dash-stat__value mr-dash-stat__value--pending">LKR 2,150.00</strong>
-              <span>Pending payout</span>
+              <span>Pending settlement</span>
             </div>
           </div>
 
@@ -46,7 +46,7 @@ $active = 'earnings';
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>Payout ledger</h2>
+              <h2>Settlement ledger</h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">
                 <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
                 Filter
@@ -182,7 +182,7 @@ $active = 'earnings';
               <span class="mr-icon-badge mr-icon-badge--info">
                 <img src="https://img.icons8.com/ios-filled/50/0a7fb5/security-checked.png" alt="">
               </span>
-              <h2>Payout Policy</h2>
+              <h2>Settlement Policy</h2>
             </div>
             <p>Cash-on-delivery (COD) collections must be reconciled within 24 hours of successful delivery.</p>
 
@@ -193,7 +193,7 @@ $active = 'earnings';
               </li>
               <li>
                 <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
-                Pharmacy payments settle bi-weekly via bank transfer.
+                Riders hand collected cash over to the pharmacy against each order ID.
               </li>
             </ul>
 

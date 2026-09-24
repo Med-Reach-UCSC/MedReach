@@ -35,7 +35,7 @@ $active = 'dashboard';
           </div>
 
           <label class="mr-switch" title="Available for deliveries" data-duty-toggle>
-            <input type="checkbox" checked>
+            <input type="checkbox" aria-label="Available for deliveries" checked>
             <span class="mr-switch__track"></span>
           </label>
 
