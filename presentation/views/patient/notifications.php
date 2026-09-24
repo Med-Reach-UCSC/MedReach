@@ -96,7 +96,7 @@ $active = 'notifications';
                 <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
               </span>
               <span class="mr-notif-item__info">
-                <span class="mr-notif-item__title">Monthly inventory report is ready for review.</span>
+                <span class="mr-notif-item__title">Your monthly order summary is ready to view.</span>
               </span>
               <span class="mr-notif-item__time">Oct 24</span>
             </div>

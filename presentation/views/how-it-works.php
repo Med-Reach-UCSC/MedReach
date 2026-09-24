@@ -144,7 +144,7 @@
         <div class="mr-card mr-faq">
           <details>
             <summary>What if no nearby pharmacy has my medicine?</summary>
-            <p>Our system automatically expands the search radius and notifies you if the item is out of stock across the whole network.</p>
+            <p>Each item is forwarded to the next-closest registered pharmacy. If none can fill it, we notify you so you can ask your doctor about an alternative.</p>
           </details>
           <details>
             <summary>Can I choose cash on delivery or pickup instead?</summary>
