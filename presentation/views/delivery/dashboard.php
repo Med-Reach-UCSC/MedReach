@@ -103,7 +103,7 @@ $active = 'dashboard';
               </span>
               <span class="mr-order-row__info">
                 <span>General Hospital Pharmacy</span>
-                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-993-A &middot; 2.4 km</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9934 &middot; 2.4 km</span>
               </span>
               <span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span>
             </a>
@@ -114,7 +114,7 @@ $active = 'dashboard';
               </span>
               <span class="mr-order-row__info">
                 <span>Dr. Silva Clinic</span>
-                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-994-B &middot; 5.1 km</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9941 &middot; 5.1 km</span>
               </span>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">Queued</span>
             </a>

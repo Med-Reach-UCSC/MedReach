@@ -62,7 +62,7 @@ $active = 'dashboard';
                     <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
                   </span>
                   <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.2 mi</span>
+                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.9 km</span>
                     <h4><a href="prescription-request.php">Amoxicillin 500mg &times; 30</a></h4>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ $active = 'dashboard';
                     <img src="https://img.icons8.com/ios-filled/50/d6534a/pill.png" alt="">
                   </span>
                   <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 3.4 mi</span>
+                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 5.5 km</span>
                     <h4>Lisinopril 10mg &times; 90</h4>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ $active = 'dashboard';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Today's earnings</h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">Rs. 26,500.00</span>
+              <span class="mr-eyebrow mr-eyebrow--mono">LKR 26,500.00</span>
             </div>
             <canvas id="mr-earnings-chart" height="180" role="img" aria-label="Hourly earnings for today"></canvas>
           </section>

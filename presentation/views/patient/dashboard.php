@@ -64,7 +64,7 @@ $active = 'dashboard';
                 </div>
                 <div class="mr-order__tags">
                   <span class="mr-badge mr-badge--pill">3 items</span>
-                  <span class="mr-badge mr-badge--info">1.2 mi</span>
+                  <span class="mr-badge mr-badge--info">1.9 km</span>
                   <a class="mr-badge mr-badge--pill mr-badge--case-normal" href="track-order-status.php">Track order</a>
                 </div>
               </div>
@@ -161,21 +161,21 @@ $active = 'dashboard';
             <div class="mr-pharmacy-row">
               <div>
                 <strong>CityHealth Rx</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">1.2 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">1.9 km away</span>
               </div>
               <span class="mr-badge mr-badge--success">Open</span>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong>MediCare Plus</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">2.5 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">4.0 km away</span>
               </div>
               <span class="mr-badge mr-badge--success">Open</span>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong class="mr-pharmacy-row__muted">GreenCross</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">3.1 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">5.0 km away</span>
               </div>
               <span class="mr-badge mr-badge--pill">Closed</span>
             </div>

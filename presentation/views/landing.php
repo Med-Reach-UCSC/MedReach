@@ -35,7 +35,7 @@
             <div class="mr-card mr-tracking-card">
               <div class="mr-tracking-card__head">
                 <div>
-                  <span class="mr-eyebrow mr-eyebrow--mono">Order #MR-9241</span>
+                  <span class="mr-eyebrow mr-eyebrow--mono">Order #ORD-9241</span>
                   <h3>Delivery Tracking</h3>
                 </div>
                 <span class="mr-badge mr-badge--info">In Transit</span>
@@ -135,21 +135,21 @@
               <li>
                 <div>
                   <strong>City Health Pharmacy</strong>
-                  <small>Downtown • 0.5 miles</small>
+                  <small>Downtown • 0.8 km</small>
                 </div>
                 <span class="mr-badge mr-badge--success">Active</span>
               </li>
               <li>
                 <div>
                   <strong>CarePlus Meds</strong>
-                  <small>Westside • 1.2 miles</small>
+                  <small>Westside • 1.9 km</small>
                 </div>
                 <span class="mr-badge mr-badge--success">Active</span>
               </li>
               <li>
                 <div>
                   <strong>Sunrise Pharmacy</strong>
-                  <small>North Hills • 3.0 miles</small>
+                  <small>North Hills • 4.8 km</small>
                 </div>
                 <span class="mr-badge mr-badge--success">Active</span>
               </li>
@@ -238,7 +238,7 @@
             <div class="mr-receipt-demo-group">
               <div class="mr-receipt-demo">
                 <span>Order total</span>
-                <strong>Rs. 2,450</strong>
+                <strong>LKR 2,450</strong>
               </div>
               <div class="mr-receipt-demo">
                 <span>Payment method</span>

@@ -58,7 +58,7 @@ $active = 'pharmacies';
                 <p class="mr-pharm-card__phone">070 633 0224</p>
               </div>
               <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">0.8 mi</span>
+                <span class="mr-badge mr-badge--info mr-badge--case-normal">1.3 km</span>
                 <span class="mr-pharm-rating">
                   <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
                   4.8
@@ -79,7 +79,7 @@ $active = 'pharmacies';
                 <p class="mr-pharm-card__phone">070 214 8890</p>
               </div>
               <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">1.2 mi</span>
+                <span class="mr-badge mr-badge--info mr-badge--case-normal">1.9 km</span>
                 <span class="mr-pharm-rating">
                   <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
                   4.5
@@ -100,7 +100,7 @@ $active = 'pharmacies';
                 <p class="mr-pharm-card__phone">071 402 5567</p>
               </div>
               <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">2.5 mi</span>
+                <span class="mr-badge mr-badge--info mr-badge--case-normal">4.0 km</span>
                 <span class="mr-pharm-rating">
                   <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
                   4.9
@@ -121,7 +121,7 @@ $active = 'pharmacies';
                 <p class="mr-pharm-card__phone">077 815 9902</p>
               </div>
               <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">3.1 mi</span>
+                <span class="mr-badge mr-badge--info mr-badge--case-normal">5.0 km</span>
                 <span class="mr-pharm-rating">
                   <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
                   4.2

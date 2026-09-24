@@ -66,7 +66,7 @@ $active = 'requests';
                     <span class="mr-avatar">EV</span>
                     <div>
                       <strong>Eleanor Vance</strong>
-                      <span class="mr-eyebrow mr-eyebrow--mono">ID: #RX-9921-A</span>
+                      <span class="mr-eyebrow mr-eyebrow--mono">ID: #ORD-9921</span>
                     </div>
                   </div>
                   <div class="mr-order__tags">
@@ -115,7 +115,7 @@ $active = 'requests';
                     <span class="mr-avatar">MR</span>
                     <div>
                       <strong>Marcus Reed</strong>
-                      <span class="mr-eyebrow mr-eyebrow--mono">ID: #RX-9924-B</span>
+                      <span class="mr-eyebrow mr-eyebrow--mono">ID: #ORD-9924</span>
                     </div>
                   </div>
                   <div class="mr-order__tags">

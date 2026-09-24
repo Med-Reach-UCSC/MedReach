@@ -179,10 +179,10 @@ $active = 'settings';
             <div class="mr-stat-grid-3" style="grid-template-columns: 1fr 1fr;">
               <div style="text-align: center;">
                 <div class="mr-spend-ring">
-                  <canvas id="mr-radius-gauge-chart" role="img" aria-label="Max dispatch radius: 45 miles"></canvas>
+                  <canvas id="mr-radius-gauge-chart" role="img" aria-label="Max dispatch radius: 45 km"></canvas>
                   <div class="mr-spend-ring__inner">
                     <span>Radius</span>
-                    <strong>45 mi</strong>
+                    <strong>45 km</strong>
                   </div>
                 </div>
                 <label class="mr-eyebrow mr-eyebrow--mono" for="mr-radius-slider" style="display: block; margin-bottom: 0.5rem;">Max Dispatch Radius</label>
@@ -303,7 +303,7 @@ $active = 'settings';
               <div class="mr-manifest__row">
                 <span>Base Radius</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>45mi</strong>
+                <strong>45 km</strong>
               </div>
               <div class="mr-manifest__row">
                 <span>Timeout</span>

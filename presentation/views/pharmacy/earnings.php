@@ -25,11 +25,11 @@ $active = 'earnings';
         <div class="mr-dash-header__actions">
           <div class="mr-dash-stats">
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--active">Rs. 12,450.80</strong>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--active">LKR 12,450.80</strong>
               <span>This period</span>
             </div>
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--pending">Rs. 2,150.00</strong>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--pending">LKR 2,150.00</strong>
               <span>Pending payout</span>
             </div>
           </div>
@@ -65,28 +65,28 @@ $active = 'earnings';
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8942</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8942</td>
                     <td>Today, 14:32</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span></td>
-                    <td class="mr-pay-table__amount">Rs. 4,250.00</td>
+                    <td class="mr-pay-table__amount">LKR 4,250.00</td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8941</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8941</td>
                     <td>Yesterday, 09:15</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span></td>
-                    <td class="mr-pay-table__amount">Rs. 1,120.50</td>
+                    <td class="mr-pay-table__amount">LKR 1,120.50</td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8939</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8939</td>
                     <td>Oct 12, 16:45</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span></td>
-                    <td class="mr-pay-table__amount">Rs. 8,400.25</td>
+                    <td class="mr-pay-table__amount">LKR 8,400.25</td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8935</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8935</td>
                     <td>Oct 8, 11:20</td>
                     <td><span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span></td>
-                    <td class="mr-pay-table__amount">Rs. 2,150.00</td>
+                    <td class="mr-pay-table__amount">LKR 2,150.00</td>
                   </tr>
                 </tbody>
               </table>
@@ -111,7 +111,7 @@ $active = 'earnings';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Revenue (30 days)</h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">Rs. 45,880 total</span>
+              <span class="mr-eyebrow mr-eyebrow--mono">LKR 45,880 total</span>
             </div>
             <canvas id="mr-earnings-trend-chart" data-values="9600,11200,12450,12630" height="220" role="img" aria-label="Weekly revenue over the last 30 days"></canvas>
           </section>
@@ -138,14 +138,14 @@ $active = 'earnings';
                 <i class="mr-spend-dot mr-spend-dot--primary"></i>
                 Earned
               </span>
-              <strong>Rs. 12,450</strong>
+              <strong>LKR 12,450</strong>
             </div>
             <div class="mr-spend-row">
               <span class="mr-spend-row__label">
                 <i class="mr-spend-dot mr-spend-dot--light"></i>
                 Remaining to target
               </span>
-              <strong>Rs. 2,550</strong>
+              <strong>LKR 2,550</strong>
             </div>
           </section>
 
@@ -155,7 +155,7 @@ $active = 'earnings';
             <div class="mr-med-stats__row">
               <div class="mr-med-stats__label">
                 <span>Amoxicillin 500mg</span>
-                <strong>Rs. 8,400</strong>
+                <strong>LKR 8,400</strong>
               </div>
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 85%;"></div></div>
             </div>
@@ -163,7 +163,7 @@ $active = 'earnings';
             <div class="mr-med-stats__row">
               <div class="mr-med-stats__label">
                 <span>Lisinopril 10mg</span>
-                <strong>Rs. 6,120</strong>
+                <strong>LKR 6,120</strong>
               </div>
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 62%; opacity: .8;"></div></div>
             </div>
@@ -171,7 +171,7 @@ $active = 'earnings';
             <div class="mr-med-stats__row">
               <div class="mr-med-stats__label">
                 <span>Atorvastatin 20mg</span>
-                <strong>Rs. 4,850</strong>
+                <strong>LKR 4,850</strong>
               </div>
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 48%; opacity: .6;"></div></div>
             </div>

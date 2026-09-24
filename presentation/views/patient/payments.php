@@ -64,7 +64,7 @@ $active = 'payments';
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8402</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8402</td>
                     <td>City Health Pharmacy</td>
                     <td>Today, 10:42 AM</td>
                     <td class="mr-pay-table__amount">LKR 450</td>
@@ -79,7 +79,7 @@ $active = 'payments';
                     </td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8399</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8399</td>
                     <td>MediCare Plus Colombo</td>
                     <td>Yesterday, 14:15</td>
                     <td class="mr-pay-table__amount">LKR 1,200</td>
@@ -94,7 +94,7 @@ $active = 'payments';
                     </td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8395</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8395</td>
                     <td>Union Chemists</td>
                     <td>Oct 24, 09:30 AM</td>
                     <td class="mr-pay-table__amount">LKR 850</td>
@@ -109,7 +109,7 @@ $active = 'payments';
                     </td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8380</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8380</td>
                     <td>HealthGuard Kandy</td>
                     <td>Oct 22, 16:20</td>
                     <td class="mr-pay-table__amount">LKR 2,350</td>
@@ -124,7 +124,7 @@ $active = 'payments';
                     </td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8375</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8375</td>
                     <td>Nawaloka Pharmacy</td>
                     <td>Oct 21, 11:10 AM</td>
                     <td class="mr-pay-table__amount">LKR 750</td>
@@ -139,7 +139,7 @@ $active = 'payments';
                     </td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8360</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8360</td>
                     <td>Asiri Dispensary</td>
                     <td>Oct 20, 08:45 AM</td>
                     <td class="mr-pay-table__amount">LKR 1,500</td>

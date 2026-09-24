@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
         x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
         y: {
           grid: { color: mrColor('--mr-color-border') },
-          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'LKR ' + v; } }
         }
       }
     }
@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function () {
         x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
         y: {
           grid: { color: mrColor('--mr-color-border') },
-          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'LKR ' + v; } }
         }
       }
     }
@@ -808,6 +808,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' mi');
+  wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' km');
   wireRoutingGauge('mr-timeout-gauge-chart', 'mr-timeout-slider', 180, '--mr-color-accent', 's');
 });

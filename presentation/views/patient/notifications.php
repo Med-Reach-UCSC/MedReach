@@ -40,7 +40,7 @@ $active = 'notifications';
                 <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
               </span>
               <span class="mr-notif-item__info">
-                <span class="mr-notif-item__title">City Health Pharmacy accepted your order #RX-8924</span>
+                <span class="mr-notif-item__title">City Health Pharmacy accepted your order #ORD-8924</span>
               </span>
               <span class="mr-notif-item__time">09:42 AM</span>
               <span class="mr-notif-item__dot" aria-hidden="true"></span>
@@ -62,7 +62,7 @@ $active = 'notifications';
                 <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
               </span>
               <span class="mr-notif-item__info">
-                <span class="mr-notif-item__title">Substitution suggested for Order #RX-8920 (Aspirin 81mg)</span>
+                <span class="mr-notif-item__title">Substitution suggested for Order #ORD-8920 (Aspirin 81mg)</span>
               </span>
               <span class="mr-notif-item__time">07:30 AM</span>
             </div>

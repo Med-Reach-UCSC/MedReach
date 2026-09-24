@@ -30,7 +30,7 @@ $active = 'orders';
           <section class="mr-card mr-confirm-ref">
             <div>
               <span class="mr-eyebrow mr-eyebrow--mono">Order Reference</span>
-              <strong class="mr-confirm-ref__value">#MR-8472-X9</strong>
+              <strong class="mr-confirm-ref__value">#ORD-8472</strong>
             </div>
             <div class="mr-confirm-ref__eta">
               <span class="mr-eyebrow mr-eyebrow--mono">Estimated Arrival</span>
