@@ -1,0 +1,152 @@
+<?php
+// MedReach - Patient notifications (presentation tier: HTML output only)
+$active = 'notifications';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notifications — MedReach</title>
+  <link rel="stylesheet" href="presentation/assets/css/style.css">
+</head>
+<body class="mr-page-notifications">
+
+  <div class="mr-dashboard">
+    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+
+    <main class="mr-dash-main">
+      <header class="mr-dash-header">
+        <h1>Notifications</h1>
+
+        <div class="mr-dash-header__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" id="mr-notif-mark-all">
+            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/checkmark.png" alt="">
+            Mark all as read
+          </button>
+        </div>
+      </header>
+
+      <div class="mr-dash-content">
+        <div class="mr-dash-col">
+
+          <section class="mr-card mr-notif-list">
+            <div class="mr-notif-list__section">
+              <span class="mr-eyebrow">Today</span>
+            </div>
+
+            <div class="mr-notif-item is-unread" data-read="false">
+              <span class="mr-icon-badge mr-icon-badge--success">
+                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+              </span>
+              <span class="mr-notif-item__info">
+                <span class="mr-notif-item__title">City Health Pharmacy accepted your order #RX-8924</span>
+              </span>
+              <span class="mr-notif-item__time">09:42 AM</span>
+              <span class="mr-notif-item__dot" aria-hidden="true"></span>
+            </div>
+
+            <div class="mr-notif-item is-unread" data-read="false">
+              <span class="mr-icon-badge mr-icon-badge--info">
+                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+              </span>
+              <span class="mr-notif-item__info">
+                <span class="mr-notif-item__title">Courier assigned. Out for delivery to West Wing.</span>
+              </span>
+              <span class="mr-notif-item__time">08:15 AM</span>
+              <span class="mr-notif-item__dot" aria-hidden="true"></span>
+            </div>
+
+            <div class="mr-notif-item" data-read="true">
+              <span class="mr-icon-badge mr-icon-badge--accent">
+                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+              </span>
+              <span class="mr-notif-item__info">
+                <span class="mr-notif-item__title">Substitution suggested for Order #RX-8920 (Aspirin 81mg)</span>
+              </span>
+              <span class="mr-notif-item__time">07:30 AM</span>
+            </div>
+
+            <div class="mr-notif-list__section">
+              <span class="mr-eyebrow">Earlier</span>
+            </div>
+
+            <div class="mr-notif-item" data-read="true">
+              <span class="mr-icon-badge mr-icon-badge--success">
+                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/box.png" alt="">
+              </span>
+              <span class="mr-notif-item__info">
+                <span class="mr-notif-item__title">Delivery completed: East Wing Supply Drop</span>
+              </span>
+              <span class="mr-notif-item__time">Yesterday</span>
+            </div>
+
+            <div class="mr-notif-item" data-read="true">
+              <span class="mr-icon-badge mr-icon-badge--danger">
+                <img src="https://img.icons8.com/ios-filled/50/d6534a/high-priority.png" alt="">
+              </span>
+              <span class="mr-notif-item__info">
+                <span class="mr-notif-item__title">Alert: Temperature deviation detected in Transit Bin A4</span>
+              </span>
+              <span class="mr-notif-item__time">Yesterday</span>
+            </div>
+
+            <div class="mr-notif-item" data-read="true">
+              <span class="mr-icon-badge mr-icon-badge--muted">
+                <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
+              </span>
+              <span class="mr-notif-item__info">
+                <span class="mr-notif-item__title">Monthly inventory report is ready for review.</span>
+              </span>
+              <span class="mr-notif-item__time">Oct 24</span>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="mr-dash-col">
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>Notification Preferences</h2>
+            </div>
+
+            <div class="mr-pharmacy-row">
+              <strong>Order Updates</strong>
+              <label class="mr-switch">
+                <input type="checkbox" checked>
+                <span class="mr-switch__track"></span>
+              </label>
+            </div>
+            <div class="mr-pharmacy-row">
+              <strong>Delivery Tracking</strong>
+              <label class="mr-switch">
+                <input type="checkbox" checked>
+                <span class="mr-switch__track"></span>
+              </label>
+            </div>
+            <div class="mr-pharmacy-row">
+              <strong>System Alerts</strong>
+              <label class="mr-switch">
+                <input type="checkbox">
+                <span class="mr-switch__track"></span>
+              </label>
+            </div>
+          </section>
+
+          <section class="mr-card mr-upload-card">
+            <span class="mr-icon-badge mr-icon-badge--white mr-icon-badge--lg">
+              <img src="https://img.icons8.com/ios-filled/50/757687/appointment-reminders.png" alt="">
+            </span>
+            <h2>No new alerts</h2>
+            <p>You're all caught up for now.</p>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="presentation/assets/js/main.js"></script>
+</body>
+</html>
