@@ -86,11 +86,11 @@ $active = 'orders';
                 </li>
                 <li class="mr-timeline__step">
                   <strong>Pharmacy Matching</strong>
-                  <small>AI matches order with nearest available stock.</small>
+                  <small>Each item is sent to the nearest registered pharmacy; if declined or timed out, it moves to the next closest.</small>
                 </li>
                 <li class="mr-timeline__step">
                   <strong>Confirmation</strong>
-                  <small>Patient receives SMS link for copay and delivery.</small>
+                  <small>You review pharmacy responses and confirm. Pay in cash on delivery.</small>
                 </li>
               </ol>
             </div>

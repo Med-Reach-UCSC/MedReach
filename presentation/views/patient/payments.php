@@ -85,8 +85,8 @@ $active = 'payments';
                     <td class="mr-pay-table__amount">LKR 1,200</td>
                     <td>
                       <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                        <img src="https://img.icons8.com/ios-filled/50/62646d/bank-card-back-side.png" alt="">
-                        Card
+                        <img src="https://img.icons8.com/ios-filled/50/62646d/cash.png" alt="">
+                        COD
                       </span>
                     </td>
                     <td>
@@ -100,8 +100,8 @@ $active = 'payments';
                     <td class="mr-pay-table__amount">LKR 850</td>
                     <td>
                       <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                        <img src="https://img.icons8.com/ios-filled/50/62646d/bank-card-back-side.png" alt="">
-                        Card
+                        <img src="https://img.icons8.com/ios-filled/50/62646d/cash.png" alt="">
+                        COD
                       </span>
                     </td>
                     <td>
@@ -115,8 +115,8 @@ $active = 'payments';
                     <td class="mr-pay-table__amount">LKR 2,350</td>
                     <td>
                       <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                        <img src="https://img.icons8.com/ios-filled/50/62646d/bank.png" alt="">
-                        Transfer
+                        <img src="https://img.icons8.com/ios-filled/50/62646d/cash.png" alt="">
+                        COD
                       </span>
                     </td>
                     <td>
@@ -145,8 +145,8 @@ $active = 'payments';
                     <td class="mr-pay-table__amount">LKR 1,500</td>
                     <td>
                       <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                        <img src="https://img.icons8.com/ios-filled/50/62646d/bank-card-back-side.png" alt="">
-                        Card
+                        <img src="https://img.icons8.com/ios-filled/50/62646d/cash.png" alt="">
+                        COD
                       </span>
                     </td>
                     <td>
@@ -213,16 +213,16 @@ $active = 'payments';
               </span>
               <h2>Payment Policy</h2>
             </div>
-            <p>Cash-on-delivery (COD) collections must be reconciled within 24 hours of successful delivery.</p>
+            <p>MedReach is cash on delivery only. You pay the rider in cash when your order arrives.</p>
 
             <ul class="mr-policy-card__list">
               <li>
                 <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
-                Drivers collect cash at patient drop-off.
+                Keep the exact amount ready if you can.
               </li>
               <li>
                 <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
-                Pharmacy payments settle bi-weekly via bank transfer.
+                Ask the rider for a receipt with your order ID.
               </li>
             </ul>
 

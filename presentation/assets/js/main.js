@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var detailName = document.querySelector('.mr-pharm-detail__name');
   var detailAddr = document.querySelector('.mr-pharm-detail__addr');
   var detailWait = document.querySelector('.mr-pharm-detail__wait');
-  var detailStock = document.querySelector('.mr-pharm-detail__stock');
   var infoClose = document.querySelector('.mr-pharm-info__close');
   var backdrop = document.querySelector('.mr-pharm-backdrop');
   var isMobile = window.matchMedia('(max-width: 992px)');
@@ -156,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (detailName) detailName.textContent = card.dataset.name;
     if (detailAddr) detailAddr.lastChild.textContent = ' ' + card.dataset.addr;
     if (detailWait) detailWait.textContent = card.dataset.wait;
-    if (detailStock) detailStock.lastChild.textContent = ' ' + card.dataset.stock;
 
     if (isMobile.matches && info && backdrop) {
       info.classList.add('is-open');

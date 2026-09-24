@@ -3737,20 +3737,6 @@ a {
   display: block;
 }
 
-.mr-pharm-detail__stock {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: var(--mr-color-success);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.mr-pharm-detail__stock img {
-  width: 13px;
-  height: 13px;
-}
-
 .mr-pharm-info__close {
   display: none;
 }

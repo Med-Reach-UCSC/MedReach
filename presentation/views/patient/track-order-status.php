@@ -74,7 +74,7 @@ $active = 'orders';
               </li>
               <li class="mr-timeline__step">
                 <strong>Order Confirmed</strong>
-                <small>Stock verified and total calculated.</small>
+                <small>Pharmacy confirmed items and price.</small>
                 <span class="mr-timeline__time">09:50 AM</span>
               </li>
               <li class="mr-timeline__step">
@@ -118,8 +118,8 @@ $active = 'orders';
                 </div>
               </div>
               <div class="mr-courier-card__eta">
-                <span>12 min</span>
-                <small>away</small>
+                <span>11:00 AM</span>
+                <small>est. arrival</small>
               </div>
             </div>
 

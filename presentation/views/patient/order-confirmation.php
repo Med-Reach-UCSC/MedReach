@@ -126,7 +126,7 @@ $active = 'orders';
           <div class="mr-confirm-actions">
             <a href="track-order-status.php" class="mr-btn mr-btn--primary mr-btn--block">
               <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
-              Track Order Live
+              Track Order
             </a>
             <a href="patient-dashboard.php" class="mr-btn mr-btn--light mr-btn--block">Return to Dashboard</a>
           </div>

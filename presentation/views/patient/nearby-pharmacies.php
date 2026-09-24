@@ -49,7 +49,7 @@ $active = 'pharmacies';
 
           <div class="mr-pharm-list">
 
-          <article class="mr-card mr-pharm-card is-selected" data-name="Walgreens" data-addr="123 Main St, Seattle" data-wait="10 min" data-stock="Yes" data-status="open" tabindex="0">
+          <article class="mr-card mr-pharm-card is-selected" data-name="Walgreens" data-addr="123 Main St, Seattle" data-wait="10 min" data-status="open" tabindex="0">
             <div class="mr-pharm-card__head">
               <div class="mr-pharm-card__info">
                 <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
@@ -70,7 +70,7 @@ $active = 'pharmacies';
             <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
           </article>
 
-          <article class="mr-card mr-pharm-card" data-name="CVS Pharmacy" data-addr="456 Pine Ave, Seattle" data-wait="15 min" data-stock="Yes" data-status="closing" tabindex="0">
+          <article class="mr-card mr-pharm-card" data-name="CVS Pharmacy" data-addr="456 Pine Ave, Seattle" data-wait="15 min" data-status="closing" tabindex="0">
             <div class="mr-pharm-card__head">
               <div class="mr-pharm-card__info">
                 <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
@@ -91,7 +91,7 @@ $active = 'pharmacies';
             <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
           </article>
 
-          <article class="mr-card mr-pharm-card" data-name="Bartell Drugs" data-addr="789 Broadway, Seattle" data-wait="8 min" data-stock="Yes" data-status="open" tabindex="0">
+          <article class="mr-card mr-pharm-card" data-name="Bartell Drugs" data-addr="789 Broadway, Seattle" data-wait="8 min" data-status="open" tabindex="0">
             <div class="mr-pharm-card__head">
               <div class="mr-pharm-card__info">
                 <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
@@ -112,7 +112,7 @@ $active = 'pharmacies';
             <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
           </article>
 
-          <article class="mr-card mr-pharm-card" data-name="Rite Aid" data-addr="101 Olive Way, Seattle" data-wait="—" data-stock="Unknown" data-status="closed" tabindex="0">
+          <article class="mr-card mr-pharm-card" data-name="Rite Aid" data-addr="101 Olive Way, Seattle" data-wait="—" data-status="closed" tabindex="0">
             <div class="mr-pharm-card__head">
               <div class="mr-pharm-card__info">
                 <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
@@ -155,13 +155,6 @@ $active = 'pharmacies';
               <div>
                 <span class="mr-eyebrow mr-eyebrow--mono">Estimated Wait</span>
                 <strong class="mr-price mr-pharm-detail__wait">10 min</strong>
-              </div>
-              <div>
-                <span class="mr-eyebrow mr-eyebrow--mono">In Stock</span>
-                <strong class="mr-pharm-detail__stock">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
-                  Yes
-                </strong>
               </div>
             </div>
 
