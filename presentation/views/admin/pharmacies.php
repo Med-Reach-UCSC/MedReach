@@ -1,22 +1,5 @@
 <?php
 // MedReach - Admin pharmacy management (presentation tier: HTML output only)
-// Converted from docs/manage-pharmacies.php (Tailwind mockup) onto the same
-// mr- component system as the rest of the admin/patient/pharmacy modules —
-// no new CSS or JS classes added, only reused patterns.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config for the project's own --mr- token system; dropped the
-// hotlinked AI stock-photo admin avatar and abstract map background image
-// (external images, replaced with the initials mr-avatar and the project's
-// existing static mr-map-preview placeholder — no live GPS/mapping engine,
-// per project constraints); reused mr-stat-grid-3 + mr-mini-stat (admin
-// dashboard's pattern) instead of the mockup's one-off stat cluster; reused
-// the mr-roster-toolbar + mr-pay-table + mr-pagination roster pattern
-// (manage-patients.php) instead of the mockup's hand-rolled table, which
-// also fixes the mockup's "Review" action being a dead end with no route;
-// reused mr-map-preview--lg for the Regional Coverage panel instead of a
-// custom gradient hero card; reused mr-btn--ghost list rows for Quick
-// Actions instead of one-off button markup.
 $active = 'pharmacies';
 ?>
 <!DOCTYPE html>

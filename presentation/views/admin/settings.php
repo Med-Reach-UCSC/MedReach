@@ -1,33 +1,5 @@
 <?php
 // MedReach - Admin system settings (presentation tier: HTML output only)
-// Converted from docs/admin-settings.php (Tailwind "Technical Telemetry"
-// mockup) onto the mr- component system, merged with the components shown
-// in the companion "Atmospheric Flow" mockup variant (image only, no code
-// in docs/ — Global Routing Parameters gauges, Alert Preferences, Routing
-// Summary) so every control from both survives on one page. No new CSS
-// beyond the handful of primitives this design system was genuinely
-// missing: .mr-stepper (Broadcast Routing Engine +/- controls),
-// .mr-manifest (dotted key:value readout, shared by System Manifest and
-// Routing Summary), .mr-range (accent-color on a native <input
-// type="range">) — everything else reuses existing components.
-//
-// Defects fixed vs the mockups: dropped the Tailwind CDN/Google Fonts/
-// inline theme config for the project's own --mr- token system; dropped
-// the hotlinked AI-generated vector-diagram/avatar images (project already
-// avoids these per prior conversions) for real components; dropped the
-// header's "Network Status / System Uptime / Security Logs" tab row —
-// the team already removed this exact redundant-header-tabs pattern from
-// manage-users.php once, so it's skipped here too; dropped the decorative
-// header profile photo since every other admin page already exposes
-// profile access via the sidebar footer, not a second header avatar;
-// merged the mockups' two separate profile cards ("Admin Profile" and
-// "Administrative Profile") into one Admin Profile card instead of asking
-// the admin to edit the same identity in two places; reused
-// mr-spend-ring (earnings.php's gauge component) for the dispatch-radius
-// and response-timeout dials instead of a one-off SVG gauge; reused
-// mr-courier-card's gradient shell (order-tracking) for both dark rail
-// cards instead of inventing a new gradient card; reused mr-pharmacy-row
-// (pharmacy/settings.php's notification toggles) for both toggle cards.
 $active = 'settings';
 ?>
 <!DOCTYPE html>

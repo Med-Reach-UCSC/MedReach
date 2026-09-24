@@ -1,24 +1,5 @@
 <?php
 // MedReach - Admin dashboard (presentation tier: HTML output only)
-// Converted from docs/admin-dashboard.php (Tailwind mockup) onto the same
-// mr- component system as the patient/pharmacy/delivery modules — no new
-// CSS or JS added.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config for the project's own --mr- token system; dropped the public
-// marketing top bar ("How it works", "Register") which doesn't belong on an
-// authenticated admin screen, replaced with the shared mr-dash-header used
-// by every other role; replaced the hotlinked AI stock-photo avatars with
-// the project's existing initials mr-avatar component; replaced the
-// hand-rolled inline-SVG sparkline/area chart with the project's existing
-// Chart.js bar-chart init (mr-network-chart, already wired up in main.js
-// for landing.php's "pharmacies onboarded per quarter" chart — same data
-// fits the network-growth story here, so no new chart config was needed);
-// reused mr-mini-stat + mr-stat-grid-3 (delivery dashboard's pattern)
-// instead of the mockup's one-off gradient hero card; reused mr-med-stats
-// bars for both the outcome-status and top-performers cards instead of the
-// mockup's hand-coded progress bars; reused mr-timeline (order-tracking)
-// for the activity log instead of a one-off timeline.
 $active = 'dashboard';
 ?>
 <!DOCTYPE html>

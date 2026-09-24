@@ -1,7 +1,5 @@
 <?php
 // MedReach - Admin dashboard sidebar (presentation tier: HTML output only)
-// Mirrors partials/sidebar-pharmacy.php exactly (mr-sidebar component), swapped
-// for the admin's own nav items. Set $active before including this file.
 $active = $active ?? 'dashboard';
 
 $mr_sidebar_links = [

@@ -3766,9 +3766,8 @@ a {
   background-color: rgba(26, 27, 36, 0.45);
 }
 
-/* Tailwind's "lg" breakpoint — eases the two-column squeeze on small
-   laptop widths before the content grid fully stacks at the Bootstrap
-   "lg" breakpoint below. */
+/* Small-laptop breakpoint — eases the two-column squeeze before the
+   content grid fully stacks at the next breakpoint below. */
 @media (max-width: 1024px) {
   .mr-dash-content {
     grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);

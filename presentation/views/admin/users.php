@@ -1,36 +1,5 @@
 <?php
 // MedReach - Admin user management (presentation tier: HTML output only)
-// Converted from docs/manage-users.php (Tailwind mockup) onto the same
-// mr- component system as the rest of the admin/patient/pharmacy modules —
-// reused patterns only, plus one small CSS addition (mr-stat-grid-4) for
-// the 4-card KPI row the mockup uses (vs. the 3-card mr-stat-grid-3
-// everywhere else).
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config for the project's own --mr- token system; dropped the
-// hotlinked AI stock-photo admin avatar (the sidebar already has a profile
-// link via mr-avatar, so no header avatar was re-added); dropped the
-// decorative dark-mode toggle (project has no dark theme anywhere, so a
-// button that does nothing was left out rather than shipped for looks);
-// dropped the mockup's Overview/User List/Permissions header tab strip
-// (redundant with the sidebar nav — Overview/Permissions had nowhere real
-// to go); reused mr-stat-grid-3/mr-mini-stat icon-badge pattern (widened to 4 via
-// the new mr-stat-grid-4) instead of the mockup's one-off gradient hero
-// card, and dropped the mockup's fabricated trend chips (no existing
-// mini-stat in this codebase carries a delta sub-line); reused the
-// mr-roster-toolbar + mr-pay-table + mr-pagination roster pattern
-// (manage-pharmacies.php) instead of the mockup's hand-rolled "Node ID"
-// table, translated onto real USER fields matching the schema's role enum
-// (patient/pharmacist/delivery/admin); reused mr-icon-btn (request-detail
-// page's round icon button) for the ledger's export action instead of the
-// mockup's one-off toolbar buttons, and dropped its redundant filter icon
-// since the roster's own filter dropdown already covers that; reused the
-// mr-spend-ring Chart.js doughnut (patient payments' "Monthly Spend"
-// pattern) for Role Distribution instead of the mockup's hand-rolled
-// inline-SVG ring, whose dash offsets didn't actually match its own
-// legend's 65/25/10 split; reused mr-notif-list/mr-notif-item
-// (notifications.php's alert-row pattern) for the account-activity feed
-// instead of the mockup's one-off "System Anomalies" alert cards.
 $active = 'users';
 ?>
 <!DOCTYPE html>
