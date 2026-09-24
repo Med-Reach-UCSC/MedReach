@@ -90,7 +90,7 @@ $active = 'orders';
                 </li>
                 <li class="mr-timeline__step">
                   <strong>Confirmation</strong>
-                  <small>You review pharmacy responses and confirm. Pay in cash on delivery.</small>
+                  <small>You review pharmacy responses and confirm. Pay by card or cash on delivery.</small>
                 </li>
               </ol>
             </div>
