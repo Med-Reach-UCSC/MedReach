@@ -85,7 +85,6 @@ $active = 'requests';
                 <strong>Amoxicillin 500mg</strong>
                 <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
               </div>
-              <span class="mr-badge mr-badge--success mr-badge--case-normal">In Stock</span>
               <label class="mr-price-field">
                 <span class="mr-price-field__prefix">LKR</span>
                 <input type="text" inputmode="decimal" placeholder="0.00" value="850.00" aria-label="Price for Amoxicillin 500mg">
@@ -101,7 +100,7 @@ $active = 'requests';
                   <strong>Lisinopril 10mg</strong>
                   <span class="mr-eyebrow mr-eyebrow--mono">Qty: 90</span>
                 </div>
-                <span class="mr-badge mr-badge--danger mr-badge--case-normal">Out of Stock</span>
+                <span class="mr-badge mr-badge--accent mr-badge--case-normal">Propose substitute</span>
               </summary>
 
               <form class="mr-auth-form mr-auth-form--grid mr-order-row__form">
@@ -142,7 +141,6 @@ $active = 'requests';
                 <strong>Atorvastatin 20mg</strong>
                 <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
               </div>
-              <span class="mr-badge mr-badge--success mr-badge--case-normal">In Stock</span>
               <label class="mr-price-field">
                 <span class="mr-price-field__prefix">LKR</span>
                 <input type="text" inputmode="decimal" placeholder="0.00" value="1,200.00" aria-label="Price for Atorvastatin 20mg">

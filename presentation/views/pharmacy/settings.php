@@ -144,7 +144,7 @@ $active = 'profile';
               </label>
             </div>
             <div class="mr-pharmacy-row">
-              <strong>Stock Updates</strong>
+              <strong>Substitution Responses</strong>
               <label class="mr-switch">
                 <input type="checkbox" checked>
                 <span class="mr-switch__track"></span>
