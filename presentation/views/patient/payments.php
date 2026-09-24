@@ -182,7 +182,8 @@ $active = 'payments';
               <h2>Monthly Spend</h2>
             </div>
 
-            <div class="mr-spend-ring" style="--mr-spend-pct: 75%;">
+            <div class="mr-spend-ring">
+              <canvas id="mr-spend-chart" width="128" height="128" role="img" aria-label="Monthly spend: 75% completed, 25% pending"></canvas>
               <div class="mr-spend-ring__inner">
                 <span>Total</span>
                 <strong>75%</strong>
@@ -202,10 +203,6 @@ $active = 'payments';
                 Pending
               </span>
               <strong>LKR 1,200</strong>
-            </div>
-
-            <div class="mr-spend-bar">
-              <div class="mr-spend-bar__fill" style="width: 75%;"></div>
             </div>
           </section>
 
@@ -237,6 +234,7 @@ $active = 'payments';
     </main>
   </div>
 
+  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
   <script src="presentation/assets/js/main.js"></script>
 </body>
 </html>
