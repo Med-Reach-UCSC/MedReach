@@ -69,7 +69,7 @@ $active = 'dashboard';
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.2 mi</span>
-                    <h4>Amoxicillin 500mg &times; 30</h4>
+                    <h4><a href="prescription-request.php">Amoxicillin 500mg &times; 30</a></h4>
                   </div>
                 </div>
                 <p class="mr-eyebrow mr-eyebrow--mono">Eleanor Vance &middot; 124 Maple Street, Apt 4B</p>
