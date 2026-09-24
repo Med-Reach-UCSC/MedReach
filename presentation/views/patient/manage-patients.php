@@ -142,15 +142,7 @@ $active = 'family';
             <span class="mr-badge mr-badge--success mr-badge--case-normal">Optimal</span>
           </div>
           <p class="mr-fleet-card__caption">Combined medication adherence across managed patients.</p>
-          <div class="mr-mini-bars">
-            <span style="height: 30%"></span>
-            <span style="height: 45%"></span>
-            <span style="height: 40%"></span>
-            <span style="height: 60%"></span>
-            <span style="height: 55%"></span>
-            <span style="height: 75%"></span>
-            <span style="height: 90%"></span>
-          </div>
+          <canvas id="mr-adherence-chart" class="mr-mini-bars" height="48" role="img" aria-label="7-day adherence trend, rising from 30% to 90%"></canvas>
         </section>
 
         <section class="mr-card mr-help-card mr-help-card--alert">
@@ -252,6 +244,7 @@ $active = 'family';
     </div>
   </div>
 
+  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
   <script src="presentation/assets/js/main.js"></script>
 </body>
 </html>
