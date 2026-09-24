@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var methods = group.querySelectorAll('.mr-confirm-method');
   var subtotal = 3830;
-  var feeValue = group.querySelector('[data-fee-value]');
+  var feeValue = document.querySelector('[data-fee-value]');
   var totalValue = document.querySelector('[data-total-value]');
 
   function formatLkr(amount) {
@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function () {
     data: {
       labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
       datasets: [{
-        data: [9600, 11200, 12450, 12630],
+        data: canvas.dataset.values.split(',').map(Number),
         backgroundColor: mrColor('--mr-color-primary'),
         hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
         borderRadius: 6,
@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
     data: {
       labels: ['Earned', 'Remaining'],
       datasets: [{
-        data: [83, 17],
+        data: [Number(canvas.dataset.percent), 100 - Number(canvas.dataset.percent)],
         backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
         borderWidth: 0
       }]

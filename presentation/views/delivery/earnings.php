@@ -122,7 +122,7 @@ $active = 'earnings';
               <h2>Revenue trend</h2>
               <span class="mr-eyebrow mr-eyebrow--mono">Rs. 43,900 this month</span>
             </div>
-            <canvas id="mr-earnings-trend-chart" height="220" role="img" aria-label="Weekly revenue trend"></canvas>
+            <canvas id="mr-earnings-trend-chart" data-values="9400,11300,11600,11600" height="220" role="img" aria-label="Weekly revenue trend"></canvas>
           </section>
 
         </div>
@@ -135,7 +135,7 @@ $active = 'earnings';
             </div>
 
             <div class="mr-spend-ring">
-              <canvas id="mr-earnings-target-chart" width="128" height="128" role="img" aria-label="Weekly target: 74% reached"></canvas>
+              <canvas id="mr-earnings-target-chart" data-percent="74" width="128" height="128" role="img" aria-label="Weekly target: 74% reached"></canvas>
               <div class="mr-spend-ring__inner">
                 <span>Reached</span>
                 <strong>74%</strong>

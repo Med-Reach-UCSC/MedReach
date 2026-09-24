@@ -158,7 +158,7 @@ $active = 'dashboard';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Today's earnings</h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">Rs. 34,250.00</span>
+              <span class="mr-eyebrow mr-eyebrow--mono">Rs. 26,500.00</span>
             </div>
             <canvas id="mr-earnings-chart" height="180" role="img" aria-label="Hourly earnings for today"></canvas>
           </section>
