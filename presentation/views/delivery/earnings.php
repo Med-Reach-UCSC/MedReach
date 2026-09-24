@@ -19,7 +19,7 @@ $active = 'earnings';
       <header class="mr-dash-header">
         <div>
           <h1>Earnings</h1>
-          <p class="mr-eyebrow">Payout ledger synced 2 min ago</p>
+          <p class="mr-eyebrow">Cash collected this month</p>
         </div>
 
         <div class="mr-dash-header__actions">

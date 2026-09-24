@@ -19,7 +19,7 @@ $active = 'dashboard';
       <header class="mr-dash-header">
         <div>
           <h1>Good afternoon, Marcus</h1>
-          <p class="mr-eyebrow">Route synced 2 min ago</p>
+          <p class="mr-eyebrow">2 stops assigned today</p>
         </div>
 
         <div class="mr-dash-header__actions">
@@ -84,7 +84,6 @@ $active = 'dashboard';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Route overview</h2>
-              <span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Live Tracking</span>
             </div>
             <div class="mr-map-preview mr-map-preview--lg">
               <span class="mr-map-preview__pin" aria-hidden="true"></span>
@@ -128,17 +127,10 @@ $active = 'dashboard';
           <section class="mr-card mr-courier-card mr-payment-card">
             <span class="mr-payment-card__label">
               <img src="https://img.icons8.com/ios-filled/50/ffffff/warning-shield.png" alt="">
-              Cold Chain Alert
+              Handling Note
             </span>
             <h2>Temperature-Sensitive Cargo</h2>
-            <p>Insulin shipment on board. Keep the cargo box sealed and under 4&deg;C until drop-off.</p>
-            <div class="mr-payment-card__due">
-              <span>Cargo Temp</span>
-              <strong>2.1&deg;C</strong>
-            </div>
-            <div class="mr-med-stats__bar" style="margin-top: 0.75rem;">
-              <div class="mr-med-stats__fill" style="width: 33%;"></div>
-            </div>
+            <p>Insulin shipment on board. Keep the cargo box sealed and refrigerated until drop-off.</p>
           </section>
 
           <section class="mr-card mr-med-stats">
@@ -160,18 +152,6 @@ $active = 'dashboard';
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 92.1%; opacity: .8;"></div></div>
             </div>
 
-            <div class="mr-med-stats__row">
-              <div class="mr-med-stats__label">
-                <span>Fuel Efficiency</span>
-                <strong>14.2 km/l</strong>
-              </div>
-              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 60%; opacity: .6;"></div></div>
-            </div>
-
-            <div class="mr-pharmacy-row" style="margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(255, 255, 255, 0.4);">
-              <span>Total Distance</span>
-              <strong>428 km</strong>
-            </div>
           </section>
 
         </div>
