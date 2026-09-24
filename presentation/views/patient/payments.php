@@ -41,7 +41,7 @@ $active = 'payments';
       <div class="mr-dash-content">
         <div class="mr-dash-col">
 
-          <section class="mr-card mr-dash-card mr-pay-table-card">
+          <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Recent Transactions</h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">
@@ -177,7 +177,7 @@ $active = 'payments';
 
         <div class="mr-dash-col">
 
-          <section class="mr-card mr-dash-card mr-spend-card">
+          <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Monthly Spend</h2>
             </div>
