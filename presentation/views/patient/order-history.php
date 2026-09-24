@@ -1,0 +1,263 @@
+<?php
+// MedReach - Patient order history (presentation tier: HTML output only)
+$active = 'orders';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order History — MedReach</title>
+  <link rel="stylesheet" href="presentation/assets/css/style.css">
+</head>
+<body class="mr-page-history">
+
+  <div class="mr-dashboard">
+    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+
+    <main class="mr-dash-main">
+      <header class="mr-dash-header">
+        <h1>Order History</h1>
+
+        <div class="mr-dash-header__actions">
+          <div class="mr-dash-stats">
+            <div class="mr-dash-stat">
+              <strong class="mr-dash-stat__value mr-dash-stat__value--active">34</strong>
+              <span>Total orders</span>
+            </div>
+            <div class="mr-dash-stat">
+              <strong class="mr-dash-stat__value mr-dash-stat__value--active">4.8</strong>
+              <span>Avg rating</span>
+            </div>
+          </div>
+
+          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
+            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
+          </a>
+        </div>
+      </header>
+
+      <div class="mr-dash-content">
+        <div class="mr-dash-col">
+
+          <div class="mr-history-toolbar">
+            <label class="mr-pharm-search">
+              <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+              <input type="search" placeholder="Search orders..." aria-label="Search orders">
+            </label>
+            <div class="mr-history-filters" role="group" aria-label="Filter orders by status">
+              <button type="button" class="mr-history-filters__btn mr-history-filters__btn--delivered" data-filter="delivered">Delivered</button>
+              <button type="button" class="mr-history-filters__btn mr-history-filters__btn--processing" data-filter="processing">Processing</button>
+              <button type="button" class="mr-history-filters__btn mr-history-filters__btn--canceled" data-filter="canceled">Canceled</button>
+            </div>
+          </div>
+
+          <div class="mr-history-list">
+
+            <article class="mr-card mr-order mr-history-card is-open" data-status="delivered" data-name="ORD-7392 CityHealth Pharmacy">
+              <button type="button" class="mr-order__head mr-history-card__toggle">
+                <div class="mr-order__id">
+                  <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7392</span>
+                  <div>
+                    <strong>CityHealth Pharmacy</strong>
+                    <span class="mr-eyebrow">Oct 24, 2023 &bull; 3 items</span>
+                  </div>
+                </div>
+                <div class="mr-order__tags">
+                  <strong class="mr-history-card__price">$45.20</strong>
+                  <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
+                  <span class="mr-history-card__chevron" aria-hidden="true">
+                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
+                  </span>
+                </div>
+              </button>
+
+              <div class="mr-history-card__body">
+                <div class="mr-history-card__details">
+                  <h3>Items</h3>
+                  <div class="mr-history-card__items">
+                    <div class="mr-order-lines__row">
+                      <strong>Amoxicillin 500mg (20 caps)</strong>
+                      <i class="mr-order-lines__rule"></i>
+                      <span>$20.20</span>
+                    </div>
+                    <div class="mr-order-lines__row">
+                      <strong>Ibuprofen 400mg (30 tabs)</strong>
+                      <i class="mr-order-lines__rule"></i>
+                      <span>$15.00</span>
+                    </div>
+                    <div class="mr-order-lines__row">
+                      <strong>Cetirizine 10mg (10 tabs)</strong>
+                      <i class="mr-order-lines__rule"></i>
+                      <span>$10.00</span>
+                    </div>
+                  </div>
+                  <div class="mr-history-card__actions">
+                    <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">Download Invoice</a>
+                    <a href="#" class="mr-btn mr-btn--primary mr-btn--sm">Reorder All</a>
+                  </div>
+                </div>
+
+                <div class="mr-history-card__rate">
+                  <h3>Rate this pharmacy</h3>
+                  <div class="mr-star-rating" data-rating="0">
+                    <button type="button" class="mr-star-rating__btn" data-value="1" aria-label="1 star">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="2" aria-label="2 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="3" aria-label="3 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="4" aria-label="4 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="5" aria-label="5 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                  </div>
+                  <label class="mr-field">
+                    <textarea rows="2" placeholder="Leave a comment (optional)..."></textarea>
+                  </label>
+                  <button type="button" class="mr-btn mr-btn--primary mr-btn--sm mr-history-card__submit">Submit</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="mr-card mr-order mr-history-card" data-status="delivered" data-name="ORD-7391 MediCare Plus">
+              <button type="button" class="mr-order__head mr-history-card__toggle">
+                <div class="mr-order__id">
+                  <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7391</span>
+                  <div>
+                    <strong>MediCare Plus</strong>
+                    <span class="mr-eyebrow">Oct 12, 2023 &bull; 2 items</span>
+                  </div>
+                </div>
+                <div class="mr-order__tags">
+                  <strong class="mr-history-card__price">$112.50</strong>
+                  <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
+                  <span class="mr-history-card__chevron" aria-hidden="true">
+                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
+                  </span>
+                </div>
+              </button>
+
+              <div class="mr-history-card__body">
+                <div class="mr-history-card__details">
+                  <h3>Items</h3>
+                  <div class="mr-history-card__items">
+                    <div class="mr-order-lines__row">
+                      <strong>Lisinopril 10mg (30 tabs)</strong>
+                      <i class="mr-order-lines__rule"></i>
+                      <span>$15.00</span>
+                    </div>
+                    <div class="mr-order-lines__row">
+                      <strong>Atorvastatin 20mg (90 tabs)</strong>
+                      <i class="mr-order-lines__rule"></i>
+                      <span>$97.50</span>
+                    </div>
+                  </div>
+                  <div class="mr-history-card__actions">
+                    <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">Download Invoice</a>
+                    <a href="#" class="mr-btn mr-btn--primary mr-btn--sm">Reorder All</a>
+                  </div>
+                </div>
+
+                <div class="mr-history-card__rate">
+                  <h3>Rate this pharmacy</h3>
+                  <div class="mr-star-rating" data-rating="0">
+                    <button type="button" class="mr-star-rating__btn" data-value="1" aria-label="1 star">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="2" aria-label="2 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="3" aria-label="3 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="4" aria-label="4 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                    <button type="button" class="mr-star-rating__btn" data-value="5" aria-label="5 stars">
+                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                    </button>
+                  </div>
+                  <label class="mr-field">
+                    <textarea rows="2" placeholder="Leave a comment (optional)..."></textarea>
+                  </label>
+                  <button type="button" class="mr-btn mr-btn--primary mr-btn--sm mr-history-card__submit">Submit</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="mr-card mr-order mr-history-card mr-history-card--canceled" data-status="canceled" data-name="ORD-7204 HealthMart Local">
+              <div class="mr-order__head">
+                <div class="mr-order__id">
+                  <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7204</span>
+                  <div>
+                    <strong>HealthMart Local</strong>
+                    <span class="mr-eyebrow">Sep 05, 2023 &bull; 1 item</span>
+                  </div>
+                </div>
+                <div class="mr-order__tags">
+                  <strong class="mr-history-card__price">$22.00</strong>
+                  <span class="mr-badge mr-badge--danger mr-badge--case-normal">Canceled</span>
+                  <span class="mr-history-card__no-rating">No rating</span>
+                </div>
+              </div>
+            </article>
+
+            <p class="mr-history-list__empty" hidden>No orders match this filter.</p>
+          </div>
+
+        </div>
+
+        <div class="mr-dash-col">
+
+          <section class="mr-card mr-med-stats">
+            <h2>Most ordered medicines</h2>
+
+            <div class="mr-med-stats__row">
+              <div class="mr-med-stats__label">
+                <span>Lisinopril</span>
+                <strong>12 orders</strong>
+              </div>
+              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 85%;"></div></div>
+            </div>
+
+            <div class="mr-med-stats__row">
+              <div class="mr-med-stats__label">
+                <span>Metformin</span>
+                <strong>8 orders</strong>
+              </div>
+              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 60%; opacity: .8;"></div></div>
+            </div>
+
+            <div class="mr-med-stats__row">
+              <div class="mr-med-stats__label">
+                <span>Amlodipine</span>
+                <strong>5 orders</strong>
+              </div>
+              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 35%; opacity: .6;"></div></div>
+            </div>
+          </section>
+
+          <div class="mr-dropzone mr-history-empty" hidden>
+            <span class="mr-icon-badge mr-icon-badge--white mr-icon-badge--lg">
+              <img src="https://img.icons8.com/ios-filled/50/5c5e67/box.png" alt="">
+            </span>
+            <h3>No orders yet</h3>
+            <p>When you place an order with a pharmacy, it will appear here.</p>
+            <a href="nearby-pharmacies.php" class="mr-link--sm">Browse Pharmacies</a>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="presentation/assets/js/main.js"></script>
+</body>
+</html>
