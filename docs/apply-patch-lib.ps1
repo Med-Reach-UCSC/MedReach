@@ -95,6 +95,15 @@ function Sync-Branch {
     }
 }
 
+function Merge-Main {
+    Info "Merging latest 'main' into your branch (brings in the shared style.css/main.js library)..."
+    git merge origin/main -m "Merge main into branch: bring in shared CSS/JS library"
+    if ($LASTEXITCODE -ne 0) {
+        Fail "Merging 'main' hit a conflict. Don't try to resolve it yourself -- run 'git merge --abort' and message Tharusha."
+    }
+    Info "Merged latest main."
+}
+
 function Invoke-ApplyPatch {
     param([Parameter(Mandatory)][string]$PatchFile)
     $name = Split-Path $PatchFile -Leaf

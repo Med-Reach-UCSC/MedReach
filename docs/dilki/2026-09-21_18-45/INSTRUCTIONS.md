@@ -1,4 +1,4 @@
-**Quick start (Windows):** double-click `apply.bat` in this folder — it checks your GitHub login, pulls your `dilki` branch, applies the patches below in order, commits, and pushes automatically. First time doing this? See `docs/README.md`. Manual steps below are the fallback if the script stops partway.
+**Quick start (Windows):** double-click `apply.bat` in this folder — it checks your GitHub login, pulls your `dilki` branch, merges in the latest `main`, applies the patches below in order, commits, and pushes automatically. First time doing this? See `docs/README.md`. Manual steps below are the fallback if the script stops partway.
 
 # Handoff: Delivery rider dashboard
 
@@ -20,11 +20,15 @@ depends on — `apply.bat` only checks that
 `presentation/views/delivery/dashboard.php` doesn't already exist on your
 branch before doing anything.
 
-**Note on `style-additions.patch`:** it touches `presentation/assets/css/style.css`,
-a shared file every module reads from. It only *adds* 3 new rules (doesn't
-change anything existing), so it should apply cleanly regardless of what
-else has landed on your branch — but if it doesn't, see "If a patch fails"
-below.
+**Update, 2026-09-24 — `style-additions.patch` removed, merge step added
+instead.** `style.css` and `main.js` were only ever built up on Tharusha's
+own branch and never merged into `main`, so your branch's `style.css` was
+still empty (0 bytes) — that's why the old CSS patch existed and then
+failed. `main` has since had that branch merged into it (PR #3), so it now
+carries the complete `style.css`, `main.js`, and vendor Chart.js. `apply.bat`
+now merges `origin/main` into your branch first — that alone fills in the
+full stylesheet (including the 3 rules this page needs), so the separate
+CSS patch isn't needed anymore and has been deleted from this folder.
 
 ## What's in this batch
 
@@ -33,33 +37,33 @@ below.
 | `dashboard-view.patch` | new file | `presentation/views/delivery/dashboard.php` — the rider dashboard page |
 | `sidebar-delivery.patch` | new file | `presentation/views/partials/sidebar-delivery.php` — shared sidebar for the delivery module, same pattern as `sidebar-pharmacy.php`/`sidebar-patient.php` |
 | `dashboard-entrypoint.patch` | new file | `delivery-dashboard.php` (root) thin entry point, same pattern as `orders.php`/`pharmacy-earnings.php` |
-| `style-additions.patch` | update | `presentation/assets/css/style.css` — adds 3 new rules this page needs: `.mr-mini-stat--accent` (attention border for the cash-to-collect stat), `.mr-map-preview--lg` (taller route map), `.mr-stat-grid-3` (3-column status row) |
+
+The 3 CSS rules this page needs (`.mr-mini-stat--accent`,
+`.mr-map-preview--lg`, `.mr-stat-grid-3`) now arrive via the `main` merge
+step below, not a patch file.
 
 ## If a patch fails
 
 - `dashboard-view.patch` / `sidebar-delivery.patch` / `dashboard-entrypoint.patch`:
   these create new files, so they only fail if those files already exist on
   your branch — message Tharusha, something's out of sync.
-- `style-additions.patch`: if it fails, someone else's batch has already
-  added a rule with the same name in the same spot. Open `style-additions.patch`
-  in this folder and hand-append whichever of the 3 rules
-  (`.mr-mini-stat--accent`, `.mr-map-preview--lg`, `.mr-stat-grid-3` + its
-  media query) are missing from your copy of `style.css` — check first,
-  since one may have landed already.
+- The `main` merge step failing means something changed since this batch
+  was made — don't try to resolve it yourself, run `git merge --abort` and
+  message Tharusha.
 
 ## Manual apply (fallback if you're not using `apply.bat`)
 
 ```bash
 git checkout dilki   # or your working branch
+git pull
+git merge origin/main
 cd MedReach
-git apply docs/dilki/2026-09-21_18-45/dashboard-view.patch
-git apply docs/dilki/2026-09-21_18-45/sidebar-delivery.patch
-git apply docs/dilki/2026-09-21_18-45/dashboard-entrypoint.patch
-git apply docs/dilki/2026-09-21_18-45/style-additions.patch
+git apply docs/Dilki/2026-09-21_18-45/dashboard-view.patch
+git apply docs/Dilki/2026-09-21_18-45/sidebar-delivery.patch
+git apply docs/Dilki/2026-09-21_18-45/dashboard-entrypoint.patch
 git add presentation/views/delivery/dashboard.php \
         presentation/views/partials/sidebar-delivery.php \
-        delivery-dashboard.php \
-        presentation/assets/css/style.css
+        delivery-dashboard.php
 git commit -m "feat(delivery): add rider dashboard page"
 git push origin dilki
 ```
