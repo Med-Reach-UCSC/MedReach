@@ -49,8 +49,8 @@ $active = 'profile';
               <div class="mr-profile-card__identity">
                 <span class="mr-avatar mr-avatar--profile">H</span>
                 <div>
-                  <h2>Dr. Hayes</h2>
-                  <span class="mr-eyebrow">Pharmacist-in-charge &middot; Oakwood City Pharmacy</span>
+                  <h2>Dr. Herath</h2>
+                  <span class="mr-eyebrow">Pharmacist-in-charge &middot; Kollupitiya City Pharmacy</span>
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@ $active = 'profile';
               <label class="mr-field">
                 <span>Pharmacy Name</span>
                 <div class="mr-field__input">
-                  <input type="text" value="Oakwood City Pharmacy">
+                  <input type="text" value="Kollupitiya City Pharmacy">
                 </div>
               </label>
               <label class="mr-field">
@@ -72,7 +72,7 @@ $active = 'profile';
               <label class="mr-field mr-field--span2">
                 <span>Primary Address</span>
                 <div class="mr-field__input">
-                  <input type="text" value="1428 Elm Street, Medical District, Colombo 03">
+                  <input type="text" value="142 Galle Road, Kollupitiya, Colombo 03">
                 </div>
               </label>
               <label class="mr-field">
@@ -86,7 +86,7 @@ $active = 'profile';
                 <span>Email Address</span>
                 <div class="mr-field__input">
                   <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/mail.png" alt="">
-                  <input type="email" value="contact@oakwoodpharmacy.lk">
+                  <input type="email" value="contact@kollupitiyapharmacy.lk">
                 </div>
               </label>
               <label class="mr-field">

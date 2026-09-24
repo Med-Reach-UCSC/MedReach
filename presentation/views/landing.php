@@ -135,21 +135,21 @@
               <li>
                 <div>
                   <strong>City Health Pharmacy</strong>
-                  <small>Downtown • 0.8 km</small>
+                  <small>Kollupitiya • 0.8 km</small>
                 </div>
                 <span class="mr-badge mr-badge--success">Active</span>
               </li>
               <li>
                 <div>
                   <strong>CarePlus Meds</strong>
-                  <small>Westside • 1.9 km</small>
+                  <small>Wellawatte • 1.9 km</small>
                 </div>
                 <span class="mr-badge mr-badge--success">Active</span>
               </li>
               <li>
                 <div>
                   <strong>Sunrise Pharmacy</strong>
-                  <small>North Hills • 4.8 km</small>
+                  <small>Nugegoda • 4.8 km</small>
                 </div>
                 <span class="mr-badge mr-badge--success">Active</span>
               </li>

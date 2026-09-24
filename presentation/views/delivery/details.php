@@ -70,7 +70,7 @@ $active = 'manifest';
               </li>
               <li class="mr-timeline__step mr-timeline__step--active">
                 <strong>In Transit</strong>
-                <small>Approaching destination via 450 West Ave</small>
+                <small>Approaching destination via 45 Baseline Rd</small>
                 <span class="mr-timeline__time">09:32 AM</span>
               </li>
               <li class="mr-timeline__step mr-timeline__step--pending">

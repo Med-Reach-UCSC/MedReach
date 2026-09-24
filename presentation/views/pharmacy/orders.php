@@ -63,9 +63,9 @@ $active = 'requests';
               <article class="mr-order">
                 <div class="mr-order__head">
                   <div class="mr-order__id">
-                    <span class="mr-avatar">EV</span>
+                    <span class="mr-avatar">NF</span>
                     <div>
-                      <strong>Eleanor Vance</strong>
+                      <strong>Nimali Fernando</strong>
                       <span class="mr-eyebrow mr-eyebrow--mono">ID: #ORD-9921</span>
                     </div>
                   </div>
@@ -112,9 +112,9 @@ $active = 'requests';
               <article class="mr-order">
                 <div class="mr-order__head">
                   <div class="mr-order__id">
-                    <span class="mr-avatar">MR</span>
+                    <span class="mr-avatar">KP</span>
                     <div>
-                      <strong>Marcus Reed</strong>
+                      <strong>Kasun Perera</strong>
                       <span class="mr-eyebrow mr-eyebrow--mono">ID: #ORD-9924</span>
                     </div>
                   </div>

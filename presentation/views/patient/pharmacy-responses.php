@@ -50,7 +50,7 @@ $active = 'orders';
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
               </span>
               <div class="mr-resp-rx__body">
-                <p class="mr-resp-rx__meta">Patient: Nimal Perera · Dr. S. Weerasinghe · GMC-4471</p>
+                <p class="mr-resp-rx__meta">Patient: Nimal Perera · Dr. S. Weerasinghe · SLMC-4471</p>
                 <ul class="mr-resp-rx__items">
                   <li><strong>Lisinopril 10mg</strong><span>× 30</span></li>
                   <li><strong>Atorvastatin 20mg</strong><span>× 60</span></li>
@@ -81,7 +81,7 @@ $active = 'orders';
 
               <p class="mr-resp-meta">
                 <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
-                CVS Health
+                Healthguard Pharmacy
                 <span class="mr-resp-meta__dot" aria-hidden="true"></span>
                 1.2 km
               </p>
@@ -165,7 +165,7 @@ $active = 'orders';
                 <span class="mr-resp-forward__icon">
                   <img src="https://img.icons8.com/ios-filled/50/ffffff/shop.png" alt="">
                 </span>
-                <small>CVS (1.2k)</small>
+                <small>Healthguard (1.2 km)</small>
               </div>
               <div class="mr-resp-forward__track">
                 <span class="mr-resp-forward__clock">
@@ -176,7 +176,7 @@ $active = 'orders';
                 <span class="mr-resp-forward__icon">
                   <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
                 </span>
-                <small>Walgreens (2.4k)</small>
+                <small>GreenCross (2.4 km)</small>
               </div>
             </div>
           </section>

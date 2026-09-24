@@ -54,7 +54,7 @@ $mr_sidebar_links = [
       <a
         class="mr-sidebar__link mr-sidebar__link--profile<?= $active === 'profile' ? ' is-active' : '' ?>"
         href="pharmacy-settings.php"
-        title="Dr. Hayes"
+        title="Dr. Herath"
         aria-label="Profile"
         <?= $active === 'profile' ? 'aria-current="page"' : '' ?>
       >

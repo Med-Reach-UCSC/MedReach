@@ -18,7 +18,7 @@ $active = 'dashboard';
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
-          <h1>Good afternoon, Marcus</h1>
+          <h1>Good afternoon, Kasun</h1>
           <p class="mr-eyebrow">2 stops assigned today</p>
         </div>
 
@@ -87,7 +87,7 @@ $active = 'dashboard';
             </div>
             <div class="mr-map-preview mr-map-preview--lg">
               <span class="mr-map-preview__pin" aria-hidden="true"></span>
-              <span class="mr-map-preview__label">Next stop: 450 West Ave &middot; 2.4 km</span>
+              <span class="mr-map-preview__label">Next stop: 45 Baseline Rd &middot; 2.4 km</span>
             </div>
           </section>
 

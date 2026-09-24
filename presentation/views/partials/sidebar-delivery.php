@@ -53,11 +53,11 @@ $mr_sidebar_links = [
       <a
         class="mr-sidebar__link mr-sidebar__link--profile<?= $active === 'profile' ? ' is-active' : '' ?>"
         href="#"
-        title="Marcus Reed"
+        title="Kasun Perera"
         aria-label="Profile"
         <?= $active === 'profile' ? 'aria-current="page"' : '' ?>
       >
-        <span class="mr-avatar mr-avatar--dash">MR</span>
+        <span class="mr-avatar mr-avatar--dash">KP</span>
         <span class="mr-sidebar__label">Profile</span>
       </a>
       <a class="mr-sidebar__link mr-sidebar__link--danger" href="sign-in.php" title="Log out" aria-label="Log out">

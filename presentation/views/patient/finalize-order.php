@@ -89,7 +89,7 @@ $active = 'orders';
             <div class="mr-order-lines">
               <div class="mr-order-lines__items">
                 <div class="mr-order-lines__row">
-                  <span>Lisinopril 10mg <small>CVS Health · Qty 30</small></span>
+                  <span>Lisinopril 10mg <small>Healthguard Pharmacy · Qty 30</small></span>
                   <i class="mr-order-lines__rule"></i>
                   <strong>LKR 1,450.00</strong>
                 </div>

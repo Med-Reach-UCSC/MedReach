@@ -103,7 +103,7 @@ $active = 'pharmacies';
                       <span class="mr-eyebrow mr-eyebrow--mono">RX-4029</span>
                       <strong>Apex Care Pharmacy</strong>
                     </td>
-                    <td>Seattle, WA</td>
+                    <td>Colombo 07</td>
                     <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Apex Care Pharmacy">

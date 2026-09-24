@@ -107,10 +107,10 @@ $active = 'orders';
           <section class="mr-card mr-courier-card">
             <div class="mr-courier-card__top">
               <div class="mr-courier-card__profile">
-                <span class="mr-avatar mr-courier-card__avatar">M</span>
+                <span class="mr-avatar mr-courier-card__avatar">K</span>
                 <div>
                   <span class="mr-courier-card__label">Your Courier</span>
-                  <strong class="mr-courier-card__name">Marcus T.</strong>
+                  <strong class="mr-courier-card__name">Kasun P.</strong>
                   <span class="mr-courier-card__rating">
                     <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
                     4.9 (120+ deliveries)

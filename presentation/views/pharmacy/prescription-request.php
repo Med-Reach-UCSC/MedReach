@@ -25,7 +25,7 @@ $active = 'requests';
         <div class="mr-dash-header__actions">
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
             <img src="https://img.icons8.com/ios-filled/50/454655/user.png" alt="">
-            Eleanor Vance
+            Nimali Fernando
           </span>
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
             <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clock.png" alt="">
@@ -52,7 +52,7 @@ $active = 'requests';
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
               </span>
               <div class="mr-resp-rx__body">
-                <p class="mr-resp-rx__meta">Patient: Eleanor Vance · Dr. S. Weerasinghe · GMC-4471</p>
+                <p class="mr-resp-rx__meta">Patient: Nimali Fernando · Dr. S. Weerasinghe · SLMC-4471</p>
               </div>
             </div>
           </section>

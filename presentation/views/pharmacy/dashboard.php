@@ -66,7 +66,7 @@ $active = 'dashboard';
                     <h4><a href="prescription-request.php">Amoxicillin 500mg &times; 30</a></h4>
                   </div>
                 </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">Eleanor Vance &middot; 124 Maple Street, Apt 4B</p>
+                <p class="mr-eyebrow mr-eyebrow--mono">Nimali Fernando &middot; 124 Maple Rd, Colombo 05</p>
                 <div class="mr-request-card__actions">
                   <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline">Decline</button>
                   <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept">Accept</button>
@@ -114,7 +114,7 @@ $active = 'dashboard';
                   </div>
                 </div>
                 <div class="mr-order__tags">
-                  <span class="mr-badge mr-badge--info">450 West Ave</span>
+                  <span class="mr-badge mr-badge--info">45 Baseline Rd</span>
                   <span class="mr-badge mr-badge--pill mr-badge--case-normal">ETA 15 min</span>
                 </div>
               </div>
