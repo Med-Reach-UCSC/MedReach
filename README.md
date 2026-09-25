@@ -97,7 +97,7 @@ MedReach/
 │   └── admin/
 │
 ├── config/
-│   └── db.php.example            # Copy to db.php (git-ignored) with real creds
+│   └── database.php            # Reads secrets from .env (git-ignored)
 │
 ├── database/
 │   ├── medreach.sql              # Schema
@@ -189,10 +189,10 @@ Do **not** commit directly to `main`.
 
 3. Configure database credentials:
    ```bash
-   cp config/db.php.example config/db.php
-   # edit config/db.php with your local MySQL credentials
+   cp .env.example .env
+   # edit .env with your local MySQL credentials
    ```
-   `config/db.php` is git-ignored and must never be committed.
+   `.env` is git-ignored and must never be committed.
 
 4. Serve the project with your local PHP + MySQL stack (XAMPP / WAMP, or a
    native LAMP setup) and open `index.php` in the browser.

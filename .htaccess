@@ -1,0 +1,5 @@
+# Keep secrets and non-public folders out of reach of the browser
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 /(config|core|business|data|database|docs)(/|$)
