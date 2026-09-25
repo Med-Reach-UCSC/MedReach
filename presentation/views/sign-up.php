@@ -44,47 +44,50 @@
         </a>
         <h1>Create your account</h1>
 
-        <div class="mr-auth-tabs" role="tablist" aria-label="Sign up as">
-          <button type="button" class="mr-auth-tabs__btn is-active" role="tab" aria-selected="true" data-role="patient">Patient | Guardian</button>
-          <button type="button" class="mr-auth-tabs__btn" role="tab" aria-selected="false" data-role="pharmacist">Pharmacist</button>
-          <button type="button" class="mr-auth-tabs__btn" role="tab" aria-selected="false" data-role="delivery">Delivery</button>
-        </div>
+        <?php require __DIR__ . '/partials/auth-flash.php'; ?>
 
-        <form class="mr-auth-form mr-auth-form--grid" method="post" action="">
-          <input type="hidden" name="role" value="patient">
+        <form class="mr-auth-form mr-auth-form--grid" method="post" action="sign-up.php">
+          <input type="hidden" name="csrf" value="<?= mr_csrf_token() ?>">
 
-          <div class="mr-field mr-field--span2">
-            <label for="fullname">Full name</label>
+          <div class="mr-field">
+            <label for="first_name">First name</label>
             <div class="mr-field__input">
-              <input type="text" id="fullname" name="fullname" placeholder="Jane Doe" required>
+              <input type="text" id="first_name" name="first_name" placeholder="Nimal" maxlength="50" value="<?= htmlspecialchars($_POST['first_name'] ?? '') ?>" autocomplete="given-name" required>
+            </div>
+          </div>
+
+          <div class="mr-field">
+            <label for="last_name">Last name</label>
+            <div class="mr-field__input">
+              <input type="text" id="last_name" name="last_name" placeholder="Perera" maxlength="50" value="<?= htmlspecialchars($_POST['last_name'] ?? '') ?>" autocomplete="family-name" required>
             </div>
           </div>
 
           <div class="mr-field mr-field--span2">
             <label for="email">Email address</label>
             <div class="mr-field__input">
-              <input type="email" id="email" name="email" placeholder="jane.doe@example.com" required>
+              <input type="email" id="email" name="email" placeholder="nimal.perera@example.com" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" autocomplete="email" required>
             </div>
           </div>
 
           <div class="mr-field mr-field--span2">
             <label for="phone">Phone number</label>
             <div class="mr-field__input">
-              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+              <input type="tel" id="phone" name="phone" placeholder="071 234 5678" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>" autocomplete="tel" required>
             </div>
           </div>
 
           <div class="mr-field">
             <label for="password">Password</label>
             <div class="mr-field__input">
-              <input type="password" id="password" name="password" placeholder="••••••••" required>
+              <input type="password" id="password" name="password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
             </div>
           </div>
 
           <div class="mr-field">
             <label for="confirm_password">Confirm password</label>
             <div class="mr-field__input">
-              <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" required>
+              <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
             </div>
           </div>
 

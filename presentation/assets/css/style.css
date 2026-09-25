@@ -1674,6 +1674,37 @@ a {
   height: 20px;
 }
 
+.mr-auth-notice--error {
+  border-color: rgba(214, 83, 74, 0.2);
+  background-color: #fbeceb;
+  color: var(--mr-color-danger);
+}
+
+.mr-auth-card__form > .mr-auth-notice {
+  max-width: 400px;
+}
+
+.mr-auth-resend {
+  align-self: center;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-auth-resend button {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--mr-color-primary);
+  cursor: pointer;
+}
+
+.mr-field__input input.mr-otp-input {
+  font-family: var(--mr-font-mono);
+  font-size: 1.25rem;
+  letter-spacing: 0.5em;
+}
+
 .mr-auth__back {
   margin-top: 2.5rem;
 }

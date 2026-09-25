@@ -20,20 +20,19 @@
         </a>
         <h1>Welcome back</h1>
 
-        <div class="mr-auth-tabs" role="tablist" aria-label="Sign in as">
-          <button type="button" class="mr-auth-tabs__btn is-active" role="tab" aria-selected="true" data-role="patient">Patient | Guardian</button>
-          <button type="button" class="mr-auth-tabs__btn" role="tab" aria-selected="false" data-role="pharmacist">Pharmacist</button>
-          <button type="button" class="mr-auth-tabs__btn" role="tab" aria-selected="false" data-role="delivery">Delivery</button>
-        </div>
+        <?php $mr_tabs_label = 'Sign in as'; require __DIR__ . '/partials/auth-tabs.php'; ?>
 
-        <form class="mr-auth-form" method="post" action="">
-          <input type="hidden" name="role" value="patient">
+        <?php require __DIR__ . '/partials/auth-flash.php'; ?>
+
+        <form class="mr-auth-form" method="post" action="sign-in.php">
+          <input type="hidden" name="csrf" value="<?= mr_csrf_token() ?>">
+          <input type="hidden" name="role" value="<?= $mr_role ?>">
 
           <div class="mr-field">
             <label for="email">Email address</label>
             <div class="mr-field__input">
               <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/new-post.png" alt="">
-              <input type="email" id="email" name="email" placeholder="name@example.com" required>
+              <input type="email" id="email" name="email" placeholder="name@example.com" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" autocomplete="email" required>
             </div>
           </div>
 
@@ -44,7 +43,7 @@
             </div>
             <div class="mr-field__input">
               <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
-              <input type="password" id="password" name="password" placeholder="••••••••" required>
+              <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
             </div>
           </div>
 

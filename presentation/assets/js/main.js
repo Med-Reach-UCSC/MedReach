@@ -82,17 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  var form = document.querySelector('.mr-reset-form');
-  var notice = document.querySelector('.mr-auth-notice');
-  if (!form || !notice) return;
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    notice.hidden = false;
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
   var filters = document.querySelector('.mr-resp-filters');
   var grid = document.querySelector('.mr-resp-grid');
   if (!filters || !grid) return;
