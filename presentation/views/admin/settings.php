@@ -19,7 +19,7 @@ $active = 'settings';
       <header class="mr-dash-header">
         <div>
           <h1>System Settings</h1>
-          <p class="mr-eyebrow">Configure global routing and technical telemetry parameters</p>
+          <p class="mr-eyebrow">Configure prescription routing and system preferences</p>
         </div>
 
         <div class="mr-dash-header__actions">
@@ -40,7 +40,7 @@ $active = 'settings';
         </div>
       </header>
 
-      <form id="mr-settings-form" class="mr-dash-content">
+      <form id="mr-settings-form" class="mr-dash-content" data-toast="Settings saved.">
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head" style="align-items: flex-start;">
@@ -51,7 +51,7 @@ $active = 'settings';
                   </span>
                   Broadcast Routing Engine
                 </h2>
-                <span class="mr-eyebrow">Adjust signal dispersion and radius tolerances</span>
+                <span class="mr-eyebrow">Search radius and forwarding limits for each prescription item</span>
               </div>
               <span class="mr-badge mr-badge--success mr-badge--case-normal">
                 <span class="mr-badge__dot"></span>
@@ -74,13 +74,13 @@ $active = 'settings';
               </div>
 
               <div>
-                <label class="mr-eyebrow mr-eyebrow--mono" style="display: block; margin-bottom: 0.5rem;">Signal Decay Rate</label>
-                <div class="mr-stepper" data-step="0.001">
-                  <button type="button" class="mr-stepper__btn" data-stepper-action="dec" aria-label="Decrease signal decay rate">
+                <label class="mr-eyebrow mr-eyebrow--mono" style="display: block; margin-bottom: 0.5rem;">Max Forwards per Item</label>
+                <div class="mr-stepper" data-step="1">
+                  <button type="button" class="mr-stepper__btn" data-stepper-action="dec" aria-label="Decrease max forwards">
                     <img src="https://img.icons8.com/ios-filled/50/454655/minus.png" alt="">
                   </button>
-                  <span class="mr-stepper__value">0.024</span>
-                  <button type="button" class="mr-stepper__btn" data-stepper-action="inc" aria-label="Increase signal decay rate">
+                  <span class="mr-stepper__value">5</span>
+                  <button type="button" class="mr-stepper__btn" data-stepper-action="inc" aria-label="Increase max forwards">
                     <img src="https://img.icons8.com/ios-filled/50/454655/plus.png" alt="">
                   </button>
                 </div>
@@ -94,27 +94,27 @@ $active = 'settings';
                 <span class="mr-icon-badge mr-icon-badge--info">
                   <img src="https://img.icons8.com/ios-filled/50/2d3fd7/speed.png" alt="">
                 </span>
-                Telemetry Sensors
+                Routing Behaviour
               </h2>
             </div>
 
             <div class="mr-pharmacy-row">
               <div>
-                <strong>Verbose Error Logging</strong>
-                <span class="mr-pharmacy-row__muted">Capture complete stack traces in central DB</span>
+                <strong>Auto-forward on Timeout</strong>
+                <span class="mr-pharmacy-row__muted">Send an item to the next-closest pharmacy when no one responds</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox" aria-label="Verbose Error Logging" checked>
+                <input type="checkbox" aria-label="Auto-forward on timeout" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <div>
-                <strong>Background Sync Ping</strong>
-                <span class="mr-pharmacy-row__muted">Maintain websocket connection to mobile fleet</span>
+                <strong>Split Multi-item Prescriptions</strong>
+                <span class="mr-pharmacy-row__muted">Route each item to its own nearest pharmacy</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox" aria-label="Background Sync Ping" checked>
+                <input type="checkbox" aria-label="Split multi-item prescriptions" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -152,11 +152,11 @@ $active = 'settings';
             </div>
             <div class="mr-pharmacy-row">
               <div>
-                <strong>Routing Optimization Sync</strong>
-                <span class="mr-pharmacy-row__muted">In-app alerts only</span>
+                <strong>Unfilled Prescription Alerts</strong>
+                <span class="mr-pharmacy-row__muted">When an item runs out of pharmacies to try</span>
               </div>
               <label class="mr-switch">
-                <input type="checkbox" aria-label="Routing Optimization Sync">
+                <input type="checkbox" aria-label="Unfilled prescription alerts">
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -171,7 +171,7 @@ $active = 'settings';
                   </span>
                   Global Routing Parameters
                 </h2>
-                <span class="mr-eyebrow">Adjust algorithm constraints for automated dispatch</span>
+                <span class="mr-eyebrow">Limits applied when broadcasting new prescriptions</span>
               </div>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">Config v2.4</span>
             </div>
@@ -208,28 +208,28 @@ $active = 'settings';
               <img src="https://img.icons8.com/ios-filled/50/ffffff/clipboard.png" alt="" style="width:18px;height:18px;">
               System Manifest
             </h2>
-            <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem;">Live configuration mapping</p>
+            <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem;">Current configuration</p>
 
             <div class="mr-manifest">
               <div class="mr-manifest__row">
-                <span>NODE_ID</span>
+                <span>Routing</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>MR-US-EAST-1</strong>
+                <strong>Per item</strong>
               </div>
               <div class="mr-manifest__row">
-                <span>KEEPALIVE</span>
+                <span>Forward on timeout</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>300ms</strong>
+                <strong>On</strong>
               </div>
               <div class="mr-manifest__row">
-                <span>TLS_VER</span>
+                <span>Max forwards</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>1.3</strong>
+                <strong>5</strong>
               </div>
               <div class="mr-manifest__row">
-                <span>QOS_LEVEL</span>
+                <span>Payments</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>CRITICAL</strong>
+                <strong>Card + COD</strong>
               </div>
             </div>
 
@@ -250,7 +250,7 @@ $active = 'settings';
               <label class="mr-field">
                 <span>Full Name</span>
                 <div class="mr-field__input">
-                  <input type="text" value="Dr. Sarah Jenkins">
+                  <input type="text" value="Dilani Perera">
                 </div>
               </label>
               <label class="mr-field">
@@ -263,7 +263,7 @@ $active = 'settings';
                 <span>Contact Email</span>
                 <div class="mr-field__input">
                   <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/mail.png" alt="">
-                  <input type="email" value="admin@medreach.sys">
+                  <input type="email" value="admin@medreach.lk">
                 </div>
               </label>
               <label class="mr-field">
@@ -292,13 +292,13 @@ $active = 'settings';
               <img src="https://img.icons8.com/ios-filled/50/ffffff/flow-chart.png" alt="" style="width:18px;height:18px;">
               Routing Summary
             </h2>
-            <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem;">Applied on next deploy</p>
+            <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem;">Applies to new requests</p>
 
             <div class="mr-manifest">
               <div class="mr-manifest__row">
-                <span>Algorithm</span>
+                <span>Order</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>A-Star v4</strong>
+                <strong>Nearest first</strong>
               </div>
               <div class="mr-manifest__row">
                 <span>Base Radius</span>
@@ -311,24 +311,19 @@ $active = 'settings';
                 <strong>120s</strong>
               </div>
               <div class="mr-manifest__row">
-                <span>Load Balancer</span>
+                <span>On decline</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>Active</strong>
+                <strong>Next-closest</strong>
               </div>
               <div class="mr-manifest__row">
-                <span>Geo-Fence</span>
+                <span>Split items</span>
                 <span class="mr-manifest__leader"></span>
-                <strong>Strict</strong>
-              </div>
-              <div class="mr-manifest__row">
-                <span>Priority</span>
-                <span class="mr-manifest__leader"></span>
-                <strong>Dynamic</strong>
+                <strong>Yes</strong>
               </div>
             </div>
 
             <p style="font-size: 0.8rem; color: rgba(255,255,255,0.75); margin: 0 0 1rem;">
-              Applying these changes will immediately impact active dispatch algorithms. Proceed with caution.
+              Changes apply to new prescription requests only. Orders already in progress keep their current routing.
             </p>
 
             <button type="submit" form="mr-settings-form" class="mr-btn mr-btn--dark mr-btn--block">Apply changes</button>

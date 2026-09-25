@@ -80,7 +80,7 @@ $active = 'users';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>User Ledger</h2>
-              <button type="button" class="mr-icon-btn" aria-label="Export user ledger">
+              <button type="button" class="mr-icon-btn" aria-label="Export user ledger" data-toast="User ledger exported as CSV.">
                 <img src="https://img.icons8.com/ios-filled/50/454655/export.png" alt="">
               </button>
             </div>
@@ -100,7 +100,7 @@ $active = 'users';
                 <span class="mr-badge mr-badge--pill mr-badge--case-normal">Total: 5</span>
               </div>
 
-              <button type="button" class="mr-btn mr-btn--primary mr-btn--sm">
+              <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-user-form-modal">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/plus.png" alt="">
                 Create User
               </button>
@@ -119,87 +119,107 @@ $active = 'users';
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-id="u-001" data-name="dr. jane doe" data-role="admin" data-status="active" data-active="0">
+                  <tr data-id="u-001" data-name="dilani perera" data-role="admin" data-status="active" data-active="0">
                     <td><span class="mr-eyebrow mr-eyebrow--mono">U-001</span></td>
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <span class="mr-avatar mr-avatar--dash">JD</span>
-                        <strong>Dr. Jane Doe</strong>
+                        <span class="mr-avatar mr-avatar--dash">DP</span>
+                        <strong>Dilani Perera</strong>
                       </div>
                     </td>
                     <td>Admin</td>
                     <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
                     <td>2 min ago</td>
                     <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dr. Jane Doe">
+                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dilani Perera">
                         <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                       </button>
+                      <div class="mr-row-menu" hidden>
+                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dilani Perera">Edit details</button>
+                        <button type="button" data-toast="Password reset link sent to Dilani Perera.">Reset password</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Dilani Perera">Suspend</button>
+                      </div>
                     </td>
                   </tr>
-                  <tr data-id="u-042" data-name="alex smith" data-role="pharmacist" data-status="active" data-active="1">
+                  <tr data-id="u-042" data-name="ashan silva" data-role="pharmacist" data-status="active" data-active="1">
                     <td><span class="mr-eyebrow mr-eyebrow--mono">U-042</span></td>
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.6rem;">
                         <span class="mr-avatar mr-avatar--dash">AS</span>
-                        <strong>Alex Smith</strong>
+                        <strong>Ashan Silva</strong>
                       </div>
                     </td>
                     <td>Pharmacist</td>
                     <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
                     <td>15 min ago</td>
                     <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Alex Smith">
+                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Ashan Silva">
                         <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                       </button>
+                      <div class="mr-row-menu" hidden>
+                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Ashan Silva">Edit details</button>
+                        <button type="button" data-toast="Password reset link sent to Ashan Silva.">Reset password</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Ashan Silva">Suspend</button>
+                      </div>
                     </td>
                   </tr>
-                  <tr data-id="u-118" data-name="bob jones" data-role="delivery" data-status="suspended" data-active="3">
+                  <tr data-id="u-118" data-name="buddhika jayawardena" data-role="delivery" data-status="suspended" data-active="3">
                     <td><span class="mr-eyebrow mr-eyebrow--mono">U-118</span></td>
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.6rem;">
                         <span class="mr-avatar mr-avatar--dash">BJ</span>
-                        <strong>Bob Jones</strong>
+                        <strong>Buddhika Jayawardena</strong>
                       </div>
                     </td>
                     <td>Delivery</td>
                     <td><span class="mr-badge mr-badge--danger"><span class="mr-badge__dot"></span>Suspended</span></td>
                     <td>&gt;5 hrs ago</td>
                     <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-btn mr-btn--primary mr-btn--sm">Review</button>
+                      <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-user-review-modal">Review</button>
                     </td>
                   </tr>
-                  <tr data-id="u-201" data-name="carol white" data-role="patient" data-status="pending" data-active="2">
+                  <tr data-id="u-201" data-name="chamari wickramasinghe" data-role="patient" data-status="pending" data-active="2">
                     <td><span class="mr-eyebrow mr-eyebrow--mono">U-201</span></td>
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.6rem;">
                         <span class="mr-avatar mr-avatar--dash">CW</span>
-                        <strong>Carol White</strong>
+                        <strong>Chamari Wickramasinghe</strong>
                       </div>
                     </td>
                     <td>Patient</td>
                     <td><span class="mr-badge mr-badge--accent"><span class="mr-badge__dot"></span>Pending</span></td>
                     <td>2 hrs ago</td>
                     <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Carol White">
+                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Chamari Wickramasinghe">
                         <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                       </button>
+                      <div class="mr-row-menu" hidden>
+                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Chamari Wickramasinghe">Edit details</button>
+                        <button type="button" data-toast="Password reset link sent to Chamari Wickramasinghe.">Reset password</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Chamari Wickramasinghe">Suspend</button>
+                      </div>
                     </td>
                   </tr>
-                  <tr data-id="u-205" data-name="dan miller" data-role="pharmacist" data-status="inactive" data-active="4">
+                  <tr data-id="u-205" data-name="dinesh mendis" data-role="pharmacist" data-status="inactive" data-active="4">
                     <td><span class="mr-eyebrow mr-eyebrow--mono">U-205</span></td>
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.6rem;">
                         <span class="mr-avatar mr-avatar--dash">DM</span>
-                        <strong>Dan Miller</strong>
+                        <strong>Dinesh Mendis</strong>
                       </div>
                     </td>
                     <td>Pharmacist</td>
                     <td><span class="mr-badge mr-badge--pill mr-badge--case-normal"><span class="mr-badge__dot"></span>Inactive</span></td>
                     <td>1 day ago</td>
                     <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dan Miller">
+                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dinesh Mendis">
                         <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                       </button>
+                      <div class="mr-row-menu" hidden>
+                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dinesh Mendis">Edit details</button>
+                        <button type="button" data-toast="Password reset link sent to Dinesh Mendis.">Reset password</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-reactivate-modal" data-subject="Dinesh Mendis">Reactivate</button>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -277,7 +297,7 @@ $active = 'users';
                   <img src="https://img.icons8.com/ios-filled/50/de4a4f/error.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">Bob Jones account suspended — suspicious login attempts</span>
+                  <span class="mr-notif-item__title">Buddhika Jayawardena account suspended — suspicious login attempts</span>
                 </span>
                 <span class="mr-notif-item__time">Just now</span>
                 <span class="mr-notif-item__dot" aria-hidden="true"></span>
@@ -288,7 +308,7 @@ $active = 'users';
                   <img src="https://img.icons8.com/ios-filled/50/dd8e1c/hourglass.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">Carol White awaiting identity verification</span>
+                  <span class="mr-notif-item__title">Chamari Wickramasinghe awaiting identity verification</span>
                 </span>
                 <span class="mr-notif-item__time">15 min ago</span>
                 <span class="mr-notif-item__dot" aria-hidden="true"></span>
@@ -299,7 +319,7 @@ $active = 'users';
                   <img src="https://img.icons8.com/ios-filled/50/2d3fd7/conference-call.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">New pharmacist account created by Admin: Jane</span>
+                  <span class="mr-notif-item__title">New pharmacist account created by Admin: Dilani</span>
                 </span>
                 <span class="mr-notif-item__time">1 hr ago</span>
               </div>
@@ -319,6 +339,125 @@ $active = 'users';
         </div>
       </div>
     </main>
+  </div>
+
+  <div class="mr-modal" id="mr-user-form-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2><span data-subject-slot="Create user"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" data-toast="User saved — a sign-in link has been emailed.">
+        <label class="mr-field">
+          <span>First name</span>
+          <div class="mr-field__input">
+            <input type="text" required>
+          </div>
+        </label>
+        <label class="mr-field">
+          <span>Last name</span>
+          <div class="mr-field__input">
+            <input type="text" required>
+          </div>
+        </label>
+        <label class="mr-field mr-field--span2">
+          <span>Email</span>
+          <div class="mr-field__input">
+            <input type="email" placeholder="name@example.lk" required>
+          </div>
+        </label>
+        <label class="mr-field mr-field--span2">
+          <span>Role</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option value="patient">Patient</option>
+              <option value="pharmacist">Pharmacist</option>
+              <option value="delivery">Delivery</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions mr-field--span2">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-user-suspend-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2><span data-subject-slot="Update account"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The user will be signed out and can't sign back in until an admin reinstates the account.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Account updated.">
+        <label class="mr-field">
+          <span>Reason</span>
+          <textarea rows="2" placeholder="Kept in the audit log..." required></textarea>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-user-review-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Review Buddhika Jayawardena</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <dl class="mr-modal__list">
+        <div><dt>Role</dt><dd>Delivery</dd></div>
+        <div><dt>Suspended</dt><dd>Today, 09:12 AM</dd></div>
+        <div><dt>Reason</dt><dd>5 failed sign-in attempts</dd></div>
+        <div><dt>Active deliveries</dt><dd>0</dd></div>
+      </dl>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close data-toast="Account stays suspended.">Keep suspended</button>
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close data-toast="Account reinstated — a password reset link was emailed.">Reinstate</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-user-reactivate-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Reactivate <span data-subject-slot="account"></span>?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The user can sign in again straight away.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close data-toast="Account reactivated.">Reactivate</button>
+      </div>
+    </div>
   </div>
 
   <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>

@@ -172,13 +172,13 @@ $active = 'dashboard';
                 <span class="mr-timeline__time">Just now</span>
               </li>
               <li class="mr-timeline__step">
-                <strong>API rate limit warning</strong>
-                <small>Gateway</small>
+                <strong>Prescription forwarded after timeout</strong>
+                <small>Routing</small>
                 <span class="mr-timeline__time">12 min ago</span>
               </li>
               <li class="mr-timeline__step">
                 <strong>New pharmacy onboarded</strong>
-                <small>Admin: Sarah</small>
+                <small>Admin: Dilani</small>
                 <span class="mr-timeline__time">1 hr ago</span>
               </li>
               <li class="mr-timeline__step">
