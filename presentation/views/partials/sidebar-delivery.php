@@ -22,11 +22,6 @@ $mr_sidebar_links = [
     </button>
   </div>
 
-  <a class="mr-notif-btn mr-notif-btn--sidebar" href="notifications.php" aria-label="Notifications">
-    <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-    <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-  </a>
-
   <button type="button" class="mr-sidebar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-sidebar-menu">
     <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
     <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--close" src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
@@ -49,16 +44,10 @@ $mr_sidebar_links = [
     </nav>
 
     <div class="mr-sidebar__footer">
-      <a
-        class="mr-sidebar__link mr-sidebar__link--profile<?= $active === 'profile' ? ' is-active' : '' ?>"
-        href="#"
-        title="Kasun Perera"
-        aria-label="Profile"
-        <?= $active === 'profile' ? 'aria-current="page"' : '' ?>
-      >
+      <div class="mr-sidebar__link mr-sidebar__link--profile" title="Kasun Perera">
         <span class="mr-avatar mr-avatar--dash">KP</span>
-        <span class="mr-sidebar__label">Profile</span>
-      </a>
+        <span class="mr-sidebar__label">Kasun Perera</span>
+      </div>
       <a class="mr-sidebar__link mr-sidebar__link--danger" href="sign-out.php" title="Log out" aria-label="Log out">
         <span class="mr-sidebar__icon-box">
           <img src="https://img.icons8.com/ios-filled/50/ff0000/export.png" alt="">

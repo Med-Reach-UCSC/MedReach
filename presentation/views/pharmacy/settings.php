@@ -33,11 +33,6 @@ $active = 'profile';
               <span>Fulfillment</span>
             </div>
           </div>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 

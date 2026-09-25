@@ -21,7 +21,7 @@
     </nav>
     <div class="mr-nav__actions">
       <a class="mr-link" href="sign-in.php">Login</a>
-      <button type="button" class="mr-btn mr-btn--dark mr-btn--sm">Sign Up</button>
+      <a class="mr-btn mr-btn--dark mr-btn--sm" href="sign-up.php">Sign Up</a>
     </div>
   </div>
 </div>

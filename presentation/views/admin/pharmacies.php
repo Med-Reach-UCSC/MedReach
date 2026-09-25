@@ -24,11 +24,6 @@ $active = 'pharmacies';
             <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
             <input type="search" id="mr-pharmacy-search" placeholder="Search pharmacies..." aria-label="Search pharmacies">
           </label>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 

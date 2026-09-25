@@ -22,11 +22,6 @@ $mr_sidebar_links = [
     </button>
   </div>
 
-  <a class="mr-notif-btn mr-notif-btn--sidebar" href="notifications.php" aria-label="Notifications">
-    <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-    <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-  </a>
-
   <button type="button" class="mr-sidebar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-sidebar-menu">
     <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
     <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--close" src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">

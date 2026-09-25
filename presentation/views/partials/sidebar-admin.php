@@ -4,8 +4,6 @@ $active = $active ?? 'dashboard';
 
 $mr_sidebar_links = [
   'dashboard'     => ['label' => 'Dashboard',     'icon' => 'home',          'href' => 'admin-dashboard.php'],
-  'orders'        => ['label' => 'Orders',        'icon' => 'delivery',      'href' => '#'],
-  'prescriptions' => ['label' => 'Prescriptions', 'icon' => 'pill',          'href' => '#'],
   'pharmacies'    => ['label' => 'Pharmacies',    'icon' => 'shop',          'href' => 'manage-pharmacies.php'],
   'users'         => ['label' => 'Users',         'icon' => 'conference-call', 'href' => 'manage-users.php'],
   'settings'      => ['label' => 'Settings',      'icon' => 'settings',      'href' => 'admin-settings.php'],
@@ -24,11 +22,6 @@ $mr_sidebar_links = [
       <img class="mr-sidebar__collapse-icon mr-sidebar__collapse-icon--expand" src="https://img.icons8.com/ios-filled/50/454655/chevron-right.png" alt="">
     </button>
   </div>
-
-  <a class="mr-notif-btn mr-notif-btn--sidebar" href="notifications.php" aria-label="Notifications">
-    <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-    <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-  </a>
 
   <button type="button" class="mr-sidebar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-sidebar-menu">
     <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
@@ -54,7 +47,7 @@ $mr_sidebar_links = [
     <div class="mr-sidebar__footer">
       <a
         class="mr-sidebar__link mr-sidebar__link--profile<?= $active === 'profile' ? ' is-active' : '' ?>"
-        href="#"
+        href="admin-settings.php"
         title="Admin"
         aria-label="Profile"
         <?= $active === 'profile' ? 'aria-current="page"' : '' ?>

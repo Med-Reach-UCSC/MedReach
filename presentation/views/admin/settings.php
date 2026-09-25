@@ -28,11 +28,6 @@ $active = 'settings';
             <input type="search" id="mr-settings-search" placeholder="Search settings..." aria-label="Search settings">
           </label>
 
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
-
           <button type="submit" form="mr-settings-form" class="mr-btn mr-btn--primary mr-btn--sm">
             <img src="https://img.icons8.com/ios-filled/50/ffffff/save.png" alt="" style="width:14px;height:14px;vertical-align:-2px;margin-right:0.35rem;">
             Save changes
