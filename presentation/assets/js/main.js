@@ -451,8 +451,19 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!wasOpen) {
         var rect = btn.getBoundingClientRect();
         menu.hidden = false;
-        menu.style.top = rect.bottom + 4 + 'px';
-        menu.style.left = Math.max(8, rect.right - menu.offsetWidth) + 'px';
+        // Keep the menu on screen even when the button is scrolled out of
+        // a narrow table, and flip it above the button near the bottom.
+        var top = rect.bottom + 4;
+        if (top + menu.offsetHeight > window.innerHeight - 8) top = Math.max(8, rect.top - menu.offsetHeight - 4);
+        var left = Math.min(rect.right, window.innerWidth - 8) - menu.offsetWidth;
+        left = Math.max(8, left);
+        menu.style.top = top + 'px';
+        menu.style.left = left + 'px';
+        // .mr-card's backdrop-filter makes it the containing block for
+        // position: fixed, so undo whatever offset that introduces.
+        var placed = menu.getBoundingClientRect();
+        menu.style.top = top - (placed.top - top) + 'px';
+        menu.style.left = left - (placed.left - left) + 'px';
         btn.setAttribute('aria-expanded', 'true');
       }
     });
@@ -495,6 +506,12 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('change', function () {
       mrToast(input.checked ? label.dataset.onText : label.dataset.offText);
     });
+  });
+
+  // Preference switches that aren't part of a form save on their own
+  document.querySelectorAll('.mr-switch:not([data-duty-toggle]) input').forEach(function (input) {
+    if (input.form) return;
+    input.addEventListener('change', function () { mrToast('Preference saved.'); });
   });
 });
 
@@ -776,7 +793,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var visible = 0;
 
     rows.forEach(function (row) {
-      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
+      var matchesSearch = !term || (row.dataset.name + ' ' + row.dataset.location).indexOf(term) !== -1;
       var matchesStatus = !status || row.dataset.status === status;
       var match = matchesSearch && matchesStatus;
       row.hidden = !match;
@@ -1012,6 +1029,20 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.closest('[data-stage]').dataset.stage = btn.dataset.stageMove;
       btn.disabled = true;
       show(current);
+    });
+  });
+});
+
+// Admin settings search — hides setting cards that don't match
+document.addEventListener('DOMContentLoaded', function () {
+  var search = document.getElementById('mr-settings-search');
+  if (!search) return;
+  var cards = document.querySelectorAll('#mr-settings-form > section');
+
+  search.addEventListener('input', function () {
+    var term = search.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      card.hidden = term !== '' && card.textContent.toLowerCase().indexOf(term) === -1;
     });
   });
 });

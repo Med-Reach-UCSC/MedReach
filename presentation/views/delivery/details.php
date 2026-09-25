@@ -177,7 +177,7 @@ $active = 'manifest';
         </button>
       </div>
 
-      <form class="mr-modal__form" id="mr-handover-form">
+      <form class="mr-modal__form" id="mr-handover-form" data-toast="Delivery confirmed — cash collection recorded.">
         <p>Confirm delivery of order <strong>#ORD-9921</strong> to <strong>Nimal Perera</strong> and collection of <strong>LKR 4,500.00</strong> cash on delivery.</p>
 
         <label class="mr-auth-terms">

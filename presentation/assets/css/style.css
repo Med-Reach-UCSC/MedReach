@@ -3731,7 +3731,7 @@ a {
 
 @media (max-width: 992px) {
   .mr-dash-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   /* Pharmacy info, avg-wait stat and map become one tap-to-open modal
@@ -4784,7 +4784,7 @@ a {
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .mr-stat-grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -5387,4 +5387,9 @@ a {
 
 a.mr-notif-item:hover {
   background-color: rgba(74, 91, 240, 0.05);
+}
+
+/* Stop the page scrolling behind an open modal */
+body:has(.mr-modal.is-open) {
+  overflow: hidden;
 }
