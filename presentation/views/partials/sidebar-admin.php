@@ -62,7 +62,7 @@ $mr_sidebar_links = [
         <span class="mr-avatar mr-avatar--dash">A</span>
         <span class="mr-sidebar__label">Profile</span>
       </a>
-      <a class="mr-sidebar__link mr-sidebar__link--danger" href="sign-in.php" title="Log out" aria-label="Log out">
+      <a class="mr-sidebar__link mr-sidebar__link--danger" href="sign-out.php" title="Log out" aria-label="Log out">
         <span class="mr-sidebar__icon-box">
           <img src="https://img.icons8.com/ios-filled/50/ff0000/export.png" alt="">
         </span>
