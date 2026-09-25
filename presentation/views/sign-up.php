@@ -90,7 +90,7 @@
 
           <label class="mr-auth-terms mr-field--span2">
             <input type="checkbox" name="agree_terms" required>
-            I agree to the <a class="mr-link" href="#">Terms of Service</a> and <a class="mr-link" href="#">Privacy Policy</a>.
+            I agree to the <a class="mr-link" href="policies.php#terms" target="_blank">Terms of Service</a> and <a class="mr-link" href="policies.php#privacy" target="_blank">Privacy Policy</a>.
           </label>
 
           <button type="submit" class="mr-btn mr-btn--primary mr-auth-form__submit mr-field--span2">Create account</button>

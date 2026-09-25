@@ -165,13 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (infoClose) infoClose.addEventListener('click', closeDetailModal);
   if (backdrop) backdrop.addEventListener('click', closeDetailModal);
 
-  pins.forEach(function (pin) {
-    pin.addEventListener('click', function () {
-      var card = list.querySelector('.mr-pharm-card[data-name="' + pin.dataset.name + '"]');
-      if (card) selectCard(card);
-    });
-  });
-
   if (search) {
     search.addEventListener('input', function () {
       var term = search.value.trim().toLowerCase();
@@ -286,6 +279,24 @@ document.addEventListener('DOMContentLoaded', function () {
         card.querySelector('.mr-star-rating').dataset.rating = rating;
       });
     });
+
+    // One rating per completed order (UC-08) — lock it once submitted
+    var submit = card.querySelector('.mr-history-card__submit');
+    if (submit) {
+      submit.addEventListener('click', function () {
+        var stars = card.querySelector('.mr-star-rating');
+        if (stars.dataset.rating === '0') {
+          mrToast('Pick a star rating first.');
+          return;
+        }
+        card.querySelectorAll('.mr-star-rating__btn, .mr-history-card__rate textarea').forEach(function (el) {
+          el.disabled = true;
+        });
+        submit.disabled = true;
+        submit.textContent = 'Rated';
+        mrToast('Thanks — your rating was saved.');
+      });
+    }
   });
 
   if (search) search.addEventListener('input', applyFilters);
@@ -344,9 +355,15 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!openers.length) return;
 
   openers.forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (e) {
       var modal = document.getElementById(btn.dataset.modalOpen);
-      if (modal) modal.classList.add('is-open');
+      if (!modal) return;
+      e.preventDefault();
+      // data-subject lets one modal serve every row — e.g. "Edit Amma"
+      modal.querySelectorAll('[data-subject-slot]').forEach(function (slot) {
+        slot.textContent = btn.dataset.subject || slot.dataset.subjectSlot;
+      });
+      modal.classList.add('is-open');
     });
   });
 
@@ -362,8 +379,137 @@ document.addEventListener('DOMContentLoaded', function () {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         modal.classList.remove('is-open');
+        if (form.dataset.toast) mrToast(form.dataset.toast);
+        form.reset();
       });
     }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.mr-modal.is-open').forEach(function (modal) {
+      modal.classList.remove('is-open');
+    });
+  });
+});
+
+// Interim UI has no backend yet — actions confirm themselves with a toast
+// instead of a server round-trip.
+function mrToast(message) {
+  var toast = document.querySelector('.mr-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'mr-toast';
+    toast.setAttribute('role', 'status');
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  clearTimeout(toast.hideTimer);
+  toast.hideTimer = setTimeout(function () {
+    toast.classList.remove('is-visible');
+  }, 2800);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-toast]:not(form)').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (el.tagName === 'A' && el.getAttribute('href') === '#') e.preventDefault();
+      mrToast(el.dataset.toast);
+    });
+  });
+
+  // Standalone forms (settings, password) — modal forms are handled above
+  document.querySelectorAll('form[data-toast]').forEach(function (form) {
+    if (form.closest('.mr-modal')) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      mrToast(form.dataset.toast);
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var buttons = document.querySelectorAll('.mr-table-menu-btn');
+  if (!buttons.length) return;
+
+  function closeAll() {
+    document.querySelectorAll('.mr-row-menu').forEach(function (menu) { menu.hidden = true; });
+    buttons.forEach(function (btn) { btn.setAttribute('aria-expanded', 'false'); });
+  }
+
+  buttons.forEach(function (btn) {
+    var menu = btn.nextElementSibling;
+    if (!menu || !menu.classList.contains('mr-row-menu')) return;
+    btn.setAttribute('aria-haspopup', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wasOpen = !menu.hidden;
+      closeAll();
+      if (!wasOpen) {
+        var rect = btn.getBoundingClientRect();
+        menu.hidden = false;
+        menu.style.top = rect.bottom + 4 + 'px';
+        menu.style.left = Math.max(8, rect.right - menu.offsetWidth) + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    menu.addEventListener('click', closeAll);
+  });
+
+  document.addEventListener('click', closeAll);
+  window.addEventListener('scroll', closeAll, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+});
+
+// Accept/decline style decisions: [data-decision-scope] wraps the buttons
+// and an optional [data-decision-badge] that reflects the outcome.
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-decision]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var scope = btn.closest('[data-decision-scope]');
+      if (!scope) return;
+      var accepted = btn.dataset.decision === 'accept';
+      var badge = scope.querySelector('[data-decision-badge]');
+
+      if (badge) {
+        badge.className = 'mr-badge mr-badge--case-normal ' + (accepted ? 'mr-badge--success' : 'mr-badge--danger');
+        badge.textContent = btn.dataset.decisionLabel || (accepted ? 'Accepted' : 'Declined');
+      }
+      scope.querySelectorAll('[data-decision]').forEach(function (other) {
+        other.disabled = true;
+      });
+      if (btn.dataset.decisionToast) mrToast(btn.dataset.decisionToast);
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-duty-toggle] input').forEach(function (input) {
+    var label = input.closest('[data-duty-toggle]');
+    input.addEventListener('change', function () {
+      mrToast(input.checked ? label.dataset.onText : label.dataset.offText);
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-file-trigger]').forEach(function (btn) {
+    var input = document.getElementById(btn.dataset.fileTrigger);
+    if (!input) return;
+    btn.addEventListener('click', function () { input.click(); });
+    input.addEventListener('change', function () {
+      var output = document.querySelector('[data-file-name]');
+      if (output && input.files.length) {
+        output.textContent = 'Attached: ' + input.files[0].name;
+        output.hidden = false;
+      }
+    });
   });
 });
 
@@ -806,4 +952,66 @@ document.addEventListener('DOMContentLoaded', function () {
 
   wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' km');
   wireRoutingGauge('mr-timeout-gauge-chart', 'mr-timeout-slider', 180, '--mr-color-accent', 's');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-row-filter]').forEach(function (select) {
+    var table = document.getElementById(select.dataset.rowFilter);
+    if (!table) return;
+    select.addEventListener('change', function () {
+      table.querySelectorAll('tbody tr').forEach(function (row) {
+        row.hidden = !!select.value && row.dataset.filterValue !== select.value;
+      });
+    });
+  });
+});
+
+// One-shot actions (e.g. "Mark prepared") — button becomes a done label
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-once]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.textContent = btn.dataset.once;
+      btn.disabled = true;
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var list = document.querySelector('[data-stage-list]');
+  if (!list) return;
+
+  var tabs = document.querySelectorAll('[data-stage-tab]');
+  var title = document.querySelector('[data-stage-title]');
+  var count = document.querySelector('[data-stage-count]');
+  var empty = list.querySelector('[data-stage-empty]');
+  var current = 'preparing';
+
+  function show(stage) {
+    current = stage;
+    var visible = 0;
+    list.querySelectorAll('[data-stage]').forEach(function (order) {
+      order.hidden = order.dataset.stage !== stage;
+      if (!order.hidden) visible++;
+    });
+    tabs.forEach(function (tab) {
+      var active = tab.dataset.stageTab === stage;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active && title) title.textContent = tab.textContent;
+    });
+    if (count) count.textContent = visible + (visible === 1 ? ' order' : ' orders');
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { show(tab.dataset.stageTab); });
+  });
+
+  list.querySelectorAll('[data-stage-move]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.closest('[data-stage]').dataset.stage = btn.dataset.stageMove;
+      btn.disabled = true;
+      show(current);
+    });
+  });
 });

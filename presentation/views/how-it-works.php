@@ -36,9 +36,9 @@
             <span class="mr-feature-icon mr-feature-icon--accent">
               <img src="https://img.icons8.com/ios-filled/50/dd8e1c/price-tag.png" alt="">
             </span>
-            <h3>Best price automatically</h3>
+            <h3>Nearest pharmacy first</h3>
           </div>
-          <p>Your order routes to the nearest pharmacy that has stock, with fallback if declined.</p>
+          <p>Your order routes to the nearest registered pharmacy, with fallback to the next closest if declined.</p>
         </article>
         <article class="mr-feature">
           <div class="mr-feature__head">
@@ -47,7 +47,7 @@
             </span>
             <h3>Full transparency</h3>
           </div>
-          <p>See exactly which pharmacy accepted, what it costs, and where your delivery is in real time.</p>
+          <p>See exactly which pharmacy accepted, what it costs, and which stage your order has reached.</p>
         </article>
       </section>
 
@@ -81,18 +81,18 @@
               <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checklist.png" alt="">
             </span>
             <h3>Track until delivered</h3>
-            <span class="mr-badge mr-badge--success">Live status</span>
+            <span class="mr-badge mr-badge--success">Status updates</span>
           </article>
         </div>
       </section>
 
       <section class="mr-section">
         <h2>See it in action</h2>
-        <p class="mr-section__lede">A live look at how a request moves from your upload to your door.</p>
+        <p class="mr-section__lede">A quick look at how a request moves from your upload to your door.</p>
         <div class="mr-card mr-network">
           <div>
             <h3>Prescription matched to nearby pharmacies</h3>
-            <p>Amoxicillin 500mg — routed to the two closest pharmacies with it in stock.</p>
+            <p>Amoxicillin 500mg — routed to the two closest registered pharmacies.</p>
             <ul class="mr-pharmacy-list">
               <li>
                 <div>
@@ -125,8 +125,8 @@
           </span>
           <p><strong>Pharmacist Suggestion:</strong> Substitute with generic? Same formula, 15% cheaper.</p>
           <div class="mr-request-card__actions">
-            <button type="button" class="mr-btn mr-btn--muted mr-btn--sm">Reject</button>
-            <button type="button" class="mr-btn mr-btn--dark mr-btn--sm">Approve</button>
+            <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-toast="Demo: you keep the original medicine.">Reject</button>
+            <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-toast="Demo: substitute approved — the pharmacy is notified.">Approve</button>
           </div>
         </div>
       </section>
@@ -148,7 +148,7 @@
           </details>
           <details>
             <summary>Can I choose cash on delivery or pickup instead?</summary>
-            <p>Yes — you can toggle between delivery and self-pickup at checkout. Payment is cash on delivery only.</p>
+            <p>Yes — you can toggle between delivery and self-pickup at checkout. Pay by card or cash on delivery.</p>
           </details>
           <details>
             <summary>How does the auto-forwarding timer work?</summary>
@@ -169,7 +169,7 @@
       <h2>Ready to get started?</h2>
       <p>Join the intelligent healthcare logistics network today.</p>
     </div>
-    <button type="button" class="mr-btn mr-btn--light">Join Network</button>
+    <a class="mr-btn mr-btn--light" href="sign-up.php">Join Network</a>
   </div>
 
   <footer id="site-footer" class="mr-footer">
@@ -178,12 +178,12 @@
       <span class="mr-eyebrow">Pickup. Deliver. Care.</span>
     </div>
     <nav class="mr-footer__links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Security</a>
-      <a href="#">Contact</a>
+      <a href="policies.php#privacy">Privacy Policy</a>
+      <a href="policies.php#terms">Terms of Service</a>
+      <a href="policies.php#security">Security</a>
+      <a href="policies.php#contact">Contact</a>
     </nav>
-    <span class="mr-footer__copy">© 2024 MedReach Inc. Intelligent healthcare logistics.</span>
+    <span class="mr-footer__copy">© 2026 MedReach Inc. Intelligent healthcare logistics.</span>
     <a class="mr-attribution" href="https://icons8.com" target="_blank" rel="noopener">Icons by Icons8</a>
   </footer>
 

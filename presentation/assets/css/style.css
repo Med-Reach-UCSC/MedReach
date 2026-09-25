@@ -2170,7 +2170,8 @@ a {
   letter-spacing: -0.01em;
 }
 
-.mr-dash-card__head a {
+.mr-dash-card__head a,
+.mr-dash-card__head .mr-link-btn {
   font-family: var(--mr-font-mono);
   font-size: 0.75rem;
   font-weight: 600;
@@ -5274,3 +5275,116 @@ a {
   }
 }
 
+
+/* Row action menu — opened by .mr-table-menu-btn; fixed + placed by main.js
+   so the scrolling .mr-pay-table-wrap doesn't clip it */
+.mr-row-menu {
+  position: fixed;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  padding: 0.35rem;
+  border: 1px solid var(--mr-color-border);
+  border-radius: var(--mr-radius-sm);
+  background-color: var(--mr-color-surface-solid);
+  box-shadow: var(--mr-shadow-card);
+  text-align: left;
+}
+
+.mr-row-menu[hidden] {
+  display: none;
+}
+
+.mr-row-menu button,
+.mr-row-menu a {
+  padding: 0.55rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--mr-color-text);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mr-row-menu button:hover,
+.mr-row-menu a:hover {
+  background-color: rgba(74, 91, 240, 0.08);
+}
+
+.mr-row-menu .mr-row-menu__danger {
+  color: var(--mr-color-danger);
+}
+
+/* Toast — confirms front-end-only actions while the backend is pending */
+.mr-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 90;
+  max-width: calc(100% - 2rem);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--mr-radius-pill);
+  background-color: var(--mr-color-text);
+  color: #fff;
+  font-size: 0.875rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 1rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mr-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.mr-modal__text {
+  color: var(--mr-color-text-muted);
+  line-height: 1.6;
+}
+
+.mr-modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mr-modal__list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.mr-modal__list dt {
+  color: var(--mr-color-text-muted);
+}
+
+.mr-modal__list dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+.mr-modal__list .mr-modal__list-total {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--mr-color-border);
+}
+
+/* Button that reads as an inline text link (opens a modal instead of navigating) */
+.mr-link-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--mr-color-primary);
+  cursor: pointer;
+}
+
+a.mr-notif-item:hover {
+  background-color: rgba(74, 91, 240, 0.05);
+}
