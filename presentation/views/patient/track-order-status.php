@@ -42,10 +42,10 @@ $active = 'orders';
         </div>
 
         <div class="mr-dash-header__actions">
-          <a href="#" class="mr-btn mr-btn--light mr-btn--sm">
+          <button type="button" class="mr-btn mr-btn--light mr-btn--sm" data-modal-open="mr-invoice-modal">
             <img src="https://img.icons8.com/ios-filled/50/2d3fd7/document.png" alt="">
             View Invoice
-          </a>
+          </button>
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
             <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
@@ -124,11 +124,11 @@ $active = 'orders';
             </div>
 
             <div class="mr-courier-card__actions">
-              <a href="#" class="mr-btn mr-btn--light">
+              <a href="tel:+94771234567" class="mr-btn mr-btn--light">
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/phone.png" alt="">
                 Call
               </a>
-              <button type="button" class="mr-btn mr-btn--dark">
+              <button type="button" class="mr-btn mr-btn--dark" data-modal-open="mr-courier-message-modal">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="">
                 Message
               </button>
@@ -205,13 +205,65 @@ $active = 'orders';
               <strong>Need assistance?</strong>
               <p>Contact support about this order.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
       </div>
     </main>
   </div>
+
+  <div class="mr-modal" id="mr-invoice-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Invoice — RX-1042</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <dl class="mr-modal__list">
+        <div><dt>Pharmacy</dt><dd>City Care Pharmacy</dd></div>
+        <div><dt>Items</dt><dd>6</dd></div>
+        <div><dt>Subtotal</dt><dd>LKR 3,750.00</dd></div>
+        <div><dt>Delivery fee</dt><dd>LKR 300.00</dd></div>
+        <div><dt>Payment</dt><dd>Cash on delivery</dd></div>
+        <div class="mr-modal__list-total"><dt>Total</dt><dd>LKR 4,050.00</dd></div>
+      </dl>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Close</button>
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-courier-message-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Message Kasun P.</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Message sent to your courier.">
+        <label class="mr-field">
+          <span>Message</span>
+          <textarea rows="3" placeholder="e.g. Please leave it with the security guard" required></textarea>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>
 
   <script src="presentation/assets/js/main.js"></script>
 </body>

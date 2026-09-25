@@ -189,13 +189,15 @@ $active = 'dashboard';
               <strong>Need help?</strong>
               <p>Reach out if an order looks off or a delivery is delayed.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
       </div>
     </main>
   </div>
+
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>
 
   <script src="presentation/assets/js/main.js"></script>
 </body>

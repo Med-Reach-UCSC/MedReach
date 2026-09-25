@@ -44,14 +44,18 @@ $active = 'payments';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Recent Transactions</h2>
-              <span class="mr-badge mr-badge--pill mr-badge--case-normal">
+              <label class="mr-roster-filter">
                 <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
-                Filter
-              </span>
+                <select data-row-filter="mr-payments-table" aria-label="Filter by payment method">
+                  <option value="">All methods</option>
+                  <option value="cod">COD</option>
+                  <option value="card">Card</option>
+                </select>
+              </label>
             </div>
 
             <div class="mr-pay-table-wrap">
-              <table class="mr-pay-table">
+              <table class="mr-pay-table" id="mr-payments-table">
                 <thead>
                   <tr>
                     <th>Order ID</th>
@@ -63,7 +67,7 @@ $active = 'payments';
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr data-filter-value="cod">
                     <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8402</td>
                     <td>City Health Pharmacy</td>
                     <td>Today, 10:42 AM</td>
@@ -78,7 +82,7 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="card">
                     <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8399</td>
                     <td>MediCare Plus Colombo</td>
                     <td>Yesterday, 14:15</td>
@@ -93,7 +97,7 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="card">
                     <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8395</td>
                     <td>Union Chemists</td>
                     <td>Oct 24, 09:30 AM</td>
@@ -108,7 +112,7 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="cod">
                     <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8380</td>
                     <td>HealthGuard Kandy</td>
                     <td>Oct 22, 16:20</td>
@@ -123,7 +127,7 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="cod">
                     <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8375</td>
                     <td>Nawaloka Pharmacy</td>
                     <td>Oct 21, 11:10 AM</td>
@@ -138,7 +142,7 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="card">
                     <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8360</td>
                     <td>Asiri Dispensary</td>
                     <td>Oct 20, 08:45 AM</td>
@@ -158,17 +162,15 @@ $active = 'payments';
             </div>
 
             <div class="mr-pagination">
-              <span class="mr-pagination__count">Showing 1 to 6 of 124 entries</span>
+              <span class="mr-pagination__count">Showing 1 to 6 of 6 entries</span>
               <nav class="mr-pagination__nav" aria-label="Transaction pages">
-                <a href="#" class="mr-pagination__btn" aria-disabled="true">
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
                   <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
-                </a>
-                <a href="#" class="mr-pagination__btn is-active">1</a>
-                <a href="#" class="mr-pagination__btn">2</a>
-                <a href="#" class="mr-pagination__btn">3</a>
-                <a href="#" class="mr-pagination__btn">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
-                </a>
+                </button>
+                <span class="mr-pagination__btn is-active" aria-current="page">1</span>
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
+                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                </button>
               </nav>
             </div>
           </section>
@@ -226,7 +228,7 @@ $active = 'payments';
               </li>
             </ul>
 
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">View Full Policy</a>
+            <a href="policies.php#terms" class="mr-btn mr-btn--dark mr-btn--sm">View Full Policy</a>
           </section>
 
         </div>

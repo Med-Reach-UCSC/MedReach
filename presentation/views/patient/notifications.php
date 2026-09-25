@@ -35,7 +35,7 @@ $active = 'notifications';
               <span class="mr-eyebrow">Today</span>
             </div>
 
-            <div class="mr-notif-item is-unread" data-read="false">
+            <a class="mr-notif-item is-unread" data-read="false" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--success">
                 <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
               </span>
@@ -44,20 +44,20 @@ $active = 'notifications';
               </span>
               <span class="mr-notif-item__time">09:42 AM</span>
               <span class="mr-notif-item__dot" aria-hidden="true"></span>
-            </div>
+            </a>
 
-            <div class="mr-notif-item is-unread" data-read="false">
+            <a class="mr-notif-item is-unread" data-read="false" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
               </span>
               <span class="mr-notif-item__info">
-                <span class="mr-notif-item__title">Courier assigned. Out for delivery to West Wing.</span>
+                <span class="mr-notif-item__title">Courier assigned. Order #ORD-8924 is out for delivery.</span>
               </span>
               <span class="mr-notif-item__time">08:15 AM</span>
               <span class="mr-notif-item__dot" aria-hidden="true"></span>
-            </div>
+            </a>
 
-            <div class="mr-notif-item" data-read="true">
+            <a class="mr-notif-item" data-read="true" href="pharmacy-responses.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
                 <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
               </span>
@@ -65,33 +65,33 @@ $active = 'notifications';
                 <span class="mr-notif-item__title">Substitution suggested for Order #ORD-8920 (Aspirin 81mg)</span>
               </span>
               <span class="mr-notif-item__time">07:30 AM</span>
-            </div>
+            </a>
 
             <div class="mr-notif-list__section">
               <span class="mr-eyebrow">Earlier</span>
             </div>
 
-            <div class="mr-notif-item" data-read="true">
+            <a class="mr-notif-item" data-read="true" href="order-history.php">
               <span class="mr-icon-badge mr-icon-badge--success">
                 <img src="https://img.icons8.com/ios-filled/50/1f9d6b/box.png" alt="">
               </span>
               <span class="mr-notif-item__info">
-                <span class="mr-notif-item__title">Delivery completed: East Wing Supply Drop</span>
+                <span class="mr-notif-item__title">Order #ORD-8890 delivered — rate CityHealth Pharmacy</span>
               </span>
               <span class="mr-notif-item__time">Yesterday</span>
-            </div>
+            </a>
 
-            <div class="mr-notif-item" data-read="true">
+            <a class="mr-notif-item" data-read="true" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--danger">
-                <img src="https://img.icons8.com/ios-filled/50/d6534a/high-priority.png" alt="">
+                <img src="https://img.icons8.com/ios-filled/50/d6534a/redo.png" alt="">
               </span>
               <span class="mr-notif-item__info">
-                <span class="mr-notif-item__title">Alert: Temperature deviation detected in Transit Bin A4</span>
+                <span class="mr-notif-item__title">Order #ORD-8915 declined by Sunrise Pharmacy — forwarded to MediCare Plus</span>
               </span>
               <span class="mr-notif-item__time">Yesterday</span>
-            </div>
+            </a>
 
-            <div class="mr-notif-item" data-read="true">
+            <a class="mr-notif-item" data-read="true" href="order-history.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
                 <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
               </span>
@@ -99,7 +99,7 @@ $active = 'notifications';
                 <span class="mr-notif-item__title">Your monthly order summary is ready to view.</span>
               </span>
               <span class="mr-notif-item__time">Oct 24</span>
-            </div>
+            </a>
           </section>
 
         </div>

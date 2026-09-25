@@ -94,8 +94,8 @@ $active = 'orders';
                     </div>
                   </div>
                   <div class="mr-history-card__actions">
-                    <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">Download Invoice</a>
-                    <a href="#" class="mr-btn mr-btn--primary mr-btn--sm">Reorder All</a>
+                    <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-invoice-modal" data-subject="#ORD-7392">View Invoice</button>
+                    <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-reorder-modal" data-subject="#ORD-7392">Reorder All</button>
                   </div>
                 </div>
 
@@ -160,8 +160,8 @@ $active = 'orders';
                     </div>
                   </div>
                   <div class="mr-history-card__actions">
-                    <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">Download Invoice</a>
-                    <a href="#" class="mr-btn mr-btn--primary mr-btn--sm">Reorder All</a>
+                    <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-invoice-modal" data-subject="#ORD-7391">View Invoice</button>
+                    <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-reorder-expired-modal" data-subject="#ORD-7391">Reorder All</button>
                   </div>
                 </div>
 
@@ -256,6 +256,63 @@ $active = 'orders';
         </div>
       </div>
     </main>
+  </div>
+
+  <div class="mr-modal" id="mr-invoice-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Invoice <span data-subject-slot="order"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The invoice lists every item, the pharmacy that filled it, the delivery fee and how you paid. Print it or save it as a PDF from the print dialog.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Close</button>
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-reorder-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Reorder <span data-subject-slot="order"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The original prescription is valid until Mar 14, 2027, so the same items can be sent to nearby pharmacies again. You'll confirm the price before anything is prepared.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <a class="mr-btn mr-btn--primary mr-btn--sm" href="pharmacy-responses.php">Reorder</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-reorder-expired-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Prescription expired</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The prescription for <span data-subject-slot="this order"></span> expired on Aug 30, 2026, so it can't be reordered. Upload a new prescription to place the order again.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <a class="mr-btn mr-btn--primary mr-btn--sm" href="patient-order.php">Upload new Rx</a>
+      </div>
+    </div>
   </div>
 
   <script src="presentation/assets/js/main.js"></script>

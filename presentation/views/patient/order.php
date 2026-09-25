@@ -62,13 +62,39 @@ $active = 'orders';
               <h3>Drag &amp; Drop files here</h3>
               <p>Supported formats: PDF, JPG, PNG (Max 10MB)</p>
               <div class="mr-dropzone__actions">
-                <button type="button" class="mr-btn mr-btn--primary">Browse Files</button>
-                <button type="button" class="mr-btn mr-btn--ghost">
+                <button type="button" class="mr-btn mr-btn--primary" data-file-trigger="mr-rx-file">Browse Files</button>
+                <button type="button" class="mr-btn mr-btn--ghost" data-file-trigger="mr-rx-camera">
                   <img src="https://img.icons8.com/ios-filled/50/1a1b24/camera.png" alt="">
                   Camera
                 </button>
               </div>
+              <input type="file" id="mr-rx-file" accept=".pdf,.jpg,.jpeg,.png" hidden>
+              <input type="file" id="mr-rx-camera" accept="image/*" capture="environment" hidden>
+              <p class="mr-eyebrow mr-eyebrow--mono" data-file-name hidden></p>
             </div>
+
+            <form class="mr-auth-form mr-auth-form--grid" id="mr-order-form" action="pharmacy-responses.php" method="get">
+              <label class="mr-field">
+                <span>Ordering for</span>
+                <div class="mr-field__input">
+                  <select>
+                    <option>Myself</option>
+                    <option>Amma (PT-9824-A)</option>
+                    <option>Seeya (PT-3319-X)</option>
+                  </select>
+                </div>
+              </label>
+              <label class="mr-field">
+                <span>Prescription expiry date</span>
+                <div class="mr-field__input">
+                  <input type="date" min="<?= date('Y-m-d') ?>" required>
+                </div>
+              </label>
+              <label class="mr-field mr-field--span2">
+                <span>Note for the pharmacist (optional)</span>
+                <textarea rows="3" placeholder="e.g. Prefer Panadol over generic paracetamol, or no sugar-coated tablets"></textarea>
+              </label>
+            </form>
 
             <div class="mr-next-steps">
               <div class="mr-dash-card__head">
@@ -106,11 +132,11 @@ $active = 'orders';
                 <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/marker.png" alt="">
                 Delivery Context
               </h2>
-              <a href="#">Edit</a>
+              <button type="button" class="mr-link-btn" data-modal-open="mr-delivery-context-modal">Edit</button>
             </div>
             <div class="mr-order">
-              <strong>Current Patient Location</strong>
-              <p>Determined by default clinic location. Will be updated if patient overrides.</p>
+              <strong>12 Galle Road, Colombo 03</strong>
+              <p>Your saved delivery address. Pharmacies are matched by distance from here.</p>
             </div>
           </section>
 
@@ -125,11 +151,11 @@ $active = 'orders';
           </section>
 
           <footer class="mr-card mr-order-footer">
-            <span class="mr-order-footer__copy">© 2024 MedReach Systems</span>
-            <a href="pharmacy-responses.php" class="mr-btn mr-btn--primary mr-btn--sm">Broadcast to nearby pharmacies</a>
+            <span class="mr-order-footer__copy">© 2026 MedReach Systems</span>
+            <button type="submit" form="mr-order-form" class="mr-btn mr-btn--primary mr-btn--sm">Broadcast to nearby pharmacies</button>
             <div class="mr-order-footer__links">
-              <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Privacy Policy</a>
-              <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact Support</a>
+              <a class="mr-btn mr-btn--ghost mr-btn--sm" href="policies.php#privacy">Privacy Policy</a>
+              <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact Support</button>
             </div>
           </footer>
 
@@ -137,6 +163,38 @@ $active = 'orders';
       </div>
     </main>
   </div>
+
+  <div class="mr-modal" id="mr-delivery-context-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Delivery address</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Delivery address updated for this order.">
+        <label class="mr-field">
+          <span>Address</span>
+          <textarea rows="3" required>12 Galle Road, Colombo 03</textarea>
+        </label>
+        <label class="mr-field">
+          <span>Contact number</span>
+          <div class="mr-field__input">
+            <input type="tel" value="+94 77 123 4567">
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save address</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>
 
   <script src="presentation/assets/js/main.js"></script>
 </body>
