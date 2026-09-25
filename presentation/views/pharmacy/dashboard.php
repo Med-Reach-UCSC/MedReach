@@ -34,7 +34,7 @@ $active = 'dashboard';
             </div>
           </div>
 
-          <label class="mr-switch" title="Accepting orders" data-duty-toggle>
+          <label class="mr-switch" title="Accepting orders" data-duty-toggle data-on-text="You're accepting new prescription requests." data-off-text="Paused — new requests skip your pharmacy until you switch back on.">
             <input type="checkbox" aria-label="Accepting orders" checked>
             <span class="mr-switch__track"></span>
           </label>
@@ -66,10 +66,10 @@ $active = 'dashboard';
                     <h4><a href="prescription-request.php">Amoxicillin 500mg &times; 30</a></h4>
                   </div>
                 </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">Nimali Fernando &middot; 124 Maple Rd, Colombo 05</p>
+                <p class="mr-eyebrow mr-eyebrow--mono">Nimali Fernando &middot; 124 Havelock Rd, Colombo 05</p>
                 <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept">Accept</button>
+                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — the patient has been notified.">Accept</button>
                 </div>
               </div>
 
@@ -80,13 +80,13 @@ $active = 'dashboard';
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 5.5 km</span>
-                    <h4>Lisinopril 10mg &times; 90</h4>
+                    <h4><a href="prescription-request.php">Lisinopril 10mg &times; 90</a></h4>
                   </div>
                 </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">David Miller &middot; 890 Oak Lane, North Clinic</p>
+                <p class="mr-eyebrow mr-eyebrow--mono">Kasun Jayasinghe &middot; 45 Temple Rd, Nugegoda</p>
                 <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept">Accept</button>
+                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — the patient has been notified.">Accept</button>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ $active = 'dashboard';
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9921</span>
-                    <strong>Albuterol Inhaler &times;2</strong>
+                    <strong>Salbutamol Inhaler &times;2</strong>
                   </div>
                 </div>
                 <div class="mr-order__tags">
@@ -138,7 +138,7 @@ $active = 'dashboard';
                   </div>
                 </div>
                 <div class="mr-order__tags">
-                  <span class="mr-badge mr-badge--pill">Main Campus</span>
+                  <span class="mr-badge mr-badge--pill mr-badge--case-normal">Self-pickup</span>
                   <span class="mr-badge mr-badge--accent mr-badge--case-normal">Preparing</span>
                 </div>
               </div>

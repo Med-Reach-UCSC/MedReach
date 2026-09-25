@@ -55,7 +55,7 @@ $active = 'profile';
               </div>
             </div>
 
-            <form class="mr-auth-form mr-auth-form--grid">
+            <form class="mr-auth-form mr-auth-form--grid" data-toast="Pharmacy details saved.">
               <label class="mr-field">
                 <span>Pharmacy Name</span>
                 <div class="mr-field__input">
@@ -118,13 +118,13 @@ $active = 'profile';
               </div>
               <p>Our support team is available to help you with delivery workflows, substitution approvals, and cash settlement questions.</p>
             </div>
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">Contact Support</a>
+            <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-modal-open="mr-support-modal">Contact Support</button>
           </section>
 
           <section class="mr-card mr-dash-card mr-danger-card">
             <h2>Danger Zone</h2>
             <p>Deactivating your pharmacy listing stops new prescriptions from being routed to you until you reactivate. This does not affect orders already in progress.</p>
-            <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm">Deactivate pharmacy listing</button>
+            <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-deactivate-modal">Deactivate pharmacy listing</button>
           </section>
 
         </div>
@@ -164,7 +164,7 @@ $active = 'profile';
               <h2>Change Password</h2>
             </div>
 
-            <form class="mr-auth-form">
+            <form class="mr-auth-form" data-toast="Password updated.">
               <label class="mr-field">
                 <span>Current Password</span>
                 <div class="mr-field__input">
@@ -220,6 +220,34 @@ $active = 'profile';
       </div>
     </main>
   </div>
+
+  <div class="mr-modal" id="mr-deactivate-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Deactivate pharmacy listing?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">New prescriptions will skip your pharmacy and go to the next-closest one. Orders already in progress are not affected.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Listing deactivated — reactivate any time from Settings.">
+        <label class="mr-auth-terms">
+          <input type="checkbox" required>
+          <span>I understand new requests will stop reaching my pharmacy.</span>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Deactivate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>
 
   <script src="presentation/assets/js/main.js"></script>
 </body>

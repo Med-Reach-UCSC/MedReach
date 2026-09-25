@@ -93,17 +93,15 @@ $active = 'earnings';
             </div>
 
             <div class="mr-pagination">
-              <span class="mr-pagination__count">Showing 1 to 4 of 46 entries</span>
+              <span class="mr-pagination__count">Showing 1 to 4 of 4 entries</span>
               <nav class="mr-pagination__nav" aria-label="Ledger pages">
-                <a href="#" class="mr-pagination__btn" aria-disabled="true">
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
                   <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
-                </a>
-                <a href="#" class="mr-pagination__btn is-active">1</a>
-                <a href="#" class="mr-pagination__btn">2</a>
-                <a href="#" class="mr-pagination__btn">3</a>
-                <a href="#" class="mr-pagination__btn">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
-                </a>
+                </button>
+                <span class="mr-pagination__btn is-active" aria-current="page">1</span>
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
+                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                </button>
               </nav>
             </div>
           </section>
@@ -197,7 +195,7 @@ $active = 'earnings';
               </li>
             </ul>
 
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">View Full Policy</a>
+            <a href="policies.php#terms" class="mr-btn mr-btn--dark mr-btn--sm">View Full Policy</a>
           </section>
 
         </div>

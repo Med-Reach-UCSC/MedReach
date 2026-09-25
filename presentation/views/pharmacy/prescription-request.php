@@ -53,6 +53,7 @@ $active = 'requests';
               </span>
               <div class="mr-resp-rx__body">
                 <p class="mr-resp-rx__meta">Patient: Nimali Fernando · Dr. S. Weerasinghe · SLMC-4471</p>
+                <span class="mr-badge mr-badge--success mr-badge--case-normal">Rx valid until Mar 14, 2027</span>
               </div>
             </div>
           </section>
@@ -103,11 +104,17 @@ $active = 'requests';
                 <span class="mr-badge mr-badge--accent mr-badge--case-normal">Propose substitute</span>
               </summary>
 
-              <form class="mr-auth-form mr-auth-form--grid mr-order-row__form">
-                <label class="mr-field mr-field--span2">
-                  <span>Substitute Name</span>
+              <form class="mr-auth-form mr-auth-form--grid mr-order-row__form" data-toast="Suggestion sent — waiting for the patient's approval.">
+                <label class="mr-field">
+                  <span>Brand name</span>
                   <div class="mr-field__input">
-                    <input type="text" placeholder="e.g. Enalapril 5mg">
+                    <input type="text" placeholder="e.g. Renitec 5mg" required>
+                  </div>
+                </label>
+                <label class="mr-field">
+                  <span>Related medicine</span>
+                  <div class="mr-field__input">
+                    <input type="text" placeholder="e.g. Enalapril 5mg" required>
                   </div>
                 </label>
                 <label class="mr-field">
@@ -126,6 +133,10 @@ $active = 'requests';
                     <span class="mr-price-field__prefix">LKR</span>
                     <input type="text" inputmode="decimal" placeholder="0.00">
                   </div>
+                </label>
+                <label class="mr-field mr-field--span2">
+                  <span>Pharmacist note</span>
+                  <textarea rows="2" placeholder="Why this is a suitable alternative..."></textarea>
                 </label>
                 <div class="mr-field--span2">
                   <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Send suggestion</button>
@@ -192,8 +203,42 @@ $active = 'requests';
       Secure Healthcare Environment
     </span>
     <div class="mr-decision-bar__actions">
-      <button type="button" class="mr-btn mr-btn--ghost">Decline Request</button>
-      <button type="button" class="mr-btn mr-btn--dark">Accept Request</button>
+      <button type="button" class="mr-btn mr-btn--ghost" data-modal-open="mr-decline-modal">Decline Request</button>
+      <a class="mr-btn mr-btn--dark" href="orders.php">Accept Request</a>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-decline-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Decline request</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The prescription will be forwarded to the next-closest registered pharmacy straight away.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Declined — forwarded to the next-closest pharmacy.">
+        <label class="mr-field">
+          <span>Reason</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option>Can't fill one or more items</option>
+              <option>Prescription unclear or incomplete</option>
+              <option>Prescription expired</option>
+              <option>Too busy to meet the time window</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Decline &amp; forward</button>
+        </div>
+      </form>
     </div>
   </div>
 
