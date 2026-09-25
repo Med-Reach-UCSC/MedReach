@@ -102,17 +102,15 @@ $active = 'earnings';
             </div>
 
             <div class="mr-pagination">
-              <span class="mr-pagination__count">Showing 1 to 4 of 28 entries</span>
+              <span class="mr-pagination__count">Showing 1 to 4 of 4 entries</span>
               <nav class="mr-pagination__nav" aria-label="Ledger pages">
-                <a href="#" class="mr-pagination__btn" aria-disabled="true">
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
                   <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
-                </a>
-                <a href="#" class="mr-pagination__btn is-active">1</a>
-                <a href="#" class="mr-pagination__btn">2</a>
-                <a href="#" class="mr-pagination__btn">3</a>
-                <a href="#" class="mr-pagination__btn">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
-                </a>
+                </button>
+                <span class="mr-pagination__btn is-active" aria-current="page">1</span>
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
+                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                </button>
               </nav>
             </div>
           </section>
@@ -157,7 +155,7 @@ $active = 'earnings';
               <strong>LKR 3,400</strong>
             </div>
 
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">Cash out summary</a>
+            <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-modal-open="mr-cashout-modal">Cash out summary</button>
           </section>
 
           <section class="mr-card mr-med-stats">
@@ -210,6 +208,30 @@ $active = 'earnings';
         </div>
       </div>
     </main>
+  </div>
+
+  <div class="mr-modal" id="mr-cashout-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Cash out summary</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">Cash collected on delivery is handed over to each pharmacy at the end of your shift. Your delivery fees are settled weekly.</p>
+
+      <dl class="mr-modal__list">
+        <div><dt>Cash collected this week</dt><dd>LKR 38,400</dd></div>
+        <div><dt>Handed over to pharmacies</dt><dd>LKR 38,400</dd></div>
+        <div class="mr-modal__list-total"><dt>Your delivery fees</dt><dd>LKR 11,600</dd></div>
+      </dl>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close>Close</button>
+      </div>
+    </div>
   </div>
 
   <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>

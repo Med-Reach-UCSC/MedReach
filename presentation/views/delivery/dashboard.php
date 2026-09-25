@@ -34,7 +34,7 @@ $active = 'dashboard';
             </div>
           </div>
 
-          <label class="mr-switch" title="Available for deliveries" data-duty-toggle>
+          <label class="mr-switch" title="Available for deliveries" data-duty-toggle data-on-text="You're available — new delivery requests will reach you." data-off-text="Off duty — you won't receive new delivery requests.">
             <input type="checkbox" aria-label="Available for deliveries" checked>
             <span class="mr-switch__track"></span>
           </label>
@@ -80,6 +80,36 @@ $active = 'dashboard';
 
       <div class="mr-dash-content">
         <div class="mr-dash-col">
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>Delivery requests</h2>
+              <span class="mr-badge mr-badge--accent" data-request-count>1 new</span>
+            </div>
+
+            <div data-request-list>
+              <div class="mr-card mr-request-card">
+                <div class="mr-request-card__head">
+                  <span class="mr-icon-badge mr-icon-badge--accent">
+                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/delivery.png" alt="">
+                  </span>
+                  <div>
+                    <span class="mr-eyebrow mr-eyebrow--accent">#ORD-9947 &middot; 3.2 km</span>
+                    <h4>CityHealth Pharmacy &rarr; Nugegoda</h4>
+                  </div>
+                </div>
+                <p class="mr-eyebrow mr-eyebrow--mono">Pickup ready &middot; Collect LKR 2,150 cash</p>
+                <div class="mr-request-card__actions">
+                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the task will be reassigned to another courier.">Decline</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — #ORD-9947 added to your manifest.">Accept</button>
+                </div>
+              </div>
+            </div>
+
+            <p class="mr-resp-grid__empty" data-request-empty hidden style="text-align: center; margin-top: 1rem;">
+              No new delivery requests.
+            </p>
+          </section>
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
