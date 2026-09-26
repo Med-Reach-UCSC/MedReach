@@ -74,3 +74,38 @@ CREATE TABLE SUPPORT_TICKET (
   resolved_at DATETIME NULL,
   FOREIGN KEY (user_id) REFERENCES `USER` (user_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE PRESCRIPTION (
+  prescription_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  patient_id      INT UNSIGNED NOT NULL,
+  image_path      VARCHAR(255) NOT NULL,
+  note            VARCHAR(500) NULL,
+  status          ENUM('pending', 'cancelled') NOT NULL DEFAULT 'pending',
+  created_at      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (patient_id) REFERENCES PATIENT (patient_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE BROADCAST (
+  broadcast_id    INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  prescription_id INT UNSIGNED NOT NULL,
+  pharmacy_id     INT UNSIGNED NOT NULL,
+  quoted_items    TEXT NOT NULL,
+  quoted_total    DECIMAL(10,2) NOT NULL,
+  status          ENUM('quoted', 'withdrawn') NOT NULL DEFAULT 'quoted',
+  responded_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE (prescription_id, pharmacy_id),
+  FOREIGN KEY (prescription_id) REFERENCES PRESCRIPTION (prescription_id) ON DELETE CASCADE,
+  FOREIGN KEY (pharmacy_id) REFERENCES PHARMACY (pharmacy_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE DELIVERY (
+  delivery_id        INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  pharmacy_id        INT UNSIGNED NOT NULL,
+  delivery_person_id INT UNSIGNED NULL,
+  dropoff_address    VARCHAR(255) NOT NULL,
+  cod_amount         DECIMAL(10,2) NOT NULL,
+  status             ENUM('available', 'assigned', 'picked_up', 'delivered') NOT NULL DEFAULT 'available',
+  created_at         DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (pharmacy_id) REFERENCES PHARMACY (pharmacy_id) ON DELETE CASCADE,
+  FOREIGN KEY (delivery_person_id) REFERENCES DELIVERY_PERSON (delivery_person_id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
