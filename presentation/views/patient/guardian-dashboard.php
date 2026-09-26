@@ -14,7 +14,7 @@ $active = 'family';
 
         <div class="mr-dash-header__actions">
           <label class="mr-roster-filter">
-            <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
             <select data-row-filter="mr-guardian-table" aria-label="Filter by patient">
               <option value="">All patients</option>
               <option value="amma">Amma</option>
@@ -24,7 +24,7 @@ $active = 'family';
           <a class="mr-btn mr-btn--dark mr-btn--sm" href="patient-order.php">New request</a>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -110,7 +110,7 @@ $active = 'family';
           <div class="mr-guardian-grid-2">
             <section class="mr-card mr-help-card mr-help-card--alert">
               <span class="mr-icon-badge mr-icon-badge--danger">
-                <img src="https://img.icons8.com/ios-filled/50/d6534a/error.png" alt="">
+                <img src="presentation/assets/images/icons/filled/d6534a/error.png" alt="">
               </span>
               <div>
                 <strong>Action required</strong>
@@ -124,7 +124,7 @@ $active = 'family';
               <div style="display: flex; align-items: flex-end; gap: 0.75rem; margin-top: 0.5rem;">
                 <strong class="mr-dash-stat__value mr-dash-stat__value--active" style="font-size: 1.75rem;">98%</strong>
                 <span class="mr-badge mr-badge--success mr-badge--case-normal">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/positive-dynamic.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/positive-dynamic.png" alt="">
                   +2%
                 </span>
               </div>

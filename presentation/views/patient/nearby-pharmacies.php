@@ -12,13 +12,13 @@ $active = 'pharmacies';
 
         <div class="mr-dash-header__actions">
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-            <img src="https://img.icons8.com/ios-filled/50/454655/marker.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/marker.png" alt="">
             Colombo 03
           </span>
           <span class="mr-badge mr-badge--primary mr-badge--case-normal">4 Nearby</span>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -28,7 +28,7 @@ $active = 'pharmacies';
         <div class="mr-dash-col mr-pharm-list-col">
           <div class="mr-pharm-toolbar">
             <label class="mr-pharm-search">
-              <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
               <input type="search" placeholder="Search pharmacies nearby..." aria-label="Search pharmacies">
             </label>
             <div class="mr-pharm-filters" role="group" aria-label="Filter pharmacies">
@@ -51,7 +51,7 @@ $active = 'pharmacies';
               <div class="mr-pharm-card__side">
                 <span class="mr-badge mr-badge--info mr-badge--case-normal">1.3 km</span>
                 <span class="mr-pharm-rating">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
                   4.8
                 </span>
                 <span class="mr-badge mr-badge--success mr-badge--case-normal">Open Now</span>
@@ -72,7 +72,7 @@ $active = 'pharmacies';
               <div class="mr-pharm-card__side">
                 <span class="mr-badge mr-badge--info mr-badge--case-normal">1.9 km</span>
                 <span class="mr-pharm-rating">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
                   4.5
                 </span>
                 <span class="mr-badge mr-badge--accent mr-badge--case-normal">Closing Soon</span>
@@ -93,7 +93,7 @@ $active = 'pharmacies';
               <div class="mr-pharm-card__side">
                 <span class="mr-badge mr-badge--info mr-badge--case-normal">4.0 km</span>
                 <span class="mr-pharm-rating">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
                   4.9
                 </span>
                 <span class="mr-badge mr-badge--success mr-badge--case-normal">Open Now</span>
@@ -114,7 +114,7 @@ $active = 'pharmacies';
               <div class="mr-pharm-card__side">
                 <span class="mr-badge mr-badge--info mr-badge--case-normal">5.0 km</span>
                 <span class="mr-pharm-rating">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
                   4.2
                 </span>
                 <span class="mr-badge mr-badge--danger mr-badge--case-normal">Closed</span>
@@ -130,7 +130,7 @@ $active = 'pharmacies';
         <div class="mr-dash-col mr-pharm-info">
 
           <button type="button" class="mr-pharm-info__close" aria-label="Close">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
           </button>
 
           <section class="mr-card mr-dash-card mr-pharm-detail">
@@ -138,7 +138,7 @@ $active = 'pharmacies';
               <h2 class="mr-pharm-detail__name">Osu Sala</h2>
             </div>
             <p class="mr-resp-meta mr-pharm-detail__addr">
-              <img src="https://img.icons8.com/ios-filled/50/454655/marker.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/marker.png" alt="">
               123 Galle Rd, Colombo 03
             </p>
 
@@ -151,7 +151,7 @@ $active = 'pharmacies';
 
             <a href="patient-order.php" class="mr-btn mr-btn--dark mr-btn--block">
               Start an order
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/paper-plane.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/paper-plane.png" alt="">
             </a>
           </section>
 
@@ -161,7 +161,7 @@ $active = 'pharmacies';
               <strong>11 min</strong>
             </div>
             <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/clock.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/clock.png" alt="">
             </span>
           </section>
 

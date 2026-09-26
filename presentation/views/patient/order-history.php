@@ -23,7 +23,7 @@ $active = 'orders';
           </div>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -34,7 +34,7 @@ $active = 'orders';
 
           <div class="mr-history-toolbar">
             <label class="mr-pharm-search">
-              <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
               <input type="search" placeholder="Search orders..." aria-label="Search orders">
             </label>
             <div class="mr-history-filters" role="group" aria-label="Filter orders by status">
@@ -45,6 +45,22 @@ $active = 'orders';
           </div>
 
           <div class="mr-history-list">
+
+            <article class="mr-card mr-order mr-history-card" data-status="processing" data-name="ORD-8925 MediCare Plus">
+              <div class="mr-order__head">
+                <div class="mr-order__id">
+                  <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8925</span>
+                  <div>
+                    <strong>MediCare Plus</strong>
+                    <span class="mr-eyebrow">Today &bull; 2 items</span>
+                  </div>
+                </div>
+                <div class="mr-order__tags">
+                  <span class="mr-badge mr-badge--accent mr-badge--case-normal">Awaiting pharmacy</span>
+                  <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-cancel-order-modal" data-subject="#ORD-8925">Cancel order</button>
+                </div>
+              </div>
+            </article>
 
             <article class="mr-card mr-order mr-history-card is-open" data-status="delivered" data-name="ORD-7392 CityHealth Pharmacy">
               <button type="button" class="mr-order__head mr-history-card__toggle">
@@ -59,7 +75,7 @@ $active = 'orders';
                   <strong class="mr-history-card__price">LKR 4,520.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/expand-arrow.png" alt="">
                   </span>
                 </span>
               </button>
@@ -94,19 +110,19 @@ $active = 'orders';
                   <h3>Rate this pharmacy</h3>
                   <div class="mr-star-rating" data-rating="0">
                     <button type="button" class="mr-star-rating__btn" data-value="1" aria-label="1 star">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="2" aria-label="2 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="3" aria-label="3 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="4" aria-label="4 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="5" aria-label="5 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                   </div>
                   <label class="mr-field">
@@ -130,7 +146,7 @@ $active = 'orders';
                   <strong class="mr-history-card__price">LKR 11,250.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/expand-arrow.png" alt="">
                   </span>
                 </span>
               </button>
@@ -160,19 +176,19 @@ $active = 'orders';
                   <h3>Rate this pharmacy</h3>
                   <div class="mr-star-rating" data-rating="0">
                     <button type="button" class="mr-star-rating__btn" data-value="1" aria-label="1 star">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="2" aria-label="2 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="3" aria-label="3 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="4" aria-label="4 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="5" aria-label="5 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                   </div>
                   <label class="mr-field">
@@ -237,7 +253,7 @@ $active = 'orders';
 
           <div class="mr-dropzone mr-history-empty" hidden>
             <span class="mr-icon-badge mr-icon-badge--white mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/5c5e67/box.png" alt="">
+              <img src="presentation/assets/images/icons/filled/5c5e67/box.png" alt="">
             </span>
             <h3>No orders yet</h3>
             <p>When you place an order with a pharmacy, it will appear here.</p>
@@ -249,13 +265,47 @@ $active = 'orders';
     </main>
   </div>
 
+  <div class="mr-modal" id="mr-cancel-order-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Cancel <span data-subject-slot="order"></span>?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">You can cancel until a pharmacy starts preparing it. Your prescription stays on file for a new order.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Order cancelled — the pharmacy has been notified.">
+        <label class="mr-field">
+          <span>Reason</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option>No longer needed</option>
+              <option>Wrong prescription uploaded</option>
+              <option>Taking too long</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Keep order</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Cancel order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="mr-modal" id="mr-invoice-modal">
     <div class="mr-modal__backdrop" data-modal-close></div>
     <div class="mr-modal__card mr-card">
       <div class="mr-modal__head">
         <h2>Invoice <span data-subject-slot="order"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -274,7 +324,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Reorder <span data-subject-slot="order"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -293,7 +343,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Prescription expired</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

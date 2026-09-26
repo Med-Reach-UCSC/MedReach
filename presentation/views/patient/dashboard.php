@@ -26,7 +26,7 @@ $active = 'dashboard';
           </div>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -45,7 +45,7 @@ $active = 'dashboard';
               <div class="mr-order__head">
                 <div class="mr-order__id">
                   <span class="mr-icon-badge mr-icon-badge--info">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/pill.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/pill.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8924</span>
@@ -68,7 +68,7 @@ $active = 'dashboard';
 
             <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clipboard.png" alt="">
+                <img src="presentation/assets/images/icons/filled/dd8e1c/clipboard.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8925</span>
@@ -79,7 +79,7 @@ $active = 'dashboard';
 
             <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/broadcasting.png" alt="">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/broadcasting.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8926</span>
@@ -112,7 +112,7 @@ $active = 'dashboard';
             <ul class="mr-activity">
               <li>
                 <span class="mr-icon-badge mr-icon-badge--success">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
                 </span>
                 <span class="mr-activity__info">
                   <span>Order #ORD-8890 delivered</span>
@@ -121,7 +121,7 @@ $active = 'dashboard';
               </li>
               <li>
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/0a7fb5/upload.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/0a7fb5/upload.png" alt="">
                 </span>
                 <span class="mr-activity__info">
                   <span>New Rx uploaded by Dr. Smith</span>
@@ -137,7 +137,7 @@ $active = 'dashboard';
 
           <section class="mr-card mr-upload-card">
             <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/clipboard.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/clipboard.png" alt="">
             </span>
             <h2>New Prescription?</h2>
             <p>Snap a photo or upload a file to get started.</p>
@@ -173,7 +173,7 @@ $active = 'dashboard';
 
           <section class="mr-card mr-help-card">
             <span class="mr-icon-badge mr-icon-badge--info">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/help.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/help.png" alt="">
             </span>
             <div>
               <strong>Need help?</strong>
