@@ -1,31 +1,22 @@
 <?php
-// MedReach - Pharmacist single-request review (presentation tier: HTML output only)
+$title = 'Request RQ-2318 — MedReach';
+$bodyClass = 'mr-page-request';
 $active = 'requests';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Request RQ-2318 — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-request">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-pharmacy.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
-          <a class="mr-link mr-link--sm" href="pharmacy-dashboard.php">&larr; Back to requests</a>
+          <a class="mr-link mr-link--sm" href="orders.php">&larr; Back to orders</a>
           <h1>Request RQ-2318</h1>
         </div>
 
         <div class="mr-dash-header__actions">
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
             <img src="https://img.icons8.com/ios-filled/50/454655/user.png" alt="">
-            Eleanor Vance
+            Nimali Fernando
           </span>
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
             <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clock.png" alt="">
@@ -52,7 +43,8 @@ $active = 'requests';
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
               </span>
               <div class="mr-resp-rx__body">
-                <p class="mr-resp-rx__meta">Patient: Eleanor Vance · Dr. S. Weerasinghe · GMC-4471</p>
+                <p class="mr-resp-rx__meta">Patient: Nimali Fernando · Dr. S. Weerasinghe · SLMC-4471</p>
+                <span class="mr-badge mr-badge--success mr-badge--case-normal">Rx valid until Mar 14, 2027</span>
               </div>
             </div>
           </section>
@@ -85,7 +77,6 @@ $active = 'requests';
                 <strong>Amoxicillin 500mg</strong>
                 <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
               </div>
-              <span class="mr-badge mr-badge--success mr-badge--case-normal">In Stock</span>
               <label class="mr-price-field">
                 <span class="mr-price-field__prefix">LKR</span>
                 <input type="text" inputmode="decimal" placeholder="0.00" value="850.00" aria-label="Price for Amoxicillin 500mg">
@@ -101,14 +92,20 @@ $active = 'requests';
                   <strong>Lisinopril 10mg</strong>
                   <span class="mr-eyebrow mr-eyebrow--mono">Qty: 90</span>
                 </div>
-                <span class="mr-badge mr-badge--danger mr-badge--case-normal">Out of Stock</span>
+                <span class="mr-badge mr-badge--accent mr-badge--case-normal">Propose substitute</span>
               </summary>
 
-              <form class="mr-auth-form mr-auth-form--grid mr-order-row__form">
-                <label class="mr-field mr-field--span2">
-                  <span>Substitute Name</span>
+              <form class="mr-auth-form mr-auth-form--grid mr-order-row__form" data-toast="Suggestion sent — waiting for the patient's approval.">
+                <label class="mr-field">
+                  <span>Brand name</span>
                   <div class="mr-field__input">
-                    <input type="text" placeholder="e.g. Enalapril 5mg">
+                    <input type="text" placeholder="e.g. Renitec 5mg" required>
+                  </div>
+                </label>
+                <label class="mr-field">
+                  <span>Related medicine</span>
+                  <div class="mr-field__input">
+                    <input type="text" placeholder="e.g. Enalapril 5mg" required>
                   </div>
                 </label>
                 <label class="mr-field">
@@ -128,6 +125,10 @@ $active = 'requests';
                     <input type="text" inputmode="decimal" placeholder="0.00">
                   </div>
                 </label>
+                <label class="mr-field mr-field--span2">
+                  <span>Pharmacist note</span>
+                  <textarea rows="2" placeholder="Why this is a suitable alternative..."></textarea>
+                </label>
                 <div class="mr-field--span2">
                   <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Send suggestion</button>
                 </div>
@@ -142,7 +143,6 @@ $active = 'requests';
                 <strong>Atorvastatin 20mg</strong>
                 <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
               </div>
-              <span class="mr-badge mr-badge--success mr-badge--case-normal">In Stock</span>
               <label class="mr-price-field">
                 <span class="mr-price-field__prefix">LKR</span>
                 <input type="text" inputmode="decimal" placeholder="0.00" value="1,200.00" aria-label="Price for Atorvastatin 20mg">
@@ -194,11 +194,41 @@ $active = 'requests';
       Secure Healthcare Environment
     </span>
     <div class="mr-decision-bar__actions">
-      <button type="button" class="mr-btn mr-btn--ghost">Decline Request</button>
-      <button type="button" class="mr-btn mr-btn--dark">Accept Request</button>
+      <button type="button" class="mr-btn mr-btn--ghost" data-modal-open="mr-decline-modal">Decline Request</button>
+      <a class="mr-btn mr-btn--dark" href="orders.php">Accept Request</a>
     </div>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <div class="mr-modal" id="mr-decline-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Decline request</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The prescription will be forwarded to the next-closest registered pharmacy straight away.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Declined — forwarded to the next-closest pharmacy.">
+        <label class="mr-field">
+          <span>Reason</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option>Can't fill one or more items</option>
+              <option>Prescription unclear or incomplete</option>
+              <option>Prescription expired</option>
+              <option>Too busy to meet the time window</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Decline &amp; forward</button>
+        </div>
+      </form>
+    </div>
+  </div>

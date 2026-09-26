@@ -1,19 +1,10 @@
 <?php
-// MedReach - Pharmacy profile & settings (presentation tier: HTML output only)
+$title = 'Settings — MedReach';
+$bodyClass = 'mr-page-profile';
 $active = 'profile';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Settings — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-profile">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-pharmacy.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -33,11 +24,6 @@ $active = 'profile';
               <span>Fulfillment</span>
             </div>
           </div>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 
@@ -49,17 +35,17 @@ $active = 'profile';
               <div class="mr-profile-card__identity">
                 <span class="mr-avatar mr-avatar--profile">H</span>
                 <div>
-                  <h2>Dr. Hayes</h2>
-                  <span class="mr-eyebrow">Pharmacist-in-charge &middot; Oakwood City Pharmacy</span>
+                  <h2>Dr. Herath</h2>
+                  <span class="mr-eyebrow">Pharmacist-in-charge &middot; Kollupitiya City Pharmacy</span>
                 </div>
               </div>
             </div>
 
-            <form class="mr-auth-form mr-auth-form--grid">
+            <form class="mr-auth-form mr-auth-form--grid" data-toast="Pharmacy details saved.">
               <label class="mr-field">
                 <span>Pharmacy Name</span>
                 <div class="mr-field__input">
-                  <input type="text" value="Oakwood City Pharmacy">
+                  <input type="text" value="Kollupitiya City Pharmacy">
                 </div>
               </label>
               <label class="mr-field">
@@ -72,7 +58,7 @@ $active = 'profile';
               <label class="mr-field mr-field--span2">
                 <span>Primary Address</span>
                 <div class="mr-field__input">
-                  <input type="text" value="1428 Elm Street, Medical District, Colombo 03">
+                  <input type="text" value="142 Galle Road, Kollupitiya, Colombo 03">
                 </div>
               </label>
               <label class="mr-field">
@@ -86,7 +72,7 @@ $active = 'profile';
                 <span>Email Address</span>
                 <div class="mr-field__input">
                   <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/mail.png" alt="">
-                  <input type="email" value="contact@oakwoodpharmacy.lk">
+                  <input type="email" value="contact@kollupitiyapharmacy.lk">
                 </div>
               </label>
               <label class="mr-field">
@@ -116,15 +102,15 @@ $active = 'profile';
                 </span>
                 <h2>Need assistance with MedReach?</h2>
               </div>
-              <p>Our support team is available to help you with delivery workflows, substitution approvals, and payout questions.</p>
+              <p>Our support team is available to help you with delivery workflows, substitution approvals, and cash settlement questions.</p>
             </div>
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">Contact Support</a>
+            <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-modal-open="mr-support-modal">Contact Support</button>
           </section>
 
           <section class="mr-card mr-dash-card mr-danger-card">
             <h2>Danger Zone</h2>
             <p>Deactivating your pharmacy listing stops new prescriptions from being routed to you until you reactivate. This does not affect orders already in progress.</p>
-            <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm">Deactivate pharmacy listing</button>
+            <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-deactivate-modal">Deactivate pharmacy listing</button>
           </section>
 
         </div>
@@ -139,21 +125,21 @@ $active = 'profile';
             <div class="mr-pharmacy-row">
               <strong>Order Alerts</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Order Alerts" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
-              <strong>Stock Updates</strong>
+              <strong>Substitution Responses</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Substitution Responses" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Delivery Exceptions</strong>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Delivery Exceptions">
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -164,7 +150,7 @@ $active = 'profile';
               <h2>Change Password</h2>
             </div>
 
-            <form class="mr-auth-form">
+            <form class="mr-auth-form" data-toast="Password updated.">
               <label class="mr-field">
                 <span>Current Password</span>
                 <div class="mr-field__input">
@@ -221,6 +207,30 @@ $active = 'profile';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <div class="mr-modal" id="mr-deactivate-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Deactivate pharmacy listing?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">New prescriptions will skip your pharmacy and go to the next-closest one. Orders already in progress are not affected.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Listing deactivated — reactivate any time from Settings.">
+        <label class="mr-auth-terms">
+          <input type="checkbox" required>
+          <span>I understand new requests will stop reaching my pharmacy.</span>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Deactivate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>

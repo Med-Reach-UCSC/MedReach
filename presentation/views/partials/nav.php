@@ -1,14 +1,11 @@
-<?php
-// MedReach - Shared site navigation (presentation tier: HTML output only)
-?>
 <div class="mr-nav">
   <a class="mr-nav__logo" href="index.php">
     <img src="presentation/assets/images/logo.png" alt="MedReach Logo"/>
   </a>
 
   <button type="button" class="mr-nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-nav-menu">
-    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
-    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--close" src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--open" src="presentation/assets/images/icons/filled/1a1b24/menu.png" alt="">
+    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--close" src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
   </button>
 
   <div class="mr-nav__menu" id="mr-nav-menu">
@@ -21,7 +18,7 @@
     </nav>
     <div class="mr-nav__actions">
       <a class="mr-link" href="sign-in.php">Login</a>
-      <button type="button" class="mr-btn mr-btn--dark mr-btn--sm">Sign Up</button>
+      <a class="mr-btn mr-btn--dark mr-btn--sm" href="sign-up.php">Sign Up</a>
     </div>
   </div>
 </div>

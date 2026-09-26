@@ -74,19 +74,24 @@ MedReach/
 │   │   ├── js/                   # main.js
 │   │   └── images/
 │   └── views/                    # UI files only — no SQL, no business logic
+│       ├── layout.php            # Shared <head>, <body> and scripts
+│       ├── partials/             # nav, sidebar, modals, auth pieces
 │       ├── patient/
 │       ├── pharmacy/
 │       ├── delivery/
 │       └── admin/
 │
 ├── business/                     # Tier 2 — Business Logic Layer
+│   ├── auth/                     # Sign in / sign up / email codes
 │   ├── patient/
 │   ├── pharmacy/
 │   ├── delivery/
 │   └── admin/
 │
 ├── core/                         # Tier 2 — cross-cutting logic (shared)
-│   ├── Router.php                # Request routing
+│   ├── Router.php                # Request routing (MR_ROUTES)
+│   ├── Auth.php                  # Session, CSRF and role guards
+│   ├── Mailer.php                # Outgoing email
 │   ├── BroadcastManager.php      # Proximity-priority broadcast + timed forwarding
 │   └── SubstitutionHandler.php   # Medicine substitution approvals
 │
@@ -97,7 +102,7 @@ MedReach/
 │   └── admin/
 │
 ├── config/
-│   └── db.php.example            # Copy to db.php (git-ignored) with real creds
+│   └── database.php            # Reads secrets from .env (git-ignored)
 │
 ├── database/
 │   ├── medreach.sql              # Schema
@@ -116,6 +121,17 @@ MedReach/
   multiple modules. Sits in Tier 2.
 - **`data/`** — only database queries. No HTML output, no business decisions.
 
+### Adding a page
+
+1. Create the view in `presentation/views/<role>/`. Start it with
+   `<?php $title = 'Page — MedReach'; $active = '<sidebar key>'; ?>` and
+   write only what goes inside `<body>`. Add `$bodyClass` or
+   `$charts = true` when needed.
+2. Add one line to `MR_ROUTES` in `core/Router.php`:
+   `'page-name' => ['<role>', '<role>/<view>']`. The URL is `page-name.php`.
+3. If the page handles a form, add a function in `business/<role>/` that
+   returns the flash message and name it as the third route value.
+
 ---
 
 ## Tech Stack
@@ -128,13 +144,23 @@ MedReach/
 | Dev Tools     | GitHub, VS Code / PhpStorm, XAMPP / WAMP |
 | Collaboration | Google Meet, Google Docs, ClickUp, Google Drive |
 
-### External APIs & Libraries (pending supervisor approval)
+### External APIs & Libraries
 
+Approved:
+
+- **Chart.js** — dashboard analytics (bundled in `presentation/assets/js/vendor/`)
+
+Pending supervisor approval:
+
+- **Resend** — sign-up and password-reset emails. Leave `RESEND_API_KEY` empty
+  until approved; codes are then written to the PHP error log instead of sent.
 - **OpenStreetMap + Leaflet.js** — pharmacy location maps
 - **Firebase Cloud Messaging** — push notifications
 - **Cloudinary** — prescription image storage
-- **Chart.js** — admin dashboard analytics
 - **jsPDF** — order record export
+
+Icons are from [Icons8](https://icons8.com) and stored locally in
+`presentation/assets/images/icons/`.
 
 ---
 
@@ -189,10 +215,10 @@ Do **not** commit directly to `main`.
 
 3. Configure database credentials:
    ```bash
-   cp config/db.php.example config/db.php
-   # edit config/db.php with your local MySQL credentials
+   cp .env.example .env
+   # edit .env with your local MySQL credentials
    ```
-   `config/db.php` is git-ignored and must never be committed.
+   `.env` is git-ignored and must never be committed.
 
 4. Serve the project with your local PHP + MySQL stack (XAMPP / WAMP, or a
    native LAMP setup) and open `index.php` in the browser.

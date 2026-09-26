@@ -1,19 +1,10 @@
 <?php
-// MedReach - Pharmacist dashboard (presentation tier: HTML output only)
+$title = 'Pharmacist Dashboard — MedReach';
+$charts = true;
 $active = 'dashboard';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pharmacist Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-pharmacy.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -34,15 +25,10 @@ $active = 'dashboard';
             </div>
           </div>
 
-          <label class="mr-switch" title="Accepting orders" data-duty-toggle>
-            <input type="checkbox" checked>
+          <label class="mr-switch" title="Accepting orders" data-duty-toggle data-on-text="You're accepting new prescription requests." data-off-text="Paused — new requests skip your pharmacy until you switch back on.">
+            <input type="checkbox" aria-label="Accepting orders" checked>
             <span class="mr-switch__track"></span>
           </label>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 
@@ -62,14 +48,14 @@ $active = 'dashboard';
                     <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
                   </span>
                   <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.2 mi</span>
+                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.9 km</span>
                     <h4><a href="prescription-request.php">Amoxicillin 500mg &times; 30</a></h4>
                   </div>
                 </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">Eleanor Vance &middot; 124 Maple Street, Apt 4B</p>
+                <p class="mr-eyebrow mr-eyebrow--mono">Nimali Fernando &middot; 124 Havelock Rd, Colombo 05</p>
                 <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept">Accept</button>
+                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — the patient has been notified.">Accept</button>
                 </div>
               </div>
 
@@ -79,14 +65,14 @@ $active = 'dashboard';
                     <img src="https://img.icons8.com/ios-filled/50/d6534a/pill.png" alt="">
                   </span>
                   <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 3.4 mi</span>
-                    <h4>Lisinopril 10mg &times; 90</h4>
+                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 5.5 km</span>
+                    <h4><a href="prescription-request.php">Lisinopril 10mg &times; 90</a></h4>
                   </div>
                 </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">David Miller &middot; 890 Oak Lane, North Clinic</p>
+                <p class="mr-eyebrow mr-eyebrow--mono">Kasun Jayasinghe &middot; 45 Temple Rd, Nugegoda</p>
                 <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept">Accept</button>
+                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — the patient has been notified.">Accept</button>
                 </div>
               </div>
             </div>
@@ -110,11 +96,11 @@ $active = 'dashboard';
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9921</span>
-                    <strong>Albuterol Inhaler &times;2</strong>
+                    <strong>Salbutamol Inhaler &times;2</strong>
                   </div>
                 </div>
                 <div class="mr-order__tags">
-                  <span class="mr-badge mr-badge--info">450 West Ave</span>
+                  <span class="mr-badge mr-badge--info">45 Baseline Rd</span>
                   <span class="mr-badge mr-badge--pill mr-badge--case-normal">ETA 15 min</span>
                 </div>
               </div>
@@ -138,7 +124,7 @@ $active = 'dashboard';
                   </div>
                 </div>
                 <div class="mr-order__tags">
-                  <span class="mr-badge mr-badge--pill">Main Campus</span>
+                  <span class="mr-badge mr-badge--pill mr-badge--case-normal">Self-pickup</span>
                   <span class="mr-badge mr-badge--accent mr-badge--case-normal">Preparing</span>
                 </div>
               </div>
@@ -158,7 +144,7 @@ $active = 'dashboard';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Today's earnings</h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">Rs. 34,250.00</span>
+              <span class="mr-eyebrow mr-eyebrow--mono">LKR 26,500.00</span>
             </div>
             <canvas id="mr-earnings-chart" height="180" role="img" aria-label="Hourly earnings for today"></canvas>
           </section>
@@ -200,8 +186,3 @@ $active = 'dashboard';
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient finalize-order / checkout page (presentation tier: HTML output only)
+$title = 'Finalize Order — MedReach';
+$bodyClass = 'mr-page-finalize';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Finalize Order — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-finalize">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -23,7 +14,7 @@ $active = 'orders';
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">Prescription RX-1042</span>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -35,7 +26,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
                 Fulfillment Method
               </h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">2 Items · Split Order</span>
@@ -43,7 +34,7 @@ $active = 'orders';
 
             <div class="mr-confirm-methods" data-fulfillment>
               <div class="mr-confirm-method is-selected" data-method="courier" data-fee="300" tabindex="0" role="button" aria-pressed="true">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
+                <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
                 <div>
                   <strong>Courier Delivery</strong>
                   <small>ETA: 45–60 mins · 124 Maple Rd, Colombo 05</small>
@@ -51,7 +42,7 @@ $active = 'orders';
                 </div>
               </div>
               <div class="mr-confirm-method" data-method="pickup" data-fee="0" tabindex="0" role="button" aria-pressed="false">
-                <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
                 <div>
                   <strong>Pharmacy Pickup</strong>
                   <small>Ready in 15–30 mins</small>
@@ -80,7 +71,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/pill.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/pill.png" alt="">
                 Order Summary
               </h2>
               <span class="mr-eyebrow mr-eyebrow--mono">2 Items</span>
@@ -89,7 +80,7 @@ $active = 'orders';
             <div class="mr-order-lines">
               <div class="mr-order-lines__items">
                 <div class="mr-order-lines__row">
-                  <span>Lisinopril 10mg <small>CVS Health · Qty 30</small></span>
+                  <span>Lisinopril 10mg <small>Healthguard Pharmacy · Qty 30</small></span>
                   <i class="mr-order-lines__rule"></i>
                   <strong>LKR 1,450.00</strong>
                 </div>
@@ -129,13 +120,13 @@ $active = 'orders';
 
           <section class="mr-card mr-help-card">
             <span class="mr-icon-badge mr-icon-badge--info">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/help.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/help.png" alt="">
             </span>
             <div>
               <strong>Need assistance?</strong>
               <p>Contact support about this order.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
@@ -143,6 +134,4 @@ $active = 'orders';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>

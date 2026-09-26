@@ -1,38 +1,30 @@
 <?php
-// MedReach - Guardian control tower dashboard (presentation tier: HTML output only)
-// Guardian is a Patient with is_guardian = true, not a separate role — reuses the
-// same sidebar/dashboard shell as presentation/views/patient/dashboard.php.
+$title = 'Family Dashboard — MedReach';
 $active = 'family';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Family Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
-          <h1>Good morning, Sanduni</h1>
-          <p class="mr-eyebrow">Family health control tower active</p>
+          <h1>Good morning, Nimal</h1>
+          <p class="mr-eyebrow">Managing 2 family members</p>
         </div>
 
         <div class="mr-dash-header__actions">
-          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm">
-            <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
-            Filter view
-          </button>
-          <button type="button" class="mr-btn mr-btn--dark mr-btn--sm">New request</button>
+          <label class="mr-roster-filter">
+            <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
+            <select data-row-filter="mr-guardian-table" aria-label="Filter by patient">
+              <option value="">All patients</option>
+              <option value="amma">Amma</option>
+              <option value="seeya">Seeya</option>
+            </select>
+          </label>
+          <a class="mr-btn mr-btn--dark mr-btn--sm" href="patient-order.php">New request</a>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -44,11 +36,11 @@ $active = 'family';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Active logistics</h2>
-              <span class="mr-badge mr-badge--info">4 in transit</span>
+              <span class="mr-badge mr-badge--info">3 active</span>
             </div>
 
             <div class="mr-pay-table-wrap">
-              <table class="mr-pay-table">
+              <table class="mr-pay-table" id="mr-guardian-table">
                 <thead>
                   <tr>
                     <th>Patient</th>
@@ -58,14 +50,14 @@ $active = 'family';
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr data-filter-value="amma">
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <span class="mr-avatar">AP</span>
-                        <strong>Arthur Pendelton</strong>
+                        <span class="mr-avatar">A</span>
+                        <strong>Amma</strong>
                       </div>
                     </td>
-                    <td class="mr-eyebrow mr-eyebrow--mono">TRK-892A</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono"><a class="mr-link" href="track-order-status.php">TRK-892A</a></td>
                     <td>
                       Lisinopril 10mg<br>
                       <span class="mr-eyebrow">90-day supply</span>
@@ -74,33 +66,33 @@ $active = 'family';
                       <span class="mr-badge mr-badge--accent mr-badge--case-normal">Out for delivery</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="seeya">
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <span class="mr-avatar">MS</span>
-                        <strong>Maya Silva</strong>
+                        <span class="mr-avatar">S</span>
+                        <strong>Seeya</strong>
                       </div>
                     </td>
-                    <td class="mr-eyebrow mr-eyebrow--mono">TRK-441B</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono"><a class="mr-link" href="track-order-status.php">TRK-441B</a></td>
                     <td>
-                      Albuterol Inhaler<br>
+                      Salbutamol Inhaler<br>
                       <span class="mr-eyebrow">Refill 2 of 3</span>
                     </td>
                     <td class="mr-pay-table__amount">
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Arriving today</span>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-filter-value="amma">
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <span class="mr-avatar">AP</span>
-                        <strong>Arthur Pendelton</strong>
+                        <span class="mr-avatar">A</span>
+                        <strong>Amma</strong>
                       </div>
                     </td>
-                    <td class="mr-eyebrow mr-eyebrow--mono">PKG-112C</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono"><a class="mr-link" href="track-order-status.php">TRK-112C</a></td>
                     <td>
                       Atorvastatin 20mg<br>
-                      <span class="mr-eyebrow">Standard shipping</span>
+                      <span class="mr-eyebrow">Awaiting pharmacy</span>
                     </td>
                     <td class="mr-pay-table__amount">
                       <span class="mr-badge mr-badge--pill mr-badge--case-normal">Processing</span>
@@ -118,12 +110,12 @@ $active = 'family';
           <div class="mr-guardian-grid-2">
             <section class="mr-card mr-help-card mr-help-card--alert">
               <span class="mr-icon-badge mr-icon-badge--danger">
-                <img src="https://img.icons8.com/ios-filled/50/d6534a/error.png" alt="">
+                <img src="presentation/assets/images/icons/filled/d6534a/error.png" alt="">
               </span>
               <div>
                 <strong>Action required</strong>
-                <p>Maya's seasonal allergy medication needs a new prescription from Dr. Chen.</p>
-                <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#" style="margin-top: 0.75rem;">Contact doctor</a>
+                <p>Seeya's inhaler prescription has expired. Upload a new one so the refill can be routed.</p>
+                <a class="mr-btn mr-btn--ghost mr-btn--sm" href="patient-order.php" style="margin-top: 0.75rem;">Upload new Rx</a>
               </div>
             </section>
 
@@ -132,7 +124,7 @@ $active = 'family';
               <div style="display: flex; align-items: flex-end; gap: 0.75rem; margin-top: 0.5rem;">
                 <strong class="mr-dash-stat__value mr-dash-stat__value--active" style="font-size: 1.75rem;">98%</strong>
                 <span class="mr-badge mr-badge--success mr-badge--case-normal">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/positive-dynamic.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/positive-dynamic.png" alt="">
                   +2%
                 </span>
               </div>
@@ -154,18 +146,18 @@ $active = 'family';
 
             <div class="mr-pharmacy-row" style="align-items: center;">
               <div style="flex-direction: row; align-items: center; gap: 0.5rem;">
-                <span class="mr-avatar">AP</span>
+                <span class="mr-avatar">A</span>
                 <span>
-                  <strong>Arthur P.</strong>
+                  <strong>Amma</strong>
                   <span class="mr-eyebrow mr-eyebrow--mono" style="display: block;">Stable</span>
                 </span>
               </div>
             </div>
             <div class="mr-pharmacy-row" style="align-items: center;">
               <div style="flex-direction: row; align-items: center; gap: 0.5rem;">
-                <span class="mr-avatar">MS</span>
+                <span class="mr-avatar">S</span>
                 <span>
-                  <strong>Maya S.</strong>
+                  <strong>Seeya</strong>
                   <span class="mr-eyebrow mr-eyebrow--mono" style="display: block;">Monitoring</span>
                 </span>
               </div>
@@ -174,35 +166,17 @@ $active = 'family';
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>System telemetry</h2>
+              <h2>Upcoming refills</h2>
             </div>
-
-            <div class="mr-pharmacy-row">
-              <div>
-                <strong>Smart dispenser sync</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Last: 2 mins ago</span>
-              </div>
-              <span class="mr-icon-badge mr-icon-badge--success">
-                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
-              </span>
+            <div class="mr-refill">
+              <strong>Amma · Lisinopril 10mg</strong>
+              <span class="mr-refill__line"></span>
+              <span class="mr-eyebrow mr-eyebrow--mono">Oct 12</span>
             </div>
-            <div class="mr-pharmacy-row">
-              <div>
-                <strong>Pharmacy API status</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Latency: 42ms</span>
-              </div>
-              <span class="mr-icon-badge mr-icon-badge--success">
-                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/cloud.png" alt="">
-              </span>
-            </div>
-            <div class="mr-pharmacy-row">
-              <div>
-                <strong>Courier network</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Route optimized</span>
-              </div>
-              <span class="mr-icon-badge mr-icon-badge--info">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/route.png" alt="">
-              </span>
+            <div class="mr-refill">
+              <strong>Seeya · Salbutamol Inhaler</strong>
+              <span class="mr-refill__line"></span>
+              <span class="mr-eyebrow mr-eyebrow--mono">Oct 18</span>
             </div>
           </section>
 
@@ -210,7 +184,3 @@ $active = 'family';
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

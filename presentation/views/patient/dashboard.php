@@ -1,19 +1,9 @@
 <?php
-// MedReach - Patient dashboard (presentation tier: HTML output only)
+$title = 'Dashboard — MedReach';
 $active = 'dashboard';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -36,7 +26,7 @@ $active = 'dashboard';
           </div>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -55,7 +45,7 @@ $active = 'dashboard';
               <div class="mr-order__head">
                 <div class="mr-order__id">
                   <span class="mr-icon-badge mr-icon-badge--info">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/pill.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/pill.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8924</span>
@@ -64,7 +54,7 @@ $active = 'dashboard';
                 </div>
                 <div class="mr-order__tags">
                   <span class="mr-badge mr-badge--pill">3 items</span>
-                  <span class="mr-badge mr-badge--info">1.2 mi</span>
+                  <span class="mr-badge mr-badge--info">1.9 km</span>
                   <a class="mr-badge mr-badge--pill mr-badge--case-normal" href="track-order-status.php">Track order</a>
                 </div>
               </div>
@@ -76,9 +66,9 @@ $active = 'dashboard';
               </ol>
             </article>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clipboard.png" alt="">
+                <img src="presentation/assets/images/icons/filled/dd8e1c/clipboard.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8925</span>
@@ -87,9 +77,9 @@ $active = 'dashboard';
               <span class="mr-badge mr-badge--accent">Awaiting Pharmacy</span>
             </a>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/broadcasting.png" alt="">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/broadcasting.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8926</span>
@@ -122,7 +112,7 @@ $active = 'dashboard';
             <ul class="mr-activity">
               <li>
                 <span class="mr-icon-badge mr-icon-badge--success">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
                 </span>
                 <span class="mr-activity__info">
                   <span>Order #ORD-8890 delivered</span>
@@ -131,7 +121,7 @@ $active = 'dashboard';
               </li>
               <li>
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/0a7fb5/upload.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/0a7fb5/upload.png" alt="">
                 </span>
                 <span class="mr-activity__info">
                   <span>New Rx uploaded by Dr. Smith</span>
@@ -147,7 +137,7 @@ $active = 'dashboard';
 
           <section class="mr-card mr-upload-card">
             <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/clipboard.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/clipboard.png" alt="">
             </span>
             <h2>New Prescription?</h2>
             <p>Snap a photo or upload a file to get started.</p>
@@ -161,21 +151,21 @@ $active = 'dashboard';
             <div class="mr-pharmacy-row">
               <div>
                 <strong>CityHealth Rx</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">1.2 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">1.9 km away</span>
               </div>
               <span class="mr-badge mr-badge--success">Open</span>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong>MediCare Plus</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">2.5 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">4.0 km away</span>
               </div>
               <span class="mr-badge mr-badge--success">Open</span>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong class="mr-pharmacy-row__muted">GreenCross</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">3.1 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">5.0 km away</span>
               </div>
               <span class="mr-badge mr-badge--pill">Closed</span>
             </div>
@@ -183,13 +173,13 @@ $active = 'dashboard';
 
           <section class="mr-card mr-help-card">
             <span class="mr-icon-badge mr-icon-badge--info">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/help.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/help.png" alt="">
             </span>
             <div>
               <strong>Need help?</strong>
               <p>Reach out if an order looks off or a delivery is delayed.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
@@ -197,6 +187,4 @@ $active = 'dashboard';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>
