@@ -133,6 +133,7 @@ $active = 'users';
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dilani Perera">Edit details</button>
                         <button type="button" data-toast="Password reset link sent to Dilani Perera.">Reset password</button>
                         <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Dilani Perera">Suspend</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Dilani Perera">Delete</button>
                       </div>
                     </td>
                   </tr>
@@ -155,6 +156,7 @@ $active = 'users';
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Ashan Silva">Edit details</button>
                         <button type="button" data-toast="Password reset link sent to Ashan Silva.">Reset password</button>
                         <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Ashan Silva">Suspend</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Ashan Silva">Delete</button>
                       </div>
                     </td>
                   </tr>
@@ -192,6 +194,7 @@ $active = 'users';
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Chamari Wickramasinghe">Edit details</button>
                         <button type="button" data-toast="Password reset link sent to Chamari Wickramasinghe.">Reset password</button>
                         <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Chamari Wickramasinghe">Suspend</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Chamari Wickramasinghe">Delete</button>
                       </div>
                     </td>
                   </tr>
@@ -214,6 +217,7 @@ $active = 'users';
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dinesh Mendis">Edit details</button>
                         <button type="button" data-toast="Password reset link sent to Dinesh Mendis.">Reset password</button>
                         <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-reactivate-modal" data-subject="Dinesh Mendis">Reactivate</button>
+                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Dinesh Mendis">Delete</button>
                       </div>
                     </td>
                   </tr>
@@ -451,6 +455,25 @@ $active = 'users';
       <div class="mr-modal__actions">
         <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
         <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close data-toast="Account reactivated.">Reactivate</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-user-delete-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Delete <span data-subject-slot="account"></span>?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The account and its profile are removed for good. Suspend it instead if the user may need access again.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-close data-toast="Account deleted.">Delete</button>
       </div>
     </div>
   </div>

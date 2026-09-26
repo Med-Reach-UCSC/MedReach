@@ -6,6 +6,8 @@ $mr_sidebar_links = [
   'dashboard'     => ['label' => 'Dashboard',     'icon' => 'home',          'href' => 'admin-dashboard.php'],
   'pharmacies'    => ['label' => 'Pharmacies',    'icon' => 'shop',          'href' => 'manage-pharmacies.php'],
   'users'         => ['label' => 'Users',         'icon' => 'conference-call', 'href' => 'manage-users.php'],
+  'support'       => ['label' => 'Support',       'icon' => 'support',       'href' => 'admin-support.php'],
+  'ratings'       => ['label' => 'Ratings',       'icon' => 'star',          'href' => 'admin-ratings.php'],
   'settings'      => ['label' => 'Settings',      'icon' => 'settings',      'href' => 'admin-settings.php'],
 ];
 ?>

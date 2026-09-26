@@ -75,3 +75,17 @@ CREATE TABLE OTP_CODE (
   PRIMARY KEY (user_id, purpose),
   FOREIGN KEY (user_id) REFERENCES `USER` (user_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Messages sent from the "Contact support" form, or logged by an admin
+-- after a phone call. Not in the ER diagram; see database/CHANGES.md.
+CREATE TABLE SUPPORT_TICKET (
+  ticket_id   INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id     INT UNSIGNED NOT NULL,
+  topic       ENUM('order', 'payment', 'account', 'other') NOT NULL,
+  message     TEXT NOT NULL,
+  status      ENUM('open', 'resolved') NOT NULL DEFAULT 'open',
+  admin_reply TEXT NULL,
+  created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  resolved_at DATETIME NULL,
+  FOREIGN KEY (user_id) REFERENCES `USER` (user_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
