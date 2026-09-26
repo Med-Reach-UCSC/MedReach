@@ -11,21 +11,21 @@ $active = 'manifest';
           <div class="mr-track-title">
             <h1>Order #ORD-9921</h1>
             <span class="mr-badge mr-badge--primary mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
               In Transit
             </span>
           </div>
           <div class="mr-order__tags">
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
               General Hospital Pharmacy
             </span>
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/454655/route.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/route.png" alt="">
               2.4 km to drop-off
             </span>
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/cash.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/cash.png" alt="">
               Cash on delivery
             </span>
           </div>
@@ -33,7 +33,7 @@ $active = 'manifest';
 
         <div class="mr-dash-header__actions">
           <a href="tel:+94771234567" class="mr-btn mr-btn--light mr-btn--sm">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/phone.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/phone.png" alt="">
             Call Recipient
           </a>
         </div>
@@ -70,7 +70,7 @@ $active = 'manifest';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/cash.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/cash.png" alt="">
                 Payment to Collect
               </h2>
               <span class="mr-eyebrow mr-eyebrow--mono">COD</span>
@@ -101,7 +101,7 @@ $active = 'manifest';
 
           <section class="mr-card mr-courier-card mr-payment-card">
             <span class="mr-payment-card__label">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
               Delivery In Progress
             </span>
             <h2>2.4 km to Drop-off</h2>
@@ -114,7 +114,7 @@ $active = 'manifest';
 
           <div class="mr-confirm-actions">
             <button type="button" class="mr-btn mr-btn--primary mr-btn--block" data-modal-open="mr-handover-modal">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/checkmark.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/checkmark.png" alt="">
               Confirm Handover
             </button>
           </div>
@@ -122,7 +122,7 @@ $active = 'manifest';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/box.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/box.png" alt="">
                 Package Details
               </h2>
               <span class="mr-eyebrow mr-eyebrow--mono">3 items</span>
@@ -159,7 +159,7 @@ $active = 'manifest';
       <div class="mr-modal__head">
         <h2>Confirm Handover</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
