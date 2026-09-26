@@ -33,7 +33,7 @@ $active = 'profile';
           <section class="mr-card mr-dash-card mr-profile-card">
             <div class="mr-profile-card__head">
               <div class="mr-profile-card__identity">
-                <span class="mr-avatar mr-avatar--profile">H</span>
+                <?php $initials = 'H'; require __DIR__ . '/../partials/avatar-upload.php'; ?>
                 <div>
                   <h2>Dr. Herath</h2>
                   <span class="mr-eyebrow">Pharmacist-in-charge &middot; Kollupitiya City Pharmacy</span>
@@ -51,7 +51,7 @@ $active = 'profile';
               <label class="mr-field">
                 <span>License Number</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="text" value="#LIC-992-PX" readonly>
                 </div>
               </label>
@@ -64,14 +64,14 @@ $active = 'profile';
               <label class="mr-field">
                 <span>Phone Number</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/phone.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/phone.png" alt="">
                   <input type="tel" value="+94 11 234 5678">
                 </div>
               </label>
               <label class="mr-field">
                 <span>Email Address</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/mail.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/mail.png" alt="">
                   <input type="email" value="contact@kollupitiyapharmacy.lk">
                 </div>
               </label>
@@ -98,7 +98,7 @@ $active = 'profile';
             <div class="mr-policy-card__body">
               <div class="mr-policy-card__head">
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/0a7fb5/customer-support.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/0a7fb5/customer-support.png" alt="">
                 </span>
                 <h2>Need assistance with MedReach?</h2>
               </div>
@@ -154,21 +154,21 @@ $active = 'profile';
               <label class="mr-field">
                 <span>Current Password</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="password" placeholder="Enter current password">
                 </div>
               </label>
               <label class="mr-field">
                 <span>New Password</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="password" placeholder="Enter new password">
                 </div>
               </label>
               <label class="mr-field">
                 <span>Confirm New Password</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="password" placeholder="Re-enter new password">
                 </div>
               </label>
@@ -183,7 +183,7 @@ $active = 'profile';
 
             <div class="mr-notif-item">
               <span class="mr-icon-badge mr-icon-badge--success">
-                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Chrome on Windows &middot; Colombo, LK</span>
@@ -193,7 +193,7 @@ $active = 'profile';
 
             <div class="mr-notif-item">
               <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/document.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Safari on iPhone &middot; Colombo, LK</span>
@@ -213,7 +213,7 @@ $active = 'profile';
       <div class="mr-modal__head">
         <h2>Deactivate pharmacy listing?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

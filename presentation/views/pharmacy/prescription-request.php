@@ -15,15 +15,15 @@ $active = 'requests';
 
         <div class="mr-dash-header__actions">
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-            <img src="https://img.icons8.com/ios-filled/50/454655/user.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/user.png" alt="">
             Nimali Fernando
           </span>
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clock.png" alt="">
+            <img src="presentation/assets/images/icons/filled/dd8e1c/clock.png" alt="">
             05:42
           </span>
           <button type="button" class="mr-icon-btn" aria-label="Print request" onclick="window.print()">
-            <img src="https://img.icons8.com/ios-filled/50/454655/print.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/print.png" alt="">
           </button>
         </div>
       </header>
@@ -34,13 +34,13 @@ $active = 'requests';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/2d3fd7/document.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/2d3fd7/document.png" alt="">
                 Original Document
               </h2>
             </div>
             <div class="mr-resp-rx">
               <span class="mr-resp-rx__thumb">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/image.png" alt="Prescription scan">
               </span>
               <div class="mr-resp-rx__body">
                 <p class="mr-resp-rx__meta">Patient: Nimali Fernando · Dr. S. Weerasinghe · SLMC-4471</p>
@@ -51,7 +51,7 @@ $active = 'requests';
 
           <section class="mr-card mr-help-card mr-help-card--alert">
             <span class="mr-icon-badge mr-icon-badge--info">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/chat.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/chat.png" alt="">
             </span>
             <div>
               <strong class="mr-eyebrow mr-eyebrow--mono">Patient Note</strong>
@@ -71,7 +71,7 @@ $active = 'requests';
 
             <div class="mr-order-row">
               <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
               </span>
               <div class="mr-order-row__info">
                 <strong>Amoxicillin 500mg</strong>
@@ -86,7 +86,7 @@ $active = 'requests';
             <details class="mr-order-row mr-order-row--expandable">
               <summary>
                 <span class="mr-icon-badge mr-icon-badge--danger">
-                  <img src="https://img.icons8.com/ios-filled/50/de4a4f/error--v1.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/de4a4f/error--v1.png" alt="">
                 </span>
                 <div class="mr-order-row__info">
                   <strong>Lisinopril 10mg</strong>
@@ -137,7 +137,7 @@ $active = 'requests';
 
             <div class="mr-order-row">
               <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
               </span>
               <div class="mr-order-row__info">
                 <strong>Atorvastatin 20mg</strong>
@@ -179,7 +179,7 @@ $active = 'requests';
               <strong>Standard Pharmacy Delivery</strong>
             </div>
             <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
             </span>
           </section>
 
@@ -190,7 +190,7 @@ $active = 'requests';
 
   <div class="mr-decision-bar">
     <span class="mr-decision-bar__note">
-      <img src="https://img.icons8.com/ios-filled/50/8a8fa3/lock-2.png" alt="" width="14" height="14">
+      <img src="presentation/assets/images/icons/filled/8a8fa3/lock-2.png" alt="" width="14" height="14">
       Secure Healthcare Environment
     </span>
     <div class="mr-decision-bar__actions">
@@ -205,7 +205,7 @@ $active = 'requests';
       <div class="mr-modal__head">
         <h2>Decline request</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
