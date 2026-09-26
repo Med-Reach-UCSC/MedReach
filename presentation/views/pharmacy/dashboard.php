@@ -72,7 +72,7 @@ $active = 'dashboard';
                 <p class="mr-eyebrow mr-eyebrow--mono">Kasun Jayasinghe &middot; 45 Temple Rd, Nugegoda</p>
                 <div class="mr-request-card__actions">
                   <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — the patient has been notified.">Accept</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-error-title="Request expired" data-error="This request timed out before it was accepted, so it has been forwarded to the next-closest pharmacy.">Accept</button>
                 </div>
               </div>
             </div>
@@ -180,9 +180,70 @@ $active = 'dashboard';
               <span class="mr-swap-demo__old">Panadol 500mg</span>
               <span class="mr-swap-demo__new">Paracetamol (Generic) <em>Awaiting approval</em></span>
             </div>
+            <div class="mr-request-card__actions">
+              <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-sub-edit-modal">Edit</button>
+              <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-sub-withdraw-modal">Withdraw</button>
+            </div>
           </section>
 
         </div>
       </div>
     </main>
+  </div>
+  <div class="mr-modal" id="mr-sub-edit-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Edit suggestion</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">Replacing Panadol 500mg. The patient sees the updated suggestion and approves it again.</p>
+
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" data-toast="Suggestion updated — waiting for the patient's approval.">
+        <label class="mr-field">
+          <span>Brand name</span>
+          <div class="mr-field__input">
+            <input type="text" value="Paracetamol (Generic)" required>
+          </div>
+        </label>
+        <label class="mr-field">
+          <span>New Price</span>
+          <div class="mr-price-field mr-price-field--block">
+            <span class="mr-price-field__prefix">LKR</span>
+            <input type="text" inputmode="decimal" value="120.00">
+          </div>
+        </label>
+        <label class="mr-field mr-field--span2">
+          <span>Pharmacist note</span>
+          <textarea rows="2" placeholder="Why this is a suitable alternative...">Same active ingredient and strength.</textarea>
+        </label>
+
+        <div class="mr-modal__actions mr-field--span2">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-sub-withdraw-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Withdraw suggestion?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The patient will no longer see this swap. Panadol 500mg goes back to needing a price or a new suggestion.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-close data-toast="Suggestion withdrawn.">Withdraw</button>
+      </div>
+    </div>
   </div>

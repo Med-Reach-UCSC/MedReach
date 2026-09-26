@@ -33,7 +33,7 @@ $active = 'profile';
           <section class="mr-card mr-dash-card mr-profile-card">
             <div class="mr-profile-card__head">
               <div class="mr-profile-card__identity">
-                <span class="mr-avatar mr-avatar--profile">H</span>
+                <?php $initials = 'H'; require __DIR__ . '/../partials/avatar-upload.php'; ?>
                 <div>
                   <h2>Dr. Herath</h2>
                   <span class="mr-eyebrow">Pharmacist-in-charge &middot; Kollupitiya City Pharmacy</span>
