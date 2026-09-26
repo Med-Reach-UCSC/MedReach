@@ -23,7 +23,7 @@ $active = 'orders';
           </div>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -34,7 +34,7 @@ $active = 'orders';
 
           <div class="mr-history-toolbar">
             <label class="mr-pharm-search">
-              <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
               <input type="search" placeholder="Search orders..." aria-label="Search orders">
             </label>
             <div class="mr-history-filters" role="group" aria-label="Filter orders by status">
@@ -59,7 +59,7 @@ $active = 'orders';
                   <strong class="mr-history-card__price">LKR 4,520.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/expand-arrow.png" alt="">
                   </span>
                 </span>
               </button>
@@ -94,19 +94,19 @@ $active = 'orders';
                   <h3>Rate this pharmacy</h3>
                   <div class="mr-star-rating" data-rating="0">
                     <button type="button" class="mr-star-rating__btn" data-value="1" aria-label="1 star">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="2" aria-label="2 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="3" aria-label="3 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="4" aria-label="4 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="5" aria-label="5 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                   </div>
                   <label class="mr-field">
@@ -130,7 +130,7 @@ $active = 'orders';
                   <strong class="mr-history-card__price">LKR 11,250.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/expand-arrow.png" alt="">
                   </span>
                 </span>
               </button>
@@ -160,19 +160,19 @@ $active = 'orders';
                   <h3>Rate this pharmacy</h3>
                   <div class="mr-star-rating" data-rating="0">
                     <button type="button" class="mr-star-rating__btn" data-value="1" aria-label="1 star">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="2" aria-label="2 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="3" aria-label="3 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="4" aria-label="4 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                     <button type="button" class="mr-star-rating__btn" data-value="5" aria-label="5 stars">
-                      <img src="https://img.icons8.com/ios/50/c5c5d8/star.png" alt="">
+                      <img src="presentation/assets/images/icons/outline/c5c5d8/star.png" alt="">
                     </button>
                   </div>
                   <label class="mr-field">
@@ -237,7 +237,7 @@ $active = 'orders';
 
           <div class="mr-dropzone mr-history-empty" hidden>
             <span class="mr-icon-badge mr-icon-badge--white mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/5c5e67/box.png" alt="">
+              <img src="presentation/assets/images/icons/filled/5c5e67/box.png" alt="">
             </span>
             <h3>No orders yet</h3>
             <p>When you place an order with a pharmacy, it will appear here.</p>
@@ -255,7 +255,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Invoice <span data-subject-slot="order"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -274,7 +274,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Reorder <span data-subject-slot="order"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -293,7 +293,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Prescription expired</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

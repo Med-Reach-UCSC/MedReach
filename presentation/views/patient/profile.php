@@ -12,12 +12,12 @@ $active = 'profile';
 
         <div class="mr-dash-header__actions">
           <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-edit-profile-modal">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/edit.png" alt="">
+            <img src="presentation/assets/images/icons/filled/ffffff/edit.png" alt="">
             Edit Details
           </button>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -36,7 +36,7 @@ $active = 'profile';
                 </div>
               </div>
               <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-edit-profile-modal">
-                <img src="https://img.icons8.com/ios-filled/50/1a1b24/edit.png" alt="">
+                <img src="presentation/assets/images/icons/filled/1a1b24/edit.png" alt="">
                 Edit Details
               </button>
             </div>
@@ -113,21 +113,21 @@ $active = 'profile';
               <label class="mr-field">
                 <span>Current Password</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="password" placeholder="Enter current password">
                 </div>
               </label>
               <label class="mr-field">
                 <span>New Password</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="password" placeholder="Enter new password">
                 </div>
               </label>
               <label class="mr-field">
                 <span>Confirm New Password</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="password" placeholder="Re-enter new password">
                 </div>
               </label>
@@ -148,7 +148,7 @@ $active = 'profile';
           <section class="mr-card mr-policy-card mr-profile-status">
             <div class="mr-policy-card__head">
               <span class="mr-icon-badge mr-icon-badge--info">
-                <img src="https://img.icons8.com/ios-filled/50/0a7fb5/user-male-circle.png" alt="">
+                <img src="presentation/assets/images/icons/filled/0a7fb5/user-male-circle.png" alt="">
               </span>
               <h2>Complete Your Profile</h2>
             </div>
@@ -205,7 +205,7 @@ $active = 'profile';
 
             <div class="mr-notif-item">
               <span class="mr-icon-badge mr-icon-badge--success">
-                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Chrome on Windows · Colombo, LK</span>
@@ -215,7 +215,7 @@ $active = 'profile';
 
             <div class="mr-notif-item">
               <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/document.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Safari on iPhone · Colombo, LK</span>
@@ -225,7 +225,7 @@ $active = 'profile';
 
             <div class="mr-notif-item">
               <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/document.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Chrome on Windows · Kandy, LK</span>
@@ -246,7 +246,7 @@ $active = 'profile';
       <div class="mr-modal__head">
         <h2>Edit Profile Details</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -266,21 +266,21 @@ $active = 'profile';
         <label class="mr-field mr-field--span2">
           <span>Email Address</span>
           <div class="mr-field__input">
-            <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/mail.png" alt="">
+            <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/mail.png" alt="">
             <input type="email" value="nimal.perera@example.com">
           </div>
         </label>
         <label class="mr-field mr-field--span2">
           <span>Phone Number</span>
           <div class="mr-field__input">
-            <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/phone.png" alt="">
+            <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/phone.png" alt="">
             <input type="tel" value="+94 77 123 4567">
           </div>
         </label>
         <label class="mr-field mr-field--span2">
           <span>Date of Birth</span>
           <div class="mr-field__input">
-            <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/calendar--v1.png" alt="">
+            <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/calendar--v1.png" alt="">
             <input type="date" value="1988-03-14">
           </div>
         </label>
@@ -303,7 +303,7 @@ $active = 'profile';
       <div class="mr-modal__head">
         <h2>Assign a guardian</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -343,7 +343,7 @@ $active = 'profile';
       <div class="mr-modal__head">
         <h2>Deactivate account?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

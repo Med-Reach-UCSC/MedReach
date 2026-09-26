@@ -12,21 +12,21 @@ $active = 'orders';
           <div class="mr-track-title">
             <h1>Order RX-1042</h1>
             <span class="mr-badge mr-badge--primary mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
               Out for Delivery
             </span>
           </div>
           <div class="mr-order__tags">
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
               City Care Pharmacy
             </span>
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/454655/pill.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/pill.png" alt="">
               6 items
             </span>
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/cash.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/cash.png" alt="">
               Cash on delivery
             </span>
           </div>
@@ -34,11 +34,11 @@ $active = 'orders';
 
         <div class="mr-dash-header__actions">
           <button type="button" class="mr-btn mr-btn--light mr-btn--sm" data-modal-open="mr-invoice-modal">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/document.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/document.png" alt="">
             View Invoice
           </button>
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -103,7 +103,7 @@ $active = 'orders';
                   <span class="mr-courier-card__label">Your Courier</span>
                   <strong class="mr-courier-card__name">Kasun P.</strong>
                   <span class="mr-courier-card__rating">
-                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
                     4.9 (120+ deliveries)
                   </span>
                 </div>
@@ -116,11 +116,11 @@ $active = 'orders';
 
             <div class="mr-courier-card__actions">
               <a href="tel:+94771234567" class="mr-btn mr-btn--light">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/phone.png" alt="">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/phone.png" alt="">
                 Call
               </a>
               <button type="button" class="mr-btn mr-btn--dark" data-modal-open="mr-courier-message-modal">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="">
+                <img src="presentation/assets/images/icons/filled/ffffff/speech-bubble.png" alt="">
                 Message
               </button>
             </div>
@@ -129,7 +129,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card mr-order-details-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/list.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/list.png" alt="">
                 Order Details
               </h2>
               <span class="mr-eyebrow mr-eyebrow--mono">6 items</span>
@@ -190,7 +190,7 @@ $active = 'orders';
 
           <section class="mr-card mr-help-card">
             <span class="mr-icon-badge mr-icon-badge--info">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/help.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/help.png" alt="">
             </span>
             <div>
               <strong>Need assistance?</strong>
@@ -210,7 +210,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Invoice — RX-1042</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -236,7 +236,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Message Kasun P.</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

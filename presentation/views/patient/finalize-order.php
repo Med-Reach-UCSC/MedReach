@@ -14,7 +14,7 @@ $active = 'orders';
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">Prescription RX-1042</span>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -26,7 +26,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
                 Fulfillment Method
               </h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">2 Items · Split Order</span>
@@ -34,7 +34,7 @@ $active = 'orders';
 
             <div class="mr-confirm-methods" data-fulfillment>
               <div class="mr-confirm-method is-selected" data-method="courier" data-fee="300" tabindex="0" role="button" aria-pressed="true">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
+                <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
                 <div>
                   <strong>Courier Delivery</strong>
                   <small>ETA: 45–60 mins · 124 Maple Rd, Colombo 05</small>
@@ -42,7 +42,7 @@ $active = 'orders';
                 </div>
               </div>
               <div class="mr-confirm-method" data-method="pickup" data-fee="0" tabindex="0" role="button" aria-pressed="false">
-                <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
                 <div>
                   <strong>Pharmacy Pickup</strong>
                   <small>Ready in 15–30 mins</small>
@@ -71,7 +71,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/pill.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/pill.png" alt="">
                 Order Summary
               </h2>
               <span class="mr-eyebrow mr-eyebrow--mono">2 Items</span>
@@ -120,7 +120,7 @@ $active = 'orders';
 
           <section class="mr-card mr-help-card">
             <span class="mr-icon-badge mr-icon-badge--info">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/help.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/help.png" alt="">
             </span>
             <div>
               <strong>Need assistance?</strong>

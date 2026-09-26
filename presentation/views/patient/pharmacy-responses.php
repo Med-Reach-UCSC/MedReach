@@ -13,12 +13,12 @@ $active = 'orders';
         <div class="mr-dash-header__actions">
           <span class="mr-badge mr-badge--primary mr-badge--case-normal">Broadcasting</span>
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-            <img src="https://img.icons8.com/ios-filled/50/454655/clock.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/clock.png" alt="">
             Auto-forwards in 08:42
           </span>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -30,7 +30,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/2d3fd7/document.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/2d3fd7/document.png" alt="">
                 Original Prescription
               </h2>
               <span class="mr-eyebrow mr-eyebrow--mono">Uploaded Aug 9, 2026</span>
@@ -38,7 +38,7 @@ $active = 'orders';
 
             <div class="mr-resp-rx">
               <span class="mr-resp-rx__thumb">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/image.png" alt="Prescription scan">
               </span>
               <div class="mr-resp-rx__body">
                 <p class="mr-resp-rx__meta">Patient: Nimal Perera · Dr. S. Weerasinghe · SLMC-4471</p>
@@ -71,7 +71,7 @@ $active = 'orders';
               </div>
 
               <p class="mr-resp-meta">
-                <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
                 Healthguard Pharmacy
                 <span class="mr-resp-meta__dot" aria-hidden="true"></span>
                 1.2 km
@@ -97,7 +97,7 @@ $active = 'orders';
               </div>
 
               <p class="mr-resp-meta">
-                <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
                 GreenCross Pharmacy
                 <span class="mr-resp-meta__dot" aria-hidden="true"></span>
                 2.4 km
@@ -105,7 +105,7 @@ $active = 'orders';
 
               <div class="mr-resp-suggestion">
                 <div class="mr-resp-suggestion__label">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/idea.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/idea.png" alt="">
                   Suggested Alternative
                 </div>
                 <div class="mr-resp-suggestion__name">Atorva 20mg</div>
@@ -142,13 +142,13 @@ $active = 'orders';
             </div>
             <a href="finalize-order.php" class="mr-btn mr-btn--dark mr-btn--block">
               Confirm all accepted
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/checkmark.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/checkmark.png" alt="">
             </a>
           </section>
 
           <section class="mr-card mr-dash-card">
             <h2>
-              <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/2d3fd7/link.png" alt="">
+              <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/2d3fd7/link.png" alt="">
               Auto-forwarding logic
             </h2>
             <p class="mr-dash-card__lede">Declined or timed-out items automatically forward to the next nearest eligible pharmacy to ensure fulfillment.</p>
@@ -156,18 +156,18 @@ $active = 'orders';
             <div class="mr-resp-forward">
               <div class="mr-resp-forward__node">
                 <span class="mr-resp-forward__icon">
-                  <img src="https://img.icons8.com/ios-filled/50/ffffff/shop.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/ffffff/shop.png" alt="">
                 </span>
                 <small>Healthguard (1.2 km)</small>
               </div>
               <div class="mr-resp-forward__track">
                 <span class="mr-resp-forward__clock">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clock.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/clock.png" alt="">
                 </span>
               </div>
               <div class="mr-resp-forward__node mr-resp-forward__node--next">
                 <span class="mr-resp-forward__icon">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
                 </span>
                 <small>GreenCross (2.4 km)</small>
               </div>
@@ -180,7 +180,7 @@ $active = 'orders';
               <strong>45 min</strong>
             </div>
             <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
             </span>
           </section>
 

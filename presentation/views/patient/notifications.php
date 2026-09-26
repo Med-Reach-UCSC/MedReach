@@ -12,7 +12,7 @@ $active = 'notifications';
 
         <div class="mr-dash-header__actions">
           <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" id="mr-notif-mark-all">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/checkmark.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/checkmark.png" alt="">
             Mark all as read
           </button>
         </div>
@@ -28,7 +28,7 @@ $active = 'notifications';
 
             <a class="mr-notif-item is-unread" data-read="false" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--success">
-                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">City Health Pharmacy accepted your order #ORD-8924</span>
@@ -39,7 +39,7 @@ $active = 'notifications';
 
             <a class="mr-notif-item is-unread" data-read="false" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Courier assigned. Order #ORD-8924 is out for delivery.</span>
@@ -50,7 +50,7 @@ $active = 'notifications';
 
             <a class="mr-notif-item" data-read="true" href="pharmacy-responses.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Substitution suggested for Order #ORD-8920 (Aspirin 81mg)</span>
@@ -64,7 +64,7 @@ $active = 'notifications';
 
             <a class="mr-notif-item" data-read="true" href="order-history.php">
               <span class="mr-icon-badge mr-icon-badge--success">
-                <img src="https://img.icons8.com/ios-filled/50/1f9d6b/box.png" alt="">
+                <img src="presentation/assets/images/icons/filled/1f9d6b/box.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Order #ORD-8890 delivered — rate CityHealth Pharmacy</span>
@@ -74,7 +74,7 @@ $active = 'notifications';
 
             <a class="mr-notif-item" data-read="true" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--danger">
-                <img src="https://img.icons8.com/ios-filled/50/d6534a/redo.png" alt="">
+                <img src="presentation/assets/images/icons/filled/d6534a/redo.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Order #ORD-8915 declined by Sunrise Pharmacy — forwarded to MediCare Plus</span>
@@ -84,7 +84,7 @@ $active = 'notifications';
 
             <a class="mr-notif-item" data-read="true" href="order-history.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="https://img.icons8.com/ios-filled/50/454655/document.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/document.png" alt="">
               </span>
               <span class="mr-notif-item__info">
                 <span class="mr-notif-item__title">Your monthly order summary is ready to view.</span>
@@ -127,7 +127,7 @@ $active = 'notifications';
 
           <section class="mr-card mr-upload-card">
             <span class="mr-icon-badge mr-icon-badge--white mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/757687/appointment-reminders.png" alt="">
+              <img src="presentation/assets/images/icons/filled/757687/appointment-reminders.png" alt="">
             </span>
             <h2>No new alerts</h2>
             <p>You're all caught up for now.</p>

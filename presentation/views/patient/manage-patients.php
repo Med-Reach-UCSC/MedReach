@@ -12,12 +12,12 @@ $active = 'family';
 
         <div class="mr-dash-header__actions">
           <label class="mr-pharm-search">
-            <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
             <input type="search" id="mr-patient-search" placeholder="Search ID or name..." aria-label="Search ID or name">
           </label>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -30,7 +30,7 @@ $active = 'family';
         <div class="mr-roster-toolbar">
           <div class="mr-roster-toolbar__chips">
             <label class="mr-roster-filter">
-              <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
               <select id="mr-patient-status-filter" aria-label="Filter by status">
                 <option value="">Filtered: All</option>
                 <option value="pending">Filtered: Pending</option>
@@ -42,7 +42,7 @@ $active = 'family';
           </div>
 
           <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-add-patient-modal">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/plus.png" alt="">
+            <img src="presentation/assets/images/icons/filled/ffffff/plus.png" alt="">
             Add Patient
           </button>
         </div>
@@ -69,7 +69,7 @@ $active = 'family';
                 <td><span class="mr-eyebrow mr-eyebrow--mono">09:42 AM, Today</span></td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for Amma">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <a href="order-history.php">View orders</a>
@@ -88,7 +88,7 @@ $active = 'family';
                 <td><span class="mr-eyebrow mr-eyebrow--mono">08:15 AM, Today</span></td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for Seeya">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <a href="order-history.php">View orders</a>
@@ -107,7 +107,7 @@ $active = 'family';
                 <td><span class="mr-eyebrow mr-eyebrow--mono">Yesterday</span></td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dinuli">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <a href="order-history.php">View orders</a>
@@ -126,10 +126,10 @@ $active = 'family';
           <span class="mr-pagination__count" id="mr-patient-count">Showing 1-3 of 3</span>
           <nav class="mr-pagination__nav" aria-label="Patient pages">
             <button type="button" class="mr-pagination__btn" aria-disabled="true">
-              <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
+              <img src="presentation/assets/images/icons/filled/454655/back.png" alt="Previous">
             </button>
             <button type="button" class="mr-pagination__btn" aria-disabled="true">
-              <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
+              <img src="presentation/assets/images/icons/filled/1a1b24/forward.png" alt="Next">
             </button>
           </nav>
         </div>
@@ -152,7 +152,7 @@ $active = 'family';
 
         <section class="mr-card mr-help-card mr-help-card--alert">
           <span class="mr-icon-badge mr-icon-badge--danger">
-            <img src="https://img.icons8.com/ios-filled/50/d6534a/error.png" alt="">
+            <img src="presentation/assets/images/icons/filled/d6534a/error.png" alt="">
           </span>
           <div>
             <strong>Action required</strong>
@@ -200,7 +200,7 @@ $active = 'family';
       <div class="mr-modal__head">
         <h2>Add Patient</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -255,7 +255,7 @@ $active = 'family';
       <div class="mr-modal__head">
         <h2>Edit <span data-subject-slot="patient"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -295,7 +295,7 @@ $active = 'family';
       <div class="mr-modal__head">
         <h2>Remove <span data-subject-slot="patient"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -316,7 +316,7 @@ $active = 'family';
       <div class="mr-modal__head">
         <h2>Can't remove <span data-subject-slot="patient"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

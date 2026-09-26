@@ -27,7 +27,7 @@ $active = 'orders';
           </div>
 
           <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
             <span class="mr-notif-btn__dot" aria-hidden="true"></span>
           </a>
         </div>
@@ -48,14 +48,14 @@ $active = 'orders';
 
             <div class="mr-dropzone">
               <span class="mr-icon-badge mr-icon-badge--white mr-icon-badge--lg">
-                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/upload-to-cloud.png" alt="">
+                <img src="presentation/assets/images/icons/filled/2d3fd7/upload-to-cloud.png" alt="">
               </span>
               <h3>Drag &amp; Drop files here</h3>
               <p>Supported formats: PDF, JPG, PNG (Max 10MB)</p>
               <div class="mr-dropzone__actions">
                 <button type="button" class="mr-btn mr-btn--primary" data-file-trigger="mr-rx-file">Browse Files</button>
                 <button type="button" class="mr-btn mr-btn--ghost" data-file-trigger="mr-rx-camera">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/camera.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1a1b24/camera.png" alt="">
                   Camera
                 </button>
               </div>
@@ -91,7 +91,7 @@ $active = 'orders';
               <div class="mr-dash-card__head">
                 <h2>What happens next</h2>
                 <span class="mr-badge mr-badge--accent mr-badge--case-normal">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clock.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/clock.png" alt="">
                   Est. Process Time: ~15 mins
                 </span>
               </div>
@@ -120,7 +120,7 @@ $active = 'orders';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>
-                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/757687/marker.png" alt="">
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/marker.png" alt="">
                 Delivery Context
               </h2>
               <button type="button" class="mr-link-btn" data-modal-open="mr-delivery-context-modal">Edit</button>
@@ -137,7 +137,7 @@ $active = 'orders';
               <strong>24</strong>
             </div>
             <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-              <img src="https://img.icons8.com/ios-filled/50/1f9d6b/positive-dynamic.png" alt="">
+              <img src="presentation/assets/images/icons/filled/1f9d6b/positive-dynamic.png" alt="">
             </span>
           </section>
 
@@ -161,7 +161,7 @@ $active = 'orders';
       <div class="mr-modal__head">
         <h2>Delivery address</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
