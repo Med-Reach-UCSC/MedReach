@@ -77,13 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.add('is-active');
       btn.setAttribute('aria-selected', 'true');
       if (roleInput) roleInput.value = btn.dataset.role;
-
-      document.querySelectorAll('[data-role-fields]').forEach(function (set) {
-        var off = set.dataset.roleFields.split(' ').indexOf(btn.dataset.role) === -1;
-        set.hidden = off;
-        if (set.tagName === 'FIELDSET') set.disabled = off;
-      });
+      mrShowRoleFields(document, btn.dataset.role);
     });
+  });
+});
+
+function mrShowRoleFields(scope, role) {
+  scope.querySelectorAll('[data-role-fields]').forEach(function (set) {
+    var off = set.dataset.roleFields.split(' ').indexOf(role) === -1;
+    set.hidden = off;
+    if (set.tagName === 'FIELDSET') set.disabled = off;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('select[data-role-select]').forEach(function (select) {
+    select.addEventListener('change', function () { mrShowRoleFields(select.form, select.value); });
   });
 });
 
@@ -398,6 +407,15 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.querySelectorAll('[data-subject-slot]').forEach(function (slot) {
         slot.textContent = btn.dataset.subject || slot.dataset.subjectSlot;
       });
+      var form = modal.querySelector('form');
+      if (form && btn.dataset.fill) {
+        var values = JSON.parse(btn.dataset.fill);
+        Object.keys(values).forEach(function (name) {
+          if (form.elements[name]) form.elements[name].value = values[name];
+        });
+      }
+      modal.querySelectorAll('.mr-auth-notice').forEach(function (notice) { notice.remove(); });
+      if (form) mrClearFieldErrors(form);
       modal.classList.add('is-open');
     });
   });
@@ -410,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     var form = modal.querySelector('form');
-    if (form) {
+    if (form && form.dataset.toast) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         modal.classList.remove('is-open');
@@ -717,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
       mrDoughnut(canvas, [percent, 100 - percent], [primary, track], ['Earned', 'Remaining']);
     },
     'mr-role-chart': function (canvas) {
-      mrDoughnut(canvas, [65, 18, 12, 5], [primary, '#bdc2ff', mrColor('--mr-color-accent'), mrColor('--mr-color-text-muted')], ['Patients', 'Pharmacists', 'Delivery', 'Admins']);
+      mrDoughnut(canvas, canvas.dataset.values.split(',').map(Number), [primary, '#bdc2ff', mrColor('--mr-color-accent'), mrColor('--mr-color-text-muted')], ['Patients', 'Pharmacists', 'Delivery', 'Admins']);
     },
     'mr-adherence-chart': function (canvas) {
       var values = [30, 45, 40, 60, 55, 75, 90];
@@ -926,3 +944,92 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+var MR_PATTERNS = {
+  email: '[A-Za-z0-9._%+\\-]+@[A-Za-z0-9\\-]+(\\.[A-Za-z0-9\\-]+)*\\.[A-Za-z]{2,}',
+  tel: '\\+?[0-9 ]{9,15}'
+};
+
+function mrFieldMessage(el) {
+  var v = el.validity;
+  if (v.valueMissing) {
+    if (el.type === 'checkbox') return 'Tick this box to continue.';
+    return el.tagName === 'SELECT' ? 'Choose an option.' : 'This field is required.';
+  }
+  if (v.customError) return el.validationMessage;
+  if (el.type === 'email') return 'Enter a valid email address, e.g. nimal@example.com.';
+  if (el.type === 'tel') return 'Enter a valid phone number, e.g. 071 234 5678.';
+  if (v.patternMismatch && el.title) return el.title;
+  if (v.tooShort) return 'Use at least ' + el.minLength + ' characters.';
+  if (v.rangeOverflow || v.rangeUnderflow) return 'Enter a date or number within the allowed range.';
+  return el.validationMessage;
+}
+
+function mrClearFieldError(el) {
+  el.removeAttribute('aria-invalid');
+  var error = el.errorNode;
+  if (error) error.remove();
+  el.errorNode = null;
+}
+
+function mrClearFieldErrors(form) {
+  Array.prototype.forEach.call(form.elements, mrClearFieldError);
+}
+
+document.addEventListener('invalid', function (e) {
+  var el = e.target;
+  e.preventDefault();
+  mrClearFieldError(el);
+  var error = document.createElement('p');
+  error.className = 'mr-field__error';
+  error.id = (el.id || el.name || 'field') + '-error';
+  error.textContent = mrFieldMessage(el);
+  var field = el.closest('.mr-field');
+  if (field) field.appendChild(error);
+  else (el.closest('label') || el).insertAdjacentElement('afterend', error);
+  el.errorNode = error;
+  el.setAttribute('aria-invalid', 'true');
+  el.setAttribute('aria-describedby', error.id);
+  var active = document.activeElement;
+  if (!active || !active.matches(':invalid')) el.focus();
+}, true);
+
+['input', 'change'].forEach(function (type) {
+  document.addEventListener(type, function (e) {
+    var el = e.target;
+    if (!el.form) return;
+    el.form.querySelectorAll('[data-match]').forEach(function (confirm) {
+      confirm.setCustomValidity(confirm.value === el.form.elements[confirm.dataset.match].value ? '' : 'Passwords do not match.');
+      if (confirm.errorNode && confirm.checkValidity()) mrClearFieldError(confirm);
+    });
+    if (el.errorNode && el.checkValidity()) mrClearFieldError(el);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('input[type="email"]:not([pattern])').forEach(function (el) { el.pattern = MR_PATTERNS.email; });
+  document.querySelectorAll('input[type="tel"]:not([pattern])').forEach(function (el) { el.pattern = MR_PATTERNS.tel; });
+
+  document.querySelectorAll('[data-flash-toast]').forEach(function (el) {
+    mrToast(el.dataset.flashToast, el.dataset.flashError === 'true');
+  });
+});
+
+document.addEventListener('click', function (e) {
+  var el = e.target.closest('[data-confirm]');
+  if (!el || el.confirmed) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  var modal = document.getElementById('mr-confirm-modal');
+  modal.querySelector('[data-confirm-title]').textContent = el.dataset.confirm;
+  modal.querySelector('[data-confirm-text]').textContent = el.dataset.confirmText || "This can't be undone.";
+  var ok = modal.querySelector('[data-confirm-ok]');
+  ok.textContent = el.dataset.confirmLabel || 'Confirm';
+  ok.onclick = function () {
+    modal.classList.remove('is-open');
+    el.confirmed = true;
+    el.click();
+    el.confirmed = false;
+  };
+  modal.classList.add('is-open');
+}, true);

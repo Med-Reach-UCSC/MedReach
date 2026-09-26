@@ -36,7 +36,7 @@ $bodyClass = 'mr-auth-body';
             <label for="confirm_password">Confirm new password</label>
             <div class="mr-field__input">
               <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
-              <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
+              <input type="password" id="confirm_password" name="confirm_password" data-match="password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
             </div>
           </div>
 

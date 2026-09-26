@@ -42,7 +42,7 @@ const MR_ROUTES = [
 
   'admin-dashboard'      => ['admin', 'admin/dashboard'],
   'manage-pharmacies'    => ['admin', 'admin/pharmacies'],
-  'manage-users'         => ['admin', 'admin/users'],
+  'manage-users'         => ['admin', 'admin/users', 'mr_page_manage_users'],
   'admin-support'        => ['admin', 'admin/support'],
   'admin-ratings'        => ['admin', 'admin/ratings'],
   'admin-settings'       => ['admin', 'admin/settings'],

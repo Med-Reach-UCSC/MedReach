@@ -9,13 +9,22 @@ function mr_user_find_by_email(string $email): ?array
   return $stmt->get_result()->fetch_assoc();
 }
 
+function mr_user_find(int $userId): ?array
+{
+  $stmt = mr_db()->prepare('SELECT * FROM `USER` WHERE user_id = ?');
+  $stmt->bind_param('i', $userId);
+  $stmt->execute();
+  return $stmt->get_result()->fetch_assoc();
+}
+
 function mr_account_create(array $u, array $extra): int
 {
   $db = mr_db();
   $db->begin_transaction();
   try {
-    $stmt = $db->prepare('INSERT INTO `USER` (first_name, last_name, email, phone, password_hash, role, status) VALUES (?, ?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param('sssssss', $u['first_name'], $u['last_name'], $u['email'], $u['phone'], $u['password_hash'], $u['role'], $u['status']);
+    $verified = (int) ($u['is_verified'] ?? 0);
+    $stmt = $db->prepare('INSERT INTO `USER` (first_name, last_name, email, phone, password_hash, role, status, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('sssssssi', $u['first_name'], $u['last_name'], $u['email'], $u['phone'], $u['password_hash'], $u['role'], $u['status'], $verified);
     $stmt->execute();
     $userId = $stmt->insert_id;
 

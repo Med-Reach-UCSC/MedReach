@@ -8,6 +8,8 @@ const MR_PUBLIC_ROLES = [
   'delivery'   => 'Delivery',
 ];
 
+const MR_ROLE_LABELS = MR_PUBLIC_ROLES + ['admin' => 'Admin'];
+
 const MR_VEHICLE_TYPES = [
   'motorbike'     => 'Motorbike',
   'three_wheeler' => 'Three-wheeler',
@@ -130,7 +132,10 @@ function mr_password_error(array $in): ?string
 function mr_handle_sign_in(array $in): ?array
 {
   $email = strtolower(trim($in['email'] ?? ''));
-  $user  = mr_user_find_by_email($email);
+  if (!mr_valid_email($email)) {
+    return mr_error('Enter a valid email address, e.g. nimal@example.com.');
+  }
+  $user = mr_user_find_by_email($email);
 
   if (!$user || !password_verify($in['password'] ?? '', $user['password_hash'])) {
     return mr_error('Incorrect email or password.');
@@ -154,6 +159,10 @@ function mr_handle_sign_in(array $in): ?array
 function mr_sign_up_extra(string $role, array $in): array
 {
   $t = fn (string $key) => trim($in[$key] ?? '');
+
+  if ($role === 'admin') {
+    return [null, []];
+  }
 
   if ($role === 'patient') {
     $dob = $t('date_of_birth');
@@ -201,47 +210,56 @@ function mr_sign_up_extra(string $role, array $in): array
   ]];
 }
 
-function mr_handle_sign_up(array $in): ?array
+function mr_account_input(array $in, array $roles): array
 {
-  $first = trim($in['first_name'] ?? '');
-  $last  = trim($in['last_name'] ?? '');
-  $email = strtolower(trim($in['email'] ?? ''));
-  $phone = trim($in['phone'] ?? '');
-  $role  = $in['role'] ?? '';
-
+  $u = [
+    'first_name' => trim($in['first_name'] ?? ''),
+    'last_name'  => trim($in['last_name'] ?? ''),
+    'email'      => strtolower(trim($in['email'] ?? '')),
+    'phone'      => trim($in['phone'] ?? ''),
+    'role'       => $in['role'] ?? '',
+  ];
   $error = match (true) {
-    !isset(MR_PUBLIC_ROLES[$role])              => 'Choose an account type.',
-    $first === '' || mb_strlen($first) > 50     => 'Enter your first name.',
-    $last === '' || mb_strlen($last) > 50       => 'Enter your last name.',
-    !filter_var($email, FILTER_VALIDATE_EMAIL)  => 'Enter a valid email address.',
-    !preg_match('/^\+?[0-9 ]{9,15}$/', $phone)  => 'Enter a valid phone number, e.g. 071 234 5678.',
-    ($passwordError = mr_password_error($in)) !== null => $passwordError,
-    empty($in['agree_terms'])                   => 'Please accept the terms to continue.',
-    mr_user_find_by_email($email) !== null      => 'An account with this email already exists. Sign in instead.',
-    default                                     => null,
+    !isset($roles[$u['role']])           => 'Choose an account type.',
+    !mr_valid_name($u['first_name'])     => 'Enter a valid first name, using letters only.',
+    !mr_valid_name($u['last_name'])      => 'Enter a valid last name, using letters only.',
+    !mr_valid_email($u['email'])         => 'Enter a valid email address, e.g. nimal@example.com.',
+    !mr_valid_phone($u['phone'])         => 'Enter a valid phone number, e.g. 071 234 5678.',
+    mr_user_find_by_email($u['email']) !== null => 'An account with this email already exists.',
+    default                              => null,
   };
-  [$error, $extra] = $error ? [$error, []] : mr_sign_up_extra($role, $in);
-  if ($error) {
-    return mr_error($error);
-  }
+  [$error, $extra] = $error ? [$error, []] : mr_sign_up_extra($u['role'], $in);
+  return [$error, $u, $extra];
+}
 
+function mr_account_register(array $u, array $extra): int|array
+{
   try {
-    $id = mr_account_create([
-      'first_name'    => $first,
-      'last_name'     => $last,
-      'email'         => $email,
-      'phone'         => $phone,
-      'password_hash' => password_hash($in['password'], PASSWORD_DEFAULT),
-      'role'          => $role,
-      'status'        => $role === 'patient' ? 'active' : 'pending',
-    ], $extra);
+    return mr_account_create($u, $extra);
   } catch (mysqli_sql_exception $e) {
     if ($e->getCode() !== 1062) {
       throw $e;
     }
-    return mr_error($role === 'pharmacist' ? 'A pharmacy with this licence number is already registered.' : 'An account with this NIC number already exists.');
+    return mr_error($u['role'] === 'pharmacist' ? 'A pharmacy with this licence number is already registered.' : 'An account with this NIC number already exists.');
   }
-  mr_otp_start(['user_id' => $id, 'email' => $email, 'first_name' => $first], $email, 'verify_email');
+}
+
+function mr_handle_sign_up(array $in): ?array
+{
+  [$error, $u, $extra] = mr_account_input($in, MR_PUBLIC_ROLES);
+  $error ??= mr_password_error($in) ?? (empty($in['agree_terms']) ? 'Please accept the terms to continue.' : null);
+  if ($error) {
+    return mr_error($error);
+  }
+
+  $id = mr_account_register($u + [
+    'password_hash' => password_hash($in['password'], PASSWORD_DEFAULT),
+    'status'        => $u['role'] === 'patient' ? 'active' : 'pending',
+  ], $extra);
+  if (is_array($id)) {
+    return $id;
+  }
+  mr_otp_start(['user_id' => $id, 'email' => $u['email'], 'first_name' => $u['first_name']], $u['email'], 'verify_email');
   mr_redirect('verify-email.php');
 }
 
@@ -264,8 +282,8 @@ function mr_handle_verify_email(array $in): ?array
 function mr_handle_reset_request(array $in): ?array
 {
   $email = strtolower(trim($in['email'] ?? ''));
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    return mr_error('Enter a valid email address.');
+  if (!mr_valid_email($email)) {
+    return mr_error('Enter a valid email address, e.g. nimal@example.com.');
   }
   mr_otp_start(mr_otp_user($email), $email, 'reset_password');
   mr_redirect('new-password.php');

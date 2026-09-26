@@ -2,6 +2,18 @@
 $title = 'User Management — MedReach';
 $charts = true;
 $active = 'users';
+
+$mr_users  = mr_admin_users();
+$mr_count  = fn (string $key, string $value) => count(array_filter($mr_users, fn ($u) => $u[$key] === $value));
+$mr_total  = max(count($mr_users), 1);
+$mr_roles  = ['patient' => 'Patients', 'pharmacist' => 'Pharmacists', 'delivery' => 'Delivery', 'admin' => 'Admins'];
+$mr_dots   = ['patient' => 'mr-spend-dot--primary', 'pharmacist' => 'mr-spend-dot--light', 'delivery' => 'mr-spend-dot--accent', 'admin' => 'mr-spend-dot--muted'];
+$mr_badges = ['active' => 'mr-badge--success', 'pending' => 'mr-badge--accent', 'deactivated' => 'mr-badge--pill'];
+$mr_error  = $flash && $flash['type'] === 'error' ? $flash : null;
+$mr_modal  = $mr_error['modal'] ?? null;
+$mr_old_in = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? ($_POST[$key] ?? '') : '');
+$mr_role   = $mr_modal === 'mr-user-create-modal' ? ($_POST['role'] ?? 'patient') : 'patient';
+$mr_csrf   = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -18,46 +30,27 @@ $active = 'users';
         </div>
       </header>
 
+      <?php if ($flash && !$mr_modal): ?>
+        <span hidden data-flash-toast="<?= htmlspecialchars($flash['text']) ?>" data-flash-error="<?= $mr_error ? 'true' : 'false' ?>"></span>
+      <?php endif; ?>
+
       <div class="mr-stat-grid-4">
-        <section class="mr-card mr-mini-stat">
+        <?php foreach ([
+          ['Total Users', count($mr_users), 'info', '2d3fd7/conference-call'],
+          ['Active', $mr_count('status', 'active'), 'success', '1f9d6b/checkmark'],
+          ['Pending Approval', $mr_count('status', 'pending'), 'accent', 'dd8e1c/hourglass'],
+          ['Suspended', $mr_count('status', 'deactivated'), 'danger', 'de4a4f/warning-shield'],
+        ] as [$mr_label, $mr_value, $mr_tone, $mr_icon]): ?>
+        <section class="mr-card mr-mini-stat<?= $mr_tone === 'accent' ? ' mr-mini-stat--accent' : '' ?>">
           <div>
-            <span class="mr-eyebrow mr-eyebrow--mono">Active Sessions</span>
-            <strong>1,248</strong>
+            <span class="mr-eyebrow mr-eyebrow--mono"><?= $mr_label ?></span>
+            <strong><?= $mr_value ?></strong>
           </div>
-          <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="presentation/assets/images/icons/filled/1f9d6b/speed.png" alt="">
+          <span class="mr-icon-badge mr-icon-badge--<?= $mr_tone ?> mr-icon-badge--lg">
+            <img src="presentation/assets/images/icons/filled/<?= $mr_icon ?>.png" alt="">
           </span>
         </section>
-
-        <section class="mr-card mr-mini-stat">
-          <div>
-            <span class="mr-eyebrow mr-eyebrow--mono">Auth Failures</span>
-            <strong>0.04%</strong>
-          </div>
-          <span class="mr-icon-badge mr-icon-badge--danger mr-icon-badge--lg">
-            <img src="presentation/assets/images/icons/filled/de4a4f/warning-shield.png" alt="">
-          </span>
-        </section>
-
-        <section class="mr-card mr-mini-stat mr-mini-stat--accent">
-          <div>
-            <span class="mr-eyebrow mr-eyebrow--mono">Pending Verification</span>
-            <strong>34</strong>
-          </div>
-          <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
-            <img src="presentation/assets/images/icons/filled/dd8e1c/hourglass.png" alt="">
-          </span>
-        </section>
-
-        <section class="mr-card mr-mini-stat">
-          <div>
-            <span class="mr-eyebrow mr-eyebrow--mono">Total Users</span>
-            <strong>1,412</strong>
-          </div>
-          <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="presentation/assets/images/icons/filled/2d3fd7/conference-call.png" alt="">
-          </span>
-        </section>
+        <?php endforeach; ?>
       </div>
 
       <div class="mr-dash-content">
@@ -66,9 +59,6 @@ $active = 'users';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>User Ledger</h2>
-              <button type="button" class="mr-icon-btn" aria-label="Export user ledger" data-toast="User ledger exported as CSV.">
-                <img src="presentation/assets/images/icons/filled/454655/export.png" alt="">
-              </button>
             </div>
 
             <div class="mr-roster-toolbar">
@@ -77,16 +67,15 @@ $active = 'users';
                   <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
                   <select id="mr-user-role-filter" aria-label="Filter by role">
                     <option value="">Filtered: All</option>
-                    <option value="patient">Filtered: Patient</option>
-                    <option value="pharmacist">Filtered: Pharmacist</option>
-                    <option value="delivery">Filtered: Delivery</option>
-                    <option value="admin">Filtered: Admin</option>
+                    <?php foreach (MR_ROLE_LABELS as $mr_key => $mr_label): ?>
+                      <option value="<?= $mr_key ?>">Filtered: <?= $mr_label ?></option>
+                    <?php endforeach; ?>
                   </select>
                 </label>
-                <span class="mr-badge mr-badge--pill mr-badge--case-normal">Total: 5</span>
+                <span class="mr-badge mr-badge--pill mr-badge--case-normal">Total: <?= count($mr_users) ?></span>
               </div>
 
-              <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-user-form-modal">
+              <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-user-create-modal">
                 <img src="presentation/assets/images/icons/filled/ffffff/plus.png" alt="">
                 Create User
               </button>
@@ -100,134 +89,58 @@ $active = 'users';
                     <th data-sort="name">User</th>
                     <th data-sort="role">Role</th>
                     <th data-sort="status">Status</th>
-                    <th data-sort="active">Last Active</th>
+                    <th data-sort="joined">Joined</th>
                     <th class="mr-pay-table__amount">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-id="u-001" data-name="dilani perera" data-role="admin" data-status="active" data-active="0">
-                    <td><span class="mr-eyebrow mr-eyebrow--mono">U-001</span></td>
+                  <?php foreach ($mr_users as $u): $mr_name = htmlspecialchars($u['name']); ?>
+                  <tr data-id="<?= sprintf('%06d', $u['user_id']) ?>" data-name="<?= htmlspecialchars(mb_strtolower("{$u['code']} {$u['name']} {$u['email']}")) ?>" data-role="<?= $u['role'] ?>" data-status="<?= $u['status'] ?>" data-joined="<?= $u['created_at'] ?>">
+                    <td><span class="mr-eyebrow mr-eyebrow--mono"><?= $u['code'] ?></span></td>
                     <td>
-                      <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <span class="mr-avatar mr-avatar--dash">DP</span>
-                        <strong>Dilani Perera</strong>
+                      <div class="mr-user-cell">
+                        <span class="mr-avatar mr-avatar--dash"><?= htmlspecialchars($u['initials']) ?></span>
+                        <span>
+                          <strong><?= $mr_name ?></strong>
+                          <small class="mr-user-cell__email"><?= htmlspecialchars($u['email']) ?></small>
+                        </span>
                       </div>
                     </td>
-                    <td>Admin</td>
-                    <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
-                    <td>2 min ago</td>
+                    <td><?= MR_ROLE_LABELS[$u['role']] ?></td>
+                    <td><span class="mr-badge <?= $mr_badges[$u['status']] ?>"><span class="mr-badge__dot"></span><?= MR_STATUS_LABELS[$u['status']] ?></span></td>
+                    <td><?= date('j M Y', strtotime($u['created_at'])) ?></td>
                     <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dilani Perera">
+                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for <?= $mr_name ?>">
                         <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
-                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dilani Perera">Edit details</button>
-                        <button type="button" data-toast="Password reset link sent to Dilani Perera.">Reset password</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Dilani Perera">Suspend</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Dilani Perera">Delete</button>
+                        <button type="button" data-modal-open="mr-user-edit-modal" data-subject="<?= $mr_name ?>" data-fill="<?= htmlspecialchars(json_encode(['user_id' => $u['user_id'], 'first_name' => $u['first_name'], 'last_name' => $u['last_name'], 'email' => $u['email'], 'phone' => $u['phone']])) ?>">Edit details</button>
+                        <?php if (!$u['is_self']): ?>
+                        <form method="post" action="manage-users.php">
+                          <?= $mr_csrf ?>
+                          <input type="hidden" name="user_id" value="<?= $u['user_id'] ?>">
+                          <?php if ($u['status'] === 'pending'): ?>
+                            <button type="submit" name="action" value="approve">Approve account</button>
+                          <?php elseif ($u['status'] === 'deactivated'): ?>
+                            <button type="submit" name="action" value="reactivate">Reactivate</button>
+                          <?php else: ?>
+                            <button type="submit" name="action" value="suspend" class="mr-row-menu__danger" data-confirm="Suspend <?= $mr_name ?>?" data-confirm-text="They'll be signed out and can't sign in until an admin reactivates the account." data-confirm-label="Suspend">Suspend</button>
+                          <?php endif; ?>
+                          <button type="submit" name="action" value="delete" class="mr-row-menu__danger" data-confirm="Delete <?= $mr_name ?>?" data-confirm-text="The account and its profile are removed for good. Suspend it instead if they may need access again." data-confirm-label="Delete">Delete</button>
+                        </form>
+                        <?php endif; ?>
                       </div>
                     </td>
                   </tr>
-                  <tr data-id="u-042" data-name="ashan silva" data-role="pharmacist" data-status="active" data-active="1">
-                    <td><span class="mr-eyebrow mr-eyebrow--mono">U-042</span></td>
-                    <td>
-                      <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <span class="mr-avatar mr-avatar--dash">AS</span>
-                        <strong>Ashan Silva</strong>
-                      </div>
-                    </td>
-                    <td>Pharmacist</td>
-                    <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
-                    <td>15 min ago</td>
-                    <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Ashan Silva">
-                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
-                      </button>
-                      <div class="mr-row-menu" hidden>
-                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Ashan Silva">Edit details</button>
-                        <button type="button" data-toast="Password reset link sent to Ashan Silva.">Reset password</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Ashan Silva">Suspend</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Ashan Silva">Delete</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-id="u-118" data-name="buddhika jayawardena" data-role="delivery" data-status="suspended" data-active="3">
-                    <td><span class="mr-eyebrow mr-eyebrow--mono">U-118</span></td>
-                    <td>
-                      <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <span class="mr-avatar mr-avatar--dash">BJ</span>
-                        <strong>Buddhika Jayawardena</strong>
-                      </div>
-                    </td>
-                    <td>Delivery</td>
-                    <td><span class="mr-badge mr-badge--danger"><span class="mr-badge__dot"></span>Suspended</span></td>
-                    <td>&gt;5 hrs ago</td>
-                    <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-user-review-modal">Review</button>
-                    </td>
-                  </tr>
-                  <tr data-id="u-201" data-name="chamari wickramasinghe" data-role="patient" data-status="pending" data-active="2">
-                    <td><span class="mr-eyebrow mr-eyebrow--mono">U-201</span></td>
-                    <td>
-                      <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <span class="mr-avatar mr-avatar--dash">CW</span>
-                        <strong>Chamari Wickramasinghe</strong>
-                      </div>
-                    </td>
-                    <td>Patient</td>
-                    <td><span class="mr-badge mr-badge--accent"><span class="mr-badge__dot"></span>Pending</span></td>
-                    <td>2 hrs ago</td>
-                    <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Chamari Wickramasinghe">
-                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
-                      </button>
-                      <div class="mr-row-menu" hidden>
-                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Chamari Wickramasinghe">Edit details</button>
-                        <button type="button" data-toast="Password reset link sent to Chamari Wickramasinghe.">Reset password</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-suspend-modal" data-subject="Chamari Wickramasinghe">Suspend</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Chamari Wickramasinghe">Delete</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr data-id="u-205" data-name="dinesh mendis" data-role="pharmacist" data-status="inactive" data-active="4">
-                    <td><span class="mr-eyebrow mr-eyebrow--mono">U-205</span></td>
-                    <td>
-                      <div style="display: flex; align-items: center; gap: 0.6rem;">
-                        <span class="mr-avatar mr-avatar--dash">DM</span>
-                        <strong>Dinesh Mendis</strong>
-                      </div>
-                    </td>
-                    <td>Pharmacist</td>
-                    <td><span class="mr-badge mr-badge--pill mr-badge--case-normal"><span class="mr-badge__dot"></span>Inactive</span></td>
-                    <td>1 day ago</td>
-                    <td class="mr-pay-table__amount">
-                      <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dinesh Mendis">
-                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
-                      </button>
-                      <div class="mr-row-menu" hidden>
-                        <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dinesh Mendis">Edit details</button>
-                        <button type="button" data-toast="Password reset link sent to Dinesh Mendis.">Reset password</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-reactivate-modal" data-subject="Dinesh Mendis">Reactivate</button>
-                        <button type="button" class="mr-row-menu__danger" data-modal-open="mr-user-delete-modal" data-subject="Dinesh Mendis">Delete</button>
-                      </div>
-                    </td>
-                  </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
 
-            <p class="mr-roster-empty" hidden>No users match this search or filter.</p>
+            <p class="mr-roster-empty"<?= $mr_users ? ' hidden' : '' ?>>No users match this search or filter.</p>
 
             <div class="mr-pagination">
-              <span class="mr-pagination__count" id="mr-user-count">Showing 1-5 of 5</span>
-              <nav class="mr-pagination__nav" aria-label="User pages">
-                <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="presentation/assets/images/icons/filled/454655/back.png" alt="Previous">
-                </button>
-                <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="presentation/assets/images/icons/filled/1a1b24/forward.png" alt="Next">
-                </button>
-              </nav>
+              <span class="mr-pagination__count" id="mr-user-count">Showing <?= $mr_users ? '1-' . count($mr_users) : '0' ?> of <?= count($mr_users) ?></span>
             </div>
           </section>
 
@@ -241,88 +154,39 @@ $active = 'users';
             </div>
 
             <div class="mr-spend-ring">
-              <canvas id="mr-role-chart" width="128" height="128" role="img" aria-label="Role distribution: 65% patients, 18% pharmacists, 12% delivery, 5% admins"></canvas>
+              <canvas id="mr-role-chart" width="128" height="128" role="img" data-values="<?= implode(',', array_map(fn ($r) => $mr_count('role', $r), array_keys($mr_roles))) ?>" aria-label="Role distribution: <?= implode(', ', array_map(fn ($r, $l) => $mr_count('role', $r) . " $l", array_keys($mr_roles), $mr_roles)) ?>"></canvas>
               <div class="mr-spend-ring__inner">
                 <span>Roles</span>
                 <strong>4</strong>
               </div>
             </div>
 
+            <?php foreach ($mr_roles as $mr_key => $mr_label): ?>
             <div class="mr-spend-row">
               <span class="mr-spend-row__label">
-                <i class="mr-spend-dot mr-spend-dot--primary"></i>
-                Patients
+                <i class="mr-spend-dot <?= $mr_dots[$mr_key] ?>"></i>
+                <?= $mr_label ?>
               </span>
-              <strong>65%</strong>
+              <strong><?= round($mr_count('role', $mr_key) * 100 / $mr_total) ?>%</strong>
             </div>
-            <div class="mr-spend-row">
-              <span class="mr-spend-row__label">
-                <i class="mr-spend-dot mr-spend-dot--light"></i>
-                Pharmacists
-              </span>
-              <strong>18%</strong>
-            </div>
-            <div class="mr-spend-row">
-              <span class="mr-spend-row__label">
-                <i class="mr-spend-dot" style="background-color: var(--mr-color-accent);"></i>
-                Delivery
-              </span>
-              <strong>12%</strong>
-            </div>
-            <div class="mr-spend-row">
-              <span class="mr-spend-row__label">
-                <i class="mr-spend-dot" style="background-color: var(--mr-color-text-muted);"></i>
-                Admins
-              </span>
-              <strong>5%</strong>
-            </div>
+            <?php endforeach; ?>
           </section>
 
           <section class="mr-card mr-notif-list">
             <div class="mr-notif-list__section">
-              <span class="mr-eyebrow">Account Activity</span>
+              <span class="mr-eyebrow">Newest Accounts</span>
 
-              <div class="mr-notif-item is-unread" data-read="false">
-                <span class="mr-icon-badge mr-icon-badge--danger">
-                  <img src="presentation/assets/images/icons/filled/de4a4f/error.png" alt="">
+              <?php foreach (array_slice($mr_users, 0, 4) as $u): ?>
+              <div class="mr-notif-item">
+                <span class="mr-icon-badge mr-icon-badge--<?= $u['status'] === 'pending' ? 'accent' : 'info' ?>">
+                  <img src="presentation/assets/images/icons/filled/<?= $u['status'] === 'pending' ? 'dd8e1c/hourglass' : '2d3fd7/conference-call' ?>.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">Buddhika Jayawardena account suspended — suspicious login attempts</span>
+                  <span class="mr-notif-item__title"><?= htmlspecialchars($u['name']) ?> joined as <?= MR_ROLE_LABELS[$u['role']] ?><?= $u['status'] === 'pending' ? ' — awaiting approval' : '' ?></span>
                 </span>
-                <span class="mr-notif-item__time">Just now</span>
-                <span class="mr-notif-item__dot" aria-hidden="true"></span>
+                <span class="mr-notif-item__time"><?= date('j M', strtotime($u['created_at'])) ?></span>
               </div>
-
-              <div class="mr-notif-item is-unread" data-read="false">
-                <span class="mr-icon-badge mr-icon-badge--accent">
-                  <img src="presentation/assets/images/icons/filled/dd8e1c/hourglass.png" alt="">
-                </span>
-                <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">Chamari Wickramasinghe awaiting identity verification</span>
-                </span>
-                <span class="mr-notif-item__time">15 min ago</span>
-                <span class="mr-notif-item__dot" aria-hidden="true"></span>
-              </div>
-
-              <div class="mr-notif-item" data-read="true">
-                <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="presentation/assets/images/icons/filled/2d3fd7/conference-call.png" alt="">
-                </span>
-                <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">New pharmacist account created by Admin: Dilani</span>
-                </span>
-                <span class="mr-notif-item__time">1 hr ago</span>
-              </div>
-
-              <div class="mr-notif-item" data-read="true">
-                <span class="mr-icon-badge mr-icon-badge--success">
-                  <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
-                </span>
-                <span class="mr-notif-item__info">
-                  <span class="mr-notif-item__title">Bulk role audit completed (Batch_992)</span>
-                </span>
-                <span class="mr-notif-item__time">3 hrs ago</span>
-              </div>
+              <?php endforeach; ?>
             </div>
           </section>
 
@@ -331,140 +195,69 @@ $active = 'users';
     </main>
   </div>
 
-  <div class="mr-modal" id="mr-user-form-modal">
+  <div class="mr-modal<?= $mr_modal === 'mr-user-create-modal' ? ' is-open' : '' ?>" id="mr-user-create-modal">
     <div class="mr-modal__backdrop" data-modal-close></div>
     <div class="mr-modal__card mr-card">
       <div class="mr-modal__head">
-        <h2><span data-subject-slot="Create user"></span></h2>
+        <h2>Create user</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
           <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
-      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" data-toast="User saved — a sign-in link has been emailed.">
-        <label class="mr-field">
-          <span>First name</span>
+      <?php if ($mr_modal === 'mr-user-create-modal') { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
+
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" method="post" action="manage-users.php">
+        <?= $mr_csrf ?>
+        <input type="hidden" name="action" value="create">
+        <?php $mr_old = $mr_old_in('mr-user-create-modal'); ?>
+        <?php $mr_prefix = 'create'; require __DIR__ . '/../partials/user-fields.php'; ?>
+        <div class="mr-field mr-field--span2">
+          <label for="create-role">Role</label>
           <div class="mr-field__input">
-            <input type="text" required>
-          </div>
-        </label>
-        <label class="mr-field">
-          <span>Last name</span>
-          <div class="mr-field__input">
-            <input type="text" required>
-          </div>
-        </label>
-        <label class="mr-field mr-field--span2">
-          <span>Email</span>
-          <div class="mr-field__input">
-            <input type="email" placeholder="name@example.lk" required>
-          </div>
-        </label>
-        <label class="mr-field mr-field--span2">
-          <span>Role</span>
-          <div class="mr-field__input">
-            <select required>
-              <option value="" disabled selected>Select...</option>
-              <option value="patient">Patient</option>
-              <option value="pharmacist">Pharmacist</option>
-              <option value="delivery">Delivery</option>
-              <option value="admin">Admin</option>
+            <select id="create-role" name="role" data-role-select required>
+              <?php foreach (MR_ROLE_LABELS as $mr_key => $mr_label): ?>
+                <option value="<?= $mr_key ?>"<?= $mr_key === $mr_role ? ' selected' : '' ?>><?= $mr_label ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
-        </label>
+        </div>
+
+        <?php require __DIR__ . '/../partials/role-fields.php'; ?>
+
+        <p class="mr-auth-approval mr-field--span2">The account is active straight away. We email the user to set their password with "Forgot password".</p>
 
         <div class="mr-modal__actions mr-field--span2">
           <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Create user</button>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="mr-modal" id="mr-user-suspend-modal">
+  <div class="mr-modal<?= $mr_modal === 'mr-user-edit-modal' ? ' is-open' : '' ?>" id="mr-user-edit-modal">
     <div class="mr-modal__backdrop" data-modal-close></div>
     <div class="mr-modal__card mr-card">
       <div class="mr-modal__head">
-        <h2><span data-subject-slot="Update account"></span></h2>
+        <h2>Edit <span data-subject-slot="account"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
           <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
-      <p class="mr-modal__text">The user will be signed out and can't sign back in until an admin reinstates the account.</p>
+      <?php if ($mr_modal === 'mr-user-edit-modal') { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
 
-      <form class="mr-auth-form mr-modal__form" data-toast="Account updated.">
-        <label class="mr-field">
-          <span>Reason</span>
-          <textarea rows="2" placeholder="Kept in the audit log..." required></textarea>
-        </label>
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" method="post" action="manage-users.php">
+        <?= $mr_csrf ?>
+        <input type="hidden" name="action" value="update">
+        <?php $mr_old = $mr_old_in('mr-user-edit-modal'); ?>
+        <input type="hidden" name="user_id" value="<?= $mr_old('user_id') ?>">
+        <?php $mr_prefix = 'edit'; require __DIR__ . '/../partials/user-fields.php'; ?>
 
-        <div class="mr-modal__actions">
+        <div class="mr-modal__actions mr-field--span2">
           <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Confirm</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save changes</button>
         </div>
       </form>
-    </div>
-  </div>
-
-  <div class="mr-modal" id="mr-user-review-modal">
-    <div class="mr-modal__backdrop" data-modal-close></div>
-    <div class="mr-modal__card mr-card">
-      <div class="mr-modal__head">
-        <h2>Review Buddhika Jayawardena</h2>
-        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
-        </button>
-      </div>
-
-      <dl class="mr-modal__list">
-        <div><dt>Role</dt><dd>Delivery</dd></div>
-        <div><dt>Suspended</dt><dd>Today, 09:12 AM</dd></div>
-        <div><dt>Reason</dt><dd>5 failed sign-in attempts</dd></div>
-        <div><dt>Active deliveries</dt><dd>0</dd></div>
-      </dl>
-
-      <div class="mr-modal__actions">
-        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close data-toast="Account stays suspended.">Keep suspended</button>
-        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close data-toast="Account reinstated — a password reset link was emailed.">Reinstate</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="mr-modal" id="mr-user-reactivate-modal">
-    <div class="mr-modal__backdrop" data-modal-close></div>
-    <div class="mr-modal__card mr-card">
-      <div class="mr-modal__head">
-        <h2>Reactivate <span data-subject-slot="account"></span>?</h2>
-        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
-        </button>
-      </div>
-
-      <p class="mr-modal__text">The user can sign in again straight away.</p>
-
-      <div class="mr-modal__actions">
-        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close data-toast="Account reactivated.">Reactivate</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="mr-modal" id="mr-user-delete-modal">
-    <div class="mr-modal__backdrop" data-modal-close></div>
-    <div class="mr-modal__card mr-card">
-      <div class="mr-modal__head">
-        <h2>Delete <span data-subject-slot="account"></span>?</h2>
-        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
-        </button>
-      </div>
-
-      <p class="mr-modal__text">The account and its profile are removed for good. Suspend it instead if the user may need access again.</p>
-
-      <div class="mr-modal__actions">
-        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-        <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-close data-toast="Account deleted.">Delete</button>
-      </div>
     </div>
   </div>

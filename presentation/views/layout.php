@@ -9,6 +9,7 @@
 <body<?= isset($bodyClass) ? " class=\"$bodyClass\"" : '' ?>>
 <?= $content ?>
 <?php require __DIR__ . '/partials/modal-error.php'; ?>
+<?php require __DIR__ . '/partials/modal-confirm.php'; ?>
 <?php if (!empty($charts)): ?>
   <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
 <?php endif; ?>

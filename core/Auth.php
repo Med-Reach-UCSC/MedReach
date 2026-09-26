@@ -1,4 +1,10 @@
 <?php
+require_once __DIR__ . '/../data/auth/UserData.php';
+
+const MR_EMAIL_PATTERN = '[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}';
+const MR_NAME_PATTERN  = "[\p{L} .'\-]+";
+const MR_PHONE_PATTERN = '\+?[0-9 ]{9,15}';
+
 const MR_ROLE_HOME = [
   'patient'    => 'patient-dashboard.php',
   'pharmacist' => 'pharmacy-dashboard.php',
@@ -44,6 +50,21 @@ function mr_error(string $text): array
   return ['type' => 'error', 'text' => $text];
 }
 
+function mr_valid_email(string $email): bool
+{
+  return strlen($email) <= 255 && preg_match('/^' . MR_EMAIL_PATTERN . '$/', $email) && filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+function mr_valid_name(string $name): bool
+{
+  return mb_strlen($name) <= 50 && preg_match('/^' . MR_NAME_PATTERN . '$/u', $name) && preg_match('/\p{L}/u', $name);
+}
+
+function mr_valid_phone(string $phone): bool
+{
+  return (bool) preg_match('/^' . MR_PHONE_PATTERN . '$/', $phone);
+}
+
 function mr_form(callable $handle): ?array
 {
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -59,7 +80,9 @@ function mr_require_role(string $role): void
 {
   mr_session();
   $current = $_SESSION['role'] ?? null;
-  if ($current === null) {
+  $user = $current === null ? null : mr_user_find((int) $_SESSION['user_id']);
+  if (!$user || $user['status'] !== 'active' || $user['role'] !== $current) {
+    $_SESSION = [];
     mr_redirect('sign-in.php');
   }
   if ($current !== $role) {

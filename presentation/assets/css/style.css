@@ -826,9 +826,6 @@ a {
 
 .mr-route-diagram__stop small {
   width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   font-size: 0.7rem;
   font-weight: 600;
   text-align: center;
@@ -5311,4 +5308,57 @@ body:has(.mr-modal.is-open) {
 .mr-auth-approval {
   font-size: 0.875rem;
   color: var(--mr-color-text-muted);
+}
+
+.mr-field__error {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--mr-color-danger);
+}
+
+.mr-field [aria-invalid="true"],
+.mr-field__input [aria-invalid="true"] {
+  border-color: var(--mr-color-danger);
+}
+
+.mr-row-menu form {
+  display: contents;
+}
+
+.mr-spend-dot--accent {
+  background-color: var(--mr-color-accent);
+}
+
+.mr-spend-dot--muted {
+  background-color: var(--mr-color-text-muted);
+}
+
+.mr-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.mr-user-cell > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.mr-user-cell__email {
+  font-size: 0.75rem;
+  color: var(--mr-color-text-muted);
+  word-break: break-all;
+}
+
+@media (max-width: 480px) {
+  .mr-suggestion-demo {
+    flex-wrap: wrap;
+  }
+
+  .mr-suggestion-demo .mr-request-card__actions {
+    flex-basis: 100%;
+  }
 }
