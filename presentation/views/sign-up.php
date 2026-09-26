@@ -12,16 +12,16 @@ $mr_old = fn (string $key) => htmlspecialchars($_POST[$key] ?? '');
         </div>
 
         <ul class="mr-auth-features">
-          <li><img src="https://img.icons8.com/ios-filled/50/ffffff/checkmark.png" alt=""> Fast delivery</li>
-          <li><img src="https://img.icons8.com/ios-filled/50/ffffff/checkmark.png" alt=""> Trusted pharmacists</li>
-          <li><img src="https://img.icons8.com/ios-filled/50/ffffff/checkmark.png" alt=""> Easy prescription uploads</li>
+          <li><img src="presentation/assets/images/icons/filled/ffffff/checkmark.png" alt=""> Fast delivery</li>
+          <li><img src="presentation/assets/images/icons/filled/ffffff/checkmark.png" alt=""> Trusted pharmacists</li>
+          <li><img src="presentation/assets/images/icons/filled/ffffff/checkmark.png" alt=""> Easy prescription uploads</li>
         </ul>
 
         <div class="mr-auth-community">
           <div class="mr-auth-community__avatars">
-            <img src="https://placehold.co/32x32?text=1" alt="">
-            <img src="https://placehold.co/32x32?text=2" alt="">
-            <img src="https://placehold.co/32x32?text=3" alt="">
+            <img src="presentation/assets/images/avatar-placeholder-1.png" alt="">
+            <img src="presentation/assets/images/avatar-placeholder-2.png" alt="">
+            <img src="presentation/assets/images/avatar-placeholder-3.png" alt="">
           </div>
           <div>
             <strong>Trusted Community</strong>

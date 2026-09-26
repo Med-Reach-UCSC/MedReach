@@ -16,12 +16,12 @@ $active = 'settings';
 
         <div class="mr-dash-header__actions">
           <label class="mr-pharm-search">
-            <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
             <input type="search" id="mr-settings-search" placeholder="Search settings..." aria-label="Search settings">
           </label>
 
           <button type="submit" form="mr-settings-form" class="mr-btn mr-btn--primary mr-btn--sm">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/save.png" alt="" style="width:14px;height:14px;vertical-align:-2px;margin-right:0.35rem;">
+            <img src="presentation/assets/images/icons/filled/ffffff/save.png" alt="" style="width:14px;height:14px;vertical-align:-2px;margin-right:0.35rem;">
             Save changes
           </button>
         </div>
@@ -34,7 +34,7 @@ $active = 'settings';
               <div>
                 <h2 style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="mr-icon-badge mr-icon-badge--info">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/broadcasting.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/broadcasting.png" alt="">
                   </span>
                   Broadcast Routing Engine
                 </h2>
@@ -51,11 +51,11 @@ $active = 'settings';
                 <label class="mr-eyebrow mr-eyebrow--mono" style="display: block; margin-bottom: 0.5rem;">Base Radius (km)</label>
                 <div class="mr-stepper" data-step="1">
                   <button type="button" class="mr-stepper__btn" data-stepper-action="dec" aria-label="Decrease base radius">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/minus.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/minus.png" alt="">
                   </button>
                   <span class="mr-stepper__value">45</span>
                   <button type="button" class="mr-stepper__btn" data-stepper-action="inc" aria-label="Increase base radius">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/plus.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/plus.png" alt="">
                   </button>
                 </div>
               </div>
@@ -64,11 +64,11 @@ $active = 'settings';
                 <label class="mr-eyebrow mr-eyebrow--mono" style="display: block; margin-bottom: 0.5rem;">Max Forwards per Item</label>
                 <div class="mr-stepper" data-step="1">
                   <button type="button" class="mr-stepper__btn" data-stepper-action="dec" aria-label="Decrease max forwards">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/minus.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/minus.png" alt="">
                   </button>
                   <span class="mr-stepper__value">5</span>
                   <button type="button" class="mr-stepper__btn" data-stepper-action="inc" aria-label="Increase max forwards">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/plus.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/plus.png" alt="">
                   </button>
                 </div>
               </div>
@@ -79,7 +79,7 @@ $active = 'settings';
             <div class="mr-dash-card__head">
               <h2 style="display: flex; align-items: center; gap: 0.5rem;">
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/2d3fd7/speed.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/2d3fd7/speed.png" alt="">
                 </span>
                 Routing Behaviour
               </h2>
@@ -111,7 +111,7 @@ $active = 'settings';
             <div class="mr-dash-card__head">
               <h2 style="display: flex; align-items: center; gap: 0.5rem;">
                 <span class="mr-icon-badge mr-icon-badge--accent">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/high-priority.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/high-priority.png" alt="">
                 </span>
                 Alert Preferences
               </h2>
@@ -154,7 +154,7 @@ $active = 'settings';
               <div>
                 <h2 style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="mr-icon-badge mr-icon-badge--info">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/route.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/route.png" alt="">
                   </span>
                   Global Routing Parameters
                 </h2>
@@ -192,7 +192,7 @@ $active = 'settings';
 
           <section class="mr-card mr-courier-card">
             <h2 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/clipboard.png" alt="" style="width:18px;height:18px;">
+              <img src="presentation/assets/images/icons/filled/ffffff/clipboard.png" alt="" style="width:18px;height:18px;">
               System Manifest
             </h2>
             <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem;">Current configuration</p>
@@ -227,7 +227,7 @@ $active = 'settings';
             <div class="mr-dash-card__head">
               <h2 style="display: flex; align-items: center; gap: 0.5rem;">
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/2d3fd7/user.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/2d3fd7/user.png" alt="">
                 </span>
                 Admin Profile
               </h2>
@@ -249,7 +249,7 @@ $active = 'settings';
               <label class="mr-field">
                 <span>Contact Email</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/mail.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/mail.png" alt="">
                   <input type="email" value="admin@medreach.lk">
                 </div>
               </label>
@@ -267,7 +267,7 @@ $active = 'settings';
               <label class="mr-field mr-field--span2">
                 <span>Auth Token Expiry</span>
                 <div class="mr-field__input">
-                  <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+                  <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
                   <input type="text" value="90 Days (Enforced)" readonly>
                 </div>
               </label>
@@ -276,7 +276,7 @@ $active = 'settings';
 
           <section class="mr-card mr-courier-card">
             <h2 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/flow-chart.png" alt="" style="width:18px;height:18px;">
+              <img src="presentation/assets/images/icons/filled/ffffff/flow-chart.png" alt="" style="width:18px;height:18px;">
               Routing Summary
             </h2>
             <p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem;">Applies to new requests</p>

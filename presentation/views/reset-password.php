@@ -19,7 +19,7 @@ $bodyClass = 'mr-auth-body';
           <div class="mr-field">
             <label for="email">Email address</label>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/new-post.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/new-post.png" alt="">
               <input type="email" id="email" name="email" placeholder="name@example.com" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" autocomplete="email" required>
             </div>
           </div>

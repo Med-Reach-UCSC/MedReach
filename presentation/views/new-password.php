@@ -19,7 +19,7 @@ $bodyClass = 'mr-auth-body';
           <div class="mr-field">
             <label for="code">Reset code</label>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/password.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/password.png" alt="">
               <input class="mr-otp-input" type="text" id="code" name="code" placeholder="000000" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required autofocus>
             </div>
           </div>
@@ -27,7 +27,7 @@ $bodyClass = 'mr-auth-body';
           <div class="mr-field">
             <label for="password">New password</label>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
               <input type="password" id="password" name="password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
             </div>
           </div>
@@ -35,7 +35,7 @@ $bodyClass = 'mr-auth-body';
           <div class="mr-field">
             <label for="confirm_password">Confirm new password</label>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
               <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
             </div>
           </div>

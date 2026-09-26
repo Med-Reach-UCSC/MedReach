@@ -34,7 +34,7 @@ $active = 'dashboard';
             <strong>14</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/checklist.png" alt="">
+            <img src="presentation/assets/images/icons/filled/dd8e1c/checklist.png" alt="">
           </span>
         </section>
 
@@ -44,7 +44,7 @@ $active = 'dashboard';
             <strong>8,249</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/pill.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/pill.png" alt="">
           </span>
         </section>
 
@@ -54,7 +54,7 @@ $active = 'dashboard';
             <strong>342</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/1f9d6b/pharmacy-shop.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1f9d6b/pharmacy-shop.png" alt="">
           </span>
         </section>
       </div>

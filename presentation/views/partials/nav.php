@@ -4,8 +4,8 @@
   </a>
 
   <button type="button" class="mr-nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-nav-menu">
-    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
-    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--close" src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--open" src="presentation/assets/images/icons/filled/1a1b24/menu.png" alt="">
+    <img class="mr-nav__toggle-icon mr-nav__toggle-icon--close" src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
   </button>
 
   <div class="mr-nav__menu" id="mr-nav-menu">

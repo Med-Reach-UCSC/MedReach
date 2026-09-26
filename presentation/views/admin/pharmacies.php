@@ -11,7 +11,7 @@ $active = 'pharmacies';
 
         <div class="mr-dash-header__actions">
           <label class="mr-pharm-search">
-            <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
             <input type="search" id="mr-pharmacy-search" placeholder="Search pharmacies..." aria-label="Search pharmacies">
           </label>
         </div>
@@ -24,7 +24,7 @@ $active = 'pharmacies';
             <strong>1,248</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
           </span>
         </section>
 
@@ -34,7 +34,7 @@ $active = 'pharmacies';
             <strong>34</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/hourglass.png" alt="">
+            <img src="presentation/assets/images/icons/filled/dd8e1c/hourglass.png" alt="">
           </span>
         </section>
 
@@ -44,7 +44,7 @@ $active = 'pharmacies';
             <strong>8.4k</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/shipped.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/shipped.png" alt="">
           </span>
         </section>
       </div>
@@ -56,7 +56,7 @@ $active = 'pharmacies';
             <div class="mr-roster-toolbar">
               <div class="mr-roster-toolbar__chips">
                 <label class="mr-roster-filter">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
                   <select id="mr-pharmacy-status-filter" aria-label="Filter by status">
                     <option value="">Filtered: All</option>
                     <option value="active">Filtered: Active</option>
@@ -67,7 +67,7 @@ $active = 'pharmacies';
               </div>
 
               <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-pharmacy-form-modal">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/plus.png" alt="">
+                <img src="presentation/assets/images/icons/filled/ffffff/plus.png" alt="">
                 Add Pharmacy
               </button>
             </div>
@@ -92,7 +92,7 @@ $active = 'pharmacies';
                     <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Apex Care Pharmacy">
-                        <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
                         <button type="button" data-modal-open="mr-pharmacy-view-modal" data-subject="Apex Care Pharmacy">View details</button>
@@ -121,7 +121,7 @@ $active = 'pharmacies';
                     <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Active</span></td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Valley Health Rx">
-                        <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
                         <button type="button" data-modal-open="mr-pharmacy-view-modal" data-subject="Valley Health Rx">View details</button>
@@ -140,10 +140,10 @@ $active = 'pharmacies';
               <span class="mr-pagination__count" id="mr-pharmacy-count">Showing 1-3 of 3</span>
               <nav class="mr-pagination__nav" aria-label="Pharmacy pages">
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
+                  <img src="presentation/assets/images/icons/filled/454655/back.png" alt="Previous">
                 </button>
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
+                  <img src="presentation/assets/images/icons/filled/1a1b24/forward.png" alt="Next">
                 </button>
               </nav>
             </div>
@@ -163,11 +163,11 @@ $active = 'pharmacies';
             <div class="mr-activity-list">
               <button type="button" class="mr-btn mr-btn--ghost" style="width: 100%; justify-content: space-between;" data-toast="Compliance report generated — check your email.">
                 Generate Compliance Report
-                <img src="https://img.icons8.com/ios-filled/50/454655/forward-arrow.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/forward-arrow.png" alt="">
               </button>
               <button type="button" class="mr-btn mr-btn--ghost" style="width: 100%; justify-content: space-between; margin-top: 0.5rem;" data-modal-open="mr-pharmacy-review-modal">
                 Verify Licensing
-                <img src="https://img.icons8.com/ios-filled/50/454655/forward-arrow.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/forward-arrow.png" alt="">
               </button>
             </div>
           </section>
@@ -183,7 +183,7 @@ $active = 'pharmacies';
       <div class="mr-modal__head">
         <h2><span data-subject-slot="Register a pharmacy"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -233,7 +233,7 @@ $active = 'pharmacies';
       <div class="mr-modal__head">
         <h2><span data-subject-slot="Pharmacy"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -257,7 +257,7 @@ $active = 'pharmacies';
       <div class="mr-modal__head">
         <h2>Deactivate <span data-subject-slot="pharmacy"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -283,7 +283,7 @@ $active = 'pharmacies';
       <div class="mr-modal__head">
         <h2>Review Northside Meds</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

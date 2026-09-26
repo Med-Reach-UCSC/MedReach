@@ -11,7 +11,7 @@ $charts = true;
         <div class="mr-hero__banner">
           <div class="mr-hero__content">
             <span class="mr-badge mr-badge--pill">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/shield.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/shield.png" alt="">
               Intelligent Logistics
             </span>
             <h1>Your prescription, fulfilled and <span class="mr-text-accent">delivered</span></h1>
@@ -53,7 +53,7 @@ $charts = true;
             <div class="mr-card mr-request-card">
               <div class="mr-request-card__head">
                 <span class="mr-icon-badge mr-icon-badge--accent">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
                 </span>
                 <div>
                   <span class="mr-eyebrow mr-eyebrow--accent">New Request</span>
@@ -82,28 +82,28 @@ $charts = true;
         <div class="mr-roles">
           <article class="mr-role-card mr-role-card--highlight">
             <span class="mr-role-icon">
-              <img src="https://img.icons8.com/ios-filled/50/2b1fd6/user.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2b1fd6/user.png" alt="">
             </span>
             <h3>Patient</h3>
             <p>Upload prescriptions easily and track delivery to your door.</p>
           </article>
           <article class="mr-role-card">
             <span class="mr-role-icon">
-              <img src="https://img.icons8.com/ios-filled/50/454655/family.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/family.png" alt="">
             </span>
             <h3>Guardian</h3>
             <p>Manage medications for dependents from a single interface.</p>
           </article>
           <article class="mr-role-card">
             <span class="mr-role-icon">
-              <img src="https://img.icons8.com/ios-filled/50/1f9d6b/pharmacy-shop.png" alt="">
+              <img src="presentation/assets/images/icons/filled/1f9d6b/pharmacy-shop.png" alt="">
             </span>
             <h3>Pharmacist</h3>
             <p>Receive orders directly, verify instantly, and boost fulfillment.</p>
           </article>
           <article class="mr-role-card">
             <span class="mr-role-icon">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/scooter.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/scooter.png" alt="">
             </span>
             <h3>Delivery Partner</h3>
             <p>Optimized routing for swift and secure medical deliveries.</p>
@@ -155,35 +155,35 @@ $charts = true;
         <div class="mr-features">
           <article class="mr-feature mr-feature--tall">
             <span class="mr-feature-icon mr-feature-icon--primary">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/flow-chart.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/flow-chart.png" alt="">
             </span>
             <h3>Smart Split-Routing</h3>
             <p>No fixed lead pharmacy — each item in a multi-item prescription routes independently to the nearest registered pharmacy that can fill it. A pharmacy that can't fulfill in time is skipped automatically and the item forwards to the next-closest option.</p>
             <div class="mr-route-diagram">
               <div class="mr-route-diagram__stop">
                 <span class="mr-route-diagram__icon">
-                  <img src="https://img.icons8.com/ios-filled/50/2d3fd7/pill.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/2d3fd7/pill.png" alt="">
                 </span>
                 <small>Prescription</small>
               </div>
               <i class="mr-route-diagram__line"></i>
               <div class="mr-route-diagram__stop">
                 <span class="mr-route-diagram__icon">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/pharmacy-shop.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/pharmacy-shop.png" alt="">
                 </span>
                 <small>City Health</small>
               </div>
               <i class="mr-route-diagram__line"></i>
               <div class="mr-route-diagram__stop">
                 <span class="mr-route-diagram__icon">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/pharmacy-shop.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/pharmacy-shop.png" alt="">
                 </span>
                 <small>CarePlus Meds</small>
               </div>
               <i class="mr-route-diagram__line"></i>
               <div class="mr-route-diagram__stop">
                 <span class="mr-route-diagram__icon">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/home.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/home.png" alt="">
                 </span>
                 <small>Delivered</small>
               </div>
@@ -197,7 +197,7 @@ $charts = true;
 
           <article class="mr-feature">
             <span class="mr-feature-icon mr-feature-icon--primary">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/redo.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/redo.png" alt="">
             </span>
             <h4>Auto-Forwarding</h4>
             <p>A pharmacy that declines or misses the response window is skipped automatically.</p>
@@ -210,7 +210,7 @@ $charts = true;
 
           <article class="mr-feature">
             <span class="mr-feature-icon">
-              <img src="https://img.icons8.com/ios-filled/50/1f9d6b/exchange.png" alt="">
+              <img src="presentation/assets/images/icons/filled/1f9d6b/exchange.png" alt="">
             </span>
             <h4>1-Tap Substitution</h4>
             <p>The pharmacist proposes an equivalent; the patient or guardian approves with a single tap.</p>
@@ -222,7 +222,7 @@ $charts = true;
 
           <article class="mr-feature">
             <span class="mr-feature-icon mr-feature-icon--accent">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/cash.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/cash.png" alt="">
             </span>
             <h4>Cash on Delivery</h4>
             <p>Pay the courier in cash when the order reaches your door, or choose card at checkout.</p>
@@ -240,7 +240,7 @@ $charts = true;
 
           <article class="mr-feature">
             <span class="mr-feature-icon mr-feature-icon--primary">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/checklist.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/checklist.png" alt="">
             </span>
             <h4>Order Tracking</h4>
             <p>Plain-language status updates from verification to your door — no maps required.</p>
@@ -259,11 +259,11 @@ $charts = true;
         <div class="mr-testimonials">
           <blockquote class="mr-card mr-testimonial">
             <div class="mr-testimonial__stars">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
             </div>
             <p>"MedReach completely changed how I get my prescriptions. It's incredibly fast and tracking gives me peace of mind."</p>
             <footer>
@@ -277,11 +277,11 @@ $charts = true;
 
           <blockquote class="mr-card mr-testimonial">
             <div class="mr-testimonial__stars">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
             </div>
             <p>"As a pharmacist, the interface is seamless. We can process requests much faster and focus on patient care."</p>
             <footer>
@@ -295,11 +295,11 @@ $charts = true;
 
           <blockquote class="mr-card mr-testimonial">
             <div class="mr-testimonial__stars">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
             </div>
             <p>"Managing my parents' medication used to be a headache. Now it's a few taps on my phone."</p>
             <footer>

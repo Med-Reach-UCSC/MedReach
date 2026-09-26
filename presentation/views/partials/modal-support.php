@@ -4,7 +4,7 @@
     <div class="mr-modal__head">
       <h2>Contact support</h2>
       <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-        <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
       </button>
     </div>
 

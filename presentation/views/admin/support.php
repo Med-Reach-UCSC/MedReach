@@ -31,7 +31,7 @@ $active = 'support';
         <div class="mr-roster-toolbar">
           <div class="mr-roster-toolbar__chips">
             <label class="mr-roster-filter">
-              <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+              <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
               <select data-row-filter="mr-ticket-table" aria-label="Filter by status">
                 <option value="">Filtered: All</option>
                 <option value="open">Filtered: Open</option>
@@ -42,7 +42,7 @@ $active = 'support';
           </div>
 
           <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-ticket-form-modal">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/plus.png" alt="">
+            <img src="presentation/assets/images/icons/filled/ffffff/plus.png" alt="">
             Log a call
           </button>
         </div>
@@ -71,7 +71,7 @@ $active = 'support';
                 <td>12 min ago</td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for T-1043">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-modal-open="mr-ticket-view-modal" data-subject="T-1043 · Nimal Perera">View &amp; reply</button>
@@ -91,7 +91,7 @@ $active = 'support';
                 <td>1 hr ago</td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for T-1042">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-modal-open="mr-ticket-view-modal" data-subject="T-1042 · CityHealth Pharmacy">View &amp; reply</button>
@@ -111,7 +111,7 @@ $active = 'support';
                 <td>Yesterday</td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for T-1040">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-modal-open="mr-ticket-view-modal" data-subject="T-1040 · Kasun Priyankara">View &amp; reply</button>
@@ -131,7 +131,7 @@ $active = 'support';
                 <td>Sep 23, 2026</td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for T-1037">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-modal-open="mr-ticket-view-modal" data-subject="T-1037 · Sunethra Fernando">View &amp; reply</button>
@@ -153,7 +153,7 @@ $active = 'support';
       <div class="mr-modal__head">
         <h2>Log a support call</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -195,7 +195,7 @@ $active = 'support';
       <div class="mr-modal__head">
         <h2><span data-subject-slot="Ticket"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -230,7 +230,7 @@ $active = 'support';
       <div class="mr-modal__head">
         <h2>Delete <span data-subject-slot="ticket"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

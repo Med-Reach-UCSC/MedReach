@@ -27,7 +27,7 @@ $active = 'ratings';
         <div class="mr-dash-card__head">
           <h2>Recent ratings</h2>
           <label class="mr-roster-filter">
-            <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
             <select data-row-filter="mr-rating-table" aria-label="Filter by visibility">
               <option value="">All ratings</option>
               <option value="visible">Visible</option>
@@ -60,7 +60,7 @@ $active = 'ratings';
                 <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Visible</span></td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for rating on #ORD-9921">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-modal-open="mr-rating-hide-modal" data-subject="rating on #ORD-9921">Hide</button>
@@ -79,7 +79,7 @@ $active = 'ratings';
                 <td><span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Visible</span></td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for rating on #ORD-9874">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-modal-open="mr-rating-hide-modal" data-subject="rating on #ORD-9874">Hide</button>
@@ -98,7 +98,7 @@ $active = 'ratings';
                 <td><span class="mr-badge mr-badge--pill mr-badge--case-normal"><span class="mr-badge__dot"></span>Hidden</span></td>
                 <td class="mr-pay-table__amount">
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for rating on #ORD-9810">
-                    <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                   </button>
                   <div class="mr-row-menu" hidden>
                     <button type="button" data-toast="Rating visible again — pharmacy average updated.">Show again</button>
@@ -119,7 +119,7 @@ $active = 'ratings';
       <div class="mr-modal__head">
         <h2>Hide <span data-subject-slot="rating"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -145,7 +145,7 @@ $active = 'ratings';
       <div class="mr-modal__head">
         <h2>Delete <span data-subject-slot="rating"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

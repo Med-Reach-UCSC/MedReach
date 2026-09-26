@@ -12,7 +12,7 @@ $active = 'users';
 
         <div class="mr-dash-header__actions">
           <label class="mr-pharm-search">
-            <img src="https://img.icons8.com/ios-filled/50/454655/search.png" alt="">
+            <img src="presentation/assets/images/icons/filled/454655/search.png" alt="">
             <input type="search" id="mr-user-search" placeholder="Search users..." aria-label="Search users">
           </label>
         </div>
@@ -25,7 +25,7 @@ $active = 'users';
             <strong>1,248</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/1f9d6b/speed.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1f9d6b/speed.png" alt="">
           </span>
         </section>
 
@@ -35,7 +35,7 @@ $active = 'users';
             <strong>0.04%</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--danger mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/de4a4f/warning-shield.png" alt="">
+            <img src="presentation/assets/images/icons/filled/de4a4f/warning-shield.png" alt="">
           </span>
         </section>
 
@@ -45,7 +45,7 @@ $active = 'users';
             <strong>34</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/hourglass.png" alt="">
+            <img src="presentation/assets/images/icons/filled/dd8e1c/hourglass.png" alt="">
           </span>
         </section>
 
@@ -55,7 +55,7 @@ $active = 'users';
             <strong>1,412</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/conference-call.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/conference-call.png" alt="">
           </span>
         </section>
       </div>
@@ -67,14 +67,14 @@ $active = 'users';
             <div class="mr-dash-card__head">
               <h2>User Ledger</h2>
               <button type="button" class="mr-icon-btn" aria-label="Export user ledger" data-toast="User ledger exported as CSV.">
-                <img src="https://img.icons8.com/ios-filled/50/454655/export.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/export.png" alt="">
               </button>
             </div>
 
             <div class="mr-roster-toolbar">
               <div class="mr-roster-toolbar__chips">
                 <label class="mr-roster-filter">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
                   <select id="mr-user-role-filter" aria-label="Filter by role">
                     <option value="">Filtered: All</option>
                     <option value="patient">Filtered: Patient</option>
@@ -87,7 +87,7 @@ $active = 'users';
               </div>
 
               <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-user-form-modal">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/plus.png" alt="">
+                <img src="presentation/assets/images/icons/filled/ffffff/plus.png" alt="">
                 Create User
               </button>
             </div>
@@ -118,7 +118,7 @@ $active = 'users';
                     <td>2 min ago</td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dilani Perera">
-                        <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dilani Perera">Edit details</button>
@@ -141,7 +141,7 @@ $active = 'users';
                     <td>15 min ago</td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Ashan Silva">
-                        <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Ashan Silva">Edit details</button>
@@ -179,7 +179,7 @@ $active = 'users';
                     <td>2 hrs ago</td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Chamari Wickramasinghe">
-                        <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Chamari Wickramasinghe">Edit details</button>
@@ -202,7 +202,7 @@ $active = 'users';
                     <td>1 day ago</td>
                     <td class="mr-pay-table__amount">
                       <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dinesh Mendis">
-                        <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
+                        <img src="presentation/assets/images/icons/filled/454655/more.png" alt="">
                       </button>
                       <div class="mr-row-menu" hidden>
                         <button type="button" data-modal-open="mr-user-form-modal" data-subject="Edit Dinesh Mendis">Edit details</button>
@@ -222,10 +222,10 @@ $active = 'users';
               <span class="mr-pagination__count" id="mr-user-count">Showing 1-5 of 5</span>
               <nav class="mr-pagination__nav" aria-label="User pages">
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
+                  <img src="presentation/assets/images/icons/filled/454655/back.png" alt="Previous">
                 </button>
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
+                  <img src="presentation/assets/images/icons/filled/1a1b24/forward.png" alt="Next">
                 </button>
               </nav>
             </div>
@@ -284,7 +284,7 @@ $active = 'users';
 
               <div class="mr-notif-item is-unread" data-read="false">
                 <span class="mr-icon-badge mr-icon-badge--danger">
-                  <img src="https://img.icons8.com/ios-filled/50/de4a4f/error.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/de4a4f/error.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
                   <span class="mr-notif-item__title">Buddhika Jayawardena account suspended — suspicious login attempts</span>
@@ -295,7 +295,7 @@ $active = 'users';
 
               <div class="mr-notif-item is-unread" data-read="false">
                 <span class="mr-icon-badge mr-icon-badge--accent">
-                  <img src="https://img.icons8.com/ios-filled/50/dd8e1c/hourglass.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/dd8e1c/hourglass.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
                   <span class="mr-notif-item__title">Chamari Wickramasinghe awaiting identity verification</span>
@@ -306,7 +306,7 @@ $active = 'users';
 
               <div class="mr-notif-item" data-read="true">
                 <span class="mr-icon-badge mr-icon-badge--info">
-                  <img src="https://img.icons8.com/ios-filled/50/2d3fd7/conference-call.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/2d3fd7/conference-call.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
                   <span class="mr-notif-item__title">New pharmacist account created by Admin: Dilani</span>
@@ -316,7 +316,7 @@ $active = 'users';
 
               <div class="mr-notif-item" data-read="true">
                 <span class="mr-icon-badge mr-icon-badge--success">
-                  <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
                 </span>
                 <span class="mr-notif-item__info">
                   <span class="mr-notif-item__title">Bulk role audit completed (Batch_992)</span>
@@ -337,7 +337,7 @@ $active = 'users';
       <div class="mr-modal__head">
         <h2><span data-subject-slot="Create user"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -387,7 +387,7 @@ $active = 'users';
       <div class="mr-modal__head">
         <h2><span data-subject-slot="Update account"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -413,7 +413,7 @@ $active = 'users';
       <div class="mr-modal__head">
         <h2>Review Buddhika Jayawardena</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -437,7 +437,7 @@ $active = 'users';
       <div class="mr-modal__head">
         <h2>Reactivate <span data-subject-slot="account"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -456,7 +456,7 @@ $active = 'users';
       <div class="mr-modal__head">
         <h2>Delete <span data-subject-slot="account"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

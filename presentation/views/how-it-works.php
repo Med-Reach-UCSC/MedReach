@@ -15,7 +15,7 @@ $title = 'How It Works — MedReach';
         <article class="mr-feature">
           <div class="mr-feature__head">
             <span class="mr-feature-icon mr-feature-icon--primary">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/clock.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/clock.png" alt="">
             </span>
             <h3>Never wait in line</h3>
           </div>
@@ -24,7 +24,7 @@ $title = 'How It Works — MedReach';
         <article class="mr-feature">
           <div class="mr-feature__head">
             <span class="mr-feature-icon mr-feature-icon--accent">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/price-tag.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/price-tag.png" alt="">
             </span>
             <h3>Nearest pharmacy first</h3>
           </div>
@@ -33,7 +33,7 @@ $title = 'How It Works — MedReach';
         <article class="mr-feature">
           <div class="mr-feature__head">
             <span class="mr-feature-icon">
-              <img src="https://img.icons8.com/ios-filled/50/1f9d6b/visible.png" alt="">
+              <img src="presentation/assets/images/icons/filled/1f9d6b/visible.png" alt="">
             </span>
             <h3>Full transparency</h3>
           </div>
@@ -47,28 +47,28 @@ $title = 'How It Works — MedReach';
         <div class="mr-roles">
           <article class="mr-feature">
             <span class="mr-feature-icon mr-feature-icon--primary">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/upload.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/upload.png" alt="">
             </span>
             <h3>Upload prescription</h3>
             <span class="mr-badge mr-badge--info">Instant Scan</span>
           </article>
           <article class="mr-feature">
             <span class="mr-feature-icon mr-feature-icon--accent">
-              <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pharmacy-shop.png" alt="">
+              <img src="presentation/assets/images/icons/filled/dd8e1c/pharmacy-shop.png" alt="">
             </span>
             <h3>Nearby pharmacies respond</h3>
             <span class="mr-badge mr-badge--pill">3-5m response</span>
           </article>
           <article class="mr-feature">
             <span class="mr-feature-icon mr-feature-icon--primary">
-              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/goal.png" alt="">
+              <img src="presentation/assets/images/icons/filled/2d3fd7/goal.png" alt="">
             </span>
             <h3>Confirm and choose pickup or delivery</h3>
             <span class="mr-badge mr-badge--info">Cash on delivery</span>
           </article>
           <article class="mr-feature">
             <span class="mr-feature-icon">
-              <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checklist.png" alt="">
+              <img src="presentation/assets/images/icons/filled/1f9d6b/checklist.png" alt="">
             </span>
             <h3>Track until delivered</h3>
             <span class="mr-badge mr-badge--success">Status updates</span>
@@ -111,7 +111,7 @@ $title = 'How It Works — MedReach';
 
         <div class="mr-card mr-suggestion-demo">
           <span class="mr-feature-icon mr-feature-icon--primary">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/pill.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/pill.png" alt="">
           </span>
           <p><strong>Pharmacist Suggestion:</strong> Substitute with generic? Same formula, 15% cheaper.</p>
           <div class="mr-request-card__actions">

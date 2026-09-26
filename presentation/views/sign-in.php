@@ -22,7 +22,7 @@ $bodyClass = 'mr-auth-body';
           <div class="mr-field">
             <label for="email">Email address</label>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/new-post.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/new-post.png" alt="">
               <input type="email" id="email" name="email" placeholder="name@example.com" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" autocomplete="email" required>
             </div>
           </div>
@@ -33,7 +33,7 @@ $bodyClass = 'mr-auth-body';
               <a class="mr-link mr-link--sm" href="reset-password.php">Forgot password?</a>
             </div>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/lock--v1.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/lock--v1.png" alt="">
               <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
             </div>
           </div>
@@ -52,9 +52,9 @@ $bodyClass = 'mr-auth-body';
 
         <div class="mr-auth-community">
           <div class="mr-auth-community__avatars">
-            <img src="https://placehold.co/32x32?text=1" alt="">
-            <img src="https://placehold.co/32x32?text=2" alt="">
-            <img src="https://placehold.co/32x32?text=3" alt="">
+            <img src="presentation/assets/images/avatar-placeholder-1.png" alt="">
+            <img src="presentation/assets/images/avatar-placeholder-2.png" alt="">
+            <img src="presentation/assets/images/avatar-placeholder-3.png" alt="">
           </div>
           <div>
             <strong>Trusted Community</strong>

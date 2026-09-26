@@ -19,7 +19,7 @@ $bodyClass = 'mr-auth-body';
           <div class="mr-field">
             <label for="code">Verification code</label>
             <div class="mr-field__input">
-              <img class="mr-field__icon" src="https://img.icons8.com/ios-filled/50/757687/password.png" alt="">
+              <img class="mr-field__icon" src="presentation/assets/images/icons/filled/757687/password.png" alt="">
               <input class="mr-otp-input" type="text" id="code" name="code" placeholder="000000" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required autofocus>
             </div>
           </div>
