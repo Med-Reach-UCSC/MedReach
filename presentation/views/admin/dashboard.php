@@ -1,38 +1,10 @@
 <?php
-// MedReach - Admin dashboard (presentation tier: HTML output only)
-// Converted from docs/admin-dashboard.php (Tailwind mockup) onto the same
-// mr- component system as the patient/pharmacy/delivery modules — no new
-// CSS or JS added.
-//
-// Defects fixed vs the mockup: dropped the Tailwind CDN/Google Fonts/inline
-// theme config for the project's own --mr- token system; dropped the public
-// marketing top bar ("How it works", "Register") which doesn't belong on an
-// authenticated admin screen, replaced with the shared mr-dash-header used
-// by every other role; replaced the hotlinked AI stock-photo avatars with
-// the project's existing initials mr-avatar component; replaced the
-// hand-rolled inline-SVG sparkline/area chart with the project's existing
-// Chart.js bar-chart init (mr-network-chart, already wired up in main.js
-// for landing.php's "pharmacies onboarded per quarter" chart — same data
-// fits the network-growth story here, so no new chart config was needed);
-// reused mr-mini-stat + mr-stat-grid-3 (delivery dashboard's pattern)
-// instead of the mockup's one-off gradient hero card; reused mr-med-stats
-// bars for both the outcome-status and top-performers cards instead of the
-// mockup's hand-coded progress bars; reused mr-timeline (order-tracking)
-// for the activity log instead of a one-off timeline.
+$title = 'Admin Dashboard — MedReach';
+$charts = true;
 $active = 'dashboard';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-admin.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -52,11 +24,6 @@ $active = 'dashboard';
               <span>Fulfillment</span>
             </div>
           </div>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 
@@ -67,7 +34,7 @@ $active = 'dashboard';
             <strong>14</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/checklist.png" alt="">
+            <img src="presentation/assets/images/icons/filled/dd8e1c/checklist.png" alt="">
           </span>
         </section>
 
@@ -77,7 +44,7 @@ $active = 'dashboard';
             <strong>8,249</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/pill.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/pill.png" alt="">
           </span>
         </section>
 
@@ -87,7 +54,7 @@ $active = 'dashboard';
             <strong>342</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/1f9d6b/pharmacy-shop.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1f9d6b/pharmacy-shop.png" alt="">
           </span>
         </section>
       </div>
@@ -191,13 +158,13 @@ $active = 'dashboard';
                 <span class="mr-timeline__time">Just now</span>
               </li>
               <li class="mr-timeline__step">
-                <strong>API rate limit warning</strong>
-                <small>Gateway</small>
+                <strong>Prescription forwarded after timeout</strong>
+                <small>Routing</small>
                 <span class="mr-timeline__time">12 min ago</span>
               </li>
               <li class="mr-timeline__step">
                 <strong>New pharmacy onboarded</strong>
-                <small>Admin: Sarah</small>
+                <small>Admin: Dilani</small>
                 <span class="mr-timeline__time">1 hr ago</span>
               </li>
               <li class="mr-timeline__step">
@@ -212,8 +179,3 @@ $active = 'dashboard';
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

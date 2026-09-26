@@ -77,19 +77,65 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.add('is-active');
       btn.setAttribute('aria-selected', 'true');
       if (roleInput) roleInput.value = btn.dataset.role;
+      mrShowRoleFields(document, btn.dataset.role);
     });
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  var form = document.querySelector('.mr-reset-form');
-  var notice = document.querySelector('.mr-auth-notice');
-  if (!form || !notice) return;
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    notice.hidden = false;
+function mrShowRoleFields(scope, role) {
+  scope.querySelectorAll('[data-role-fields]').forEach(function (set) {
+    var off = set.dataset.roleFields.split(' ').indexOf(role) === -1;
+    set.hidden = off;
+    if (set.tagName === 'FIELDSET') set.disabled = off;
   });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('select[data-role-select]').forEach(function (select) {
+    select.addEventListener('change', function () { mrShowRoleFields(select.form, select.value); });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var steps = document.querySelectorAll('.mr-signup-step');
+  if (!steps.length) return;
+
+  var form = steps[0].closest('form');
+  var current = 0;
+
+  function show(index) {
+    current = index;
+    steps.forEach(function (step, i) { step.hidden = i !== index; });
+  }
+
+  function next() {
+    var fields = steps[current].querySelectorAll('input, select');
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i].willValidate && !fields[i].checkValidity()) {
+        fields[i].reportValidity();
+        return;
+      }
+    }
+    show(current + 1);
+    var first = steps[current].querySelector('input:enabled, select:enabled');
+    if (first) first.focus();
+  }
+
+  form.querySelectorAll('[data-step-next]').forEach(function (btn) {
+    btn.addEventListener('click', next);
+  });
+  form.querySelectorAll('[data-step-back]').forEach(function (btn) {
+    btn.addEventListener('click', function () { show(current - 1); });
+  });
+
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && current < steps.length - 1) {
+      e.preventDefault();
+      next();
+    }
+  });
+
+  show(0);
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -127,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!list) return;
 
   var cards = list.querySelectorAll('.mr-pharm-card');
-  var pins = document.querySelectorAll('.mr-pharm-map__pin');
   var search = document.querySelector('.mr-pharm-search input');
   var filters = document.querySelector('.mr-pharm-filters');
 
@@ -135,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var detailName = document.querySelector('.mr-pharm-detail__name');
   var detailAddr = document.querySelector('.mr-pharm-detail__addr');
   var detailWait = document.querySelector('.mr-pharm-detail__wait');
-  var detailStock = document.querySelector('.mr-pharm-detail__stock');
   var infoClose = document.querySelector('.mr-pharm-info__close');
   var backdrop = document.querySelector('.mr-pharm-backdrop');
   var isMobile = window.matchMedia('(max-width: 992px)');
@@ -147,16 +191,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function selectCard(card) {
     cards.forEach(function (c) { c.classList.remove('is-selected'); });
-    pins.forEach(function (p) { p.classList.remove('mr-pharm-map__pin--active'); });
 
     card.classList.add('is-selected');
-    var pin = document.querySelector('.mr-pharm-map__pin[data-name="' + card.dataset.name + '"]');
-    if (pin) pin.classList.add('mr-pharm-map__pin--active');
 
     if (detailName) detailName.textContent = card.dataset.name;
     if (detailAddr) detailAddr.lastChild.textContent = ' ' + card.dataset.addr;
     if (detailWait) detailWait.textContent = card.dataset.wait;
-    if (detailStock) detailStock.lastChild.textContent = ' ' + card.dataset.stock;
 
     if (isMobile.matches && info && backdrop) {
       info.classList.add('is-open');
@@ -170,13 +210,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (infoClose) infoClose.addEventListener('click', closeDetailModal);
   if (backdrop) backdrop.addEventListener('click', closeDetailModal);
-
-  pins.forEach(function (pin) {
-    pin.addEventListener('click', function () {
-      var card = list.querySelector('.mr-pharm-card[data-name="' + pin.dataset.name + '"]');
-      if (card) selectCard(card);
-    });
-  });
 
   if (search) {
     search.addEventListener('input', function () {
@@ -214,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var methods = group.querySelectorAll('.mr-confirm-method');
   var subtotal = 3830;
-  var feeValue = group.querySelector('[data-fee-value]');
+  var feeValue = document.querySelector('[data-fee-value]');
   var totalValue = document.querySelector('[data-total-value]');
 
   function formatLkr(amount) {
@@ -286,12 +319,29 @@ document.addEventListener('DOMContentLoaded', function () {
         var stars = card.querySelectorAll('.mr-star-rating__btn img');
         stars.forEach(function (img, i) {
           img.src = i < rating
-            ? 'https://img.icons8.com/ios-filled/50/dd8e1c/star.png'
-            : 'https://img.icons8.com/ios/50/c5c5d8/star.png';
+            ? 'presentation/assets/images/icons/filled/dd8e1c/star.png'
+            : 'presentation/assets/images/icons/outline/c5c5d8/star.png';
         });
         card.querySelector('.mr-star-rating').dataset.rating = rating;
       });
     });
+
+    var submit = card.querySelector('.mr-history-card__submit');
+    if (submit) {
+      submit.addEventListener('click', function () {
+        var stars = card.querySelector('.mr-star-rating');
+        if (stars.dataset.rating === '0') {
+          mrToast('Pick a star rating first.');
+          return;
+        }
+        card.querySelectorAll('.mr-star-rating__btn, .mr-history-card__rate textarea').forEach(function (el) {
+          el.disabled = true;
+        });
+        submit.disabled = true;
+        submit.textContent = 'Rated';
+        mrToast('Thanks — your rating was saved.');
+      });
+    }
   });
 
   if (search) search.addEventListener('input', applyFilters);
@@ -350,9 +400,23 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!openers.length) return;
 
   openers.forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (e) {
       var modal = document.getElementById(btn.dataset.modalOpen);
-      if (modal) modal.classList.add('is-open');
+      if (!modal) return;
+      e.preventDefault();
+      modal.querySelectorAll('[data-subject-slot]').forEach(function (slot) {
+        slot.textContent = btn.dataset.subject || slot.dataset.subjectSlot;
+      });
+      var form = modal.querySelector('form');
+      if (form && btn.dataset.fill) {
+        var values = JSON.parse(btn.dataset.fill);
+        Object.keys(values).forEach(function (name) {
+          if (form.elements[name]) form.elements[name].value = values[name];
+        });
+      }
+      modal.querySelectorAll('.mr-auth-notice').forEach(function (notice) { notice.remove(); });
+      if (form) mrClearFieldErrors(form);
+      modal.classList.add('is-open');
     });
   });
 
@@ -364,65 +428,217 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     var form = modal.querySelector('form');
-    if (form) {
+    if (form && form.dataset.toast) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         modal.classList.remove('is-open');
+        if (form.dataset.toast) mrToast(form.dataset.toast);
+        form.reset();
       });
     }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.mr-modal.is-open').forEach(function (modal) {
+      modal.classList.remove('is-open');
+    });
+  });
+});
+
+function mrToast(message, isError) {
+  var toast = document.querySelector('.mr-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'mr-toast';
+    toast.setAttribute('role', 'status');
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.toggle('mr-toast--error', !!isError);
+  toast.classList.add('is-visible');
+  clearTimeout(toast.hideTimer);
+  toast.hideTimer = setTimeout(function () {
+    toast.classList.remove('is-visible');
+  }, 2800);
+}
+
+function mrError(title, text) {
+  var modal = document.getElementById('mr-error-modal');
+  modal.querySelector('[data-error-title]').textContent = title || 'Something went wrong';
+  modal.querySelector('[data-error-text]').textContent = text;
+  modal.classList.add('is-open');
+}
+
+function mrFileError(input, file) {
+  var ext = '.' + file.name.split('.').pop().toLowerCase();
+  var allowed = input.accept.split(',').some(function (type) {
+    type = type.trim().toLowerCase();
+    if (type.charAt(0) === '.') return type === ext || (type === '.jpg' && ext === '.jpeg');
+    if (type.slice(-2) === '/*') return file.type.indexOf(type.slice(0, -1)) === 0;
+    return type === file.type;
+  });
+  var maxMb = Number(input.dataset.maxMb || 5);
+  if (input.accept && !allowed) return file.name + " isn't a supported file type. Use " + input.accept.replace(/image\//g, '').replace(/,/g, ', ') + '.';
+  if (file.size > maxMb * 1024 * 1024) return file.name + ' is larger than ' + maxMb + ' MB. Choose a smaller file.';
+  return null;
+}
+
+window.addEventListener('offline', function () { mrToast("You're offline — changes won't be saved until you reconnect.", true); });
+window.addEventListener('online', function () { mrToast('Back online.'); });
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-error]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      mrError(el.dataset.errorTitle, el.dataset.error);
+    });
+  });
+
+  document.querySelectorAll('[data-toast]:not(form)').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (el.tagName === 'A' && el.getAttribute('href') === '#') e.preventDefault();
+      mrToast(el.dataset.toast);
+    });
+  });
+
+  document.querySelectorAll('form[data-toast]').forEach(function (form) {
+    if (form.closest('.mr-modal')) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      mrToast(form.dataset.toast);
+    });
   });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  var table = document.getElementById('mr-patient-table');
-  if (!table) return;
+  var buttons = document.querySelectorAll('.mr-table-menu-btn');
+  if (!buttons.length) return;
 
-  var tbody = table.querySelector('tbody');
-  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-  var search = document.getElementById('mr-patient-search');
-  var statusFilter = document.getElementById('mr-patient-status-filter');
-  var empty = document.querySelector('.mr-roster-empty');
-  var count = document.getElementById('mr-patient-count');
-
-  function applyFilters() {
-    var term = search ? search.value.trim().toLowerCase() : '';
-    var status = statusFilter ? statusFilter.value : '';
-    var visible = 0;
-
-    rows.forEach(function (row) {
-      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
-      var matchesStatus = !status || row.dataset.status === status;
-      var match = matchesSearch && matchesStatus;
-      row.hidden = !match;
-      if (match) visible++;
-    });
-
-    if (empty) empty.hidden = visible !== 0;
-    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
+  function closeAll() {
+    document.querySelectorAll('.mr-row-menu').forEach(function (menu) { menu.hidden = true; });
+    buttons.forEach(function (btn) { btn.setAttribute('aria-expanded', 'false'); });
   }
 
-  if (search) search.addEventListener('input', applyFilters);
-  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+  buttons.forEach(function (btn) {
+    var menu = btn.nextElementSibling;
+    if (!menu || !menu.classList.contains('mr-row-menu')) return;
+    btn.setAttribute('aria-haspopup', 'true');
+    btn.setAttribute('aria-expanded', 'false');
 
-  table.querySelectorAll('th[data-sort]').forEach(function (th) {
-    th.addEventListener('click', function () {
-      var key = th.dataset.sort;
-      var ascending = th.getAttribute('aria-sort') !== 'ascending';
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wasOpen = !menu.hidden;
+      closeAll();
+      if (!wasOpen) {
+        var rect = btn.getBoundingClientRect();
+        menu.hidden = false;
+        var top = rect.bottom + 4;
+        if (top + menu.offsetHeight > window.innerHeight - 8) top = Math.max(8, rect.top - menu.offsetHeight - 4);
+        var left = Math.min(rect.right, window.innerWidth - 8) - menu.offsetWidth;
+        left = Math.max(8, left);
+        menu.style.top = top + 'px';
+        menu.style.left = left + 'px';
+        var placed = menu.getBoundingClientRect();
+        menu.style.top = top - (placed.top - top) + 'px';
+        menu.style.left = left - (placed.left - left) + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
 
-      table.querySelectorAll('th[data-sort]').forEach(function (other) {
-        other.removeAttribute('aria-sort');
+    menu.addEventListener('click', closeAll);
+  });
+
+  document.addEventListener('click', closeAll);
+  window.addEventListener('scroll', closeAll, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-decision]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var scope = btn.closest('[data-decision-scope]');
+      if (!scope) return;
+      var accepted = btn.dataset.decision === 'accept';
+      var badge = scope.querySelector('[data-decision-badge]');
+
+      if (badge) {
+        badge.className = 'mr-badge mr-badge--case-normal ' + (accepted ? 'mr-badge--success' : 'mr-badge--danger');
+        badge.textContent = btn.dataset.decisionLabel || (accepted ? 'Accepted' : 'Declined');
+      }
+      scope.querySelectorAll('[data-decision]').forEach(function (other) {
+        other.disabled = true;
       });
-      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+      if (btn.dataset.decisionToast) mrToast(btn.dataset.decisionToast);
+    });
+  });
+});
 
-      rows.sort(function (a, b) {
-        var valA = key === 'age' ? parseInt(a.dataset.age, 10) : a.dataset[key];
-        var valB = key === 'age' ? parseInt(b.dataset.age, 10) : b.dataset[key];
-        if (valA < valB) return ascending ? -1 : 1;
-        if (valA > valB) return ascending ? 1 : -1;
-        return 0;
-      });
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-duty-toggle] input').forEach(function (input) {
+    var label = input.closest('[data-duty-toggle]');
+    input.addEventListener('change', function () {
+      mrToast(input.checked ? label.dataset.onText : label.dataset.offText);
+    });
+  });
 
-      rows.forEach(function (row) { tbody.appendChild(row); });
+  document.querySelectorAll('.mr-switch:not([data-duty-toggle]) input').forEach(function (input) {
+    if (input.form) return;
+    input.addEventListener('change', function () { mrToast('Preference saved.'); });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-file-trigger]').forEach(function (btn) {
+    var input = document.getElementById(btn.dataset.fileTrigger);
+    if (!input) return;
+    btn.addEventListener('click', function () { input.click(); });
+    input.addEventListener('change', function () {
+      var output = document.querySelector('[data-file-name]');
+      var error = input.files.length && mrFileError(input, input.files[0]);
+      if (error) {
+        input.value = '';
+        mrError('File not attached', error);
+        return;
+      }
+      if (output && input.files.length) {
+        output.textContent = 'Attached: ' + input.files[0].name;
+        output.hidden = false;
+      }
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-avatar-upload]').forEach(function (box) {
+    var input = box.querySelector('input[type="file"]');
+    var photo = box.querySelector('[data-avatar-photo]');
+    var initials = box.querySelector('[data-avatar-initials]');
+    var remove = box.querySelector('[data-avatar-remove]');
+
+    function show(src) {
+      if (photo.src) URL.revokeObjectURL(photo.src);
+      photo.hidden = remove.hidden = !src;
+      initials.hidden = !!src;
+      if (src) photo.src = src; else photo.removeAttribute('src');
+    }
+
+    box.querySelector('.mr-avatar-upload__btn').addEventListener('click', function () { input.click(); });
+    input.addEventListener('change', function () {
+      if (!input.files.length) return;
+      var error = mrFileError(input, input.files[0]);
+      if (error) {
+        mrError('Photo not updated', error);
+      } else {
+        show(URL.createObjectURL(input.files[0]));
+        mrToast('Profile photo updated.');
+      }
+      input.value = '';
+    });
+    remove.addEventListener('click', function () {
+      show(null);
+      mrToast('Profile photo removed.');
     });
   });
 });
@@ -449,26 +665,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Shared by every Chart.js init below — reads a design token straight off
-// :root so charts always match the current --mr-color-* palette.
 function mrColor(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-earnings-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
+function mrBar(canvas, labels, data, maxBarThickness, prefix) {
+  var yTicks = { color: mrColor('--mr-color-text-muted') };
+  if (prefix) yTicks.callback = function (v) { return prefix + v; };
 
-  new Chart(canvas, {
+  return new Chart(canvas, {
     type: 'bar',
     data: {
-      labels: ['8a', '10a', '12p', '2p', '4p', '6p'],
+      labels: labels,
       datasets: [{
-        data: [1200, 2600, 4800, 9400, 6100, 2400],
+        data: data,
         backgroundColor: mrColor('--mr-color-primary'),
         hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
         borderRadius: 6,
-        maxBarThickness: 36
+        maxBarThickness: maxBarThickness
       }]
     },
     options: {
@@ -476,55 +690,18 @@ document.addEventListener('DOMContentLoaded', function () {
       plugins: { legend: { display: false } },
       scales: {
         x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
-        y: {
-          grid: { color: mrColor('--mr-color-border') },
-          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
-        }
+        y: { grid: { color: mrColor('--mr-color-border') }, ticks: yTicks }
       }
     }
   });
-});
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-network-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-      datasets: [{
-        data: [60, 140, 190, 240],
-        backgroundColor: mrColor('--mr-color-primary'),
-        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
-        borderRadius: 6,
-        maxBarThickness: 48
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
-        y: { grid: { color: mrColor('--mr-color-border') }, ticks: { color: mrColor('--mr-color-text-muted') } }
-      }
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-spend-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
+function mrDoughnut(canvas, data, colors, labels) {
+  return new Chart(canvas, {
     type: 'doughnut',
     data: {
-      labels: ['Completed', 'Pending'],
-      datasets: [{
-        data: [3650, 1200],
-        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
-        borderWidth: 0
-      }]
+      labels: labels,
+      datasets: [{ data: data, backgroundColor: colors, borderWidth: 0 }]
     },
     options: {
       responsive: true,
@@ -533,112 +710,87 @@ document.addEventListener('DOMContentLoaded', function () {
       plugins: { legend: { display: false }, tooltip: { enabled: false } }
     }
   });
-});
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-earnings-trend-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
+  if (typeof Chart === 'undefined') return;
 
-  new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-      datasets: [{
-        data: [9600, 11200, 12450, 12630],
-        backgroundColor: mrColor('--mr-color-primary'),
-        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
-        borderRadius: 6,
-        maxBarThickness: 56
-      }]
+  var primary = mrColor('--mr-color-primary');
+  var track = '#e9e7f3';
+  var charts = {
+    'mr-earnings-chart': function (canvas) {
+      mrBar(canvas, ['8a', '10a', '12p', '2p', '4p', '6p'], [1200, 2600, 4800, 9400, 6100, 2400], 36, 'LKR ');
     },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
-        y: {
-          grid: { color: mrColor('--mr-color-border') },
-          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'Rs. ' + v; } }
+    'mr-network-chart': function (canvas) {
+      mrBar(canvas, ['Q1', 'Q2', 'Q3', 'Q4'], [60, 140, 190, 240], 48);
+    },
+    'mr-earnings-trend-chart': function (canvas) {
+      mrBar(canvas, ['Week 1', 'Week 2', 'Week 3', 'Week 4'], canvas.dataset.values.split(',').map(Number), 56, 'LKR ');
+    },
+    'mr-spend-chart': function (canvas) {
+      mrDoughnut(canvas, [3650, 1200], [primary, track], ['Completed', 'Pending']);
+    },
+    'mr-earnings-target-chart': function (canvas) {
+      var percent = Number(canvas.dataset.percent);
+      mrDoughnut(canvas, [percent, 100 - percent], [primary, track], ['Earned', 'Remaining']);
+    },
+    'mr-role-chart': function (canvas) {
+      mrDoughnut(canvas, canvas.dataset.values.split(',').map(Number), [primary, '#bdc2ff', mrColor('--mr-color-accent'), mrColor('--mr-color-text-muted')], ['Patients', 'Pharmacists', 'Delivery', 'Admins']);
+    },
+    'mr-adherence-chart': function (canvas) {
+      var values = [30, 45, 40, 60, 55, 75, 90];
+      new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
+          datasets: [{
+            data: values,
+            backgroundColor: values.map(function (_, i) {
+              return i === values.length - 1 ? primary : 'rgba(45, 63, 215, 0.55)';
+            }),
+            borderRadius: 3,
+            maxBarThickness: 18
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: {
+            x: { display: false },
+            y: { display: false, beginAtZero: true }
+          }
         }
-      }
+      });
     }
+  };
+
+  Object.keys(charts).forEach(function (id) {
+    var canvas = document.getElementById(id);
+    if (canvas) charts[id](canvas);
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-earnings-target-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-      labels: ['Earned', 'Remaining'],
-      datasets: [{
-        data: [83, 17],
-        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '75%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-adherence-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  var values = [30, 45, 40, 60, 55, 75, 90];
-
-  new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
-      datasets: [{
-        data: values,
-        backgroundColor: values.map(function (_, i) {
-          return i === values.length - 1 ? mrColor('--mr-color-primary') : 'rgba(45, 63, 215, 0.55)';
-        }),
-        borderRadius: 3,
-        maxBarThickness: 18
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      scales: {
-        x: { display: false },
-        y: { display: false, beginAtZero: true }
-      }
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var table = document.getElementById('mr-pharmacy-table');
+function mrRosterTable(name, filterKey) {
+  var table = document.getElementById('mr-' + name + '-table');
   if (!table) return;
 
   var tbody = table.querySelector('tbody');
   var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-  var search = document.getElementById('mr-pharmacy-search');
-  var statusFilter = document.getElementById('mr-pharmacy-status-filter');
+  var search = document.getElementById('mr-' + name + '-search');
+  var filter = document.getElementById('mr-' + name + '-' + filterKey + '-filter');
   var empty = document.querySelector('.mr-roster-empty');
-  var count = document.getElementById('mr-pharmacy-count');
+  var count = document.getElementById('mr-' + name + '-count');
 
   function applyFilters() {
     var term = search ? search.value.trim().toLowerCase() : '';
-    var status = statusFilter ? statusFilter.value : '';
+    var value = filter ? filter.value : '';
     var visible = 0;
 
     rows.forEach(function (row) {
-      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
-      var matchesStatus = !status || row.dataset.status === status;
-      var match = matchesSearch && matchesStatus;
+      var matchesSearch = !term || (row.dataset.name + ' ' + (row.dataset.location || '')).indexOf(term) !== -1;
+      var matchesFilter = !value || row.dataset[filterKey] === value;
+      var match = matchesSearch && matchesFilter;
       row.hidden = !match;
       if (match) visible++;
     });
@@ -648,7 +800,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (search) search.addEventListener('input', applyFilters);
-  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+  if (filter) filter.addEventListener('change', applyFilters);
 
   table.querySelectorAll('th[data-sort]').forEach(function (th) {
     th.addEventListener('click', function () {
@@ -661,8 +813,8 @@ document.addEventListener('DOMContentLoaded', function () {
       th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
 
       rows.sort(function (a, b) {
-        var valA = a.dataset[key];
-        var valB = b.dataset[key];
+        var valA = key === 'age' ? parseInt(a.dataset.age, 10) : a.dataset[key];
+        var valB = key === 'age' ? parseInt(b.dataset.age, 10) : b.dataset[key];
         if (valA < valB) return ascending ? -1 : 1;
         if (valA > valB) return ascending ? 1 : -1;
         return 0;
@@ -671,91 +823,14 @@ document.addEventListener('DOMContentLoaded', function () {
       rows.forEach(function (row) { tbody.appendChild(row); });
     });
   });
-});
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  var table = document.getElementById('mr-user-table');
-  if (!table) return;
-
-  var tbody = table.querySelector('tbody');
-  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-  var search = document.getElementById('mr-user-search');
-  var roleFilter = document.getElementById('mr-user-role-filter');
-  var empty = document.querySelector('.mr-roster-empty');
-  var count = document.getElementById('mr-user-count');
-
-  function applyFilters() {
-    var term = search ? search.value.trim().toLowerCase() : '';
-    var role = roleFilter ? roleFilter.value : '';
-    var visible = 0;
-
-    rows.forEach(function (row) {
-      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
-      var matchesRole = !role || row.dataset.role === role;
-      var match = matchesSearch && matchesRole;
-      row.hidden = !match;
-      if (match) visible++;
-    });
-
-    if (empty) empty.hidden = visible !== 0;
-    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
-  }
-
-  if (search) search.addEventListener('input', applyFilters);
-  if (roleFilter) roleFilter.addEventListener('change', applyFilters);
-
-  table.querySelectorAll('th[data-sort]').forEach(function (th) {
-    th.addEventListener('click', function () {
-      var key = th.dataset.sort;
-      var ascending = th.getAttribute('aria-sort') !== 'ascending';
-
-      table.querySelectorAll('th[data-sort]').forEach(function (other) {
-        other.removeAttribute('aria-sort');
-      });
-      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
-
-      rows.sort(function (a, b) {
-        var valA = a.dataset[key];
-        var valB = b.dataset[key];
-        if (valA < valB) return ascending ? -1 : 1;
-        if (valA > valB) return ascending ? 1 : -1;
-        return 0;
-      });
-
-      rows.forEach(function (row) { tbody.appendChild(row); });
-    });
-  });
+  mrRosterTable('patient', 'status');
+  mrRosterTable('pharmacy', 'status');
+  mrRosterTable('user', 'role');
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-role-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-      labels: ['Patients', 'Pharmacists', 'Delivery', 'Admins'],
-      datasets: [{
-        data: [65, 18, 12, 5],
-        backgroundColor: [
-          mrColor('--mr-color-primary'),
-          '#bdc2ff',
-          mrColor('--mr-color-accent'),
-          mrColor('--mr-color-text-muted')
-        ],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '75%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
-});
-
-// Admin settings — Broadcast Routing Engine +/- steppers
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.mr-stepper').forEach(function (stepper) {
     var valueEl = stepper.querySelector('.mr-stepper__value');
@@ -773,9 +848,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Admin settings — dispatch radius / response timeout gauges, live-linked
-// to the range slider underneath each one (same doughnut-gauge pattern as
-// mr-earnings-target-chart, just re-wired to redraw on slider input)
 document.addEventListener('DOMContentLoaded', function () {
   function wireRoutingGauge(canvasId, sliderId, max, colorToken, suffix) {
     var canvas = document.getElementById(canvasId);
@@ -783,22 +855,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!canvas || !slider || typeof Chart === 'undefined') return;
 
     var value = parseFloat(slider.value);
-    var chart = new Chart(canvas, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [value, max - value],
-          backgroundColor: [mrColor(colorToken), '#e9e7f3'],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '75%',
-        plugins: { legend: { display: false }, tooltip: { enabled: false } }
-      }
-    });
+    var chart = mrDoughnut(canvas, [value, max - value], [mrColor(colorToken), '#e9e7f3']);
 
     var label = canvas.closest('.mr-spend-ring').querySelector('.mr-spend-ring__inner strong');
 
@@ -810,6 +867,169 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' mi');
+  wireRoutingGauge('mr-radius-gauge-chart', 'mr-radius-slider', 100, '--mr-color-primary', ' km');
   wireRoutingGauge('mr-timeout-gauge-chart', 'mr-timeout-slider', 180, '--mr-color-accent', 's');
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-row-filter]').forEach(function (select) {
+    var table = document.getElementById(select.dataset.rowFilter);
+    if (!table) return;
+    select.addEventListener('change', function () {
+      table.querySelectorAll('tbody tr').forEach(function (row) {
+        row.hidden = !!select.value && row.dataset.filterValue !== select.value;
+      });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-once]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.textContent = btn.dataset.once;
+      btn.disabled = true;
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var list = document.querySelector('[data-stage-list]');
+  if (!list) return;
+
+  var tabs = document.querySelectorAll('[data-stage-tab]');
+  var title = document.querySelector('[data-stage-title]');
+  var count = document.querySelector('[data-stage-count]');
+  var empty = list.querySelector('[data-stage-empty]');
+  var current = 'preparing';
+
+  function show(stage) {
+    current = stage;
+    var visible = 0;
+    list.querySelectorAll('[data-stage]').forEach(function (order) {
+      order.hidden = order.dataset.stage !== stage;
+      if (!order.hidden) visible++;
+    });
+    tabs.forEach(function (tab) {
+      var active = tab.dataset.stageTab === stage;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active && title) title.textContent = tab.textContent;
+    });
+    if (count) count.textContent = visible + (visible === 1 ? ' order' : ' orders');
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { show(tab.dataset.stageTab); });
+  });
+
+  list.querySelectorAll('[data-stage-move]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.closest('[data-stage]').dataset.stage = btn.dataset.stageMove;
+      btn.disabled = true;
+      show(current);
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var search = document.getElementById('mr-settings-search');
+  if (!search) return;
+  var cards = document.querySelectorAll('#mr-settings-form > section');
+
+  search.addEventListener('input', function () {
+    var term = search.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      card.hidden = term !== '' && card.textContent.toLowerCase().indexOf(term) === -1;
+    });
+  });
+});
+
+var MR_PATTERNS = {
+  email: '[A-Za-z0-9._%+\\-]+@[A-Za-z0-9\\-]+(\\.[A-Za-z0-9\\-]+)*\\.[A-Za-z]{2,}',
+  tel: '\\+?[0-9 ]{9,15}'
+};
+
+function mrFieldMessage(el) {
+  var v = el.validity;
+  if (v.valueMissing) {
+    if (el.type === 'checkbox') return 'Tick this box to continue.';
+    return el.tagName === 'SELECT' ? 'Choose an option.' : 'This field is required.';
+  }
+  if (v.customError) return el.validationMessage;
+  if (el.type === 'email') return 'Enter a valid email address, e.g. nimal@example.com.';
+  if (el.type === 'tel') return 'Enter a valid phone number, e.g. 071 234 5678.';
+  if (v.patternMismatch && el.title) return el.title;
+  if (v.tooShort) return 'Use at least ' + el.minLength + ' characters.';
+  if (v.rangeOverflow || v.rangeUnderflow) return 'Enter a date or number within the allowed range.';
+  return el.validationMessage;
+}
+
+function mrClearFieldError(el) {
+  el.removeAttribute('aria-invalid');
+  var error = el.errorNode;
+  if (error) error.remove();
+  el.errorNode = null;
+}
+
+function mrClearFieldErrors(form) {
+  Array.prototype.forEach.call(form.elements, mrClearFieldError);
+}
+
+document.addEventListener('invalid', function (e) {
+  var el = e.target;
+  e.preventDefault();
+  mrClearFieldError(el);
+  var error = document.createElement('p');
+  error.className = 'mr-field__error';
+  error.id = (el.id || el.name || 'field') + '-error';
+  error.textContent = mrFieldMessage(el);
+  var field = el.closest('.mr-field');
+  if (field) field.appendChild(error);
+  else (el.closest('label') || el).insertAdjacentElement('afterend', error);
+  el.errorNode = error;
+  el.setAttribute('aria-invalid', 'true');
+  el.setAttribute('aria-describedby', error.id);
+  var active = document.activeElement;
+  if (!active || !active.matches(':invalid')) el.focus();
+}, true);
+
+['input', 'change'].forEach(function (type) {
+  document.addEventListener(type, function (e) {
+    var el = e.target;
+    if (!el.form) return;
+    el.form.querySelectorAll('[data-match]').forEach(function (confirm) {
+      confirm.setCustomValidity(confirm.value === el.form.elements[confirm.dataset.match].value ? '' : 'Passwords do not match.');
+      if (confirm.errorNode && confirm.checkValidity()) mrClearFieldError(confirm);
+    });
+    if (el.errorNode && el.checkValidity()) mrClearFieldError(el);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('input[type="email"]:not([pattern])').forEach(function (el) { el.pattern = MR_PATTERNS.email; });
+  document.querySelectorAll('input[type="tel"]:not([pattern])').forEach(function (el) { el.pattern = MR_PATTERNS.tel; });
+
+  document.querySelectorAll('[data-flash-toast]').forEach(function (el) {
+    mrToast(el.dataset.flashToast, el.dataset.flashError === 'true');
+  });
+});
+
+document.addEventListener('click', function (e) {
+  var el = e.target.closest('[data-confirm]');
+  if (!el || el.confirmed) return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  var modal = document.getElementById('mr-confirm-modal');
+  modal.querySelector('[data-confirm-title]').textContent = el.dataset.confirm;
+  modal.querySelector('[data-confirm-text]').textContent = el.dataset.confirmText || "This can't be undone.";
+  var ok = modal.querySelector('[data-confirm-ok]');
+  ok.textContent = el.dataset.confirmLabel || 'Confirm';
+  ok.onclick = function () {
+    modal.classList.remove('is-open');
+    el.confirmed = true;
+    el.click();
+    el.confirmed = false;
+  };
+  modal.classList.add('is-open');
+}, true);

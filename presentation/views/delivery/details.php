@@ -1,19 +1,9 @@
 <?php
-// MedReach - Delivery task details page (presentation tier: HTML output only)
+$title = 'Order #ORD-9921 — MedReach';
 $active = 'manifest';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Order #ORD-9921 — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-delivery.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -46,10 +36,6 @@ $active = 'manifest';
             <img src="https://img.icons8.com/ios-filled/50/2d3fd7/phone.png" alt="">
             Call Recipient
           </a>
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 
@@ -70,7 +56,7 @@ $active = 'manifest';
               </li>
               <li class="mr-timeline__step mr-timeline__step--active">
                 <strong>In Transit</strong>
-                <small>Approaching destination via 450 West Ave</small>
+                <small>Approaching destination via 45 Baseline Rd</small>
                 <span class="mr-timeline__time">09:32 AM</span>
               </li>
               <li class="mr-timeline__step mr-timeline__step--pending">
@@ -177,7 +163,7 @@ $active = 'manifest';
         </button>
       </div>
 
-      <form class="mr-modal__form" id="mr-handover-form">
+      <form class="mr-modal__form" id="mr-handover-form" data-toast="Delivery confirmed — cash collection recorded.">
         <p>Confirm delivery of order <strong>#ORD-9921</strong> to <strong>Nimal Perera</strong> and collection of <strong>LKR 4,500.00</strong> cash on delivery.</p>
 
         <label class="mr-auth-terms">
@@ -192,7 +178,3 @@ $active = 'manifest';
       </form>
     </div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
