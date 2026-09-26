@@ -1,0 +1,234 @@
+<?php
+$title = 'Request RQ-2318 — MedReach';
+$bodyClass = 'mr-page-request';
+$active = 'requests';
+?>
+  <div class="mr-dashboard">
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
+
+    <main class="mr-dash-main">
+      <header class="mr-dash-header">
+        <div>
+          <a class="mr-link mr-link--sm" href="orders.php">&larr; Back to orders</a>
+          <h1>Request RQ-2318</h1>
+        </div>
+
+        <div class="mr-dash-header__actions">
+          <span class="mr-badge mr-badge--pill mr-badge--case-normal">
+            <img src="https://img.icons8.com/ios-filled/50/454655/user.png" alt="">
+            Nimali Fernando
+          </span>
+          <span class="mr-badge mr-badge--pill mr-badge--case-normal">
+            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clock.png" alt="">
+            05:42
+          </span>
+          <button type="button" class="mr-icon-btn" aria-label="Print request" onclick="window.print()">
+            <img src="https://img.icons8.com/ios-filled/50/454655/print.png" alt="">
+          </button>
+        </div>
+      </header>
+
+      <div class="mr-dash-content">
+        <div class="mr-dash-col">
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>
+                <img class="mr-heading-icon" src="https://img.icons8.com/ios-filled/50/2d3fd7/document.png" alt="">
+                Original Document
+              </h2>
+            </div>
+            <div class="mr-resp-rx">
+              <span class="mr-resp-rx__thumb">
+                <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
+              </span>
+              <div class="mr-resp-rx__body">
+                <p class="mr-resp-rx__meta">Patient: Nimali Fernando · Dr. S. Weerasinghe · SLMC-4471</p>
+                <span class="mr-badge mr-badge--success mr-badge--case-normal">Rx valid until Mar 14, 2027</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="mr-card mr-help-card mr-help-card--alert">
+            <span class="mr-icon-badge mr-icon-badge--info">
+              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/chat.png" alt="">
+            </span>
+            <div>
+              <strong class="mr-eyebrow mr-eyebrow--mono">Patient Note</strong>
+              <p>"Prefers liquid form if available for the Amoxicillin."</p>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="mr-dash-col">
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>Medicine Checklist</h2>
+              <span class="mr-eyebrow mr-eyebrow--mono">3 Items</span>
+            </div>
+
+            <div class="mr-order-row">
+              <span class="mr-icon-badge mr-icon-badge--accent">
+                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+              </span>
+              <div class="mr-order-row__info">
+                <strong>Amoxicillin 500mg</strong>
+                <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
+              </div>
+              <label class="mr-price-field">
+                <span class="mr-price-field__prefix">LKR</span>
+                <input type="text" inputmode="decimal" placeholder="0.00" value="850.00" aria-label="Price for Amoxicillin 500mg">
+              </label>
+            </div>
+
+            <details class="mr-order-row mr-order-row--expandable">
+              <summary>
+                <span class="mr-icon-badge mr-icon-badge--danger">
+                  <img src="https://img.icons8.com/ios-filled/50/de4a4f/error--v1.png" alt="">
+                </span>
+                <div class="mr-order-row__info">
+                  <strong>Lisinopril 10mg</strong>
+                  <span class="mr-eyebrow mr-eyebrow--mono">Qty: 90</span>
+                </div>
+                <span class="mr-badge mr-badge--accent mr-badge--case-normal">Propose substitute</span>
+              </summary>
+
+              <form class="mr-auth-form mr-auth-form--grid mr-order-row__form" data-toast="Suggestion sent — waiting for the patient's approval.">
+                <label class="mr-field">
+                  <span>Brand name</span>
+                  <div class="mr-field__input">
+                    <input type="text" placeholder="e.g. Renitec 5mg" required>
+                  </div>
+                </label>
+                <label class="mr-field">
+                  <span>Related medicine</span>
+                  <div class="mr-field__input">
+                    <input type="text" placeholder="e.g. Enalapril 5mg" required>
+                  </div>
+                </label>
+                <label class="mr-field">
+                  <span>Reason</span>
+                  <div class="mr-field__input">
+                    <select>
+                      <option>Similar Generic Available</option>
+                      <option>Different Brand Available</option>
+                      <option>Alternative Formulation</option>
+                    </select>
+                  </div>
+                </label>
+                <label class="mr-field">
+                  <span>New Price</span>
+                  <div class="mr-price-field mr-price-field--block">
+                    <span class="mr-price-field__prefix">LKR</span>
+                    <input type="text" inputmode="decimal" placeholder="0.00">
+                  </div>
+                </label>
+                <label class="mr-field mr-field--span2">
+                  <span>Pharmacist note</span>
+                  <textarea rows="2" placeholder="Why this is a suitable alternative..."></textarea>
+                </label>
+                <div class="mr-field--span2">
+                  <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Send suggestion</button>
+                </div>
+              </form>
+            </details>
+
+            <div class="mr-order-row">
+              <span class="mr-icon-badge mr-icon-badge--accent">
+                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+              </span>
+              <div class="mr-order-row__info">
+                <strong>Atorvastatin 20mg</strong>
+                <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
+              </div>
+              <label class="mr-price-field">
+                <span class="mr-price-field__prefix">LKR</span>
+                <input type="text" inputmode="decimal" placeholder="0.00" value="1,200.00" aria-label="Price for Atorvastatin 20mg">
+              </label>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="mr-dash-col">
+
+          <section class="mr-resp-summary">
+            <h2>Request Summary</h2>
+            <div class="mr-resp-summary__row">
+              <span>Subtotal</span>
+              <i class="mr-resp-summary__rule"></i>
+              <strong>LKR 2,050.00</strong>
+            </div>
+            <div class="mr-resp-summary__row">
+              <span>Service Fee</span>
+              <i class="mr-resp-summary__rule"></i>
+              <strong>LKR 400.00</strong>
+            </div>
+            <div class="mr-resp-summary__row">
+              <span>Total Estimated Value</span>
+              <i class="mr-resp-summary__rule"></i>
+              <strong>LKR 2,450.00</strong>
+            </div>
+          </section>
+
+          <section class="mr-card mr-mini-stat">
+            <div>
+              <span class="mr-eyebrow mr-eyebrow--mono">Delivery Method</span>
+              <strong>Standard Pharmacy Delivery</strong>
+            </div>
+            <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
+              <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+            </span>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="mr-decision-bar">
+    <span class="mr-decision-bar__note">
+      <img src="https://img.icons8.com/ios-filled/50/8a8fa3/lock-2.png" alt="" width="14" height="14">
+      Secure Healthcare Environment
+    </span>
+    <div class="mr-decision-bar__actions">
+      <button type="button" class="mr-btn mr-btn--ghost" data-modal-open="mr-decline-modal">Decline Request</button>
+      <a class="mr-btn mr-btn--dark" href="orders.php">Accept Request</a>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-decline-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Decline request</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The prescription will be forwarded to the next-closest registered pharmacy straight away.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Declined — forwarded to the next-closest pharmacy.">
+        <label class="mr-field">
+          <span>Reason</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option>Can't fill one or more items</option>
+              <option>Prescription unclear or incomplete</option>
+              <option>Prescription expired</option>
+              <option>Too busy to meet the time window</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Decline &amp; forward</button>
+        </div>
+      </form>
+    </div>
+  </div>

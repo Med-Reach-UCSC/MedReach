@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient finalize-order / checkout page (presentation tier: HTML output only)
+$title = 'Finalize Order — MedReach';
+$bodyClass = 'mr-page-finalize';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Finalize Order — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-finalize">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -89,7 +80,7 @@ $active = 'orders';
             <div class="mr-order-lines">
               <div class="mr-order-lines__items">
                 <div class="mr-order-lines__row">
-                  <span>Lisinopril 10mg <small>CVS Health · Qty 30</small></span>
+                  <span>Lisinopril 10mg <small>Healthguard Pharmacy · Qty 30</small></span>
                   <i class="mr-order-lines__rule"></i>
                   <strong>LKR 1,450.00</strong>
                 </div>
@@ -135,7 +126,7 @@ $active = 'orders';
               <strong>Need assistance?</strong>
               <p>Contact support about this order.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
@@ -143,6 +134,4 @@ $active = 'orders';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>

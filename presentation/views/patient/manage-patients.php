@@ -1,20 +1,10 @@
 <?php
-// MedReach - Guardian manage patients (presentation tier: HTML output only)
-// Guardian is a Patient with is_guardian = true — reuses the same sidebar/dashboard shell.
+$title = 'Manage Patients — MedReach';
+$charts = true;
 $active = 'family';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manage Patients — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -81,6 +71,11 @@ $active = 'family';
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for Amma">
                     <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                   </button>
+                  <div class="mr-row-menu" hidden>
+                    <a href="order-history.php">View orders</a>
+                    <button type="button" data-modal-open="mr-edit-patient-modal" data-subject="Amma">Edit details</button>
+                    <button type="button" class="mr-row-menu__danger" data-modal-open="mr-remove-blocked-modal" data-subject="Amma">Remove patient</button>
+                  </div>
                 </td>
               </tr>
               <tr data-name="pt-3319-x seeya" data-age="80" data-status="stable" data-updated="2026-08-23T08:15:00">
@@ -95,6 +90,11 @@ $active = 'family';
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for Seeya">
                     <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                   </button>
+                  <div class="mr-row-menu" hidden>
+                    <a href="order-history.php">View orders</a>
+                    <button type="button" data-modal-open="mr-edit-patient-modal" data-subject="Seeya">Edit details</button>
+                    <button type="button" class="mr-row-menu__danger" data-modal-open="mr-remove-patient-modal" data-subject="Seeya">Remove patient</button>
+                  </div>
                 </td>
               </tr>
               <tr data-name="pt-7741-b dinuli" data-age="24" data-status="inactive" data-updated="2026-08-22T00:00:00">
@@ -109,6 +109,11 @@ $active = 'family';
                   <button type="button" class="mr-table-menu-btn" aria-label="Actions for Dinuli">
                     <img src="https://img.icons8.com/ios-filled/50/454655/more.png" alt="">
                   </button>
+                  <div class="mr-row-menu" hidden>
+                    <a href="order-history.php">View orders</a>
+                    <button type="button" data-modal-open="mr-edit-patient-modal" data-subject="Dinuli">Edit details</button>
+                    <button type="button" class="mr-row-menu__danger" data-modal-open="mr-remove-patient-modal" data-subject="Dinuli">Remove patient</button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -153,7 +158,7 @@ $active = 'family';
             <strong>Action required</strong>
             <p class="mr-eyebrow mr-eyebrow--mono">REF: PT-9824-A</p>
             <p>Amma's prescription refill needs pharmacist confirmation before the next dispatch.</p>
-            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" style="margin-top: 0.75rem;">Acknowledge</button>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" style="margin-top: 0.75rem;" data-toast="Acknowledged — we'll notify you once the pharmacist confirms.">Acknowledge</button>
           </div>
         </section>
 
@@ -199,7 +204,7 @@ $active = 'family';
         </button>
       </div>
 
-      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" id="mr-add-patient-form">
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" id="mr-add-patient-form" data-toast="Patient profile saved.">
         <label class="mr-field mr-field--span2">
           <span>Full Name</span>
           <div class="mr-field__input">
@@ -244,7 +249,82 @@ $active = 'family';
     </div>
   </div>
 
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <div class="mr-modal" id="mr-edit-patient-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Edit <span data-subject-slot="patient"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" data-toast="Patient details updated.">
+        <label class="mr-field">
+          <span>Phone Number</span>
+          <div class="mr-field__input">
+            <input type="tel" placeholder="+94 77 123 4567">
+          </div>
+        </label>
+        <label class="mr-field">
+          <span>Status</span>
+          <div class="mr-field__input">
+            <select>
+              <option>Stable</option>
+              <option>Pending</option>
+              <option>Inactive</option>
+            </select>
+          </div>
+        </label>
+        <label class="mr-field mr-field--span2">
+          <span>Delivery Address</span>
+          <textarea rows="3" placeholder="Enter full address..."></textarea>
+        </label>
+
+        <div class="mr-modal__actions mr-field--span2">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-remove-patient-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Remove <span data-subject-slot="patient"></span>?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">Their profile is removed from your family list. Past orders stay in your order history.</p>
+
+      <form class="mr-modal__form" data-toast="Patient removed from your family list.">
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Remove patient</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-remove-blocked-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Can't remove <span data-subject-slot="patient"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">This patient has an active or pending order. You can remove them once every order is delivered or cancelled.</p>
+
+      <div class="mr-modal__actions">
+        <a class="mr-btn mr-btn--ghost mr-btn--sm" href="order-history.php">View orders</a>
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close>OK</button>
+      </div>
+    </div>
+  </div>

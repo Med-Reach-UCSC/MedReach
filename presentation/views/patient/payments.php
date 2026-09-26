@@ -1,19 +1,11 @@
 <?php
-// MedReach - Patient payments history (presentation tier: HTML output only)
+$title = 'Payments — MedReach';
+$bodyClass = 'mr-page-payments';
+$charts = true;
 $active = 'payments';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Payments — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-payments">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -44,14 +36,18 @@ $active = 'payments';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Recent Transactions</h2>
-              <span class="mr-badge mr-badge--pill mr-badge--case-normal">
+              <label class="mr-roster-filter">
                 <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
-                Filter
-              </span>
+                <select data-row-filter="mr-payments-table" aria-label="Filter by payment method">
+                  <option value="">All methods</option>
+                  <option value="cod">COD</option>
+                  <option value="card">Card</option>
+                </select>
+              </label>
             </div>
 
             <div class="mr-pay-table-wrap">
-              <table class="mr-pay-table">
+              <table class="mr-pay-table" id="mr-payments-table">
                 <thead>
                   <tr>
                     <th>Order ID</th>
@@ -63,8 +59,8 @@ $active = 'payments';
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8402</td>
+                  <tr data-filter-value="cod">
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8402</td>
                     <td>City Health Pharmacy</td>
                     <td>Today, 10:42 AM</td>
                     <td class="mr-pay-table__amount">LKR 450</td>
@@ -78,8 +74,8 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8399</td>
+                  <tr data-filter-value="card">
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8399</td>
                     <td>MediCare Plus Colombo</td>
                     <td>Yesterday, 14:15</td>
                     <td class="mr-pay-table__amount">LKR 1,200</td>
@@ -93,8 +89,8 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8395</td>
+                  <tr data-filter-value="card">
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8395</td>
                     <td>Union Chemists</td>
                     <td>Oct 24, 09:30 AM</td>
                     <td class="mr-pay-table__amount">LKR 850</td>
@@ -108,23 +104,23 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8380</td>
+                  <tr data-filter-value="cod">
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8380</td>
                     <td>HealthGuard Kandy</td>
                     <td>Oct 22, 16:20</td>
                     <td class="mr-pay-table__amount">LKR 2,350</td>
                     <td>
                       <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                        <img src="https://img.icons8.com/ios-filled/50/62646d/bank.png" alt="">
-                        Transfer
+                        <img src="https://img.icons8.com/ios-filled/50/62646d/cash.png" alt="">
+                        COD
                       </span>
                     </td>
                     <td>
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8375</td>
+                  <tr data-filter-value="cod">
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8375</td>
                     <td>Nawaloka Pharmacy</td>
                     <td>Oct 21, 11:10 AM</td>
                     <td class="mr-pay-table__amount">LKR 750</td>
@@ -138,8 +134,8 @@ $active = 'payments';
                       <span class="mr-badge mr-badge--success mr-badge--case-normal">Paid</span>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8360</td>
+                  <tr data-filter-value="card">
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8360</td>
                     <td>Asiri Dispensary</td>
                     <td>Oct 20, 08:45 AM</td>
                     <td class="mr-pay-table__amount">LKR 1,500</td>
@@ -158,17 +154,15 @@ $active = 'payments';
             </div>
 
             <div class="mr-pagination">
-              <span class="mr-pagination__count">Showing 1 to 6 of 124 entries</span>
+              <span class="mr-pagination__count">Showing 1 to 6 of 6 entries</span>
               <nav class="mr-pagination__nav" aria-label="Transaction pages">
-                <a href="#" class="mr-pagination__btn" aria-disabled="true">
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
                   <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
-                </a>
-                <a href="#" class="mr-pagination__btn is-active">1</a>
-                <a href="#" class="mr-pagination__btn">2</a>
-                <a href="#" class="mr-pagination__btn">3</a>
-                <a href="#" class="mr-pagination__btn">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
-                </a>
+                </button>
+                <span class="mr-pagination__btn is-active" aria-current="page">1</span>
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
+                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                </button>
               </nav>
             </div>
           </section>
@@ -213,28 +207,23 @@ $active = 'payments';
               </span>
               <h2>Payment Policy</h2>
             </div>
-            <p>Cash-on-delivery (COD) collections must be reconciled within 24 hours of successful delivery.</p>
+            <p>Pay by card when you confirm your order, or in cash to the rider when it arrives.</p>
 
             <ul class="mr-policy-card__list">
               <li>
                 <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
-                Drivers collect cash at patient drop-off.
+                For cash on delivery, keep the exact amount ready if you can.
               </li>
               <li>
                 <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
-                Pharmacy payments settle bi-weekly via bank transfer.
+                Ask the rider for a receipt with your order ID.
               </li>
             </ul>
 
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">View Full Policy</a>
+            <a href="policies.php#terms" class="mr-btn mr-btn--dark mr-btn--sm">View Full Policy</a>
           </section>
 
         </div>
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
