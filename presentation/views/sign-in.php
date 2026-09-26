@@ -1,16 +1,7 @@
 <?php
-// MedReach - Sign in page (presentation tier: HTML output only)
+$title = 'Sign In — MedReach';
+$bodyClass = 'mr-auth-body';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign In — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-auth-body">
-
   <div class="mr-auth">
     <div class="mr-auth-card">
 
@@ -74,7 +65,3 @@
 
     </div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

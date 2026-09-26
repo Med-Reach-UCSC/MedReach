@@ -1,13 +1,10 @@
 <?php
-// MedReach - Environment + database connection. Secrets live in the
-// git-ignored .env at the project root (see .env.example).
 
 function mr_env(string $key, string $default = ''): string
 {
   static $env = null;
   if ($env === null) {
     $file = __DIR__ . '/../.env';
-    // .env files use # comments, which PHP's INI parser rejects, so drop them first
     $env = is_file($file) ? parse_ini_string(preg_replace('/^\s*#.*$/m', '', file_get_contents($file)), false, INI_SCANNER_RAW) : [];
   }
   return $env[$key] ?? (getenv($key) ?: $default);

@@ -1,16 +1,6 @@
 <?php
-// MedReach - How It Works page (presentation tier: HTML output only)
+$title = 'How It Works — MedReach';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How It Works — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <?php require __DIR__ . '/partials/nav.php'; ?>
 
   <div class="mr-page">
@@ -186,7 +176,3 @@
     <span class="mr-footer__copy">© 2026 MedReach Inc. Intelligent healthcare logistics.</span>
     <a class="mr-attribution" href="https://icons8.com" target="_blank" rel="noopener">Icons by Icons8</a>
   </footer>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

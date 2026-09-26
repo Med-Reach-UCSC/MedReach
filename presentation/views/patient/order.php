@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient new-order / upload prescription page (presentation tier: HTML output only)
+$title = 'New Order — MedReach';
+$bodyClass = 'mr-page-order';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>New Order — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-order">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -195,7 +186,3 @@ $active = 'orders';
   </div>
 
   <?php require __DIR__ . '/../partials/modal-support.php'; ?>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

@@ -1,20 +1,10 @@
 <?php
-// MedReach - Guardian manage patients (presentation tier: HTML output only)
-// Guardian is a Patient with is_guardian = true — reuses the same sidebar/dashboard shell.
+$title = 'Manage Patients — MedReach';
+$charts = true;
 $active = 'family';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manage Patients — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -338,8 +328,3 @@ $active = 'family';
       </div>
     </div>
   </div>
-
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

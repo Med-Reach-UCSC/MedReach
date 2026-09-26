@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient directory of nearby registered pharmacies (presentation tier: HTML output only)
+$title = 'Nearby Pharmacies — MedReach';
+$bodyClass = 'mr-page-nearby';
 $active = 'pharmacies';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nearby Pharmacies — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-nearby">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -180,7 +171,3 @@ $active = 'pharmacies';
 
     <div class="mr-modal-backdrop mr-pharm-backdrop"></div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

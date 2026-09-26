@@ -1,16 +1,7 @@
 <?php
-// MedReach - Choose a new password page (presentation tier: HTML output only)
+$title = 'New Password — MedReach';
+$bodyClass = 'mr-auth-body';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>New Password — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-auth-body">
-
   <div class="mr-auth">
     <div class="mr-auth-card mr-auth-card--solo">
       <div class="mr-auth-card__form">
@@ -61,7 +52,3 @@
       </div>
     </div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

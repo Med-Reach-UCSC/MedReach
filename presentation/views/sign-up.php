@@ -1,17 +1,8 @@
 <?php
-// MedReach - Sign up page (presentation tier: HTML output only)
+$title = 'Sign Up — MedReach';
+$bodyClass = 'mr-auth-body';
 $mr_old = fn (string $key) => htmlspecialchars($_POST[$key] ?? '');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign Up — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-auth-body">
-
   <div class="mr-auth">
     <div class="mr-auth-card">
 
@@ -222,7 +213,3 @@ $mr_old = fn (string $key) => htmlspecialchars($_POST[$key] ?? '');
 
     </div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

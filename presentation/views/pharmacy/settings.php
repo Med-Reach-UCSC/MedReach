@@ -1,19 +1,10 @@
 <?php
-// MedReach - Pharmacy profile & settings (presentation tier: HTML output only)
+$title = 'Settings — MedReach';
+$bodyClass = 'mr-page-profile';
 $active = 'profile';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Settings — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-profile">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-pharmacy.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -243,7 +234,3 @@ $active = 'profile';
   </div>
 
   <?php require __DIR__ . '/../partials/modal-support.php'; ?>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

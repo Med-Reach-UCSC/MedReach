@@ -1,12 +1,10 @@
 <?php
-// MedReach - Outgoing email through the Resend API (business tier)
 require_once __DIR__ . '/../config/database.php';
 
 function mr_send_mail(string $to, string $subject, string $text): bool
 {
   $key = mr_env('RESEND_API_KEY');
   if ($key === '') {
-    // No key configured (local dev): write the email to the PHP error log instead.
     error_log("[MedReach mail] to=$to subject=$subject\n$text");
     return true;
   }
@@ -21,7 +19,7 @@ function mr_send_mail(string $to, string $subject, string $text): bool
       'text'    => $text,
     ]),
     'timeout'       => 10,
-    'ignore_errors' => true, // read the error body instead of getting false on 4xx/5xx
+    'ignore_errors' => true,
   ]]);
   $body   = @file_get_contents('https://api.resend.com/emails', false, $context);
   $headers = function_exists('http_get_last_response_headers') ? http_get_last_response_headers() : ($http_response_header ?? []);

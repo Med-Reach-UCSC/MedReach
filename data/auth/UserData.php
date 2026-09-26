@@ -1,5 +1,4 @@
 <?php
-// MedReach - USER and OTP_CODE queries (data tier: database access only)
 require_once __DIR__ . '/../../config/database.php';
 
 function mr_user_find_by_email(string $email): ?array
@@ -10,9 +9,6 @@ function mr_user_find_by_email(string $email): ?array
   return $stmt->get_result()->fetch_assoc();
 }
 
-// Creates the USER row and its role row (plus the PHARMACY for a pharmacist)
-// together. $u holds first_name, last_name, email, phone, password_hash, role
-// and status; $extra holds the role-specific fields.
 function mr_account_create(array $u, array $extra): int
 {
   $db = mr_db();
@@ -64,7 +60,6 @@ function mr_user_set_password(int $userId, string $hash): void
   $stmt->execute();
 }
 
-// Replaces any earlier code for the same user + purpose.
 function mr_otp_save(int $userId, string $purpose, string $codeHash, int $ttlSeconds): void
 {
   $stmt = mr_db()->prepare(

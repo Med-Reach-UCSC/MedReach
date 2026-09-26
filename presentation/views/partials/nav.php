@@ -1,6 +1,3 @@
-<?php
-// MedReach - Shared site navigation (presentation tier: HTML output only)
-?>
 <div class="mr-nav">
   <a class="mr-nav__logo" href="index.php">
     <img src="presentation/assets/images/logo.png" alt="MedReach Logo"/>

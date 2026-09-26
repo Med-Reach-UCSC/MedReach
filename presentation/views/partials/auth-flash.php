@@ -1,6 +1,4 @@
 <?php
-// MedReach - Auth page message (presentation tier: HTML output only)
-// Expects $flash = ['type' => 'error'|'success', 'text' => '...'] or null.
 if (empty($flash)) return;
 $mr_is_error = $flash['type'] === 'error';
 ?>

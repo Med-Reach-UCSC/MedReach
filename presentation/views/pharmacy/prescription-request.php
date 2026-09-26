@@ -1,19 +1,10 @@
 <?php
-// MedReach - Pharmacist single-request review (presentation tier: HTML output only)
+$title = 'Request RQ-2318 — MedReach';
+$bodyClass = 'mr-page-request';
 $active = 'requests';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Request RQ-2318 — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-request">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-pharmacy.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -241,7 +232,3 @@ $active = 'requests';
       </form>
     </div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

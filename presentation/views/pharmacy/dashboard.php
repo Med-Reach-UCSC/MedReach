@@ -1,19 +1,10 @@
 <?php
-// MedReach - Pharmacist dashboard (presentation tier: HTML output only)
+$title = 'Pharmacist Dashboard — MedReach';
+$charts = true;
 $active = 'dashboard';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pharmacist Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-pharmacy.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -195,8 +186,3 @@ $active = 'dashboard';
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

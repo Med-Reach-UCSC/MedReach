@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient view of pharmacy responses to a broadcast prescription (presentation tier: HTML output only)
+$title = 'Prescription RX-1042 — MedReach';
+$bodyClass = 'mr-page-responses';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prescription RX-1042 — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-responses">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -197,7 +188,3 @@ $active = 'orders';
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

@@ -1,7 +1,3 @@
-<?php
-// MedReach - Shared "Contact support" modal (presentation tier: HTML output only)
-// Opened by any [data-modal-open="mr-support-modal"] on the including page.
-?>
 <div class="mr-modal" id="mr-support-modal">
   <div class="mr-modal__backdrop" data-modal-close></div>
   <div class="mr-modal__card mr-card">

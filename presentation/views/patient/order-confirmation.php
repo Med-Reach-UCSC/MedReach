@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient order confirmation page (presentation tier: HTML output only)
+$title = 'Order Confirmed — MedReach';
+$bodyClass = 'mr-page-confirm';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Order Confirmed — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-confirm">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <section class="mr-confirm-hero">
@@ -148,7 +139,3 @@ $active = 'orders';
   </div>
 
   <?php require __DIR__ . '/../partials/modal-support.php'; ?>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient order history (presentation tier: HTML output only)
+$title = 'Order History — MedReach';
+$bodyClass = 'mr-page-history';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Order History — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-history">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -314,7 +305,3 @@ $active = 'orders';
       </div>
     </div>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
