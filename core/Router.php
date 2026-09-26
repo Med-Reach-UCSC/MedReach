@@ -46,23 +46,40 @@ const MR_ROUTES = [
   'admin-support'        => ['admin', 'admin/support'],
   'admin-ratings'        => ['admin', 'admin/ratings'],
   'admin-settings'       => ['admin', 'admin/settings'],
+  'admin-profile'        => ['admin', 'admin/profile'],
 ];
 
 function mr_dispatch(string $page): void
 {
+  set_exception_handler(function (Throwable $e) {
+    error_log((string) $e);
+    mr_error_page(500);
+  });
   if (!isset(MR_ROUTES[$page])) {
-    http_response_code(404);
-    exit('Page not found');
+    mr_error_page(404);
   }
   [$role, $view, $handler] = MR_ROUTES[$page] + [2 => null];
 
   if ($role !== null) {
     mr_require_role($role);
   }
-  $flash = $handler ? $handler() : null;
+  mr_render($view, $role, $handler ? $handler() : null);
+}
 
+function mr_render(string $view, ?string $role = null, ?array $flash = null, ?int $code = null): void
+{
   ob_start();
   require __DIR__ . "/../presentation/views/$view.php";
   $content = ob_get_clean();
   require __DIR__ . '/../presentation/views/layout.php';
+}
+
+function mr_error_page(int $code): never
+{
+  while (ob_get_level()) {
+    ob_end_clean();
+  }
+  http_response_code($code);
+  mr_render('error', code: $code);
+  exit;
 }

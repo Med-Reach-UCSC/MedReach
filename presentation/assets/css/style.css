@@ -3040,7 +3040,7 @@ a {
   width: 14px;
   height: 14px;
   cursor: pointer;
-  background: url("https://img.icons8.com/ios-filled/50/1a1b24/multiply.png") center / contain no-repeat;
+  background: url("../images/icons/filled/1a1b24/multiply.png") center / contain no-repeat;
 }
 
 .mr-pharm-filters {
@@ -5148,6 +5148,70 @@ a {
 .mr-toast.is-visible {
   opacity: 1;
   transform: translate(-50%, 0);
+}
+
+.mr-toast--error {
+  background-color: var(--mr-color-danger);
+}
+
+.mr-modal__title--error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mr-color-danger);
+}
+
+.mr-modal__title--error img {
+  width: 22px;
+  height: 22px;
+}
+
+.mr-avatar-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.mr-avatar--profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mr-avatar-upload__btn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--mr-color-surface-solid);
+  border-radius: 50%;
+  background-color: var(--mr-color-primary);
+  cursor: pointer;
+}
+
+.mr-avatar-upload__btn:hover {
+  background-color: var(--mr-color-primary-dark);
+}
+
+.mr-avatar-upload__btn img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-avatar-upload__remove {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  cursor: pointer;
 }
 
 .mr-modal__text {

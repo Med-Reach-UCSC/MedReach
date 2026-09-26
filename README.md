@@ -144,13 +144,23 @@ MedReach/
 | Dev Tools     | GitHub, VS Code / PhpStorm, XAMPP / WAMP |
 | Collaboration | Google Meet, Google Docs, ClickUp, Google Drive |
 
-### External APIs & Libraries (pending supervisor approval)
+### External APIs & Libraries
 
+Approved:
+
+- **Chart.js** — dashboard analytics (bundled in `presentation/assets/js/vendor/`)
+
+Pending supervisor approval:
+
+- **Resend** — sign-up and password-reset emails. Leave `RESEND_API_KEY` empty
+  until approved; codes are then written to the PHP error log instead of sent.
 - **OpenStreetMap + Leaflet.js** — pharmacy location maps
 - **Firebase Cloud Messaging** — push notifications
 - **Cloudinary** — prescription image storage
-- **Chart.js** — admin dashboard analytics
 - **jsPDF** — order record export
+
+Icons are from [Icons8](https://icons8.com) and stored locally in
+`presentation/assets/images/icons/`.
 
 ---
 

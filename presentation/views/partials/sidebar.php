@@ -33,7 +33,7 @@ $mr_nav = [
   ],
   'admin' => [
     'label'   => 'Admin',
-    'profile' => ['admin-settings.php', 'Admin', 'A', 'Profile'],
+    'profile' => ['admin-profile.php', 'Admin', 'A', 'Profile'],
     'links'   => [
       'dashboard'  => ['label' => 'Dashboard',  'icon' => 'home',            'href' => 'admin-dashboard.php'],
       'pharmacies' => ['label' => 'Pharmacies', 'icon' => 'shop',            'href' => 'manage-pharmacies.php'],
@@ -54,21 +54,21 @@ $mr_nav = [
       <span class="mr-sidebar__brand-text">MedReach</span>
     </a>
     <button type="button" class="mr-sidebar__collapse" aria-label="Collapse menu" aria-pressed="false">
-      <img class="mr-sidebar__collapse-icon mr-sidebar__collapse-icon--collapse" src="https://img.icons8.com/ios-filled/50/454655/chevron-left.png" alt="">
-      <img class="mr-sidebar__collapse-icon mr-sidebar__collapse-icon--expand" src="https://img.icons8.com/ios-filled/50/454655/chevron-right.png" alt="">
+      <img class="mr-sidebar__collapse-icon mr-sidebar__collapse-icon--collapse" src="presentation/assets/images/icons/filled/454655/chevron-left.png" alt="">
+      <img class="mr-sidebar__collapse-icon mr-sidebar__collapse-icon--expand" src="presentation/assets/images/icons/filled/454655/chevron-right.png" alt="">
     </button>
   </div>
 
   <?php if ($role === 'patient'): ?>
   <a class="mr-notif-btn mr-notif-btn--sidebar" href="notifications.php" aria-label="Notifications">
-    <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
+    <img src="presentation/assets/images/icons/filled/1a1b24/appointment-reminders.png" alt="">
     <span class="mr-notif-btn__dot" aria-hidden="true"></span>
   </a>
   <?php endif; ?>
 
   <button type="button" class="mr-sidebar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mr-sidebar-menu">
-    <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--open" src="https://img.icons8.com/ios-filled/50/1a1b24/menu.png" alt="">
-    <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--close" src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+    <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--open" src="presentation/assets/images/icons/filled/1a1b24/menu.png" alt="">
+    <img class="mr-sidebar__toggle-icon mr-sidebar__toggle-icon--close" src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
   </button>
 
   <div class="mr-sidebar__menu" id="mr-sidebar-menu">
@@ -81,7 +81,7 @@ $mr_nav = [
           aria-label="<?= htmlspecialchars($link['label']) ?>"
           <?= $key === $active ? 'aria-current="page"' : '' ?>
         >
-          <img src="https://img.icons8.com/ios-filled/50/<?= $key === $active ? 'ffffff' : '454655' ?>/<?= $link['icon'] ?>.png" alt="">
+          <img src="presentation/assets/images/icons/filled/<?= $key === $active ? 'ffffff' : '454655' ?>/<?= $link['icon'] ?>.png" alt="">
           <span class="mr-sidebar__label"><?= htmlspecialchars($link['label']) ?></span>
         </a>
       <?php endforeach; ?>
@@ -108,7 +108,7 @@ $mr_nav = [
       <?php endif; ?>
       <a class="mr-sidebar__link mr-sidebar__link--danger" href="sign-out.php" title="Log out" aria-label="Log out">
         <span class="mr-sidebar__icon-box">
-          <img src="https://img.icons8.com/ios-filled/50/ff0000/export.png" alt="">
+          <img src="presentation/assets/images/icons/filled/ff0000/export.png" alt="">
         </span>
         <span class="mr-sidebar__label">Log out</span>
       </a>

@@ -310,8 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var stars = card.querySelectorAll('.mr-star-rating__btn img');
         stars.forEach(function (img, i) {
           img.src = i < rating
-            ? 'https://img.icons8.com/ios-filled/50/dd8e1c/star.png'
-            : 'https://img.icons8.com/ios/50/c5c5d8/star.png';
+            ? 'presentation/assets/images/icons/filled/dd8e1c/star.png'
+            : 'presentation/assets/images/icons/outline/c5c5d8/star.png';
         });
         card.querySelector('.mr-star-rating').dataset.rating = rating;
       });
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-function mrToast(message) {
+function mrToast(message, isError) {
   var toast = document.querySelector('.mr-toast');
   if (!toast) {
     toast = document.createElement('div');
@@ -437,6 +437,7 @@ function mrToast(message) {
     document.body.appendChild(toast);
   }
   toast.textContent = message;
+  toast.classList.toggle('mr-toast--error', !!isError);
   toast.classList.add('is-visible');
   clearTimeout(toast.hideTimer);
   toast.hideTimer = setTimeout(function () {
@@ -444,7 +445,37 @@ function mrToast(message) {
   }, 2800);
 }
 
+function mrError(title, text) {
+  var modal = document.getElementById('mr-error-modal');
+  modal.querySelector('[data-error-title]').textContent = title || 'Something went wrong';
+  modal.querySelector('[data-error-text]').textContent = text;
+  modal.classList.add('is-open');
+}
+
+function mrFileError(input, file) {
+  var ext = '.' + file.name.split('.').pop().toLowerCase();
+  var allowed = input.accept.split(',').some(function (type) {
+    type = type.trim().toLowerCase();
+    if (type.charAt(0) === '.') return type === ext || (type === '.jpg' && ext === '.jpeg');
+    if (type.slice(-2) === '/*') return file.type.indexOf(type.slice(0, -1)) === 0;
+    return type === file.type;
+  });
+  var maxMb = Number(input.dataset.maxMb || 5);
+  if (input.accept && !allowed) return file.name + " isn't a supported file type. Use " + input.accept.replace(/image\//g, '').replace(/,/g, ', ') + '.';
+  if (file.size > maxMb * 1024 * 1024) return file.name + ' is larger than ' + maxMb + ' MB. Choose a smaller file.';
+  return null;
+}
+
+window.addEventListener('offline', function () { mrToast("You're offline — changes won't be saved until you reconnect.", true); });
+window.addEventListener('online', function () { mrToast('Back online.'); });
+
 document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-error]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      mrError(el.dataset.errorTitle, el.dataset.error);
+    });
+  });
+
   document.querySelectorAll('[data-toast]:not(form)').forEach(function (el) {
     el.addEventListener('click', function (e) {
       if (el.tagName === 'A' && el.getAttribute('href') === '#') e.preventDefault();
@@ -547,10 +578,49 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function () { input.click(); });
     input.addEventListener('change', function () {
       var output = document.querySelector('[data-file-name]');
+      var error = input.files.length && mrFileError(input, input.files[0]);
+      if (error) {
+        input.value = '';
+        mrError('File not attached', error);
+        return;
+      }
       if (output && input.files.length) {
         output.textContent = 'Attached: ' + input.files[0].name;
         output.hidden = false;
       }
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-avatar-upload]').forEach(function (box) {
+    var input = box.querySelector('input[type="file"]');
+    var photo = box.querySelector('[data-avatar-photo]');
+    var initials = box.querySelector('[data-avatar-initials]');
+    var remove = box.querySelector('[data-avatar-remove]');
+
+    function show(src) {
+      if (photo.src) URL.revokeObjectURL(photo.src);
+      photo.hidden = remove.hidden = !src;
+      initials.hidden = !!src;
+      if (src) photo.src = src; else photo.removeAttribute('src');
+    }
+
+    box.querySelector('.mr-avatar-upload__btn').addEventListener('click', function () { input.click(); });
+    input.addEventListener('change', function () {
+      if (!input.files.length) return;
+      var error = mrFileError(input, input.files[0]);
+      if (error) {
+        mrError('Photo not updated', error);
+      } else {
+        show(URL.createObjectURL(input.files[0]));
+        mrToast('Profile photo updated.');
+      }
+      input.value = '';
+    });
+    remove.addEventListener('click', function () {
+      show(null);
+      mrToast('Profile photo removed.');
     });
   });
 });
