@@ -360,7 +360,7 @@ a {
 
 /* Hero */
 .mr-hero {
-  padding-top: 5.5rem;
+  padding-top: 3.5rem;
 }
 
 .mr-hero__banner {
@@ -596,6 +596,7 @@ a {
 .mr-section__lede {
   max-width: 34rem;
   margin-top: -0.75rem;
+  margin-bottom: 2.5rem;
   font-size: 1rem;
   color: var(--mr-color-text-muted);
 }
@@ -1200,7 +1201,7 @@ a {
   align-items: center;
   gap: 1.5rem;
   max-width: var(--mr-max-width);
-  margin: 0 auto;
+  margin: 3.5rem auto 0;
   padding: 4rem;
   border-radius: 40px 40px 0 0;
   background-image: linear-gradient(135deg, #4a5bf0 0%, #2b1fd6 100%);
@@ -1488,6 +1489,7 @@ a {
   padding: 3rem;
   background-image: linear-gradient(132.4deg, #4a5bf0 0%, #2b1fd6 100%);
   color: #fff;
+  overflow: hidden;
 }
 
 .mr-auth-card__brand-text {
@@ -5423,4 +5425,55 @@ a.mr-notif-item:hover {
 /* Stop the page scrolling behind an open modal */
 body:has(.mr-modal.is-open) {
   overflow: hidden;
+}
+
+/* Sign-up: steps and per-role field groups sit on the form's two-column grid */
+.mr-signup-step,
+.mr-role-fields {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.mr-signup-step[hidden],
+.mr-role-fields[hidden] {
+  display: none;
+}
+
+.mr-signup-step__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mr-color-primary);
+}
+
+.mr-signup-step__nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.mr-signup-step__nav .mr-btn {
+  flex: 1 1 0;
+}
+
+@media (max-width: 576px) {
+  .mr-signup-step,
+  .mr-role-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mr-field__optional {
+  font-weight: 400;
+  color: var(--mr-color-text-muted);
+}
+
+.mr-auth-approval {
+  font-size: 0.875rem;
+  color: var(--mr-color-text-muted);
 }

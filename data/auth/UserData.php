@@ -10,20 +10,37 @@ function mr_user_find_by_email(string $email): ?array
   return $stmt->get_result()->fetch_assoc();
 }
 
-// Creates the USER row and its PATIENT row together.
-function mr_patient_create(string $first, string $last, string $email, string $phone, string $hash): int
+// Creates the USER row and its role row (plus the PHARMACY for a pharmacist)
+// together. $u holds first_name, last_name, email, phone, password_hash, role
+// and status; $extra holds the role-specific fields.
+function mr_account_create(array $u, array $extra): int
 {
   $db = mr_db();
   $db->begin_transaction();
   try {
-    $stmt = $db->prepare("INSERT INTO `USER` (first_name, last_name, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?, 'patient')");
-    $stmt->bind_param('sssss', $first, $last, $email, $phone, $hash);
+    $stmt = $db->prepare('INSERT INTO `USER` (first_name, last_name, email, phone, password_hash, role, status) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('sssssss', $u['first_name'], $u['last_name'], $u['email'], $u['phone'], $u['password_hash'], $u['role'], $u['status']);
     $stmt->execute();
     $userId = $stmt->insert_id;
 
-    $stmt = $db->prepare('INSERT INTO PATIENT (user_id) VALUES (?)');
-    $stmt->bind_param('i', $userId);
-    $stmt->execute();
+    if ($u['role'] === 'patient') {
+      $stmt = $db->prepare('INSERT INTO PATIENT (user_id, date_of_birth, address, is_guardian) VALUES (?, ?, ?, ?)');
+      $stmt->bind_param('issi', $userId, $extra['date_of_birth'], $extra['address'], $extra['is_guardian']);
+      $stmt->execute();
+    } elseif ($u['role'] === 'pharmacist') {
+      $stmt = $db->prepare('INSERT INTO PHARMACY (name, licence_no, address, city, operating_hours) VALUES (?, ?, ?, ?, ?)');
+      $stmt->bind_param('sssss', $extra['pharmacy_name'], $extra['licence_no'], $extra['pharmacy_address'], $extra['city'], $extra['operating_hours']);
+      $stmt->execute();
+      $pharmacyId = $stmt->insert_id;
+
+      $stmt = $db->prepare('INSERT INTO PHARMACIST (user_id, pharmacy_id) VALUES (?, ?)');
+      $stmt->bind_param('ii', $userId, $pharmacyId);
+      $stmt->execute();
+    } elseif ($u['role'] === 'delivery') {
+      $stmt = $db->prepare('INSERT INTO DELIVERY_PERSON (user_id, nic_no, vehicle_type, vehicle_number) VALUES (?, ?, ?, ?)');
+      $stmt->bind_param('isss', $userId, $extra['nic_no'], $extra['vehicle_type'], $extra['vehicle_number']);
+      $stmt->execute();
+    }
 
     $db->commit();
     return $userId;

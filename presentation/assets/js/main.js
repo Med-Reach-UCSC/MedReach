@@ -77,8 +77,59 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.add('is-active');
       btn.setAttribute('aria-selected', 'true');
       if (roleInput) roleInput.value = btn.dataset.role;
+
+      // Sign-up: show only this role's fields; disabled ones skip validation
+      document.querySelectorAll('[data-role-fields]').forEach(function (set) {
+        var off = set.dataset.roleFields.split(' ').indexOf(btn.dataset.role) === -1;
+        set.hidden = off;
+        if (set.tagName === 'FIELDSET') set.disabled = off;
+      });
     });
   });
+});
+
+// Sign-up: one step at a time, checking the visible fields before moving on
+document.addEventListener('DOMContentLoaded', function () {
+  var steps = document.querySelectorAll('.mr-signup-step');
+  if (!steps.length) return;
+
+  var form = steps[0].closest('form');
+  var current = 0;
+
+  function show(index) {
+    current = index;
+    steps.forEach(function (step, i) { step.hidden = i !== index; });
+  }
+
+  function next() {
+    var fields = steps[current].querySelectorAll('input, select');
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i].willValidate && !fields[i].checkValidity()) {
+        fields[i].reportValidity();
+        return;
+      }
+    }
+    show(current + 1);
+    var first = steps[current].querySelector('input:enabled, select:enabled');
+    if (first) first.focus();
+  }
+
+  form.querySelectorAll('[data-step-next]').forEach(function (btn) {
+    btn.addEventListener('click', next);
+  });
+  form.querySelectorAll('[data-step-back]').forEach(function (btn) {
+    btn.addEventListener('click', function () { show(current - 1); });
+  });
+
+  // Enter in an earlier step moves forward instead of submitting
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && current < steps.length - 1) {
+      e.preventDefault();
+      next();
+    }
+  });
+
+  show(0);
 });
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -11,13 +11,23 @@ const MR_ROLE_HOME = [
   'admin'      => 'admin-dashboard.php',
 ];
 
-// Sign-in tabs. Only patients self-register (UC-01); pharmacist, delivery
-// and admin accounts are created by the admin (UC-25).
+// Sign-in / sign-up tabs. Patients are active once their email is verified;
+// pharmacists and delivery people wait for admin approval. Admin accounts
+// are never self-registered.
 const MR_PUBLIC_ROLES = [
   'patient'    => 'Patient | Guardian',
   'pharmacist' => 'Pharmacist',
   'delivery'   => 'Delivery',
 ];
+
+const MR_VEHICLE_TYPES = [
+  'motorbike'     => 'Motorbike',
+  'three_wheeler' => 'Three-wheeler',
+  'car'           => 'Car',
+  'van'           => 'Van',
+];
+
+const MR_PENDING_APPROVAL = 'Your account is waiting for admin approval. We\'ll email you once it\'s approved.';
 
 const MR_OTP_TTL      = 600; // seconds a code stays valid
 const MR_OTP_COOLDOWN = 60;  // seconds before another code can be sent
@@ -110,11 +120,11 @@ function mr_sign_out(): never
 
 const MR_MAIL_FAILED = 'We couldn\'t send the email right now. Try "Resend code" in a moment.';
 
-// The account a code flow is for: only active accounts receive codes.
+// The account a code flow is for: deactivated accounts never receive codes.
 function mr_otp_user(string $email): ?array
 {
   $user = mr_user_find_by_email($email);
-  return $user && $user['is_active'] ? $user : null;
+  return $user && $user['status'] !== 'deactivated' ? $user : null;
 }
 
 // Emails a fresh code; it only replaces the previous one if the email went out.
@@ -188,7 +198,7 @@ function mr_handle_sign_in(array $in): ?array
   if (!$user || !password_verify($in['password'] ?? '', $user['password_hash'])) {
     return mr_error('Incorrect email or password.');
   }
-  if (!$user['is_active']) {
+  if ($user['status'] === 'deactivated') {
     return mr_error('This account has been deactivated. Contact MedReach support.');
   }
   if ($user['role'] !== 'admin' && $user['role'] !== ($in['role'] ?? '')) {
@@ -198,7 +208,63 @@ function mr_handle_sign_in(array $in): ?array
     mr_otp_start($user, $email, 'verify_email');
     mr_redirect('verify-email.php');
   }
+  if ($user['status'] === 'pending') {
+    return mr_error(MR_PENDING_APPROVAL);
+  }
   mr_log_in($user);
+}
+
+// Role-specific sign-up fields. Returns [error, extra] where extra holds the
+// cleaned values for mr_account_create().
+function mr_sign_up_extra(string $role, array $in): array
+{
+  $t = fn (string $key) => trim($in[$key] ?? '');
+
+  if ($role === 'patient') {
+    $dob = $t('date_of_birth');
+    $error = match (true) {
+      $dob !== '' && (!($d = DateTime::createFromFormat('!Y-m-d', $dob)) || $d > new DateTime()) => 'Enter a valid date of birth.',
+      mb_strlen($t('address')) > 255 => 'Address is too long.',
+      default => null,
+    };
+    return [$error, [
+      'date_of_birth' => $dob ?: null,
+      'address'       => $t('address') ?: null,
+      'is_guardian'   => empty($in['is_guardian']) ? 0 : 1,
+    ]];
+  }
+
+  if ($role === 'pharmacist') {
+    $error = match (true) {
+      $t('pharmacy_name') === '' || mb_strlen($t('pharmacy_name')) > 100 => 'Enter the pharmacy name.',
+      !preg_match('/^[A-Za-z0-9\/-]{4,30}$/', $t('licence_no'))          => 'Enter the NMRA licence number, e.g. PH-2026-0418.',
+      $t('pharmacy_address') === '' || mb_strlen($t('pharmacy_address')) > 255 => 'Enter the pharmacy address.',
+      $t('city') === '' || mb_strlen($t('city')) > 50                     => 'Enter the city.',
+      mb_strlen($t('operating_hours')) > 100                              => 'Opening hours are too long.',
+      default => null,
+    };
+    return [$error, [
+      'pharmacy_name'    => $t('pharmacy_name'),
+      'licence_no'       => strtoupper($t('licence_no')),
+      'pharmacy_address' => $t('pharmacy_address'),
+      'city'             => $t('city'),
+      'operating_hours'  => $t('operating_hours') ?: null,
+    ]];
+  }
+
+  // delivery: old NIC is 9 digits + V/X, new NIC is 12 digits
+  $nic = strtoupper(str_replace(' ', '', $t('nic_no')));
+  $error = match (true) {
+    !preg_match('/^(\d{9}[VX]|\d{12})$/', $nic)                  => 'Enter a valid NIC number, e.g. 199512345678 or 951234567V.',
+    !isset(MR_VEHICLE_TYPES[$t('vehicle_type')])                 => 'Choose your vehicle type.',
+    !preg_match('/^[A-Za-z]{0,3}[ -]?[A-Za-z0-9]{1,4}[ -]?\d{4}$/', $t('vehicle_number')) => 'Enter a valid vehicle number, e.g. WP BAB-1234.',
+    default => null,
+  };
+  return [$error, [
+    'nic_no'         => $nic,
+    'vehicle_type'   => $t('vehicle_type'),
+    'vehicle_number' => strtoupper($t('vehicle_number')),
+  ]];
 }
 
 function mr_handle_sign_up(array $in): ?array
@@ -211,8 +277,10 @@ function mr_handle_sign_up(array $in): ?array
   $email    = strtolower(trim($in['email'] ?? ''));
   $phone    = trim($in['phone'] ?? '');
   $password = $in['password'] ?? '';
+  $role     = $in['role'] ?? '';
 
   $error = match (true) {
+    !isset(MR_PUBLIC_ROLES[$role])                          => 'Choose an account type.',
     $first === '' || mb_strlen($first) > 50                 => 'Enter your first name.',
     $last === '' || mb_strlen($last) > 50                   => 'Enter your last name.',
     !filter_var($email, FILTER_VALIDATE_EMAIL)              => 'Enter a valid email address.',
@@ -223,11 +291,27 @@ function mr_handle_sign_up(array $in): ?array
     mr_user_find_by_email($email) !== null                  => 'An account with this email already exists. Sign in instead.',
     default                                                 => null,
   };
+  [$error, $extra] = $error ? [$error, []] : mr_sign_up_extra($role, $in);
   if ($error) {
     return mr_error($error);
   }
 
-  $id = mr_patient_create($first, $last, $email, $phone, password_hash($password, PASSWORD_DEFAULT));
+  try {
+    $id = mr_account_create([
+      'first_name'    => $first,
+      'last_name'     => $last,
+      'email'         => $email,
+      'phone'         => $phone,
+      'password_hash' => password_hash($password, PASSWORD_DEFAULT),
+      'role'          => $role,
+      'status'        => $role === 'patient' ? 'active' : 'pending',
+    ], $extra);
+  } catch (mysqli_sql_exception $e) {
+    if ($e->getCode() !== 1062) { // duplicate key
+      throw $e;
+    }
+    return mr_error($role === 'pharmacist' ? 'A pharmacy with this licence number is already registered.' : 'An account with this NIC number already exists.');
+  }
   mr_otp_start(['user_id' => $id, 'email' => $email, 'first_name' => $first], $email, 'verify_email');
   mr_redirect('verify-email.php');
 }
@@ -243,6 +327,11 @@ function mr_handle_verify_email(array $in): ?array
     return mr_error($error);
   }
   mr_user_mark_verified((int) $user['user_id']);
+  if ($user['status'] === 'pending') {
+    unset($_SESSION['otp_email']);
+    mr_flash('success', 'Email verified. ' . MR_PENDING_APPROVAL);
+    mr_redirect('sign-in.php');
+  }
   mr_log_in($user);
 }
 
