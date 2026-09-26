@@ -7,7 +7,8 @@ function mr_env(string $key, string $default = ''): string
   static $env = null;
   if ($env === null) {
     $file = __DIR__ . '/../.env';
-    $env = is_file($file) ? parse_ini_file($file, false, INI_SCANNER_RAW) : [];
+    // .env files use # comments, which PHP's INI parser rejects, so drop them first
+    $env = is_file($file) ? parse_ini_string(preg_replace('/^\s*#.*$/m', '', file_get_contents($file)), false, INI_SCANNER_RAW) : [];
   }
   return $env[$key] ?? (getenv($key) ?: $default);
 }
