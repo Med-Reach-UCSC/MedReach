@@ -24,7 +24,7 @@ $mr_nav = [
   ],
   'delivery' => [
     'label'   => 'Delivery',
-    'profile' => [null, 'Kasun Perera', 'KP', 'Kasun Perera'],
+    'profile' => ['delivery-profile.php', 'Kasun Perera', 'KP', 'Kasun Perera'],
     'links'   => [
       'dashboard' => ['label' => 'Dashboard',  'icon' => 'home',     'href' => 'delivery-dashboard.php'],
       'manifest'  => ['label' => 'Deliveries', 'icon' => 'delivery', 'href' => 'delivery-details.php'],
@@ -89,12 +89,6 @@ $mr_nav = [
 
     <div class="mr-sidebar__footer">
       <?php [$mr_href, $mr_name, $mr_initials, $mr_label] = $mr_nav['profile']; ?>
-      <?php if ($mr_href === null): ?>
-      <div class="mr-sidebar__link mr-sidebar__link--profile" title="<?= $mr_name ?>">
-        <span class="mr-avatar mr-avatar--dash"><?= $mr_initials ?></span>
-        <span class="mr-sidebar__label"><?= $mr_label ?></span>
-      </div>
-      <?php else: ?>
       <a
         class="mr-sidebar__link mr-sidebar__link--profile<?= $active === 'profile' ? ' is-active' : '' ?>"
         href="<?= $mr_href ?>"
@@ -105,7 +99,6 @@ $mr_nav = [
         <span class="mr-avatar mr-avatar--dash"><?= $mr_initials ?></span>
         <span class="mr-sidebar__label"><?= $mr_label ?></span>
       </a>
-      <?php endif; ?>
       <a class="mr-sidebar__link mr-sidebar__link--danger" href="sign-out.php" title="Log out" aria-label="Log out">
         <span class="mr-sidebar__icon-box">
           <img src="presentation/assets/images/icons/filled/ff0000/export.png" alt="">

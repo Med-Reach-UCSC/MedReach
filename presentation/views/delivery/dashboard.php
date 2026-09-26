@@ -38,7 +38,7 @@ $active = 'dashboard';
             <strong>#ORD-9921</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+            <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
           </span>
         </section>
 
@@ -48,7 +48,7 @@ $active = 'dashboard';
             <strong>14:22</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/1f9d6b/clock.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1f9d6b/clock.png" alt="">
           </span>
         </section>
 
@@ -58,7 +58,7 @@ $active = 'dashboard';
             <strong>LKR 4,500</strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
-            <img src="https://img.icons8.com/ios-filled/50/dd8e1c/cash.png" alt="">
+            <img src="presentation/assets/images/icons/filled/dd8e1c/cash.png" alt="">
           </span>
         </section>
       </div>
@@ -76,7 +76,7 @@ $active = 'dashboard';
               <div class="mr-card mr-request-card">
                 <div class="mr-request-card__head">
                   <span class="mr-icon-badge mr-icon-badge--accent">
-                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/delivery.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/dd8e1c/delivery.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--accent">#ORD-9947 &middot; 3.2 km</span>
@@ -104,7 +104,7 @@ $active = 'dashboard';
 
             <a class="mr-order-row" href="delivery-details.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="https://img.icons8.com/ios-filled/50/454655/hospital-3.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/hospital-3.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span>General Hospital Pharmacy</span>
@@ -115,7 +115,7 @@ $active = 'dashboard';
 
             <a class="mr-order-row" href="delivery-details.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="https://img.icons8.com/ios-filled/50/454655/pill.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/pill.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span>Dr. Silva Clinic</span>
@@ -131,7 +131,7 @@ $active = 'dashboard';
 
           <section class="mr-card mr-courier-card mr-payment-card">
             <span class="mr-payment-card__label">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/warning-shield.png" alt="">
+              <img src="presentation/assets/images/icons/filled/ffffff/warning-shield.png" alt="">
               Handling Note
             </span>
             <h2>Temperature-Sensitive Cargo</h2>

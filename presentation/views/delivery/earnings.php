@@ -38,7 +38,7 @@ $active = 'earnings';
             <div class="mr-dash-card__head">
               <h2>Completed deliveries</h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
                 Filter
               </span>
             </div>
@@ -91,11 +91,11 @@ $active = 'earnings';
               <span class="mr-pagination__count">Showing 1 to 4 of 4 entries</span>
               <nav class="mr-pagination__nav" aria-label="Ledger pages">
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
+                  <img src="presentation/assets/images/icons/filled/454655/back.png" alt="Previous">
                 </button>
                 <span class="mr-pagination__btn is-active" aria-current="page">1</span>
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                  <img src="presentation/assets/images/icons/filled/454655/forward.png" alt="Next">
                 </button>
               </nav>
             </div>
@@ -202,7 +202,7 @@ $active = 'earnings';
       <div class="mr-modal__head">
         <h2>Cash out summary</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
