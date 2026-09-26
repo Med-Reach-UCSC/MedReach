@@ -74,19 +74,24 @@ MedReach/
 │   │   ├── js/                   # main.js
 │   │   └── images/
 │   └── views/                    # UI files only — no SQL, no business logic
+│       ├── layout.php            # Shared <head>, <body> and scripts
+│       ├── partials/             # nav, sidebar, modals, auth pieces
 │       ├── patient/
 │       ├── pharmacy/
 │       ├── delivery/
 │       └── admin/
 │
 ├── business/                     # Tier 2 — Business Logic Layer
+│   ├── auth/                     # Sign in / sign up / email codes
 │   ├── patient/
 │   ├── pharmacy/
 │   ├── delivery/
 │   └── admin/
 │
 ├── core/                         # Tier 2 — cross-cutting logic (shared)
-│   ├── Router.php                # Request routing
+│   ├── Router.php                # Request routing (MR_ROUTES)
+│   ├── Auth.php                  # Session, CSRF and role guards
+│   ├── Mailer.php                # Outgoing email
 │   ├── BroadcastManager.php      # Proximity-priority broadcast + timed forwarding
 │   └── SubstitutionHandler.php   # Medicine substitution approvals
 │
@@ -115,6 +120,17 @@ MedReach/
 - **`core/`** — cross-module logic (broadcast routing, substitution) used by
   multiple modules. Sits in Tier 2.
 - **`data/`** — only database queries. No HTML output, no business decisions.
+
+### Adding a page
+
+1. Create the view in `presentation/views/<role>/`. Start it with
+   `<?php $title = 'Page — MedReach'; $active = '<sidebar key>'; ?>` and
+   write only what goes inside `<body>`. Add `$bodyClass` or
+   `$charts = true` when needed.
+2. Add one line to `MR_ROUTES` in `core/Router.php`:
+   `'page-name' => ['<role>', '<role>/<view>']`. The URL is `page-name.php`.
+3. If the page handles a form, add a function in `business/<role>/` that
+   returns the flash message and name it as the third route value.
 
 ---
 
