@@ -29,7 +29,7 @@ $active = 'profile';
           <section class="mr-card mr-dash-card mr-profile-card">
             <div class="mr-profile-card__head">
               <div class="mr-profile-card__identity">
-                <span class="mr-avatar mr-avatar--profile">NP</span>
+                <?php $initials = 'NP'; require __DIR__ . '/../partials/avatar-upload.php'; ?>
                 <div>
                   <h2>Nimal Perera</h2>
                   <span class="mr-eyebrow">Patient ID: <span class="mr-eyebrow--mono">#PT-88421</span></span>

@@ -46,6 +46,22 @@ $active = 'orders';
 
           <div class="mr-history-list">
 
+            <article class="mr-card mr-order mr-history-card" data-status="processing" data-name="ORD-8925 MediCare Plus">
+              <div class="mr-order__head">
+                <div class="mr-order__id">
+                  <span class="mr-eyebrow mr-eyebrow--mono">#ORD-8925</span>
+                  <div>
+                    <strong>MediCare Plus</strong>
+                    <span class="mr-eyebrow">Today &bull; 2 items</span>
+                  </div>
+                </div>
+                <div class="mr-order__tags">
+                  <span class="mr-badge mr-badge--accent mr-badge--case-normal">Awaiting pharmacy</span>
+                  <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-cancel-order-modal" data-subject="#ORD-8925">Cancel order</button>
+                </div>
+              </div>
+            </article>
+
             <article class="mr-card mr-order mr-history-card is-open" data-status="delivered" data-name="ORD-7392 CityHealth Pharmacy">
               <button type="button" class="mr-order__head mr-history-card__toggle">
                 <span class="mr-order__id">
@@ -247,6 +263,40 @@ $active = 'orders';
         </div>
       </div>
     </main>
+  </div>
+
+  <div class="mr-modal" id="mr-cancel-order-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Cancel <span data-subject-slot="order"></span>?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">You can cancel until a pharmacy starts preparing it. Your prescription stays on file for a new order.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Order cancelled — the pharmacy has been notified.">
+        <label class="mr-field">
+          <span>Reason</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option>No longer needed</option>
+              <option>Wrong prescription uploaded</option>
+              <option>Taking too long</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Keep order</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Cancel order</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <div class="mr-modal" id="mr-invoice-modal">
