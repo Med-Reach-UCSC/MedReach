@@ -39,6 +39,7 @@ const MR_ROUTES = [
   'delivery-dashboard'   => ['delivery', 'delivery/dashboard'],
   'delivery-details'     => ['delivery', 'delivery/details'],
   'delivery-earnings'    => ['delivery', 'delivery/earnings'],
+  'delivery-profile'     => ['delivery', 'delivery/profile'],
 
   'admin-dashboard'      => ['admin', 'admin/dashboard'],
   'manage-pharmacies'    => ['admin', 'admin/pharmacies'],
