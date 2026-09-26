@@ -1,6 +1,3 @@
--- MedReach - local development accounts, one per role. Password for all: MedReach@123
--- Safe to re-run: existing rows are reset to these values.
-
 INSERT INTO `USER` (first_name, last_name, email, password_hash, phone, role, status, is_verified) VALUES
   ('Nimal',  'Perera',   'patient@medreach.test',    '$2y$10$TYcDGCuzqecCND17CCEtXefzuGtbjphMffH3oDnAwCx/aT.pe5nb.', '071 234 5678', 'patient',    'active', TRUE),
   ('Hasini', 'Fernando', 'pharmacist@medreach.test', '$2y$10$TYcDGCuzqecCND17CCEtXefzuGtbjphMffH3oDnAwCx/aT.pe5nb.', '071 345 6789', 'pharmacist', 'active', TRUE),
@@ -8,7 +5,6 @@ INSERT INTO `USER` (first_name, last_name, email, password_hash, phone, role, st
   ('Dilani', 'Perera',   'admin@medreach.test',      '$2y$10$TYcDGCuzqecCND17CCEtXefzuGtbjphMffH3oDnAwCx/aT.pe5nb.', '071 567 8901', 'admin',      'active', TRUE)
 ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), status = 'active', is_verified = TRUE;
 
--- Nimal is a guardian so the family pages have an account to show.
 INSERT INTO PATIENT (user_id, address, is_guardian)
 SELECT user_id, '12 Galle Road, Colombo 03', TRUE FROM `USER` WHERE email = 'patient@medreach.test'
 ON DUPLICATE KEY UPDATE is_guardian = TRUE;

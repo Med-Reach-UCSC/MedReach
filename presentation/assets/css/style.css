@@ -1,5 +1,3 @@
-/* MedReach — shared design tokens & components (vanilla CSS3, no frameworks) */
-
 :root {
   --mr-color-bg: #f4f2ff;
   --mr-color-surface: rgba(255, 255, 255, 0.45);
@@ -67,13 +65,6 @@ body {
   position: relative;
 }
 
-/* The gradient used to live on `body` via `background-attachment: fixed`,
-   but that combination is a known Chrome/Windows repaint bug: fast
-   scrolling (or dragging the scrollbar and holding) outruns the fixed
-   background's repaint and flashes plain white until it catches up —
-   reported on every page since they all share this one background. A
-   fixed-position pseudo-element gets its own compositor layer instead of
-   being repainted on scroll, so it can't lag behind. */
 body::before {
   content: "";
   position: fixed;
@@ -97,7 +88,6 @@ a {
   text-decoration: none;
 }
 
-/* Eyebrow / small uppercase label used throughout (badges, tags) */
 .mr-eyebrow {
   display: block;
   font-family: var(--mr-font);
@@ -112,13 +102,11 @@ a {
   color: var(--mr-color-accent);
 }
 
-/* Reserved for genuine data/identifiers (order IDs, timestamps) — not decoration */
 .mr-eyebrow--mono {
   font-family: var(--mr-font-mono);
   letter-spacing: 0.02em;
 }
 
-/* Cards — the frosted-glass surface used for panels across the site */
 .mr-card {
   background-color: var(--mr-color-surface);
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -127,7 +115,6 @@ a {
   box-shadow: var(--mr-shadow-card);
 }
 
-/* Badges — small status/label pills */
 .mr-badge {
   display: inline-flex;
   align-items: center;
@@ -162,7 +149,6 @@ a {
   color: #fff;
 }
 
-/* Sentence-case override for badges quoting exact copy (e.g. a status label) */
 .mr-badge--case-normal {
   text-transform: none;
   letter-spacing: normal;
@@ -180,7 +166,6 @@ a {
   height: 14px;
 }
 
-/* Small inline icon preceding a heading's text (e.g. a pin before "Delivery Context") */
 .mr-heading-icon {
   display: inline-block;
   width: 16px;
@@ -189,7 +174,6 @@ a {
   vertical-align: -2px;
 }
 
-/* Buttons */
 .mr-btn {
   display: inline-flex;
   align-items: center;
@@ -262,10 +246,6 @@ a {
   color: var(--mr-color-text);
 }
 
-/* ---------------------------------------------------------------- */
-/* Landing page                                                      */
-/* ---------------------------------------------------------------- */
-
 .mr-page {
   max-width: var(--mr-max-width);
   margin: 0 auto;
@@ -275,7 +255,6 @@ a {
   gap: 1.5rem;
 }
 
-/* Nav */
 .mr-nav {
   position: sticky;
   top: 1rem;
@@ -290,7 +269,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: var(--mr-radius-pill);
   background-color: var(--mr-color-bg);
-  /* backdrop-filter: var(--mr-blur-card); */
+
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -327,8 +306,6 @@ a {
   gap: 1.25rem;
 }
 
-/* Menu wrapper is invisible to layout on desktop — its children sit
-   directly in the .mr-nav flex row, same as before the wrapper existed */
 .mr-nav__menu {
   display: contents;
 }
@@ -358,7 +335,6 @@ a {
   display: block;
 }
 
-/* Hero */
 .mr-hero {
   padding-top: 3.5rem;
 }
@@ -411,7 +387,6 @@ a {
   gap: 1.5rem;
 }
 
-/* Delivery tracking preview card */
 .mr-tracking-card {
   padding: 1.75rem 2.25rem;
 }
@@ -485,7 +460,6 @@ a {
   font-size: 0.875rem;
 }
 
-/* Not-yet-reached step (e.g. "Delivered" while an order is still en route) */
 .mr-timeline__step--pending {
   opacity: 0.5;
 }
@@ -496,7 +470,6 @@ a {
   box-shadow: none;
 }
 
-/* New request floating card */
 .mr-request-card {
   padding: 1.25rem;
   max-width: 320px;
@@ -542,7 +515,6 @@ a {
   height: 18px;
 }
 
-/* Stats bar */
 .mr-stats {
   display: flex;
   flex-wrap: wrap;
@@ -578,7 +550,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Generic section heading — more space above a section than below its heading */
 .mr-section {
   padding: 2.75rem 0 0;
   display: flex;
@@ -610,8 +581,6 @@ a {
   text-align: center;
 }
 
-/* Sub-page title — same treatment as the landing hero's h1, for pages
-   that need a page heading without the full two-column hero banner */
 .mr-page-title {
   max-width: 40rem;
   margin: 0 auto;
@@ -621,7 +590,6 @@ a {
   text-align: center;
 }
 
-/* Built for everyone — role cards */
 .mr-roles {
   display: flex;
   flex-wrap: wrap;
@@ -674,7 +642,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Pharmacy network */
 .mr-network {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -725,7 +692,6 @@ a {
   font-size: 0.75rem;
 }
 
-/* Intelligent fulfillment — feature grid */
 .mr-features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -762,15 +728,11 @@ a {
   letter-spacing: -0.01em;
 }
 
-/* 3-equal-column variant — stays on one row down to the standard
-   tablet breakpoint instead of the flexible/wrapping .mr-roles layout */
 .mr-features--3col {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
 }
 
-/* Icon + heading on one line, used where a feature card's title
-   should sit next to its icon rather than stacked below it */
 .mr-feature__head {
   display: flex;
   align-items: center;
@@ -787,8 +749,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Supporting proof element anchored to the card foot, so header content
-   never floats in an otherwise empty card */
 .mr-feature > :last-child {
   margin-top: auto;
 }
@@ -828,7 +788,6 @@ a {
   gap: 0.5rem;
 }
 
-/* Smart Split-Routing diagram — real stop labels, not abstract decoration */
 .mr-route-diagram {
   display: flex;
   flex-wrap: wrap;
@@ -884,7 +843,6 @@ a {
   background-color: var(--mr-color-border);
 }
 
-/* Auto-Forwarding — escalation strip: declined stop struck through, next stop accepted */
 .mr-forward-demo {
   display: flex;
   align-items: center;
@@ -919,9 +877,6 @@ a {
   color: var(--mr-color-text-soft);
 }
 
-/* Auto-Forwarding countdown panel — same diagonal purple-to-blue gradient
-   background as the Stitch source, with the timer ring rebuilt as a plain
-   CSS conic-gradient instead of its base64 SVG mask */
 .mr-timer-card {
   display: flex;
   flex-direction: column;
@@ -975,8 +930,6 @@ a {
   color: var(--mr-color-primary-dark);
 }
 
-/* Pharmacist Suggestion strip — icon, message, and approve/reject actions
-   in a single row */
 .mr-suggestion-demo {
   display: flex;
   align-items: center;
@@ -996,7 +949,6 @@ a {
   flex-shrink: 0;
 }
 
-/* 1-Tap Substitution — before/after swap chip */
 .mr-swap-demo {
   display: flex;
   flex-direction: column;
@@ -1030,7 +982,6 @@ a {
   color: var(--mr-color-success);
 }
 
-/* Cash on Delivery — receipt line */
 .mr-receipt-demo-group {
   display: flex;
   flex-direction: column;
@@ -1053,7 +1004,6 @@ a {
   color: var(--mr-color-text);
 }
 
-/* Order Tracking — plain-language status list */
 .mr-status-demo {
   display: flex;
   flex-direction: column;
@@ -1090,7 +1040,6 @@ a {
   background-color: var(--mr-color-success);
 }
 
-/* Testimonials */
 .mr-testimonials {
   display: flex;
   flex-wrap: wrap;
@@ -1151,7 +1100,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* FAQ — native <details>/<summary> accordion, no JS needed */
 .mr-faq {
   padding: 2rem;
 }
@@ -1192,7 +1140,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* CTA banner */
 .mr-cta {
   position: relative;
   overflow: hidden;
@@ -1230,7 +1177,6 @@ a {
   position: relative;
 }
 
-/* Footer */
 .mr-footer {
   display: flex;
   flex-wrap: wrap;
@@ -1271,10 +1217,6 @@ a {
   color: var(--mr-color-text-soft);
   text-decoration: underline;
 }
-
-/* ---------------------------------------------------------------- */
-/* Sign-in page                                                      */
-/* ---------------------------------------------------------------- */
 
 .mr-auth-body {
   background-color: #fff;
@@ -1711,7 +1653,6 @@ a {
   margin-top: 2.5rem;
 }
 
-/* Responsive */
 @media (max-width: 992px) {
   .mr-hero__banner {
     grid-template-columns: 1fr;
@@ -1775,15 +1716,10 @@ a {
 
 @media (max-width: 576px) {
   html, body {
-    /* clip (not hidden/auto) avoids implicitly making html/body a scroll
-       container on the y-axis too, which silently breaks position:sticky
-       for descendants like the dashboard sidebar. */
+
     overflow-x: clip;
   }
 
-  /* Flow diagram stops don't shrink below their fixed rem widths by
-     default, which was forcing the whole mobile layout viewport wider
-     than the screen and cutting off every full-width section below it */
   .mr-route-diagram {
     gap: 0.3rem;
     padding: 1rem 0.4rem;
@@ -1829,10 +1765,6 @@ a {
   }
 }
 
-/* ---------------------------------------------------------------- */
-/* Patient dashboard                                                 */
-/* ---------------------------------------------------------------- */
-
 .mr-dashboard {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -1844,10 +1776,6 @@ a {
   grid-template-columns: 100px 1fr;
 }
 
-/* Rail — independent of the public .mr-nav. Sticky "island": pinned
-   to the viewport with equal top/bottom margin, filling the height
-   between them. Expanded (labeled) by default; .is-compact reverts to
-   the icon-only pill dock via the overrides below. */
 .mr-sidebar {
   position: sticky;
   top: 1.5rem;
@@ -1958,7 +1886,6 @@ a {
   flex-shrink: 0;
 }
 
-/* Shown by default on the expanded rail; .is-compact hides it below. */
 .mr-sidebar__label {
   display: inline;
   font-weight: 400;
@@ -1992,14 +1919,10 @@ a {
   font-weight: 600;
 }
 
-/* Hamburger toggle — hidden on desktop (compact/expanded both use the
-   collapse button instead), shown on the mobile top bar */
 .mr-sidebar__toggle {
   display: none;
 }
 
-/* Compact override — the original icon-only pill dock, toggled via JS
-   (main.js) and persisted in localStorage. */
 .mr-sidebar.is-compact {
   align-items: center;
   padding: 1.75rem 1rem 1.5rem;
@@ -2027,9 +1950,6 @@ a {
   gap: 1.25rem;
 }
 
-/* Keep the same link box height as expanded (icon + vertical padding)
-   so the footer's total height doesn't shrink and shift Profile/Log
-   out up or down when toggling. */
 .mr-sidebar.is-compact .mr-sidebar__footer .mr-sidebar__link {
   width: 100%;
   height: auto;
@@ -2048,8 +1968,6 @@ a {
   display: none;
 }
 
-/* On desktop this just passes the nav/footer through as direct flex
-   children of .mr-sidebar, same trick used by .mr-nav__menu. */
 .mr-sidebar__menu {
   display: contents;
 }
@@ -2148,7 +2066,6 @@ a {
   height: 20px;
 }
 
-/* Sidebar copy — only shown on the mobile top bar, next to the toggle */
 .mr-notif-btn--sidebar {
   display: none;
 }
@@ -2213,7 +2130,6 @@ a {
   color: var(--mr-color-primary);
 }
 
-/* Extra icon-badge / badge colorways used on the dashboard */
 .mr-icon-badge--info {
   background-color: #dfe0ff;
 }
@@ -2256,7 +2172,6 @@ a {
   background-color: #e3e1ee;
 }
 
-/* Notifications list */
 .mr-notif-list__section {
   padding: 0.75rem 1.5rem;
   background-color: rgba(244, 242, 255, 0.3);
@@ -2306,7 +2221,6 @@ a {
   background-color: var(--mr-color-primary);
 }
 
-/* Toggle switch — used for notification preferences */
 .mr-switch {
   position: relative;
   display: inline-block;
@@ -2356,7 +2270,6 @@ a {
   transform: translateX(16px);
 }
 
-/* Active order card */
 .mr-order {
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -2391,7 +2304,6 @@ a {
   gap: 0.5rem;
 }
 
-/* Horizontal received → preparing → out-for-delivery stepper */
 .mr-order-progress {
   display: flex;
   list-style: none;
@@ -2455,7 +2367,6 @@ a {
   background-color: var(--mr-color-primary);
 }
 
-/* Collapsed order row (awaiting pharmacy / broadcasting) */
 .mr-order-row {
   display: flex;
   align-items: center;
@@ -2473,7 +2384,6 @@ a {
   margin-right: auto;
 }
 
-/* Upcoming refills — dashed connector between the medicine and its date */
 .mr-refill {
   display: flex;
   align-items: center;
@@ -2492,7 +2402,6 @@ a {
   border-bottom: 2px dashed var(--mr-color-border);
 }
 
-/* Recent activity feed */
 .mr-activity {
   list-style: none;
   margin: 0;
@@ -2514,7 +2423,6 @@ a {
   gap: 0.2rem;
 }
 
-/* Upload Rx CTA card */
 .mr-upload-card {
   display: flex;
   flex-direction: column;
@@ -2539,7 +2447,6 @@ a {
   margin-top: 0.5rem;
 }
 
-/* Nearest pharmacies list */
 .mr-pharmacy-row {
   display: flex;
   align-items: center;
@@ -2559,7 +2466,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Support card — icon, text and the action button all sit on one compact row */
 .mr-help-card {
   display: flex;
   align-items: center;
@@ -2582,7 +2488,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* New order — prescription drop zone */
 .mr-dash-card__lede {
   margin: 1.25rem 0 1rem;
   color: var(--mr-color-text-muted);
@@ -2619,14 +2524,12 @@ a {
   margin-top: 0.5rem;
 }
 
-/* "What happens next" section, stacked below the drop zone */
 .mr-next-steps {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(197, 197, 216, 0.4);
 }
 
-/* Small icon + number stat card (e.g. Today's uploads) */
 .mr-mini-stat {
   display: flex;
   align-items: center;
@@ -2642,12 +2545,10 @@ a {
   letter-spacing: -0.02em;
 }
 
-/* Flags a mini-stat needing attention (e.g. cash to collect on delivery) */
 .mr-mini-stat--accent {
   border-top: 3px solid var(--mr-color-accent);
 }
 
-/* Static, decorative location preview — no map engine/API involved */
 .mr-map-preview {
   position: relative;
   margin-top: 1rem;
@@ -2686,8 +2587,6 @@ a {
   background-color: #fff;
 }
 
-/* Taller variant for a route card that's the main focus of a page (delivery
-   dashboard) rather than a small confirmation aside */
 .mr-map-preview--lg {
   height: 320px;
 }
@@ -2708,9 +2607,6 @@ a {
   white-space: nowrap;
 }
 
-/* Compact action card closing out the order flow — sits stacked in the
-   right-hand column alongside the other cards (surface/border/shadow
-   come from the shared .mr-card class on the element). */
 .mr-order-footer {
   display: flex;
   flex-direction: column;
@@ -2737,7 +2633,6 @@ a {
   width: 100%;
 }
 
-/* Pharmacy responses — patient reviews pharmacy replies to a broadcast prescription */
 .mr-resp-price {
   display: flex;
   flex-direction: column;
@@ -2760,8 +2655,6 @@ a {
   opacity: 0.6;
 }
 
-/* Right-aligned, bordered action row — the exact-width pill buttons from
-   the original design, not a stretched request-card split */
 .mr-resp-actions {
   display: flex;
   justify-content: flex-end;
@@ -2771,7 +2664,6 @@ a {
   border-top: 1px solid rgba(255, 255, 255, 0.65);
 }
 
-/* Suggested-alternative box inside a substitution card */
 .mr-resp-suggestion {
   padding: 0.75rem;
   margin-top: 1rem;
@@ -2811,7 +2703,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Request Summary — gradient island, same diagonal purple-to-cyan as source */
 .mr-resp-summary {
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -2845,9 +2736,6 @@ a {
   border-bottom: 1px dashed rgba(43, 31, 214, 0.3);
 }
 
-/* Auto-forwarding chain — two pharmacy stops joined by a dashed line with
-   a clock badge centered on it; flex-based rebuild of the source's
-   absolute/percentage layout (which had broken negative-percent offsets) */
 .mr-resp-forward {
   display: flex;
   align-items: center;
@@ -2926,7 +2814,6 @@ a {
   height: 11px;
 }
 
-/* Pharmacy name + distance line under an item title on a response card */
 .mr-resp-meta {
   display: flex;
   align-items: center;
@@ -2948,8 +2835,6 @@ a {
   background-color: var(--mr-color-border);
 }
 
-/* Original prescription card — thumbnail + the extracted item list, so the
-   patient can see what was broadcast alongside the pharmacies' responses */
 .mr-resp-rx {
   display: flex;
   gap: 1rem;
@@ -3012,8 +2897,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Status filter — Approved / Not Available / Suggestions pills that toggle
-   which response cards are shown (see main.js) */
 .mr-resp-filters {
   display: flex;
   flex-wrap: wrap;
@@ -3044,7 +2927,6 @@ a {
   color: #fff;
 }
 
-/* Tint each filter to match the status badge colour it filters for */
 .mr-resp-filters__btn--available {
   border-color: rgba(31, 157, 107, 0.25);
   background-color: rgba(228, 246, 238, 0.6);
@@ -3081,7 +2963,6 @@ a {
   color: #fff;
 }
 
-/* Two response cards per row instead of one full-width stack */
 .mr-resp-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3097,7 +2978,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Tint each response card to match its status filter colour */
 .mr-resp-grid [data-status] {
   border-left-width: 4px;
   border-left-style: solid;
@@ -3118,7 +2998,6 @@ a {
   background-color: rgba(253, 233, 231, 0.35);
 }
 
-/* Nearby pharmacies — directory search/filter toolbar, list, and map panel */
 .mr-pharm-toolbar {
   display: flex;
   align-items: center;
@@ -3197,7 +3076,6 @@ a {
   color: var(--mr-color-primary);
 }
 
-/* Tint each filter to match the status badge colour it filters for */
 .mr-pharm-filters__btn--open {
   border-color: rgba(31, 157, 107, 0.25);
   background-color: rgba(228, 246, 238, 0.6);
@@ -3240,8 +3118,6 @@ a {
   gap: 0.75rem;
 }
 
-/* Order history — toolbar, status filters, expandable order cards, and
-   the "most ordered medicines" sidebar card */
 .mr-history-toolbar {
   display: flex;
   align-items: center;
@@ -3337,7 +3213,6 @@ a {
   color: var(--mr-color-text-soft);
 }
 
-/* Card 2's header doubles as the expand/collapse toggle */
 .mr-history-card__toggle {
   width: 100%;
   border: none;
@@ -3442,7 +3317,6 @@ a {
   }
 }
 
-/* Most ordered medicines — gradient summary card in the sidebar */
 .mr-med-stats {
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -3484,9 +3358,6 @@ a {
   background-color: var(--mr-color-primary-dark);
 }
 
-/* On wide displays the whole dashboard is pinned to the viewport height
-   (scoped to this page only) so the toolbar stays put and only the card
-   list scrolls internally instead of growing the page. */
 @media (min-width: 993px) {
   .mr-page-nearby .mr-dashboard {
     height: 100dvh;
@@ -3532,9 +3403,6 @@ a {
   }
 }
 
-/* On wide displays the order-tracking dashboard is also pinned to the
-   viewport height so the medicine item list scrolls internally instead
-   of the whole page growing past the viewport. */
 @media (min-width: 993px) {
   .mr-page-track .mr-dashboard {
     height: 100dvh;
@@ -3595,10 +3463,6 @@ a {
   }
 }
 
-/* On wide displays the right-hand column stretches to match the left
-   column's height, and the footer card is pinned to the bottom of that
-   column via margin-top: auto — filling the empty space below "Today's
-   Uploads" instead of leaving it blank. */
 @media (min-width: 993px) {
   .mr-page-order .mr-dash-content {
     align-items: stretch;
@@ -3651,7 +3515,6 @@ a {
 .mr-pharm-card.is-selected[data-status="closed"] {
   box-shadow: 0 0 0 2px var(--mr-color-danger), 0 12px 28px rgba(0, 0, 0, 0.12);
 }
-
 
 .mr-pharm-card__head {
   display: flex;
@@ -3753,8 +3616,6 @@ a {
   background-color: rgba(26, 27, 36, 0.45);
 }
 
-/* Small-laptop breakpoint — eases the two-column squeeze before the
-   content grid fully stacks at the next breakpoint below. */
 @media (max-width: 1024px) {
   .mr-dash-content {
     grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
@@ -3767,8 +3628,6 @@ a {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Pharmacy info, avg-wait stat and map become one tap-to-open modal
-     group instead of sitting buried below the (now stacked) card list. */
   .mr-pharm-info {
     display: none;
   }
@@ -3818,7 +3677,6 @@ a {
   }
 }
 
-/* Order tracking — page title + status badge sitting on one line */
 .mr-track-title {
   display: flex;
   align-items: center;
@@ -3836,7 +3694,6 @@ a {
   height: 12px;
 }
 
-/* Order tracking — courier profile card */
 .mr-courier-card {
   padding: 1.5rem;
   border: none;
@@ -3898,7 +3755,6 @@ a {
   height: 12px;
 }
 
-/* ETA — plain text, right-aligned next to the courier profile */
 .mr-courier-card__eta {
   flex-shrink: 0;
   text-align: right;
@@ -3929,13 +3785,10 @@ a {
   flex: 1;
 }
 
-/* Order tracking — itemised receipt (items, subtotal, fee, promo, total) */
 .mr-order-lines {
   margin-top: 1.25rem;
 }
 
-/* Short, non-scrolling item list (order history) — no scroll-fade, since
-   the fade gradient shows as a stray shadow when there's nothing to scroll */
 .mr-history-card__items {
   display: flex;
   flex-direction: column;
@@ -3943,8 +3796,6 @@ a {
   margin-top: 0.5rem;
 }
 
-/* Scrollable item list — fades at the bottom edge to signal there's more
-   to scroll to, so the card never pushes past the viewport on long orders */
 .mr-order-lines__items {
   position: relative;
   display: flex;
@@ -4015,11 +3866,7 @@ a {
 }
 
 @media (max-width: 768px) {
-  /* CSS Grid gives each item its own row's containing block — with the
-     sidebar and main stacked as separate implicit grid rows, the sidebar's
-     sticky containing block collapses to its own (short) height and it
-     scrolls away instantly. Falling back to normal block flow gives it
-     the full-page containing block it needs to actually stick. */
+
   .mr-dashboard {
     display: block;
     padding: 1rem;
@@ -4048,8 +3895,6 @@ a {
     z-index: 20;
   }
 
-  /* Mobile keeps its own hamburger/dropdown UX — the desktop expand/collapse
-     button and its wrapper row are not part of that flow. */
   .mr-sidebar__top {
     display: contents;
   }
@@ -4101,7 +3946,6 @@ a {
     height: 30px;
   }
 
-  /* Dropdown panel — the icons live inside here, revealed by the toggle */
   .mr-sidebar__menu {
     display: none;
     position: absolute;
@@ -4195,10 +4039,6 @@ a {
     flex-wrap: wrap;
   }
 }
-
-/* ---------------------------------------------------------------- */
-/* Order confirmation                                                */
-/* ---------------------------------------------------------------- */
 
 .mr-confirm-hero {
   display: flex;
@@ -4297,7 +4137,6 @@ a {
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* Payment status card — layered on .mr-courier-card for its blue gradient/padding */
 .mr-payment-card__label {
   display: flex;
   align-items: center;
@@ -4353,10 +4192,6 @@ a {
     flex-direction: column;
   }
 }
-
-/* ---------------------------------------------------------------- */
-/* Payments                                                          */
-/* ---------------------------------------------------------------- */
 
 .mr-pay-table-wrap {
   overflow-x: auto;
@@ -4443,7 +4278,6 @@ a {
   pointer-events: none;
 }
 
-/* Donut ring — Chart.js doughnut canvas, centered behind the % readout */
 .mr-spend-ring {
   position: relative;
   width: 128px;
@@ -4512,8 +4346,6 @@ a {
   background-color: #bdc2ff;
 }
 
-/* Light-tint info card — same info blue used by .mr-icon-badge--info,
-   just spread across the whole surface instead of an icon chip */
 .mr-policy-card {
   padding: 1.5rem;
   background-color: rgba(207, 228, 250, 0.35);
@@ -4565,10 +4397,6 @@ a {
     display: none;
   }
 }
-
-/* ---------------------------------------------------------------- */
-/* Profile & Settings page                                          */
-/* ---------------------------------------------------------------- */
 
 .mr-pref-toggle {
   margin-top: 0.5rem;
@@ -4656,25 +4484,16 @@ a {
   color: #fff;
 }
 
-/* Read-only fields (e.g. a pharmacy's license number) — dimmed to look
-   locked instead of just relying on the lock icon */
 .mr-field__input input:read-only {
   background-color: rgba(69, 70, 85, 0.06);
   color: var(--mr-color-text-muted);
   cursor: not-allowed;
 }
 
-/* Let the 2-column field grid fill its container when it's the main
-   content of a full-width dashboard card (settings/profile forms),
-   instead of staying capped at the narrower modal width it was
-   originally sized for */
 .mr-dash-card .mr-auth-form--grid {
   max-width: none;
 }
 
-/* Wide variant of the info card — lays the icon/heading/text block and
-   its action button out side by side instead of stacked, for when the
-   card spans a full-width column instead of a narrow sidebar rail */
 .mr-policy-card--wide {
   display: flex;
   align-items: center;
@@ -4701,7 +4520,6 @@ a {
   }
 }
 
-/* Reusable modal — opened via [data-modal-open], closed via [data-modal-close] */
 .mr-modal {
   display: none;
   position: fixed;
@@ -4788,14 +4606,12 @@ a {
   }
 }
 
-/* Guardian control tower — action-required + adherence mini cards */
 .mr-guardian-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
-/* Top-of-page status row (e.g. delivery dashboard's active-node/ETA/cash cards) */
 .mr-stat-grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4809,7 +4625,6 @@ a {
   }
 }
 
-/* Same top-of-page status row, widened to 4 (e.g. user management's KPIs) */
 .mr-stat-grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -4839,7 +4654,6 @@ a {
   }
 }
 
-/* Manage patients — roster table toolbar, sortable headers, actions menu */
 .mr-roster-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -4946,7 +4760,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-/* Manage patients — right rail: wellness stat card, alert card, activity log */
 .mr-fleet-card__stat {
   display: flex;
   align-items: baseline;
@@ -5003,7 +4816,6 @@ a {
   font-size: 0.9rem;
 }
 
-/* Pharmacist request review — collapsed row expands into a substitution form */
 .mr-order-row--expandable {
   display: block;
 }
@@ -5025,7 +4837,6 @@ a {
   margin-top: 1rem;
 }
 
-/* Pharmacist request review — priced input chip (checklist rows + substitution form) */
 .mr-price-field {
   display: inline-flex;
   align-items: center;
@@ -5070,15 +4881,10 @@ a {
   color: #c5c5d8;
 }
 
-/* Pharmacist request review — literal 3-column bento (document+note | checklist
-   | summary+delivery), page-scoped like .mr-page-order/.mr-page-track so the
-   shared 2-column .mr-dash-content used elsewhere is untouched. */
 .mr-page-request .mr-dash-main {
   padding-bottom: 7rem;
 }
 
-/* Patient note reads as clinically relevant context, not fine print — bump
-   it past the default .mr-help-card p size/muting for this page only. */
 .mr-page-request .mr-help-card--alert p {
   font-size: 0.9375rem;
   color: var(--mr-color-text);
@@ -5091,25 +4897,15 @@ a {
   }
 }
 
-/* .mr-order-row was built for a narrow ~380-420px rail, where
-   margin-right: auto on the info block collapsing to its own width and
-   shoving the badge/price to the far edge reads fine. The checklist column
-   here is fluid and much wider, so let the info block grow with it instead
-   of leaving a hollow gap between the medicine name and its price. */
 .mr-page-request .mr-order-row__info {
   flex: 1;
   margin-right: 0;
 }
 
-/* Delivery method value is a short label ("Standard Pharmacy Delivery"),
-   not a headline number — .mr-mini-stat strong's 1.75rem is sized for the
-   latter and wraps this into three oversized lines. */
 .mr-page-request .mr-mini-stat strong {
   font-size: 1rem;
 }
 
-/* Round icon button (print) in the request-detail header, matching the
-   existing 40px circular .mr-notif-btn treatment. */
 .mr-icon-btn {
   display: flex;
   align-items: center;
@@ -5127,8 +4923,6 @@ a {
   height: 18px;
 }
 
-/* Back link + patient/timer chips read as fine print at the shared
-   mr-link--sm/mr-badge sizes — bumped up for this page only. */
 .mr-page-request .mr-dash-header .mr-link--sm {
   font-size: 0.9375rem;
 }
@@ -5138,9 +4932,6 @@ a {
   font-size: 0.8125rem;
 }
 
-/* Floating capsule footer for the accept/decline decision — sized to the
-   content column (viewport minus the sidebar's own column + grid gap), not
-   the full viewport, so it never overlaps the sidebar rail. */
 .mr-decision-bar {
   position: fixed;
   left: calc(240px + 3.25rem);
@@ -5159,8 +4950,6 @@ a {
   box-shadow: var(--mr-shadow-card);
 }
 
-/* Sidebar collapses to its 100px icon-only dock via the existing
-   .is-compact toggle — follow it so the capsule keeps hugging the rail. */
 .mr-dashboard:has(.mr-sidebar.is-compact) + .mr-decision-bar {
   left: calc(100px + 3.25rem);
 }
@@ -5202,7 +4991,6 @@ a {
   }
 }
 
-/* Admin settings — numeric stepper control (Broadcast Routing Engine) */
 .mr-stepper {
   display: inline-flex;
   align-items: center;
@@ -5248,8 +5036,6 @@ a {
   font-weight: 700;
 }
 
-/* Admin settings — dark configuration readout (System Manifest / Routing
-   Summary rail cards, inside the reused .mr-courier-card gradient shell) */
 .mr-manifest {
   display: flex;
   flex-direction: column;
@@ -5280,19 +5066,11 @@ a {
   color: #66d9ff;
 }
 
-/* Admin settings — dispatch radius / response timeout sliders under the
-   .mr-spend-ring gauges; accent-color themes the native control, no custom
-   thumb/track markup needed */
 .mr-range {
   width: 100%;
   accent-color: var(--mr-color-primary);
 }
 
-/* Admin settings — literal 3-column bento. Every card here is a compact
-   control (steppers, two toggles, a form field or two) rather than a
-   full-width section, so the shared 2-column .mr-dash-content used
-   elsewhere leaves most of each card empty. Same page-scoped-override
-   convention as .mr-page-request's 3-column bento. */
 @media (min-width: 993px) {
   .mr-page-settings .mr-dash-content {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5308,9 +5086,6 @@ a {
   }
 }
 
-
-/* Row action menu — opened by .mr-table-menu-btn; fixed + placed by main.js
-   so the scrolling .mr-pay-table-wrap doesn't clip it */
 .mr-row-menu {
   position: fixed;
   z-index: 60;
@@ -5352,7 +5127,6 @@ a {
   color: var(--mr-color-danger);
 }
 
-/* Toast — confirms front-end-only actions while the backend is pending */
 .mr-toast {
   position: fixed;
   left: 50%;
@@ -5408,7 +5182,6 @@ a {
   border-top: 1px solid var(--mr-color-border);
 }
 
-/* Button that reads as an inline text link (opens a modal instead of navigating) */
 .mr-link-btn {
   padding: 0;
   border: none;
@@ -5422,12 +5195,10 @@ a.mr-notif-item:hover {
   background-color: rgba(74, 91, 240, 0.05);
 }
 
-/* Stop the page scrolling behind an open modal */
 body:has(.mr-modal.is-open) {
   overflow: hidden;
 }
 
-/* Sign-up: steps and per-role field groups sit on the form's two-column grid */
 .mr-signup-step,
 .mr-role-fields {
   grid-column: span 2;
