@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient order confirmation page (presentation tier: HTML output only)
+$title = 'Order Confirmed — MedReach';
+$bodyClass = 'mr-page-confirm';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Order Confirmed — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-confirm">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <section class="mr-confirm-hero">
@@ -30,7 +21,7 @@ $active = 'orders';
           <section class="mr-card mr-confirm-ref">
             <div>
               <span class="mr-eyebrow mr-eyebrow--mono">Order Reference</span>
-              <strong class="mr-confirm-ref__value">#MR-8472-X9</strong>
+              <strong class="mr-confirm-ref__value">#ORD-8472</strong>
             </div>
             <div class="mr-confirm-ref__eta">
               <span class="mr-eyebrow mr-eyebrow--mono">Estimated Arrival</span>
@@ -126,7 +117,7 @@ $active = 'orders';
           <div class="mr-confirm-actions">
             <a href="track-order-status.php" class="mr-btn mr-btn--primary mr-btn--block">
               <img src="https://img.icons8.com/ios-filled/50/ffffff/delivery.png" alt="">
-              Track Order Live
+              Track Order
             </a>
             <a href="patient-dashboard.php" class="mr-btn mr-btn--light mr-btn--block">Return to Dashboard</a>
           </div>
@@ -139,7 +130,7 @@ $active = 'orders';
               <strong>Need assistance?</strong>
               <p>Contact support about this order.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
@@ -147,6 +138,4 @@ $active = 'orders';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>

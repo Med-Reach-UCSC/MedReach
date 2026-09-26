@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient order history (presentation tier: HTML output only)
+$title = 'Order History — MedReach';
+$bodyClass = 'mr-page-history';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Order History — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-history">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -57,20 +48,20 @@ $active = 'orders';
 
             <article class="mr-card mr-order mr-history-card is-open" data-status="delivered" data-name="ORD-7392 CityHealth Pharmacy">
               <button type="button" class="mr-order__head mr-history-card__toggle">
-                <div class="mr-order__id">
+                <span class="mr-order__id">
                   <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7392</span>
-                  <div>
+                  <span>
                     <strong>CityHealth Pharmacy</strong>
                     <span class="mr-eyebrow">Oct 24, 2023 &bull; 3 items</span>
-                  </div>
-                </div>
-                <div class="mr-order__tags">
-                  <strong class="mr-history-card__price">$45.20</strong>
+                  </span>
+                </span>
+                <span class="mr-order__tags">
+                  <strong class="mr-history-card__price">LKR 4,520.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
                     <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
                   </span>
-                </div>
+                </span>
               </button>
 
               <div class="mr-history-card__body">
@@ -80,22 +71,22 @@ $active = 'orders';
                     <div class="mr-order-lines__row">
                       <strong>Amoxicillin 500mg (20 caps)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$20.20</span>
+                      <span>LKR 2,020.00</span>
                     </div>
                     <div class="mr-order-lines__row">
                       <strong>Ibuprofen 400mg (30 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$15.00</span>
+                      <span>LKR 1,500.00</span>
                     </div>
                     <div class="mr-order-lines__row">
                       <strong>Cetirizine 10mg (10 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$10.00</span>
+                      <span>LKR 1,000.00</span>
                     </div>
                   </div>
                   <div class="mr-history-card__actions">
-                    <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">Download Invoice</a>
-                    <a href="#" class="mr-btn mr-btn--primary mr-btn--sm">Reorder All</a>
+                    <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-invoice-modal" data-subject="#ORD-7392">View Invoice</button>
+                    <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-reorder-modal" data-subject="#ORD-7392">Reorder All</button>
                   </div>
                 </div>
 
@@ -119,7 +110,7 @@ $active = 'orders';
                     </button>
                   </div>
                   <label class="mr-field">
-                    <textarea rows="2" placeholder="Leave a comment (optional)..."></textarea>
+                    <textarea rows="2" aria-label="Order comment" placeholder="Leave a comment (optional)..."></textarea>
                   </label>
                   <button type="button" class="mr-btn mr-btn--primary mr-btn--sm mr-history-card__submit">Submit</button>
                 </div>
@@ -128,20 +119,20 @@ $active = 'orders';
 
             <article class="mr-card mr-order mr-history-card" data-status="delivered" data-name="ORD-7391 MediCare Plus">
               <button type="button" class="mr-order__head mr-history-card__toggle">
-                <div class="mr-order__id">
+                <span class="mr-order__id">
                   <span class="mr-eyebrow mr-eyebrow--mono">#ORD-7391</span>
-                  <div>
+                  <span>
                     <strong>MediCare Plus</strong>
                     <span class="mr-eyebrow">Oct 12, 2023 &bull; 2 items</span>
-                  </div>
-                </div>
-                <div class="mr-order__tags">
-                  <strong class="mr-history-card__price">$112.50</strong>
+                  </span>
+                </span>
+                <span class="mr-order__tags">
+                  <strong class="mr-history-card__price">LKR 11,250.00</strong>
                   <span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span>
                   <span class="mr-history-card__chevron" aria-hidden="true">
                     <img src="https://img.icons8.com/ios-filled/50/2d3fd7/expand-arrow.png" alt="">
                   </span>
-                </div>
+                </span>
               </button>
 
               <div class="mr-history-card__body">
@@ -151,17 +142,17 @@ $active = 'orders';
                     <div class="mr-order-lines__row">
                       <strong>Lisinopril 10mg (30 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$15.00</span>
+                      <span>LKR 1,500.00</span>
                     </div>
                     <div class="mr-order-lines__row">
                       <strong>Atorvastatin 20mg (90 tabs)</strong>
                       <i class="mr-order-lines__rule"></i>
-                      <span>$97.50</span>
+                      <span>LKR 9,750.00</span>
                     </div>
                   </div>
                   <div class="mr-history-card__actions">
-                    <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">Download Invoice</a>
-                    <a href="#" class="mr-btn mr-btn--primary mr-btn--sm">Reorder All</a>
+                    <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-invoice-modal" data-subject="#ORD-7391">View Invoice</button>
+                    <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-open="mr-reorder-expired-modal" data-subject="#ORD-7391">Reorder All</button>
                   </div>
                 </div>
 
@@ -185,7 +176,7 @@ $active = 'orders';
                     </button>
                   </div>
                   <label class="mr-field">
-                    <textarea rows="2" placeholder="Leave a comment (optional)..."></textarea>
+                    <textarea rows="2" aria-label="Order comment" placeholder="Leave a comment (optional)..."></textarea>
                   </label>
                   <button type="button" class="mr-btn mr-btn--primary mr-btn--sm mr-history-card__submit">Submit</button>
                 </div>
@@ -202,7 +193,7 @@ $active = 'orders';
                   </div>
                 </div>
                 <div class="mr-order__tags">
-                  <strong class="mr-history-card__price">$22.00</strong>
+                  <strong class="mr-history-card__price">LKR 2,200.00</strong>
                   <span class="mr-badge mr-badge--danger mr-badge--case-normal">Canceled</span>
                   <span class="mr-history-card__no-rating">No rating</span>
                 </div>
@@ -258,6 +249,59 @@ $active = 'orders';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <div class="mr-modal" id="mr-invoice-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Invoice <span data-subject-slot="order"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The invoice lists every item, the pharmacy that filled it, the delivery fee and how you paid. Print it or save it as a PDF from the print dialog.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Close</button>
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-reorder-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Reorder <span data-subject-slot="order"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The original prescription is valid until Mar 14, 2027, so the same items can be sent to nearby pharmacies again. You'll confirm the price before anything is prepared.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <a class="mr-btn mr-btn--primary mr-btn--sm" href="pharmacy-responses.php">Reorder</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-reorder-expired-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Prescription expired</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">The prescription for <span data-subject-slot="this order"></span> expired on Aug 30, 2026, so it can't be reordered. Upload a new prescription to place the order again.</p>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+        <a class="mr-btn mr-btn--primary mr-btn--sm" href="patient-order.php">Upload new Rx</a>
+      </div>
+    </div>
+  </div>

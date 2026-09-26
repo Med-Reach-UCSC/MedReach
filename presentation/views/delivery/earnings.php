@@ -1,47 +1,33 @@
 <?php
-// MedReach - Delivery rider earnings & payouts (presentation tier: HTML output only)
+$title = 'Earnings — MedReach';
+$charts = true;
 $active = 'earnings';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Earnings — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-delivery.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
           <h1>Earnings</h1>
-          <p class="mr-eyebrow">Payout ledger synced 2 min ago</p>
+          <p class="mr-eyebrow">Cash collected this month</p>
         </div>
 
         <div class="mr-dash-header__actions">
           <div class="mr-dash-stats">
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--active">Rs. 2,150</strong>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--active">LKR 2,150</strong>
               <span>Today</span>
             </div>
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--pending">Rs. 11,600</strong>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--pending">LKR 11,600</strong>
               <span>Week</span>
             </div>
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered">Rs. 43,900</strong>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered">LKR 43,900</strong>
               <span>Month</span>
             </div>
           </div>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 
@@ -70,31 +56,31 @@ $active = 'earnings';
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8832</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8832</td>
                     <td>Today, 14:30</td>
                     <td>CarePlus Pharma</td>
-                    <td class="mr-pay-table__amount">Rs. 450.00</td>
+                    <td class="mr-pay-table__amount">LKR 450.00</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span></td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8831</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8831</td>
                     <td>Today, 11:15</td>
                     <td>MediTrust LK</td>
-                    <td class="mr-pay-table__amount">Rs. 600.00</td>
+                    <td class="mr-pay-table__amount">LKR 600.00</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span></td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8829</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8829</td>
                     <td>Today, 09:40</td>
                     <td>City Health Pharmacy</td>
-                    <td class="mr-pay-table__amount">Rs. 350.00</td>
+                    <td class="mr-pay-table__amount">LKR 350.00</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span></td>
                   </tr>
                   <tr>
-                    <td class="mr-eyebrow mr-eyebrow--mono">#MR-8790</td>
+                    <td class="mr-eyebrow mr-eyebrow--mono">#ORD-8790</td>
                     <td>Yesterday</td>
                     <td>CarePlus Pharma</td>
-                    <td class="mr-pay-table__amount">Rs. 750.00</td>
+                    <td class="mr-pay-table__amount">LKR 750.00</td>
                     <td><span class="mr-badge mr-badge--success mr-badge--case-normal">Delivered</span></td>
                   </tr>
                 </tbody>
@@ -102,17 +88,15 @@ $active = 'earnings';
             </div>
 
             <div class="mr-pagination">
-              <span class="mr-pagination__count">Showing 1 to 4 of 28 entries</span>
+              <span class="mr-pagination__count">Showing 1 to 4 of 4 entries</span>
               <nav class="mr-pagination__nav" aria-label="Ledger pages">
-                <a href="#" class="mr-pagination__btn" aria-disabled="true">
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
                   <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
-                </a>
-                <a href="#" class="mr-pagination__btn is-active">1</a>
-                <a href="#" class="mr-pagination__btn">2</a>
-                <a href="#" class="mr-pagination__btn">3</a>
-                <a href="#" class="mr-pagination__btn">
-                  <img src="https://img.icons8.com/ios-filled/50/1a1b24/forward.png" alt="Next">
-                </a>
+                </button>
+                <span class="mr-pagination__btn is-active" aria-current="page">1</span>
+                <button type="button" class="mr-pagination__btn" aria-disabled="true">
+                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                </button>
               </nav>
             </div>
           </section>
@@ -120,9 +104,9 @@ $active = 'earnings';
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Revenue trend</h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">Rs. 43,900 this month</span>
+              <span class="mr-eyebrow mr-eyebrow--mono">LKR 43,900 this month</span>
             </div>
-            <canvas id="mr-earnings-trend-chart" height="220" role="img" aria-label="Weekly revenue trend"></canvas>
+            <canvas id="mr-earnings-trend-chart" data-values="9400,11300,11600,11600" height="220" role="img" aria-label="Weekly revenue trend"></canvas>
           </section>
 
         </div>
@@ -135,7 +119,7 @@ $active = 'earnings';
             </div>
 
             <div class="mr-spend-ring">
-              <canvas id="mr-earnings-target-chart" width="128" height="128" role="img" aria-label="Weekly target: 74% reached"></canvas>
+              <canvas id="mr-earnings-target-chart" data-percent="74" width="128" height="128" role="img" aria-label="Weekly target: 74% reached"></canvas>
               <div class="mr-spend-ring__inner">
                 <span>Reached</span>
                 <strong>74%</strong>
@@ -147,17 +131,17 @@ $active = 'earnings';
                 <i class="mr-spend-dot mr-spend-dot--primary"></i>
                 Earned
               </span>
-              <strong>Rs. 11,600</strong>
+              <strong>LKR 11,600</strong>
             </div>
             <div class="mr-spend-row">
               <span class="mr-spend-row__label">
                 <i class="mr-spend-dot mr-spend-dot--light"></i>
                 Remaining to target
               </span>
-              <strong>Rs. 3,400</strong>
+              <strong>LKR 3,400</strong>
             </div>
 
-            <a href="#" class="mr-btn mr-btn--dark mr-btn--sm">Cash out summary</a>
+            <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-modal-open="mr-cashout-modal">Cash out summary</button>
           </section>
 
           <section class="mr-card mr-med-stats">
@@ -166,7 +150,7 @@ $active = 'earnings';
             <div class="mr-med-stats__row">
               <div class="mr-med-stats__label">
                 <span>CarePlus Pharma</span>
-                <strong>Rs. 4,850</strong>
+                <strong>LKR 4,850</strong>
               </div>
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 85%;"></div></div>
             </div>
@@ -174,7 +158,7 @@ $active = 'earnings';
             <div class="mr-med-stats__row">
               <div class="mr-med-stats__label">
                 <span>MediTrust LK</span>
-                <strong>Rs. 3,220</strong>
+                <strong>LKR 3,220</strong>
               </div>
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 62%; opacity: .8;"></div></div>
             </div>
@@ -182,7 +166,7 @@ $active = 'earnings';
             <div class="mr-med-stats__row">
               <div class="mr-med-stats__label">
                 <span>City Health Pharmacy</span>
-                <strong>Rs. 2,150</strong>
+                <strong>LKR 2,150</strong>
               </div>
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 42%; opacity: .6;"></div></div>
             </div>
@@ -195,11 +179,11 @@ $active = 'earnings';
 
             <div class="mr-pharmacy-row">
               <span>Best day</span>
-              <strong>Thu (Rs. 4,200)</strong>
+              <strong>Thu (LKR 4,200)</strong>
             </div>
             <div class="mr-pharmacy-row">
               <span>Average per delivery</span>
-              <strong>Rs. 464</strong>
+              <strong>LKR 464</strong>
             </div>
             <div class="mr-pharmacy-row">
               <span>Active time</span>
@@ -212,7 +196,26 @@ $active = 'earnings';
     </main>
   </div>
 
-  <script src="presentation/assets/js/vendor/chart.umd.min.js"></script>
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <div class="mr-modal" id="mr-cashout-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Cash out summary</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">Cash collected on delivery is handed over to each pharmacy at the end of your shift. Your delivery fees are settled weekly.</p>
+
+      <dl class="mr-modal__list">
+        <div><dt>Cash collected this week</dt><dd>LKR 38,400</dd></div>
+        <div><dt>Handed over to pharmacies</dt><dd>LKR 38,400</dd></div>
+        <div class="mr-modal__list-total"><dt>Your delivery fees</dt><dd>LKR 11,600</dd></div>
+      </dl>
+
+      <div class="mr-modal__actions">
+        <button type="button" class="mr-btn mr-btn--primary mr-btn--sm" data-modal-close>Close</button>
+      </div>
+    </div>
+  </div>

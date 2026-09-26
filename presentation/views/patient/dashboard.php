@@ -1,19 +1,9 @@
 <?php
-// MedReach - Patient dashboard (presentation tier: HTML output only)
+$title = 'Dashboard — MedReach';
 $active = 'dashboard';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -64,7 +54,7 @@ $active = 'dashboard';
                 </div>
                 <div class="mr-order__tags">
                   <span class="mr-badge mr-badge--pill">3 items</span>
-                  <span class="mr-badge mr-badge--info">1.2 mi</span>
+                  <span class="mr-badge mr-badge--info">1.9 km</span>
                   <a class="mr-badge mr-badge--pill mr-badge--case-normal" href="track-order-status.php">Track order</a>
                 </div>
               </div>
@@ -76,7 +66,7 @@ $active = 'dashboard';
               </ol>
             </article>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
                 <img src="https://img.icons8.com/ios-filled/50/dd8e1c/clipboard.png" alt="">
               </span>
@@ -87,7 +77,7 @@ $active = 'dashboard';
               <span class="mr-badge mr-badge--accent">Awaiting Pharmacy</span>
             </a>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/broadcasting.png" alt="">
               </span>
@@ -161,21 +151,21 @@ $active = 'dashboard';
             <div class="mr-pharmacy-row">
               <div>
                 <strong>CityHealth Rx</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">1.2 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">1.9 km away</span>
               </div>
               <span class="mr-badge mr-badge--success">Open</span>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong>MediCare Plus</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">2.5 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">4.0 km away</span>
               </div>
               <span class="mr-badge mr-badge--success">Open</span>
             </div>
             <div class="mr-pharmacy-row">
               <div>
                 <strong class="mr-pharmacy-row__muted">GreenCross</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">3.1 mi away</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">5.0 km away</span>
               </div>
               <span class="mr-badge mr-badge--pill">Closed</span>
             </div>
@@ -189,7 +179,7 @@ $active = 'dashboard';
               <strong>Need help?</strong>
               <p>Reach out if an order looks off or a delivery is delayed.</p>
             </div>
-            <a class="mr-btn mr-btn--ghost mr-btn--sm" href="#">Contact support</a>
+            <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-support-modal">Contact support</button>
           </section>
 
         </div>
@@ -197,6 +187,4 @@ $active = 'dashboard';
     </main>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <?php require __DIR__ . '/../partials/modal-support.php'; ?>

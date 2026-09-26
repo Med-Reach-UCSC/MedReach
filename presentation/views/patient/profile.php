@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient profile & settings (presentation tier: HTML output only)
+$title = 'Profile & Settings — MedReach';
+$bodyClass = 'mr-page-profile';
 $active = 'profile';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Profile & Settings — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-profile">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -86,28 +77,28 @@ $active = 'profile';
             <div class="mr-pharmacy-row">
               <strong>Order Updates</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Order Updates" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Substitution Alerts</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Substitution Alerts" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Delivery Updates</strong>
               <label class="mr-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" aria-label="Delivery Updates" checked>
                 <span class="mr-switch__track"></span>
               </label>
             </div>
             <div class="mr-pharmacy-row">
               <strong>Promotional Offers</strong>
               <label class="mr-switch">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Promotional Offers">
                 <span class="mr-switch__track"></span>
               </label>
             </div>
@@ -118,7 +109,7 @@ $active = 'profile';
               <h2>Change Password</h2>
             </div>
 
-            <form class="mr-auth-form">
+            <form class="mr-auth-form" data-toast="Password updated.">
               <label class="mr-field">
                 <span>Current Password</span>
                 <div class="mr-field__input">
@@ -147,7 +138,7 @@ $active = 'profile';
           <section class="mr-card mr-dash-card mr-danger-card">
             <h2>Danger Zone</h2>
             <p>Once you deactivate your account, you will lose access to your order history and saved details.</p>
-            <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm">Deactivate account</button>
+            <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-deactivate-modal">Deactivate account</button>
           </section>
 
         </div>
@@ -172,19 +163,27 @@ $active = 'profile';
 
             <div class="mr-pharmacy-row">
               <div>
-                <strong>Amara Silva</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Daughter · Age 9</span>
+                <strong>Amma</strong>
+                <span class="mr-eyebrow mr-eyebrow--mono">Mother · Age 72</span>
               </div>
-              <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
+              <a href="manage-patients.php" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
             </div>
             <div class="mr-pharmacy-row">
               <div>
-                <strong>Sunil Perera</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Father · Age 71</span>
+                <strong>Seeya</strong>
+                <span class="mr-eyebrow mr-eyebrow--mono">Grandfather · Age 80</span>
               </div>
-              <a href="#" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
+              <a href="manage-patients.php" class="mr-btn mr-btn--ghost mr-btn--sm">View</a>
             </div>
-            <a href="#" class="mr-btn mr-btn--light mr-btn--sm mr-btn--block">+ Add Dependent</a>
+            <a href="manage-patients.php" class="mr-btn mr-btn--light mr-btn--sm mr-btn--block">+ Add Dependent</a>
+          </section>
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>My Guardian</h2>
+            </div>
+            <p class="mr-dash-card__lede">Let a family member with their own MedReach account place and track orders for you.</p>
+            <button type="button" class="mr-btn mr-btn--light mr-btn--sm mr-btn--block" data-modal-open="mr-assign-guardian-modal">Assign a guardian</button>
           </section>
 
           <section class="mr-card mr-dash-card">
@@ -251,7 +250,7 @@ $active = 'profile';
         </button>
       </div>
 
-      <form class="mr-auth-form mr-auth-form--grid mr-modal__form">
+      <form class="mr-auth-form mr-auth-form--grid mr-modal__form" data-toast="Profile updated.">
         <label class="mr-field">
           <span>First Name</span>
           <div class="mr-field__input">
@@ -298,6 +297,68 @@ $active = 'profile';
     </div>
   </div>
 
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>
+  <div class="mr-modal" id="mr-assign-guardian-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Assign a guardian</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">Enter the email your guardian signed up with. They'll get a request to accept before they can manage your orders.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Request sent — your guardian needs to accept it.">
+        <label class="mr-field">
+          <span>Guardian's email</span>
+          <div class="mr-field__input">
+            <input type="email" placeholder="e.g. kamal@example.com" required>
+          </div>
+        </label>
+        <label class="mr-field">
+          <span>Relationship</span>
+          <div class="mr-field__input">
+            <select required>
+              <option value="" disabled selected>Select...</option>
+              <option>Son</option>
+              <option>Daughter</option>
+              <option>Spouse</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Send request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal" id="mr-deactivate-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Deactivate account?</h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <p class="mr-modal__text">You'll be signed out and lose access to your order history and saved details. Orders that are still active must be delivered or cancelled first.</p>
+
+      <form class="mr-auth-form mr-modal__form" data-toast="Deactivation request received.">
+        <label class="mr-auth-terms">
+          <input type="checkbox" required>
+          <span>I understand this can't be undone from the app.</span>
+        </label>
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Deactivate</button>
+        </div>
+      </form>
+    </div>
+  </div>

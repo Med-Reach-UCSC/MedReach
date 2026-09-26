@@ -1,25 +1,15 @@
 <?php
-// MedReach - Delivery rider dashboard (presentation tier: HTML output only)
+$title = 'Delivery Dashboard — MedReach';
 $active = 'dashboard';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Delivery Dashboard — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body>
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-delivery.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
-          <h1>Good afternoon, Marcus</h1>
-          <p class="mr-eyebrow">Route synced 2 min ago</p>
+          <h1>Good afternoon, Kasun</h1>
+          <p class="mr-eyebrow">2 stops assigned today</p>
         </div>
 
         <div class="mr-dash-header__actions">
@@ -34,15 +24,10 @@ $active = 'dashboard';
             </div>
           </div>
 
-          <label class="mr-switch" title="Available for deliveries" data-duty-toggle>
-            <input type="checkbox" checked>
+          <label class="mr-switch" title="Available for deliveries" data-duty-toggle data-on-text="You're available — new delivery requests will reach you." data-off-text="Off duty — you won't receive new delivery requests.">
+            <input type="checkbox" aria-label="Available for deliveries" checked>
             <span class="mr-switch__track"></span>
           </label>
-
-          <a class="mr-notif-btn mr-notif-btn--header" href="notifications.php" aria-label="Notifications">
-            <img src="https://img.icons8.com/ios-filled/50/1a1b24/appointment-reminders.png" alt="">
-            <span class="mr-notif-btn__dot" aria-hidden="true"></span>
-          </a>
         </div>
       </header>
 
@@ -83,13 +68,32 @@ $active = 'dashboard';
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>Route overview</h2>
-              <span class="mr-badge mr-badge--success"><span class="mr-badge__dot"></span>Live Tracking</span>
+              <h2>Delivery requests</h2>
+              <span class="mr-badge mr-badge--accent" data-request-count>1 new</span>
             </div>
-            <div class="mr-map-preview mr-map-preview--lg">
-              <span class="mr-map-preview__pin" aria-hidden="true"></span>
-              <span class="mr-map-preview__label">Next stop: 450 West Ave &middot; 2.4 km</span>
+
+            <div data-request-list>
+              <div class="mr-card mr-request-card">
+                <div class="mr-request-card__head">
+                  <span class="mr-icon-badge mr-icon-badge--accent">
+                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/delivery.png" alt="">
+                  </span>
+                  <div>
+                    <span class="mr-eyebrow mr-eyebrow--accent">#ORD-9947 &middot; 3.2 km</span>
+                    <h4>CityHealth Pharmacy &rarr; Nugegoda</h4>
+                  </div>
+                </div>
+                <p class="mr-eyebrow mr-eyebrow--mono">Pickup ready &middot; Collect LKR 2,150 cash</p>
+                <div class="mr-request-card__actions">
+                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the task will be reassigned to another courier.">Decline</button>
+                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — #ORD-9947 added to your manifest.">Accept</button>
+                </div>
+              </div>
             </div>
+
+            <p class="mr-resp-grid__empty" data-request-empty hidden style="text-align: center; margin-top: 1rem;">
+              No new delivery requests.
+            </p>
           </section>
 
           <section class="mr-card mr-dash-card">
@@ -98,24 +102,24 @@ $active = 'dashboard';
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">2 stops</span>
             </div>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="delivery-details.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
                 <img src="https://img.icons8.com/ios-filled/50/454655/hospital-3.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span>General Hospital Pharmacy</span>
-                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-993-A &middot; 2.4 km</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9934 &middot; 2.4 km</span>
               </span>
               <span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span>
             </a>
 
-            <a class="mr-order-row" href="#">
+            <a class="mr-order-row" href="delivery-details.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
                 <img src="https://img.icons8.com/ios-filled/50/454655/pill.png" alt="">
               </span>
               <span class="mr-order-row__info">
                 <span>Dr. Silva Clinic</span>
-                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-994-B &middot; 5.1 km</span>
+                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9941 &middot; 5.1 km</span>
               </span>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">Queued</span>
             </a>
@@ -128,17 +132,10 @@ $active = 'dashboard';
           <section class="mr-card mr-courier-card mr-payment-card">
             <span class="mr-payment-card__label">
               <img src="https://img.icons8.com/ios-filled/50/ffffff/warning-shield.png" alt="">
-              Cold Chain Alert
+              Handling Note
             </span>
             <h2>Temperature-Sensitive Cargo</h2>
-            <p>Insulin shipment on board. Keep the cargo box sealed and under 4&deg;C until drop-off.</p>
-            <div class="mr-payment-card__due">
-              <span>Cargo Temp</span>
-              <strong>2.1&deg;C</strong>
-            </div>
-            <div class="mr-med-stats__bar" style="margin-top: 0.75rem;">
-              <div class="mr-med-stats__fill" style="width: 33%;"></div>
-            </div>
+            <p>Insulin shipment on board. Keep the cargo box sealed and refrigerated until drop-off.</p>
           </section>
 
           <section class="mr-card mr-med-stats">
@@ -160,25 +157,9 @@ $active = 'dashboard';
               <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 92.1%; opacity: .8;"></div></div>
             </div>
 
-            <div class="mr-med-stats__row">
-              <div class="mr-med-stats__label">
-                <span>Fuel Efficiency</span>
-                <strong>14.2 km/l</strong>
-              </div>
-              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 60%; opacity: .6;"></div></div>
-            </div>
-
-            <div class="mr-pharmacy-row" style="margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(255, 255, 255, 0.4);">
-              <span>Total Distance</span>
-              <strong>428 km</strong>
-            </div>
           </section>
 
         </div>
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

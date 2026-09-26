@@ -1,0 +1,8 @@
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 /(config|core|business|data|database|docs|presentation/views)(/|$)
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-z-]+)\.php$ index.php?page=$1 [QSA,L]

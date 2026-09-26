@@ -1,19 +1,10 @@
 <?php
-// MedReach - Patient view of pharmacy responses to a broadcast prescription (presentation tier: HTML output only)
+$title = 'Prescription RX-1042 — MedReach';
+$bodyClass = 'mr-page-responses';
 $active = 'orders';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prescription RX-1042 — MedReach</title>
-  <link rel="stylesheet" href="presentation/assets/css/style.css">
-</head>
-<body class="mr-page-responses">
-
   <div class="mr-dashboard">
-    <?php require __DIR__ . '/../partials/sidebar-patient.php'; ?>
+    <?php require __DIR__ . '/../partials/sidebar.php'; ?>
 
     <main class="mr-dash-main">
       <header class="mr-dash-header">
@@ -50,7 +41,7 @@ $active = 'orders';
                 <img src="https://img.icons8.com/ios-filled/50/2d3fd7/image.png" alt="Prescription scan">
               </span>
               <div class="mr-resp-rx__body">
-                <p class="mr-resp-rx__meta">Patient: Nimal Perera · Dr. S. Weerasinghe · GMC-4471</p>
+                <p class="mr-resp-rx__meta">Patient: Nimal Perera · Dr. S. Weerasinghe · SLMC-4471</p>
                 <ul class="mr-resp-rx__items">
                   <li><strong>Lisinopril 10mg</strong><span>× 30</span></li>
                   <li><strong>Atorvastatin 20mg</strong><span>× 60</span></li>
@@ -67,7 +58,7 @@ $active = 'orders';
 
           <div class="mr-resp-grid">
 
-            <section class="mr-card mr-dash-card" data-status="available">
+            <section class="mr-card mr-dash-card" data-status="available" data-decision-scope>
               <div class="mr-dash-card__head">
                 <div>
                   <h2>Lisinopril 10mg</h2>
@@ -75,24 +66,24 @@ $active = 'orders';
                 </div>
                 <div class="mr-resp-price">
                   <strong class="mr-price">LKR 1,450</strong>
-                  <span class="mr-badge mr-badge--success mr-badge--case-normal">Available</span>
+                  <span class="mr-badge mr-badge--success mr-badge--case-normal" data-decision-badge>Available</span>
                 </div>
               </div>
 
               <p class="mr-resp-meta">
                 <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
-                CVS Health
+                Healthguard Pharmacy
                 <span class="mr-resp-meta__dot" aria-hidden="true"></span>
                 1.2 km
               </p>
 
               <div class="mr-resp-actions">
-                <button type="button" class="mr-btn mr-btn--ghost">Decline</button>
-                <button type="button" class="mr-btn mr-btn--primary">Accept</button>
+                <button type="button" class="mr-btn mr-btn--ghost" data-decision="decline" data-decision-toast="Declined — this item will be sent to the next-closest pharmacy.">Decline</button>
+                <button type="button" class="mr-btn mr-btn--primary" data-decision="accept" data-decision-toast="Accepted — Lisinopril added to your order.">Accept</button>
               </div>
             </section>
 
-            <section class="mr-card mr-dash-card" data-status="suggestion">
+            <section class="mr-card mr-dash-card" data-status="suggestion" data-decision-scope>
               <div class="mr-dash-card__head">
                 <div>
                   <h2 class="mr-swap-demo__old">Atorvastatin 20mg</h2>
@@ -117,13 +108,15 @@ $active = 'orders';
                   <img src="https://img.icons8.com/ios-filled/50/dd8e1c/idea.png" alt="">
                   Suggested Alternative
                 </div>
-                <div class="mr-resp-suggestion__name">Rosuvastatin 10mg</div>
-                <p>"Same therapeutic class, 15% cheaper."</p>
+                <div class="mr-resp-suggestion__name">Atorva 20mg</div>
+                <p>Related medicine: Atorvastatin 20mg (same active ingredient)</p>
+                <p>"Pharmacist note: the requested brand isn't available this week. Atorva is the equivalent generic at a lower price."</p>
+                <span class="mr-badge mr-badge--accent mr-badge--case-normal" data-decision-badge style="margin-top: 0.5rem;">Awaiting your approval</span>
               </div>
 
               <div class="mr-resp-actions">
-                <button type="button" class="mr-btn mr-btn--ghost">Reject</button>
-                <button type="button" class="mr-btn mr-btn--dark">Approve</button>
+                <button type="button" class="mr-btn mr-btn--ghost" data-decision="decline" data-decision-label="Substitute rejected" data-decision-toast="Substitute rejected — the original item will be forwarded to another pharmacy.">Reject</button>
+                <button type="button" class="mr-btn mr-btn--dark" data-decision="accept" data-decision-label="Substitute approved" data-decision-toast="Substitute approved — GreenCross Pharmacy has been notified.">Approve</button>
               </div>
             </section>
 
@@ -165,7 +158,7 @@ $active = 'orders';
                 <span class="mr-resp-forward__icon">
                   <img src="https://img.icons8.com/ios-filled/50/ffffff/shop.png" alt="">
                 </span>
-                <small>CVS (1.2k)</small>
+                <small>Healthguard (1.2 km)</small>
               </div>
               <div class="mr-resp-forward__track">
                 <span class="mr-resp-forward__clock">
@@ -176,7 +169,7 @@ $active = 'orders';
                 <span class="mr-resp-forward__icon">
                   <img src="https://img.icons8.com/ios-filled/50/454655/shop.png" alt="">
                 </span>
-                <small>Walgreens (2.4k)</small>
+                <small>GreenCross (2.4 km)</small>
               </div>
             </div>
           </section>
@@ -195,7 +188,3 @@ $active = 'orders';
       </div>
     </main>
   </div>
-
-  <script src="presentation/assets/js/main.js"></script>
-</body>
-</html>

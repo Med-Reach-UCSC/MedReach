@@ -1,4 +1,3 @@
 <?php
-// MedReach - Entry point
-// TODO: Add login redirect logic
-require __DIR__ . '/presentation/views/landing.php';
+require __DIR__ . '/core/Router.php';
+mr_dispatch($_GET['page'] ?? 'index');
