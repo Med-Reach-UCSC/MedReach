@@ -51,39 +51,35 @@ $active = 'orders';
                 <img src="presentation/assets/images/icons/filled/2d3fd7/upload-to-cloud.png" alt="">
               </span>
               <h3>Drag &amp; Drop files here</h3>
-              <p>Supported formats: PDF, JPG, PNG (Max 10MB)</p>
+              <p>Supported formats: PDF, JPG, PNG (Max 5MB)</p>
               <div class="mr-dropzone__actions">
                 <button type="button" class="mr-btn mr-btn--primary" data-file-trigger="mr-rx-file">Browse Files</button>
-                <button type="button" class="mr-btn mr-btn--ghost" data-file-trigger="mr-rx-camera">
+                <button type="button" class="mr-btn mr-btn--ghost" data-file-trigger="mr-rx-file">
                   <img src="presentation/assets/images/icons/filled/1a1b24/camera.png" alt="">
                   Camera
                 </button>
               </div>
-              <input type="file" id="mr-rx-file" accept=".pdf,.jpg,.jpeg,.png" hidden>
-              <input type="file" id="mr-rx-camera" accept="image/*" capture="environment" hidden>
+              <input type="file" id="mr-rx-file" name="prescription" form="mr-order-form" accept=".pdf,.jpg,.jpeg,.png" capture="environment" hidden>
               <p class="mr-eyebrow mr-eyebrow--mono" data-file-name hidden></p>
             </div>
 
-            <form class="mr-auth-form mr-auth-form--grid" id="mr-order-form" action="pharmacy-responses.php" method="get">
+            <?php require __DIR__ . '/../partials/auth-flash.php'; ?>
+
+            <form class="mr-auth-form mr-auth-form--grid" id="mr-order-form" action="patient-order.php" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="csrf" value="<?= mr_csrf_token() ?>">
               <label class="mr-field">
                 <span>Ordering for</span>
                 <div class="mr-field__input">
-                  <select>
-                    <option>Myself</option>
-                    <option>Amma (PT-9824-A)</option>
-                    <option>Seeya (PT-3319-X)</option>
+                  <select name="patient_id">
+                    <?php foreach (mr_patient_upload_targets() as $mr_target): ?>
+                      <option value="<?= $mr_target['patient_id'] ?>"<?= (string) $mr_target['patient_id'] === ($_POST['patient_id'] ?? '') ? ' selected' : '' ?>><?= htmlspecialchars($mr_target['label']) ?></option>
+                    <?php endforeach; ?>
                   </select>
-                </div>
-              </label>
-              <label class="mr-field">
-                <span>Prescription expiry date</span>
-                <div class="mr-field__input">
-                  <input type="date" min="<?= date('Y-m-d') ?>" required>
                 </div>
               </label>
               <label class="mr-field mr-field--span2">
                 <span>Note for the pharmacist (optional)</span>
-                <textarea rows="3" placeholder="e.g. Prefer Panadol over generic paracetamol, or no sugar-coated tablets"></textarea>
+                <textarea name="note" rows="3" maxlength="500" placeholder="e.g. Prefer Panadol over generic paracetamol, or no sugar-coated tablets"><?= htmlspecialchars($_POST['note'] ?? '') ?></textarea>
               </label>
             </form>
 

@@ -2,6 +2,12 @@
 $title = 'Order History — MedReach';
 $bodyClass = 'mr-page-history';
 $active = 'orders';
+
+$mr_requests = mr_patient_prescriptions();
+$mr_error    = $flash && $flash['type'] === 'error' ? $flash : null;
+$mr_modal    = $mr_error['modal'] ?? null;
+$mr_old_in   = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? ($_POST[$key] ?? '') : '');
+$mr_csrf     = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -29,8 +35,43 @@ $active = 'orders';
         </div>
       </header>
 
+      <?php if ($flash && !$mr_modal): ?>
+        <span hidden data-flash-toast="<?= htmlspecialchars($flash['text']) ?>" data-flash-error="<?= $mr_error ? 'true' : 'false' ?>"></span>
+      <?php endif; ?>
+
       <div class="mr-dash-content">
         <div class="mr-dash-col">
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>Prescription Requests</h2>
+            </div>
+
+            <?php if ($mr_requests): foreach ($mr_requests as $rx): ?>
+              <article class="mr-card mr-order mr-history-card" data-status="<?= $rx['status'] ?>">
+                <div class="mr-order__head">
+                  <div class="mr-order__id">
+                    <span class="mr-eyebrow mr-eyebrow--mono">RX-<?= sprintf('%04d', $rx['prescription_id']) ?></span>
+                    <div>
+                      <strong><?= htmlspecialchars($rx['owner_label']) ?></strong>
+                      <span class="mr-eyebrow"><?= date('j M Y, g:i A', strtotime($rx['created_at'])) ?></span>
+                    </div>
+                  </div>
+                  <div class="mr-order__tags">
+                    <a class="mr-btn mr-btn--ghost mr-btn--sm" href="prescription-file.php?id=<?= $rx['prescription_id'] ?>" target="_blank" rel="noopener">View file</a>
+                    <span class="mr-badge <?= $rx['status'] === 'pending' ? 'mr-badge--accent' : 'mr-badge--danger' ?> mr-badge--case-normal"><?= $rx['status'] === 'pending' ? 'Pending' : 'Cancelled' ?></span>
+                    <?php if ($rx['status'] === 'pending'): ?>
+                      <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-edit-note-modal" data-subject="RX-<?= sprintf('%04d', $rx['prescription_id']) ?>" data-fill="<?= htmlspecialchars(json_encode(['prescription_id' => $rx['prescription_id'], 'note' => $rx['note']])) ?>">Edit note</button>
+                      <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-cancel-order-modal" data-subject="RX-<?= sprintf('%04d', $rx['prescription_id']) ?>" data-fill="<?= htmlspecialchars(json_encode(['prescription_id' => $rx['prescription_id']])) ?>">Cancel request</button>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <?php if ($rx['note']): ?><p><?= nl2br(htmlspecialchars($rx['note'])) ?></p><?php endif; ?>
+              </article>
+            <?php endforeach; else: ?>
+              <p class="mr-roster-empty">No prescription requests yet.</p>
+            <?php endif; ?>
+          </section>
 
           <div class="mr-history-toolbar">
             <label class="mr-pharm-search">
@@ -265,35 +306,59 @@ $active = 'orders';
     </main>
   </div>
 
-  <div class="mr-modal" id="mr-cancel-order-modal">
+  <div class="mr-modal<?= $mr_modal === 'mr-cancel-order-modal' ? ' is-open' : '' ?>" id="mr-cancel-order-modal">
     <div class="mr-modal__backdrop" data-modal-close></div>
     <div class="mr-modal__card mr-card">
       <div class="mr-modal__head">
-        <h2>Cancel <span data-subject-slot="order"></span>?</h2>
+        <h2>Cancel <span data-subject-slot="request"></span>?</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
           <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
-      <p class="mr-modal__text">You can cancel until a pharmacy starts preparing it. Your prescription stays on file for a new order.</p>
+      <?php if ($mr_modal === 'mr-cancel-order-modal') { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
 
-      <form class="mr-auth-form mr-modal__form" data-toast="Order cancelled — the pharmacy has been notified.">
+      <p class="mr-modal__text">You can cancel while the request is still pending. Your prescription file stays on record.</p>
+
+      <form class="mr-auth-form mr-modal__form" method="post" action="order-history.php">
+        <?= $mr_csrf ?>
+        <input type="hidden" name="action" value="cancel">
+        <?php $mr_old = $mr_old_in('mr-cancel-order-modal'); ?>
+        <input type="hidden" name="prescription_id" value="<?= $mr_old('prescription_id') ?>">
+
+        <div class="mr-modal__actions">
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Keep request</button>
+          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Cancel request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mr-modal<?= $mr_modal === 'mr-edit-note-modal' ? ' is-open' : '' ?>" id="mr-edit-note-modal">
+    <div class="mr-modal__backdrop" data-modal-close></div>
+    <div class="mr-modal__card mr-card">
+      <div class="mr-modal__head">
+        <h2>Edit note — <span data-subject-slot="request"></span></h2>
+        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
+        </button>
+      </div>
+
+      <?php if ($mr_modal === 'mr-edit-note-modal') { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
+
+      <form class="mr-auth-form mr-modal__form" method="post" action="order-history.php">
+        <?= $mr_csrf ?>
+        <input type="hidden" name="action" value="update_note">
+        <?php $mr_old = $mr_old_in('mr-edit-note-modal'); ?>
+        <input type="hidden" name="prescription_id" value="<?= $mr_old('prescription_id') ?>">
         <label class="mr-field">
-          <span>Reason</span>
-          <div class="mr-field__input">
-            <select required>
-              <option value="" disabled selected>Select...</option>
-              <option>No longer needed</option>
-              <option>Wrong prescription uploaded</option>
-              <option>Taking too long</option>
-              <option>Something else</option>
-            </select>
-          </div>
+          <span>Note for the pharmacist</span>
+          <textarea name="note" rows="3" maxlength="500"><?= $mr_old('note') ?></textarea>
         </label>
 
         <div class="mr-modal__actions">
-          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Keep order</button>
-          <button type="submit" class="mr-btn mr-btn--danger-outline mr-btn--sm">Cancel order</button>
+          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save changes</button>
         </div>
       </form>
     </div>
