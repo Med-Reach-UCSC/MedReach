@@ -45,7 +45,7 @@ $active = 'dashboard';
               <div class="mr-card mr-request-card">
                 <div class="mr-request-card__head">
                   <span class="mr-icon-badge mr-icon-badge--accent">
-                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.9 km</span>
@@ -62,7 +62,7 @@ $active = 'dashboard';
               <div class="mr-card mr-request-card">
                 <div class="mr-request-card__head">
                   <span class="mr-icon-badge mr-icon-badge--danger">
-                    <img src="https://img.icons8.com/ios-filled/50/d6534a/pill.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/d6534a/pill.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 5.5 km</span>
@@ -92,7 +92,7 @@ $active = 'dashboard';
               <div class="mr-order__head">
                 <div class="mr-order__id">
                   <span class="mr-icon-badge mr-icon-badge--info">
-                    <img src="https://img.icons8.com/ios-filled/50/2d3fd7/delivery.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9921</span>
@@ -116,7 +116,7 @@ $active = 'dashboard';
               <div class="mr-order__head">
                 <div class="mr-order__id">
                   <span class="mr-icon-badge mr-icon-badge--accent">
-                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
                   </span>
                   <div>
                     <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9925</span>
@@ -165,7 +165,7 @@ $active = 'dashboard';
               <span>Courier rating</span>
               <strong>
                 4.9
-                <img src="https://img.icons8.com/ios-filled/50/dd8e1c/star.png" alt="" style="width: 14px; height: 14px; vertical-align: -1px;">
+                <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="" style="width: 14px; height: 14px; vertical-align: -1px;">
               </strong>
             </div>
           </section>

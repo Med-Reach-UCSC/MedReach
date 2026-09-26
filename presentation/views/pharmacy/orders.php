@@ -111,7 +111,7 @@ $active = 'requests';
 
                 <div class="mr-order-row">
                   <span class="mr-icon-badge mr-icon-badge--accent">
-                    <img src="https://img.icons8.com/ios-filled/50/dd8e1c/pill.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
                   </span>
                   <div class="mr-order-row__info">
                     <strong>Amoxicillin 500mg</strong>
@@ -122,7 +122,7 @@ $active = 'requests';
 
                 <div class="mr-order-row">
                   <span class="mr-icon-badge mr-icon-badge--success">
-                    <img src="https://img.icons8.com/ios-filled/50/1f9d6b/checkmark.png" alt="">
+                    <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
                   </span>
                   <div class="mr-order-row__info">
                     <strong>Fluticasone Propionate</strong>
@@ -213,7 +213,7 @@ $active = 'requests';
       <div class="mr-modal__head">
         <h2>Hold <span data-subject-slot="order"></span></h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
@@ -249,7 +249,7 @@ $active = 'requests';
       <div class="mr-modal__head">
         <h2>Courier pickups today</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="https://img.icons8.com/ios-filled/50/1a1b24/multiply.png" alt="">
+          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 

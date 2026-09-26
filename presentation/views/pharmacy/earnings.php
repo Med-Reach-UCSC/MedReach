@@ -34,7 +34,7 @@ $active = 'earnings';
             <div class="mr-dash-card__head">
               <h2>Settlement ledger</h2>
               <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-                <img src="https://img.icons8.com/ios-filled/50/454655/filter.png" alt="">
+                <img src="presentation/assets/images/icons/filled/454655/filter.png" alt="">
                 Filter
               </span>
             </div>
@@ -82,11 +82,11 @@ $active = 'earnings';
               <span class="mr-pagination__count">Showing 1 to 4 of 4 entries</span>
               <nav class="mr-pagination__nav" aria-label="Ledger pages">
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/back.png" alt="Previous">
+                  <img src="presentation/assets/images/icons/filled/454655/back.png" alt="Previous">
                 </button>
                 <span class="mr-pagination__btn is-active" aria-current="page">1</span>
                 <button type="button" class="mr-pagination__btn" aria-disabled="true">
-                  <img src="https://img.icons8.com/ios-filled/50/454655/forward.png" alt="Next">
+                  <img src="presentation/assets/images/icons/filled/454655/forward.png" alt="Next">
                 </button>
               </nav>
             </div>
@@ -164,7 +164,7 @@ $active = 'earnings';
           <section class="mr-card mr-policy-card">
             <div class="mr-policy-card__head">
               <span class="mr-icon-badge mr-icon-badge--info">
-                <img src="https://img.icons8.com/ios-filled/50/0a7fb5/security-checked.png" alt="">
+                <img src="presentation/assets/images/icons/filled/0a7fb5/security-checked.png" alt="">
               </span>
               <h2>Settlement Policy</h2>
             </div>
@@ -172,11 +172,11 @@ $active = 'earnings';
 
             <ul class="mr-policy-card__list">
               <li>
-                <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
+                <img src="presentation/assets/images/icons/filled/0a7fb5/checkmark.png" alt="">
                 Drivers collect cash at patient drop-off.
               </li>
               <li>
-                <img src="https://img.icons8.com/ios-filled/50/0a7fb5/checkmark.png" alt="">
+                <img src="presentation/assets/images/icons/filled/0a7fb5/checkmark.png" alt="">
                 Riders hand collected cash over to the pharmacy against each order ID.
               </li>
             </ul>
