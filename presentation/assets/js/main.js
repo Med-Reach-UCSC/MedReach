@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.setAttribute('aria-selected', 'true');
       if (roleInput) roleInput.value = btn.dataset.role;
 
-      // Sign-up: show only this role's fields; disabled ones skip validation
       document.querySelectorAll('[data-role-fields]').forEach(function (set) {
         var off = set.dataset.roleFields.split(' ').indexOf(btn.dataset.role) === -1;
         set.hidden = off;
@@ -88,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Sign-up: one step at a time, checking the visible fields before moving on
 document.addEventListener('DOMContentLoaded', function () {
   var steps = document.querySelectorAll('.mr-signup-step');
   if (!steps.length) return;
@@ -121,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function () { show(current - 1); });
   });
 
-  // Enter in an earlier step moves forward instead of submitting
   form.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && e.target.tagName === 'INPUT' && current < steps.length - 1) {
       e.preventDefault();
@@ -320,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // One rating per completed order (UC-08) — lock it once submitted
     var submit = card.querySelector('.mr-history-card__submit');
     if (submit) {
       submit.addEventListener('click', function () {
@@ -399,7 +395,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var modal = document.getElementById(btn.dataset.modalOpen);
       if (!modal) return;
       e.preventDefault();
-      // data-subject lets one modal serve every row — e.g. "Edit Amma"
       modal.querySelectorAll('[data-subject-slot]').forEach(function (slot) {
         slot.textContent = btn.dataset.subject || slot.dataset.subjectSlot;
       });
@@ -433,8 +428,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Interim UI has no backend yet — actions confirm themselves with a toast
-// instead of a server round-trip.
 function mrToast(message) {
   var toast = document.querySelector('.mr-toast');
   if (!toast) {
@@ -459,7 +452,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Standalone forms (settings, password) — modal forms are handled above
   document.querySelectorAll('form[data-toast]').forEach(function (form) {
     if (form.closest('.mr-modal')) return;
     form.addEventListener('submit', function (e) {
@@ -491,16 +483,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!wasOpen) {
         var rect = btn.getBoundingClientRect();
         menu.hidden = false;
-        // Keep the menu on screen even when the button is scrolled out of
-        // a narrow table, and flip it above the button near the bottom.
         var top = rect.bottom + 4;
         if (top + menu.offsetHeight > window.innerHeight - 8) top = Math.max(8, rect.top - menu.offsetHeight - 4);
         var left = Math.min(rect.right, window.innerWidth - 8) - menu.offsetWidth;
         left = Math.max(8, left);
         menu.style.top = top + 'px';
         menu.style.left = left + 'px';
-        // .mr-card's backdrop-filter makes it the containing block for
-        // position: fixed, so undo whatever offset that introduces.
         var placed = menu.getBoundingClientRect();
         menu.style.top = top - (placed.top - top) + 'px';
         menu.style.left = left - (placed.left - left) + 'px';
@@ -518,8 +506,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Accept/decline style decisions: [data-decision-scope] wraps the buttons
-// and an optional [data-decision-badge] that reflects the outcome.
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-decision]').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -548,7 +534,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Preference switches that aren't part of a form save on their own
   document.querySelectorAll('.mr-switch:not([data-duty-toggle]) input').forEach(function (input) {
     if (input.form) return;
     input.addEventListener('change', function () { mrToast('Preference saved.'); });
@@ -566,60 +551,6 @@ document.addEventListener('DOMContentLoaded', function () {
         output.textContent = 'Attached: ' + input.files[0].name;
         output.hidden = false;
       }
-    });
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var table = document.getElementById('mr-patient-table');
-  if (!table) return;
-
-  var tbody = table.querySelector('tbody');
-  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-  var search = document.getElementById('mr-patient-search');
-  var statusFilter = document.getElementById('mr-patient-status-filter');
-  var empty = document.querySelector('.mr-roster-empty');
-  var count = document.getElementById('mr-patient-count');
-
-  function applyFilters() {
-    var term = search ? search.value.trim().toLowerCase() : '';
-    var status = statusFilter ? statusFilter.value : '';
-    var visible = 0;
-
-    rows.forEach(function (row) {
-      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
-      var matchesStatus = !status || row.dataset.status === status;
-      var match = matchesSearch && matchesStatus;
-      row.hidden = !match;
-      if (match) visible++;
-    });
-
-    if (empty) empty.hidden = visible !== 0;
-    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
-  }
-
-  if (search) search.addEventListener('input', applyFilters);
-  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
-
-  table.querySelectorAll('th[data-sort]').forEach(function (th) {
-    th.addEventListener('click', function () {
-      var key = th.dataset.sort;
-      var ascending = th.getAttribute('aria-sort') !== 'ascending';
-
-      table.querySelectorAll('th[data-sort]').forEach(function (other) {
-        other.removeAttribute('aria-sort');
-      });
-      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
-
-      rows.sort(function (a, b) {
-        var valA = key === 'age' ? parseInt(a.dataset.age, 10) : a.dataset[key];
-        var valB = key === 'age' ? parseInt(b.dataset.age, 10) : b.dataset[key];
-        if (valA < valB) return ascending ? -1 : 1;
-        if (valA > valB) return ascending ? 1 : -1;
-        return 0;
-      });
-
-      rows.forEach(function (row) { tbody.appendChild(row); });
     });
   });
 });
@@ -646,26 +577,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Shared by every Chart.js init below — reads a design token straight off
-// :root so charts always match the current --mr-color-* palette.
 function mrColor(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-earnings-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
+function mrBar(canvas, labels, data, maxBarThickness, prefix) {
+  var yTicks = { color: mrColor('--mr-color-text-muted') };
+  if (prefix) yTicks.callback = function (v) { return prefix + v; };
 
-  new Chart(canvas, {
+  return new Chart(canvas, {
     type: 'bar',
     data: {
-      labels: ['8a', '10a', '12p', '2p', '4p', '6p'],
+      labels: labels,
       datasets: [{
-        data: [1200, 2600, 4800, 9400, 6100, 2400],
+        data: data,
         backgroundColor: mrColor('--mr-color-primary'),
         hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
         borderRadius: 6,
-        maxBarThickness: 36
+        maxBarThickness: maxBarThickness
       }]
     },
     options: {
@@ -673,55 +602,18 @@ document.addEventListener('DOMContentLoaded', function () {
       plugins: { legend: { display: false } },
       scales: {
         x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
-        y: {
-          grid: { color: mrColor('--mr-color-border') },
-          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'LKR ' + v; } }
-        }
+        y: { grid: { color: mrColor('--mr-color-border') }, ticks: yTicks }
       }
     }
   });
-});
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-network-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-      datasets: [{
-        data: [60, 140, 190, 240],
-        backgroundColor: mrColor('--mr-color-primary'),
-        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
-        borderRadius: 6,
-        maxBarThickness: 48
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
-        y: { grid: { color: mrColor('--mr-color-border') }, ticks: { color: mrColor('--mr-color-text-muted') } }
-      }
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-spend-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
+function mrDoughnut(canvas, data, colors, labels) {
+  return new Chart(canvas, {
     type: 'doughnut',
     data: {
-      labels: ['Completed', 'Pending'],
-      datasets: [{
-        data: [3650, 1200],
-        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
-        borderWidth: 0
-      }]
+      labels: labels,
+      datasets: [{ data: data, backgroundColor: colors, borderWidth: 0 }]
     },
     options: {
       responsive: true,
@@ -730,112 +622,87 @@ document.addEventListener('DOMContentLoaded', function () {
       plugins: { legend: { display: false }, tooltip: { enabled: false } }
     }
   });
-});
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-earnings-trend-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
+  if (typeof Chart === 'undefined') return;
 
-  new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-      datasets: [{
-        data: canvas.dataset.values.split(',').map(Number),
-        backgroundColor: mrColor('--mr-color-primary'),
-        hoverBackgroundColor: mrColor('--mr-color-primary-dark'),
-        borderRadius: 6,
-        maxBarThickness: 56
-      }]
+  var primary = mrColor('--mr-color-primary');
+  var track = '#e9e7f3';
+  var charts = {
+    'mr-earnings-chart': function (canvas) {
+      mrBar(canvas, ['8a', '10a', '12p', '2p', '4p', '6p'], [1200, 2600, 4800, 9400, 6100, 2400], 36, 'LKR ');
     },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { grid: { display: false }, ticks: { color: mrColor('--mr-color-text-muted') } },
-        y: {
-          grid: { color: mrColor('--mr-color-border') },
-          ticks: { color: mrColor('--mr-color-text-muted'), callback: function (v) { return 'LKR ' + v; } }
+    'mr-network-chart': function (canvas) {
+      mrBar(canvas, ['Q1', 'Q2', 'Q3', 'Q4'], [60, 140, 190, 240], 48);
+    },
+    'mr-earnings-trend-chart': function (canvas) {
+      mrBar(canvas, ['Week 1', 'Week 2', 'Week 3', 'Week 4'], canvas.dataset.values.split(',').map(Number), 56, 'LKR ');
+    },
+    'mr-spend-chart': function (canvas) {
+      mrDoughnut(canvas, [3650, 1200], [primary, track], ['Completed', 'Pending']);
+    },
+    'mr-earnings-target-chart': function (canvas) {
+      var percent = Number(canvas.dataset.percent);
+      mrDoughnut(canvas, [percent, 100 - percent], [primary, track], ['Earned', 'Remaining']);
+    },
+    'mr-role-chart': function (canvas) {
+      mrDoughnut(canvas, [65, 18, 12, 5], [primary, '#bdc2ff', mrColor('--mr-color-accent'), mrColor('--mr-color-text-muted')], ['Patients', 'Pharmacists', 'Delivery', 'Admins']);
+    },
+    'mr-adherence-chart': function (canvas) {
+      var values = [30, 45, 40, 60, 55, 75, 90];
+      new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
+          datasets: [{
+            data: values,
+            backgroundColor: values.map(function (_, i) {
+              return i === values.length - 1 ? primary : 'rgba(45, 63, 215, 0.55)';
+            }),
+            borderRadius: 3,
+            maxBarThickness: 18
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: {
+            x: { display: false },
+            y: { display: false, beginAtZero: true }
+          }
         }
-      }
+      });
     }
+  };
+
+  Object.keys(charts).forEach(function (id) {
+    var canvas = document.getElementById(id);
+    if (canvas) charts[id](canvas);
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-earnings-target-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-      labels: ['Earned', 'Remaining'],
-      datasets: [{
-        data: [Number(canvas.dataset.percent), 100 - Number(canvas.dataset.percent)],
-        backgroundColor: [mrColor('--mr-color-primary'), '#e9e7f3'],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '75%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-adherence-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  var values = [30, 45, 40, 60, 55, 75, 90];
-
-  new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
-      datasets: [{
-        data: values,
-        backgroundColor: values.map(function (_, i) {
-          return i === values.length - 1 ? mrColor('--mr-color-primary') : 'rgba(45, 63, 215, 0.55)';
-        }),
-        borderRadius: 3,
-        maxBarThickness: 18
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      scales: {
-        x: { display: false },
-        y: { display: false, beginAtZero: true }
-      }
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  var table = document.getElementById('mr-pharmacy-table');
+function mrRosterTable(name, filterKey) {
+  var table = document.getElementById('mr-' + name + '-table');
   if (!table) return;
 
   var tbody = table.querySelector('tbody');
   var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-  var search = document.getElementById('mr-pharmacy-search');
-  var statusFilter = document.getElementById('mr-pharmacy-status-filter');
+  var search = document.getElementById('mr-' + name + '-search');
+  var filter = document.getElementById('mr-' + name + '-' + filterKey + '-filter');
   var empty = document.querySelector('.mr-roster-empty');
-  var count = document.getElementById('mr-pharmacy-count');
+  var count = document.getElementById('mr-' + name + '-count');
 
   function applyFilters() {
     var term = search ? search.value.trim().toLowerCase() : '';
-    var status = statusFilter ? statusFilter.value : '';
+    var value = filter ? filter.value : '';
     var visible = 0;
 
     rows.forEach(function (row) {
-      var matchesSearch = !term || (row.dataset.name + ' ' + row.dataset.location).indexOf(term) !== -1;
-      var matchesStatus = !status || row.dataset.status === status;
-      var match = matchesSearch && matchesStatus;
+      var matchesSearch = !term || (row.dataset.name + ' ' + (row.dataset.location || '')).indexOf(term) !== -1;
+      var matchesFilter = !value || row.dataset[filterKey] === value;
+      var match = matchesSearch && matchesFilter;
       row.hidden = !match;
       if (match) visible++;
     });
@@ -845,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (search) search.addEventListener('input', applyFilters);
-  if (statusFilter) statusFilter.addEventListener('change', applyFilters);
+  if (filter) filter.addEventListener('change', applyFilters);
 
   table.querySelectorAll('th[data-sort]').forEach(function (th) {
     th.addEventListener('click', function () {
@@ -858,8 +725,8 @@ document.addEventListener('DOMContentLoaded', function () {
       th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
 
       rows.sort(function (a, b) {
-        var valA = a.dataset[key];
-        var valB = b.dataset[key];
+        var valA = key === 'age' ? parseInt(a.dataset.age, 10) : a.dataset[key];
+        var valB = key === 'age' ? parseInt(b.dataset.age, 10) : b.dataset[key];
         if (valA < valB) return ascending ? -1 : 1;
         if (valA > valB) return ascending ? 1 : -1;
         return 0;
@@ -868,91 +735,14 @@ document.addEventListener('DOMContentLoaded', function () {
       rows.forEach(function (row) { tbody.appendChild(row); });
     });
   });
-});
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  var table = document.getElementById('mr-user-table');
-  if (!table) return;
-
-  var tbody = table.querySelector('tbody');
-  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-  var search = document.getElementById('mr-user-search');
-  var roleFilter = document.getElementById('mr-user-role-filter');
-  var empty = document.querySelector('.mr-roster-empty');
-  var count = document.getElementById('mr-user-count');
-
-  function applyFilters() {
-    var term = search ? search.value.trim().toLowerCase() : '';
-    var role = roleFilter ? roleFilter.value : '';
-    var visible = 0;
-
-    rows.forEach(function (row) {
-      var matchesSearch = !term || row.dataset.name.indexOf(term) !== -1;
-      var matchesRole = !role || row.dataset.role === role;
-      var match = matchesSearch && matchesRole;
-      row.hidden = !match;
-      if (match) visible++;
-    });
-
-    if (empty) empty.hidden = visible !== 0;
-    if (count) count.textContent = 'Showing ' + (visible ? '1-' + visible : '0') + ' of ' + rows.length;
-  }
-
-  if (search) search.addEventListener('input', applyFilters);
-  if (roleFilter) roleFilter.addEventListener('change', applyFilters);
-
-  table.querySelectorAll('th[data-sort]').forEach(function (th) {
-    th.addEventListener('click', function () {
-      var key = th.dataset.sort;
-      var ascending = th.getAttribute('aria-sort') !== 'ascending';
-
-      table.querySelectorAll('th[data-sort]').forEach(function (other) {
-        other.removeAttribute('aria-sort');
-      });
-      th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
-
-      rows.sort(function (a, b) {
-        var valA = a.dataset[key];
-        var valB = b.dataset[key];
-        if (valA < valB) return ascending ? -1 : 1;
-        if (valA > valB) return ascending ? 1 : -1;
-        return 0;
-      });
-
-      rows.forEach(function (row) { tbody.appendChild(row); });
-    });
-  });
+  mrRosterTable('patient', 'status');
+  mrRosterTable('pharmacy', 'status');
+  mrRosterTable('user', 'role');
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  var canvas = document.getElementById('mr-role-chart');
-  if (!canvas || typeof Chart === 'undefined') return;
-
-  new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-      labels: ['Patients', 'Pharmacists', 'Delivery', 'Admins'],
-      datasets: [{
-        data: [65, 18, 12, 5],
-        backgroundColor: [
-          mrColor('--mr-color-primary'),
-          '#bdc2ff',
-          mrColor('--mr-color-accent'),
-          mrColor('--mr-color-text-muted')
-        ],
-        borderWidth: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '75%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } }
-    }
-  });
-});
-
-// Admin settings — Broadcast Routing Engine +/- steppers
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.mr-stepper').forEach(function (stepper) {
     var valueEl = stepper.querySelector('.mr-stepper__value');
@@ -970,9 +760,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Admin settings — dispatch radius / response timeout gauges, live-linked
-// to the range slider underneath each one (same doughnut-gauge pattern as
-// mr-earnings-target-chart, just re-wired to redraw on slider input)
 document.addEventListener('DOMContentLoaded', function () {
   function wireRoutingGauge(canvasId, sliderId, max, colorToken, suffix) {
     var canvas = document.getElementById(canvasId);
@@ -980,22 +767,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!canvas || !slider || typeof Chart === 'undefined') return;
 
     var value = parseFloat(slider.value);
-    var chart = new Chart(canvas, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [value, max - value],
-          backgroundColor: [mrColor(colorToken), '#e9e7f3'],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '75%',
-        plugins: { legend: { display: false }, tooltip: { enabled: false } }
-      }
-    });
+    var chart = mrDoughnut(canvas, [value, max - value], [mrColor(colorToken), '#e9e7f3']);
 
     var label = canvas.closest('.mr-spend-ring').querySelector('.mr-spend-ring__inner strong');
 
@@ -1023,7 +795,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// One-shot actions (e.g. "Mark prepared") — button becomes a done label
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-once]').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -1073,7 +844,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Admin settings search — hides setting cards that don't match
 document.addEventListener('DOMContentLoaded', function () {
   var search = document.getElementById('mr-settings-search');
   if (!search) return;
