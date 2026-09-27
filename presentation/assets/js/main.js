@@ -593,7 +593,24 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-file-trigger]').forEach(function (btn) {
     var input = document.getElementById(btn.dataset.fileTrigger);
     if (!input) return;
-    btn.addEventListener('click', function () { input.click(); });
+    btn.addEventListener('click', function () {
+      if ('capture' in btn.dataset) input.setAttribute('capture', 'environment');
+      else input.removeAttribute('capture');
+      input.click();
+    });
+    var zone = btn.closest('.mr-dropzone');
+    if (zone && !zone.dataset.dropReady) {
+      zone.dataset.dropReady = 'true';
+      zone.addEventListener('dragover', function (e) { e.preventDefault(); });
+      zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        if (!e.dataTransfer.files.length) return;
+        var dt = new DataTransfer();
+        dt.items.add(e.dataTransfer.files[0]);
+        input.files = dt.files;
+        input.dispatchEvent(new Event('change'));
+      });
+    }
     input.addEventListener('change', function () {
       var output = document.querySelector('[data-file-name]');
       var error = input.files.length && mrFileError(input, input.files[0]);

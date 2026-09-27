@@ -6,7 +6,7 @@ $active = 'orders';
 $mr_requests = mr_patient_prescriptions();
 $mr_error    = $flash && $flash['type'] === 'error' ? $flash : null;
 $mr_modal    = $mr_error['modal'] ?? null;
-$mr_old_in   = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? ($_POST[$key] ?? '') : '');
+$mr_old_in   = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? (string) ($_POST[$key] ?? '') : '');
 $mr_csrf     = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
 ?>
   <div class="mr-dashboard">
@@ -98,7 +98,6 @@ $mr_csrf     = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '"
                 </div>
                 <div class="mr-order__tags">
                   <span class="mr-badge mr-badge--accent mr-badge--case-normal">Awaiting pharmacy</span>
-                  <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-cancel-order-modal" data-subject="#ORD-8925">Cancel order</button>
                 </div>
               </div>
             </article>

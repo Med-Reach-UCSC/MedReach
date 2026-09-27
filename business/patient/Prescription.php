@@ -74,31 +74,32 @@ function mr_handle_prescription_upload(array $in): array
   if (!$file || $file['error'] === UPLOAD_ERR_NO_FILE) {
     return mr_error('Choose a prescription file to upload.');
   }
+  if ($file['error'] === UPLOAD_ERR_INI_SIZE || $file['size'] > MR_RX_MAX_BYTES) {
+    return mr_error('The file is larger than 5 MB. Choose a smaller file.');
+  }
   if ($file['error'] !== UPLOAD_ERR_OK) {
     return mr_error('The file could not be uploaded. Please try again.');
   }
-  if ($file['size'] > MR_RX_MAX_BYTES) {
-    return mr_error('The file is larger than 5 MB. Choose a smaller file.');
-  }
 
-  $finfo = finfo_open(FILEINFO_MIME_TYPE);
-  $mime = finfo_file($finfo, $file['tmp_name']);
-  finfo_close($finfo);
+  $mime = (new finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']);
   $ext = MR_RX_MIME_EXT[$mime] ?? null;
   if (!$ext) {
     return mr_error('Only JPG, PNG or PDF files are accepted.');
   }
 
   $dir = __DIR__ . '/../../uploads/prescriptions';
-  if (!is_dir($dir)) {
-    mkdir($dir, 0755, true);
-  }
   $name = bin2hex(random_bytes(16)) . '.' . $ext;
-  if (!move_uploaded_file($file['tmp_name'], "$dir/$name")) {
+  if ((!is_dir($dir) && !mkdir($dir, 0755, true)) || !move_uploaded_file($file['tmp_name'], "$dir/$name")) {
+    error_log("Prescription upload: could not write to $dir");
     return mr_error('The file could not be saved. Please try again.');
   }
 
-  mr_prescription_insert($targetId, $name, $note !== '' ? $note : null);
+  try {
+    mr_prescription_insert($targetId, $name, $note !== '' ? $note : null);
+  } catch (Throwable $e) {
+    unlink("$dir/$name");
+    throw $e;
+  }
   mr_flash('success', "Prescription uploaded. We'll notify nearby pharmacies.");
   mr_redirect('order-history.php');
 }
