@@ -87,8 +87,6 @@ function mr_handle_delivery_dashboard(array $in): ?array
   switch ($in['action'] ?? '') {
     case 'accept':
       return mr_delivery_action_accept($in);
-    case 'release':
-      return mr_delivery_action_release($in);
   }
   return mr_error('Unknown action.');
 }
@@ -117,7 +115,7 @@ function mr_delivery_action_accept(array $in): array
     return mr_error('Your delivery profile could not be found.');
   }
   if (mr_delivery_accept($deliveryId, $riderId) === 0) {
-    return mr_error('Someone else already accepted this task.');
+    return mr_error('This task is no longer available.');
   }
   return mr_delivery_done('Task accepted. It is now in "My deliveries".', 'delivery-dashboard.php');
 }

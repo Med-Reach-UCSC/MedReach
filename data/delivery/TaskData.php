@@ -89,15 +89,3 @@ function mr_delivery_release(int $deliveryId, int $riderId): int
   return $stmt->affected_rows;
 }
 
-// Optional: sum of COD already collected on this rider's delivered tasks.
-function mr_delivery_earnings_total(int $riderId): float
-{
-  $stmt = mr_db()->prepare(
-    "SELECT COALESCE(SUM(cod_amount), 0) AS total FROM DELIVERY
-     WHERE delivery_person_id = ? AND status = 'delivered'"
-  );
-  $stmt->bind_param('i', $riderId);
-  $stmt->execute();
-  $row = $stmt->get_result()->fetch_assoc();
-  return (float) $row['total'];
-}
