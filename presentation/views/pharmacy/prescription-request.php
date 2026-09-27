@@ -1,7 +1,19 @@
 <?php
-$title = 'Request RQ-2318 — MedReach';
+$id         = (int) ($_GET['id'] ?? 0);
+$mr_request = mr_prescription_detail($id);
+if (!$mr_request) {
+  mr_error_page(404);
+}
+
+$title     = 'Prescription #' . $mr_request['prescription_id'] . ' — MedReach';
 $bodyClass = 'mr-page-request';
-$active = 'requests';
+$active    = 'requests';
+
+$mr_error  = $flash && $flash['type'] === 'error' ? $flash : null;
+$mr_modal  = $mr_error['modal'] ?? null;
+$mr_old_in = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? ($_POST[$key] ?? '') : '');
+$mr_csrf   = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
+$mr_action = 'prescription-request.php?id=' . $mr_request['prescription_id'];
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -10,23 +22,27 @@ $active = 'requests';
       <header class="mr-dash-header">
         <div>
           <a class="mr-link mr-link--sm" href="orders.php">&larr; Back to orders</a>
-          <h1>Request RQ-2318</h1>
+          <h1>Prescription #<?= $mr_request['prescription_id'] ?></h1>
         </div>
 
         <div class="mr-dash-header__actions">
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
             <img src="presentation/assets/images/icons/filled/454655/user.png" alt="">
-            Nimali Fernando
+            <?= htmlspecialchars($mr_request['patient_first_name']) ?>
           </span>
           <span class="mr-badge mr-badge--pill mr-badge--case-normal">
             <img src="presentation/assets/images/icons/filled/dd8e1c/clock.png" alt="">
-            05:42
+            <?= date('j M, g:i A', strtotime($mr_request['created_at'])) ?>
           </span>
           <button type="button" class="mr-icon-btn" aria-label="Print request" onclick="window.print()">
             <img src="presentation/assets/images/icons/filled/454655/print.png" alt="">
           </button>
         </div>
       </header>
+
+      <?php if ($flash && !$mr_modal): ?>
+        <span hidden data-flash-toast="<?= htmlspecialchars($flash['text']) ?>" data-flash-error="<?= $mr_error ? 'true' : 'false' ?>"></span>
+      <?php endif; ?>
 
       <div class="mr-dash-content">
         <div class="mr-dash-col">
@@ -40,24 +56,25 @@ $active = 'requests';
             </div>
             <div class="mr-resp-rx">
               <span class="mr-resp-rx__thumb">
-                <img src="presentation/assets/images/icons/filled/2d3fd7/image.png" alt="Prescription scan">
+                <img src="prescription-file.php?id=<?= $mr_request['prescription_id'] ?>" alt="Prescription scan" onerror="this.closest('.mr-resp-rx__thumb').style.display='none'">
               </span>
               <div class="mr-resp-rx__body">
-                <p class="mr-resp-rx__meta">Patient: Nimali Fernando · Dr. S. Weerasinghe · SLMC-4471</p>
-                <span class="mr-badge mr-badge--success mr-badge--case-normal">Rx valid until Mar 14, 2027</span>
+                <p class="mr-resp-rx__meta">Patient: <?= htmlspecialchars(trim($mr_request['patient_first_name'] . ' ' . $mr_request['patient_last_name'])) ?></p>
               </div>
             </div>
           </section>
 
+          <?php if ($mr_request['note']): ?>
           <section class="mr-card mr-help-card mr-help-card--alert">
             <span class="mr-icon-badge mr-icon-badge--info">
               <img src="presentation/assets/images/icons/filled/2d3fd7/chat.png" alt="">
             </span>
             <div>
               <strong class="mr-eyebrow mr-eyebrow--mono">Patient Note</strong>
-              <p>"Prefers liquid form if available for the Amoxicillin."</p>
+              <p><?= htmlspecialchars($mr_request['note']) ?></p>
             </div>
           </section>
+          <?php endif; ?>
 
         </div>
 
@@ -65,122 +82,61 @@ $active = 'requests';
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>Medicine Checklist</h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">3 Items</span>
+              <h2>Your Quote</h2>
             </div>
 
-            <div class="mr-order-row">
-              <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
-              </span>
-              <div class="mr-order-row__info">
-                <strong>Amoxicillin 500mg</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
-              </div>
-              <label class="mr-price-field">
-                <span class="mr-price-field__prefix">LKR</span>
-                <input type="text" inputmode="decimal" placeholder="0.00" value="850.00" aria-label="Price for Amoxicillin 500mg">
-              </label>
-            </div>
+            <?php if ($mr_request['is_quoted']): ?>
 
-            <details class="mr-order-row mr-order-row--expandable">
-              <summary>
-                <span class="mr-icon-badge mr-icon-badge--danger">
-                  <img src="presentation/assets/images/icons/filled/de4a4f/error--v1.png" alt="">
+              <?php if ($mr_modal === null) { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
+
+              <div class="mr-order-row">
+                <span class="mr-icon-badge mr-icon-badge--success">
+                  <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
                 </span>
                 <div class="mr-order-row__info">
-                  <strong>Lisinopril 10mg</strong>
-                  <span class="mr-eyebrow mr-eyebrow--mono">Qty: 90</span>
+                  <strong>Quote sent</strong>
+                  <span class="mr-eyebrow mr-eyebrow--mono">LKR <?= $mr_request['quoted_total_fmt'] ?></span>
                 </div>
-                <span class="mr-badge mr-badge--accent mr-badge--case-normal">Propose substitute</span>
-              </summary>
+              </div>
+              <p style="white-space: pre-line;"><?= nl2br(htmlspecialchars($mr_request['quoted_items'])) ?></p>
 
-              <form class="mr-auth-form mr-auth-form--grid mr-order-row__form" data-toast="Suggestion sent — waiting for the patient's approval.">
+              <div class="mr-request-card__actions">
+                <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-quote-edit-modal" data-fill="<?= htmlspecialchars(json_encode(['quoted_items' => $mr_request['quoted_items'], 'quoted_total' => $mr_request['quoted_total']])) ?>">Edit quote</button>
+                <form method="post" action="<?= $mr_action ?>">
+                  <?= $mr_csrf ?>
+                  <input type="hidden" name="prescription_id" value="<?= $mr_request['prescription_id'] ?>">
+                  <button type="submit" name="action" value="withdraw" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-confirm="Withdraw this quote?" data-confirm-text="The patient will no longer see your quote. You can send a new one any time before they choose a pharmacy." data-confirm-label="Withdraw">Withdraw</button>
+                </form>
+              </div>
+
+            <?php else: ?>
+
+              <?php if ($mr_modal === 'mr-quote-create-form') { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
+              <?php $mr_old = $mr_old_in('mr-quote-create-form'); ?>
+
+              <form class="mr-auth-form" method="post" action="<?= $mr_action ?>">
+                <?= $mr_csrf ?>
+                <input type="hidden" name="prescription_id" value="<?= $mr_request['prescription_id'] ?>">
+                <input type="hidden" name="action" value="send">
                 <label class="mr-field">
-                  <span>Brand name</span>
+                  <span>Medicines &amp; prices (one per line)</span>
                   <div class="mr-field__input">
-                    <input type="text" placeholder="e.g. Renitec 5mg" required>
+                    <textarea name="quoted_items" rows="6" maxlength="2000" required placeholder="Amoxicillin 500mg x30 - LKR 850.00&#10;Atorvastatin 20mg x30 - LKR 1200.00"><?= $mr_old('quoted_items') ?></textarea>
                   </div>
                 </label>
                 <label class="mr-field">
-                  <span>Related medicine</span>
-                  <div class="mr-field__input">
-                    <input type="text" placeholder="e.g. Enalapril 5mg" required>
-                  </div>
-                </label>
-                <label class="mr-field">
-                  <span>Reason</span>
-                  <div class="mr-field__input">
-                    <select>
-                      <option>Similar Generic Available</option>
-                      <option>Different Brand Available</option>
-                      <option>Alternative Formulation</option>
-                    </select>
-                  </div>
-                </label>
-                <label class="mr-field">
-                  <span>New Price</span>
+                  <span>Total price</span>
                   <div class="mr-price-field mr-price-field--block">
                     <span class="mr-price-field__prefix">LKR</span>
-                    <input type="text" inputmode="decimal" placeholder="0.00">
+                    <input type="text" name="quoted_total" inputmode="decimal" pattern="\d{1,7}(\.\d{1,2})?" maxlength="10" required placeholder="0.00" value="<?= $mr_old('quoted_total') ?>">
                   </div>
                 </label>
-                <label class="mr-field mr-field--span2">
-                  <span>Pharmacist note</span>
-                  <textarea rows="2" placeholder="Why this is a suitable alternative..."></textarea>
-                </label>
                 <div class="mr-field--span2">
-                  <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Send suggestion</button>
+                  <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Send quote</button>
                 </div>
               </form>
-            </details>
 
-            <div class="mr-order-row">
-              <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
-              </span>
-              <div class="mr-order-row__info">
-                <strong>Atorvastatin 20mg</strong>
-                <span class="mr-eyebrow mr-eyebrow--mono">Qty: 30</span>
-              </div>
-              <label class="mr-price-field">
-                <span class="mr-price-field__prefix">LKR</span>
-                <input type="text" inputmode="decimal" placeholder="0.00" value="1,200.00" aria-label="Price for Atorvastatin 20mg">
-              </label>
-            </div>
-          </section>
-
-        </div>
-
-        <div class="mr-dash-col">
-
-          <section class="mr-resp-summary">
-            <h2>Request Summary</h2>
-            <div class="mr-resp-summary__row">
-              <span>Subtotal</span>
-              <i class="mr-resp-summary__rule"></i>
-              <strong>LKR 2,050.00</strong>
-            </div>
-            <div class="mr-resp-summary__row">
-              <span>Service Fee</span>
-              <i class="mr-resp-summary__rule"></i>
-              <strong>LKR 400.00</strong>
-            </div>
-            <div class="mr-resp-summary__row">
-              <span>Total Estimated Value</span>
-              <i class="mr-resp-summary__rule"></i>
-              <strong>LKR 2,450.00</strong>
-            </div>
-          </section>
-
-          <section class="mr-card mr-mini-stat">
-            <div>
-              <span class="mr-eyebrow mr-eyebrow--mono">Delivery Method</span>
-              <strong>Standard Pharmacy Delivery</strong>
-            </div>
-            <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
-              <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
-            </span>
+            <?php endif; ?>
           </section>
 
         </div>
@@ -188,46 +144,40 @@ $active = 'requests';
     </main>
   </div>
 
-  <div class="mr-decision-bar">
-    <span class="mr-decision-bar__note">
-      <img src="presentation/assets/images/icons/filled/8a8fa3/lock-2.png" alt="" width="14" height="14">
-      Secure Healthcare Environment
-    </span>
-    <div class="mr-decision-bar__actions">
-      <button type="button" class="mr-btn mr-btn--ghost" data-modal-open="mr-decline-modal">Decline Request</button>
-      <a class="mr-btn mr-btn--dark" href="orders.php">Accept Request</a>
-    </div>
-  </div>
-
-  <div class="mr-modal" id="mr-decline-modal">
+  <div class="mr-modal<?= $mr_modal === 'mr-quote-edit-modal' ? ' is-open' : '' ?>" id="mr-quote-edit-modal">
     <div class="mr-modal__backdrop" data-modal-close></div>
     <div class="mr-modal__card mr-card">
       <div class="mr-modal__head">
-        <h2>Decline request</h2>
+        <h2>Edit your quote</h2>
         <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
           <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
         </button>
       </div>
 
-      <p class="mr-modal__text">The prescription will be forwarded to the next-closest registered pharmacy straight away.</p>
+      <?php if ($mr_modal === 'mr-quote-edit-modal') { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
 
-      <form class="mr-auth-form mr-modal__form" data-toast="Declined — forwarded to the next-closest pharmacy.">
+      <form class="mr-auth-form mr-modal__form" method="post" action="<?= $mr_action ?>">
+        <?= $mr_csrf ?>
+        <input type="hidden" name="prescription_id" value="<?= $mr_request['prescription_id'] ?>">
+        <input type="hidden" name="action" value="update">
+        <?php $mr_old = $mr_old_in('mr-quote-edit-modal'); ?>
         <label class="mr-field">
-          <span>Reason</span>
+          <span>Medicines &amp; prices (one per line)</span>
           <div class="mr-field__input">
-            <select required>
-              <option value="" disabled selected>Select...</option>
-              <option>Can't fill one or more items</option>
-              <option>Prescription unclear or incomplete</option>
-              <option>Prescription expired</option>
-              <option>Too busy to meet the time window</option>
-            </select>
+            <textarea name="quoted_items" rows="6" maxlength="2000" required><?= $mr_old('quoted_items') ?></textarea>
+          </div>
+        </label>
+        <label class="mr-field">
+          <span>Total price</span>
+          <div class="mr-price-field mr-price-field--block">
+            <span class="mr-price-field__prefix">LKR</span>
+            <input type="text" name="quoted_total" inputmode="decimal" pattern="\d{1,7}(\.\d{1,2})?" maxlength="10" required value="<?= $mr_old('quoted_total') ?>">
           </div>
         </label>
 
         <div class="mr-modal__actions">
           <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-          <button type="submit" class="mr-btn mr-btn--dark mr-btn--sm">Decline &amp; forward</button>
+          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save changes</button>
         </div>
       </form>
     </div>
