@@ -616,6 +616,9 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('change', function () {
       var output = document.querySelector('[data-file-name]');
       var error = input.files.length && mrFileError(input, input.files[0]);
+      var notice = document.querySelector('.mr-dropzone + .mr-auth-notice');
+      if (notice) notice.remove();
+      if (output) output.hidden = true;
       if (error) {
         input.value = '';
         mrError('File not attached', error);

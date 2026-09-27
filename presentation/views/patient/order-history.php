@@ -1,7 +1,7 @@
 <?php
 $title = 'Order History — MedReach';
 $bodyClass = 'mr-page-history';
-$active = 'orders';
+$active = 'history';
 
 $mr_requests = mr_patient_prescriptions();
 $mr_error    = $flash && $flash['type'] === 'error' ? $flash : null;
