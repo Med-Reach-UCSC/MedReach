@@ -943,7 +943,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var MR_PATTERNS = {
   email: '[A-Za-z0-9._%+\\-]+@[A-Za-z0-9\\-]+(\\.[A-Za-z0-9\\-]+)*\\.[A-Za-z]{2,}',
-  tel: '\\+?[0-9 ]{9,15}'
+  tel: '(\\+94 ?|0)[1-9][0-9]( ?[0-9]){7}'
 };
 
 function mrFieldMessage(el) {
