@@ -1,6 +1,8 @@
 <?php
 $title = 'Orders — MedReach';
 $active = 'requests';
+
+$mr_new_requests = array_values(array_filter(mr_pharmacy_requests(), fn (array $r) => !$r['is_quoted']));
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -44,21 +46,23 @@ $active = 'requests';
 
             <div class="mr-dash-col" data-stage-list>
 
+              <?php foreach ($mr_new_requests as $mr_r): ?>
               <article class="mr-order" data-stage="new" hidden>
                 <div class="mr-order__head">
                   <div class="mr-order__id">
-                    <span class="mr-avatar">KJ</span>
+                    <span class="mr-avatar"><?= htmlspecialchars(mb_strtoupper(mb_substr($mr_r['patient_first_name'], 0, 2))) ?></span>
                     <div>
-                      <strong>Kasun Jayasinghe</strong>
-                      <span class="mr-eyebrow mr-eyebrow--mono">ID: #ORD-9930</span>
+                      <strong><?= htmlspecialchars($mr_r['patient_first_name']) ?></strong>
+                      <span class="mr-eyebrow mr-eyebrow--mono">Prescription #<?= $mr_r['prescription_id'] ?></span>
                     </div>
                   </div>
                   <div class="mr-order__tags">
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15</span>
-                    <a class="mr-btn mr-btn--dark mr-btn--sm" href="prescription-request.php">Review request</a>
+                    <span class="mr-eyebrow mr-eyebrow--accent"><?= date('j M, g:i A', strtotime($mr_r['created_at'])) ?></span>
+                    <a class="mr-btn mr-btn--dark mr-btn--sm" href="prescription-request.php?id=<?= $mr_r['prescription_id'] ?>">Review request</a>
                   </div>
                 </div>
               </article>
+              <?php endforeach; ?>
 
               <article class="mr-order" data-stage="ready" hidden>
                 <div class="mr-order__head">

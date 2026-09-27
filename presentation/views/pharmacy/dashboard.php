@@ -2,6 +2,9 @@
 $title = 'Pharmacist Dashboard — MedReach';
 $charts = true;
 $active = 'dashboard';
+
+$mr_requests = mr_pharmacy_requests();
+$mr_csrf     = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -16,12 +19,12 @@ $active = 'dashboard';
         <div class="mr-dash-header__actions">
           <div class="mr-dash-stats">
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--active">12</strong>
-              <span>Orders today</span>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--active"><?= count($mr_requests) ?></strong>
+              <span>Pending requests</span>
             </div>
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered">98%</strong>
-              <span>Fulfillment</span>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered"><?= count(array_filter(array_column($mr_requests, 'is_quoted'))) ?></strong>
+              <span>Quoted by you</span>
             </div>
           </div>
 
@@ -32,52 +35,54 @@ $active = 'dashboard';
         </div>
       </header>
 
+      <?php if ($flash): ?>
+        <span hidden data-flash-toast="<?= htmlspecialchars($flash['text']) ?>" data-flash-error="<?= $flash['type'] === 'error' ? 'true' : 'false' ?>"></span>
+      <?php endif; ?>
+
       <div class="mr-dash-content">
         <div class="mr-dash-col">
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
               <h2>Incoming requests</h2>
-              <span class="mr-badge mr-badge--accent" data-request-count>2 new</span>
+              <span class="mr-badge mr-badge--accent"><?= count($mr_requests) ?> pending</span>
             </div>
 
             <div class="mr-guardian-grid-2" data-request-list>
+              <?php foreach ($mr_requests as $mr_r): ?>
               <div class="mr-card mr-request-card">
                 <div class="mr-request-card__head">
-                  <span class="mr-icon-badge mr-icon-badge--accent">
-                    <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
+                  <span class="mr-icon-badge mr-icon-badge--<?= $mr_r['is_quoted'] ? 'success' : 'accent' ?>">
+                    <img src="presentation/assets/images/icons/filled/<?= $mr_r['is_quoted'] ? '1f9d6b/checkmark' : 'dd8e1c/pill' ?>.png" alt="">
                   </span>
                   <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 03:42 &middot; 1.9 km</span>
-                    <h4><a href="prescription-request.php">Amoxicillin 500mg &times; 30</a></h4>
+                    <span class="mr-eyebrow mr-eyebrow--accent"><?= date('j M, g:i A', strtotime($mr_r['created_at'])) ?></span>
+                    <h4><a href="prescription-request.php?id=<?= $mr_r['prescription_id'] ?>">Prescription #<?= $mr_r['prescription_id'] ?></a></h4>
                   </div>
                 </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">Nimali Fernando &middot; 124 Havelock Rd, Colombo 05</p>
-                <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — the patient has been notified.">Accept</button>
-                </div>
-              </div>
-
-              <div class="mr-card mr-request-card">
-                <div class="mr-request-card__head">
-                  <span class="mr-icon-badge mr-icon-badge--danger">
-                    <img src="presentation/assets/images/icons/filled/d6534a/pill.png" alt="">
-                  </span>
-                  <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">Expires in 01:15 &middot; 5.5 km</span>
-                    <h4><a href="prescription-request.php">Lisinopril 10mg &times; 90</a></h4>
+                <p class="mr-eyebrow mr-eyebrow--mono">
+                  <?= htmlspecialchars($mr_r['patient_first_name']) ?><?= $mr_r['note'] !== null && $mr_r['note'] !== '' ? ' &middot; ' . htmlspecialchars($mr_r['note']) : '' ?>
+                </p>
+                <?php if ($mr_r['is_quoted']): ?>
+                  <p class="mr-eyebrow mr-eyebrow--mono">Your quote: LKR <?= $mr_r['quoted_total_fmt'] ?></p>
+                  <div class="mr-request-card__actions">
+                    <a class="mr-btn mr-btn--ghost mr-btn--sm" href="prescription-request.php?id=<?= $mr_r['prescription_id'] ?>">Edit quote</a>
+                    <form method="post" action="pharmacy-dashboard.php">
+                      <?= $mr_csrf ?>
+                      <input type="hidden" name="prescription_id" value="<?= $mr_r['prescription_id'] ?>">
+                      <button type="submit" name="action" value="withdraw" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-confirm="Withdraw this quote?" data-confirm-text="The patient will no longer see your quote for this prescription. You can send a new one any time before they choose a pharmacy." data-confirm-label="Withdraw">Withdraw</button>
+                    </form>
                   </div>
-                </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">Kasun Jayasinghe &middot; 45 Temple Rd, Nugegoda</p>
-                <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the request forwards to the next-closest pharmacy.">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-error-title="Request expired" data-error="This request timed out before it was accepted, so it has been forwarded to the next-closest pharmacy.">Accept</button>
-                </div>
+                <?php else: ?>
+                  <div class="mr-request-card__actions">
+                    <a class="mr-btn mr-btn--dark mr-btn--sm" href="prescription-request.php?id=<?= $mr_r['prescription_id'] ?>">Send quote</a>
+                  </div>
+                <?php endif; ?>
               </div>
+              <?php endforeach; ?>
             </div>
 
-            <p class="mr-resp-grid__empty" data-request-empty hidden style="text-align: center; margin-top: 1rem;">
+            <p class="mr-resp-grid__empty" data-request-empty<?= $mr_requests ? ' hidden' : '' ?> style="text-align: center; margin-top: 1rem;">
               No pending requests right now.
             </p>
           </section>

@@ -31,9 +31,10 @@ const MR_ROUTES = [
   'notifications'        => ['patient', 'patient/notifications'],
   'profile'              => ['patient', 'patient/profile'],
 
-  'pharmacy-dashboard'   => ['pharmacist', 'pharmacy/dashboard'],
+  'pharmacy-dashboard'   => ['pharmacist', 'pharmacy/dashboard', 'mr_page_pharmacy_dashboard'],
   'orders'               => ['pharmacist', 'pharmacy/orders'],
-  'prescription-request' => ['pharmacist', 'pharmacy/prescription-request'],
+  'prescription-request' => ['pharmacist', 'pharmacy/prescription-request', 'mr_page_prescription_request'],
+  'pharmacy-prescription-file' => ['pharmacist', null, 'mr_pharmacy_prescription_file'],
   'pharmacy-earnings'    => ['pharmacist', 'pharmacy/earnings'],
   'pharmacy-settings'    => ['pharmacist', 'pharmacy/settings'],
 
