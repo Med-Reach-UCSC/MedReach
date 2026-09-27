@@ -2855,6 +2855,16 @@ a {
   height: 28px;
 }
 
+.mr-resp-rx__thumb--scan {
+  overflow: hidden;
+}
+
+.mr-resp-rx__thumb--scan img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .mr-resp-rx__body {
   flex: 1;
   min-width: 0;

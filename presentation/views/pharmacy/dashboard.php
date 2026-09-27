@@ -19,12 +19,12 @@ $mr_csrf     = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '"
         <div class="mr-dash-header__actions">
           <div class="mr-dash-stats">
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--active">12</strong>
-              <span>Orders today</span>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--active"><?= count($mr_requests) ?></strong>
+              <span>Pending requests</span>
             </div>
             <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered">98%</strong>
-              <span>Fulfillment</span>
+              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered"><?= count(array_filter(array_column($mr_requests, 'is_quoted'))) ?></strong>
+              <span>Quoted by you</span>
             </div>
           </div>
 

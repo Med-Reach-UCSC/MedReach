@@ -69,10 +69,9 @@ function mr_handle_dashboard_quote(array $in): ?array
   }
   $prescriptionId = (int) ($in['prescription_id'] ?? 0);
   $quote = mr_prescription_for_pharmacy($prescriptionId, $pharmacyId);
-  if (!$quote || $quote['quote_status'] !== 'quoted') {
+  if (!$quote || $quote['quote_status'] !== 'quoted' || !mr_quote_withdraw($prescriptionId, $pharmacyId)) {
     return mr_error('That quote no longer exists.');
   }
-  mr_quote_withdraw($prescriptionId, $pharmacyId);
   mr_flash('success', 'Quote withdrawn.');
   mr_redirect('pharmacy-dashboard.php');
 }
@@ -94,17 +93,16 @@ function mr_handle_prescription_request(array $in): ?array
   $redirect = fn () => mr_redirect('prescription-request.php?id=' . $prescriptionId);
 
   if ($action === 'withdraw') {
-    if ($existing['quote_status'] !== 'quoted') {
+    if ($existing['quote_status'] !== 'quoted' || !mr_quote_withdraw($prescriptionId, $pharmacyId)) {
       return mr_error('That quote no longer exists.');
     }
-    mr_quote_withdraw($prescriptionId, $pharmacyId);
     mr_flash('success', 'Quote withdrawn.');
     $redirect();
   }
 
   if ($action === 'send') {
     if ($existing['quote_status'] === 'quoted') {
-      return mr_error('You already sent a quote for this request. Edit it instead.') + ['modal' => 'mr-quote-create-form'];
+      return mr_error('You already sent a quote for this request. Edit it instead.');
     }
     [$error, $items, $total] = mr_quote_input($in);
     if ($error) {
@@ -129,4 +127,25 @@ function mr_handle_prescription_request(array $in): ?array
   }
 
   return mr_error('Unknown action.');
+}
+
+function mr_pharmacy_prescription_file(): never
+{
+  $rx = mr_prescription_detail((int) ($_GET['id'] ?? 0));
+  $path = $rx ? __DIR__ . '/../../uploads/prescriptions/' . basename($rx['image_path']) : '';
+  if (!$rx || !is_file($path)) {
+    mr_error_page(404);
+  }
+
+  $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+  $types = ['jpg' => 'image/jpeg', 'png' => 'image/png', 'pdf' => 'application/pdf'];
+
+  while (ob_get_level()) {
+    ob_end_clean();
+  }
+  header('Content-Type: ' . ($types[$ext] ?? 'application/octet-stream'));
+  header('Content-Length: ' . filesize($path));
+  header('Content-Disposition: inline; filename="prescription-' . $rx['prescription_id'] . '.' . $ext . '"');
+  readfile($path);
+  exit;
 }

@@ -34,7 +34,7 @@ function mr_prescription_for_pharmacy(int $prescriptionId, int $pharmacyId): ?ar
   $status = 'pending';
   $stmt = mr_db()->prepare(
     'SELECT pr.prescription_id, pr.image_path, pr.note, pr.created_at,
-            u.first_name AS patient_first_name, u.last_name AS patient_last_name,
+            u.first_name AS patient_first_name,
             b.quoted_items, b.quoted_total, b.status AS quote_status
      FROM PRESCRIPTION pr
      JOIN PATIENT pa ON pa.patient_id = pr.patient_id
@@ -69,7 +69,7 @@ function mr_quote_update(int $prescriptionId, int $pharmacyId, string $items, fl
   $stmt->execute();
 }
 
-function mr_quote_withdraw(int $prescriptionId, int $pharmacyId): void
+function mr_quote_withdraw(int $prescriptionId, int $pharmacyId): bool
 {
   $newStatus = 'withdrawn';
   $current   = 'quoted';
@@ -78,4 +78,5 @@ function mr_quote_withdraw(int $prescriptionId, int $pharmacyId): void
   );
   $stmt->bind_param('siis', $newStatus, $prescriptionId, $pharmacyId, $current);
   $stmt->execute();
+  return $stmt->affected_rows > 0;
 }

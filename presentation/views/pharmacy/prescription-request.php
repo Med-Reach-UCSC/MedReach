@@ -11,9 +11,10 @@ $active    = 'requests';
 
 $mr_error  = $flash && $flash['type'] === 'error' ? $flash : null;
 $mr_modal  = $mr_error['modal'] ?? null;
-$mr_old_in = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? ($_POST[$key] ?? '') : '');
+$mr_old_in = fn (string $modal) => fn (string $key) => htmlspecialchars($mr_modal === $modal ? (string) ($_POST[$key] ?? '') : '');
 $mr_csrf   = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
 $mr_action = 'prescription-request.php?id=' . $mr_request['prescription_id'];
+$mr_file_url = 'pharmacy-prescription-file.php?id=' . $mr_request['prescription_id'];
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -55,11 +56,14 @@ $mr_action = 'prescription-request.php?id=' . $mr_request['prescription_id'];
               </h2>
             </div>
             <div class="mr-resp-rx">
-              <span class="mr-resp-rx__thumb">
-                <img src="prescription-file.php?id=<?= $mr_request['prescription_id'] ?>" alt="Prescription scan" onerror="this.closest('.mr-resp-rx__thumb').style.display='none'">
-              </span>
+              <?php if (!str_ends_with($mr_request['image_path'], '.pdf')): ?>
+              <a class="mr-resp-rx__thumb mr-resp-rx__thumb--scan" href="<?= $mr_file_url ?>" target="_blank" rel="noopener">
+                <img src="<?= $mr_file_url ?>" alt="Prescription scan" onerror="this.closest('.mr-resp-rx__thumb').style.display='none'">
+              </a>
+              <?php endif; ?>
               <div class="mr-resp-rx__body">
-                <p class="mr-resp-rx__meta">Patient: <?= htmlspecialchars(trim($mr_request['patient_first_name'] . ' ' . $mr_request['patient_last_name'])) ?></p>
+                <p class="mr-resp-rx__meta">Patient: <?= htmlspecialchars($mr_request['patient_first_name']) ?></p>
+                <a class="mr-btn mr-btn--ghost mr-btn--sm" href="<?= $mr_file_url ?>" target="_blank" rel="noopener">View file</a>
               </div>
             </div>
           </section>
@@ -86,8 +90,6 @@ $mr_action = 'prescription-request.php?id=' . $mr_request['prescription_id'];
             </div>
 
             <?php if ($mr_request['is_quoted']): ?>
-
-              <?php if ($mr_modal === null) { $flash = $mr_error; require __DIR__ . '/../partials/auth-flash.php'; } ?>
 
               <div class="mr-order-row">
                 <span class="mr-icon-badge mr-icon-badge--success">
