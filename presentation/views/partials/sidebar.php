@@ -27,7 +27,7 @@ $mr_nav = [
     'profile' => ['delivery-profile.php', 'Kasun Perera', 'KP', 'Kasun Perera'],
     'links'   => [
       'dashboard' => ['label' => 'Dashboard',  'icon' => 'home',     'href' => 'delivery-dashboard.php'],
-      'manifest'  => ['label' => 'Deliveries', 'icon' => 'delivery', 'href' => 'delivery-details.php'],
+      'manifest'  => ['label' => 'Deliveries', 'icon' => 'delivery', 'href' => 'delivery-dashboard.php'],
       'earnings'  => ['label' => 'Earnings',   'icon' => 'cash',     'href' => 'delivery-earnings.php'],
     ],
   ],

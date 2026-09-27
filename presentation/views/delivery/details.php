@@ -1,6 +1,30 @@
 <?php
-$title = 'Order #ORD-9921 — MedReach';
+$mr_id   = mr_valid_delivery_id($_GET['id'] ?? null);
+$mr_task = $mr_id ? mr_delivery_task_for_view($mr_id) : null;
+if (!$mr_task) {
+  mr_error_page(404);
+}
+
+$title  = 'Delivery #' . $mr_task['delivery_id'] . ' — MedReach';
 $active = 'manifest';
+
+$mr_csrf   = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
+$mr_hidden = $mr_csrf . '<input type="hidden" name="delivery_id" value="' . (int) $mr_task['delivery_id'] . '">';
+
+$mr_steps    = ['assigned', 'picked_up', 'delivered'];
+$mr_step_pos = array_search($mr_task['status'], $mr_steps, true);
+$mr_step_pos = $mr_step_pos === false ? -1 : $mr_step_pos;
+
+$mr_status_badge = [
+  'assigned'  => 'mr-badge--accent',
+  'picked_up' => 'mr-badge--primary',
+  'delivered' => 'mr-badge--success',
+][$mr_task['status']] ?? 'mr-badge--pill';
+
+$mr_next_label = [
+  'assigned'  => 'Mark as Picked Up',
+  'picked_up' => 'Mark as Delivered',
+][$mr_task['status']] ?? null;
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -9,20 +33,20 @@ $active = 'manifest';
       <header class="mr-dash-header">
         <div>
           <div class="mr-track-title">
-            <h1>Order #ORD-9921</h1>
-            <span class="mr-badge mr-badge--primary mr-badge--case-normal">
+            <h1>Delivery #<?= $mr_task['delivery_id'] ?></h1>
+            <span class="mr-badge <?= $mr_status_badge ?> mr-badge--case-normal">
               <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
-              In Transit
+              <?= $mr_task['status_label'] ?>
             </span>
           </div>
           <div class="mr-order__tags">
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
               <img src="presentation/assets/images/icons/filled/454655/shop.png" alt="">
-              General Hospital Pharmacy
+              <?= htmlspecialchars($mr_task['pharmacy_name']) ?>
             </span>
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
-              <img src="presentation/assets/images/icons/filled/454655/route.png" alt="">
-              2.4 km to drop-off
+              <img src="presentation/assets/images/icons/filled/454655/hospital-3.png" alt="">
+              <?= htmlspecialchars($mr_task['pharmacy_city']) ?>
             </span>
             <span class="mr-badge mr-badge--pill mr-badge--case-normal">
               <img src="presentation/assets/images/icons/filled/dd8e1c/cash.png" alt="">
@@ -32,38 +56,34 @@ $active = 'manifest';
         </div>
 
         <div class="mr-dash-header__actions">
-          <a href="tel:+94771234567" class="mr-btn mr-btn--light mr-btn--sm">
-            <img src="presentation/assets/images/icons/filled/2d3fd7/phone.png" alt="">
-            Call Recipient
-          </a>
+          <a href="delivery-dashboard.php" class="mr-btn mr-btn--light mr-btn--sm">Back to dashboard</a>
         </div>
       </header>
+
+      <?php if ($flash): ?>
+        <span hidden data-flash-toast="<?= htmlspecialchars($flash['text']) ?>" data-flash-error="<?= $flash['type'] === 'error' ? 'true' : 'false' ?>"></span>
+      <?php endif; ?>
 
       <div class="mr-dash-content">
         <div class="mr-dash-col">
 
           <section class="mr-card mr-tracking-card">
             <div class="mr-tracking-card__head">
-              <h3>Delivery Route</h3>
-              <span class="mr-eyebrow mr-eyebrow--mono">RT-992</span>
+              <h3>Delivery Progress</h3>
+              <span class="mr-eyebrow mr-eyebrow--mono">#<?= $mr_task['delivery_id'] ?></span>
             </div>
 
             <ol class="mr-timeline">
-              <li class="mr-timeline__step">
-                <strong>Picked Up</strong>
-                <small>General Hospital Pharmacy, Sector 7</small>
-                <span class="mr-timeline__time">08:14 AM</span>
+              <?php foreach ($mr_steps as $mr_i => $mr_step): ?>
+              <li class="mr-timeline__step<?= $mr_i < $mr_step_pos ? '' : ($mr_i === $mr_step_pos ? ' mr-timeline__step--active' : ' mr-timeline__step--pending') ?>">
+                <strong><?= MR_DELIVERY_STATUS_LABELS[$mr_step] ?></strong>
+                <?php if ($mr_step === 'assigned'): ?>
+                  <small><?= htmlspecialchars($mr_task['pharmacy_name']) ?>, <?= htmlspecialchars($mr_task['pharmacy_city']) ?></small>
+                <?php else: ?>
+                  <small><?= htmlspecialchars($mr_task['dropoff_address']) ?></small>
+                <?php endif; ?>
               </li>
-              <li class="mr-timeline__step mr-timeline__step--active">
-                <strong>In Transit</strong>
-                <small>Approaching destination via 45 Baseline Rd</small>
-                <span class="mr-timeline__time">09:32 AM</span>
-              </li>
-              <li class="mr-timeline__step mr-timeline__step--pending">
-                <strong>Delivered</strong>
-                <small>Nimal Perera &middot; 142 Galle Road, Colombo 03</small>
-                <span class="mr-timeline__time">ETA 09:45 AM</span>
-              </li>
+              <?php endforeach; ?>
             </ol>
           </section>
 
@@ -77,20 +97,33 @@ $active = 'manifest';
             </div>
 
             <div class="mr-order-lines__summary">
-              <div class="mr-order-lines__row">
-                <span>Medicine Total</span>
-                <i class="mr-order-lines__rule"></i>
-                <strong>LKR 4,200.00</strong>
-              </div>
-              <div class="mr-order-lines__row">
-                <span>Delivery Fee</span>
-                <i class="mr-order-lines__rule"></i>
-                <strong>LKR 300.00</strong>
-              </div>
               <div class="mr-order-lines__row mr-order-lines__row--total">
                 <span>Total to Collect</span>
                 <i class="mr-order-lines__rule"></i>
-                <strong>LKR 4,500.00</strong>
+                <strong>LKR <?= $mr_task['cod_display'] ?></strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>
+                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/box.png" alt="">
+                Drop-off Details
+              </h2>
+            </div>
+            <div class="mr-profile-details">
+              <div class="mr-profile-details__item">
+                <span class="mr-eyebrow">Drop-off address</span>
+                <strong><?= htmlspecialchars($mr_task['dropoff_address']) ?></strong>
+              </div>
+              <div class="mr-profile-details__item">
+                <span class="mr-eyebrow">Pharmacy</span>
+                <strong><?= htmlspecialchars($mr_task['pharmacy_name']) ?>, <?= htmlspecialchars($mr_task['pharmacy_address']) ?></strong>
+              </div>
+              <div class="mr-profile-details__item">
+                <span class="mr-eyebrow">Payment Method</span>
+                <strong>Cash on Delivery</strong>
               </div>
             </div>
           </section>
@@ -102,160 +135,42 @@ $active = 'manifest';
           <section class="mr-card mr-courier-card mr-payment-card">
             <span class="mr-payment-card__label">
               <img src="presentation/assets/images/icons/filled/ffffff/delivery.png" alt="">
-              Delivery In Progress
+              <?= $mr_task['status_label'] ?>
             </span>
-            <h2>2.4 km to Drop-off</h2>
-            <p>Confirm handover once the package is delivered and cash payment is collected from the recipient.</p>
-            <div class="mr-payment-card__due">
-              <span>Cash to Collect</span>
-              <strong>LKR 4,500.00</strong>
-            </div>
+            <h2>LKR <?= $mr_task['cod_display'] ?></h2>
+            <p>
+              <?php if ($mr_task['status'] === 'delivered'): ?>
+                This task is complete. Cash was collected and handed over.
+              <?php else: ?>
+                Confirm each step as you go. Only mark it delivered once the package is handed over and payment is collected.
+              <?php endif; ?>
+            </p>
           </section>
 
-          <div class="mr-confirm-actions">
-            <button type="button" class="mr-btn mr-btn--primary mr-btn--block" data-modal-open="mr-handover-modal">
+          <?php if ($mr_next_label): ?>
+          <form method="post" action="delivery-details.php?id=<?= $mr_task['delivery_id'] ?>">
+            <?= $mr_hidden ?>
+            <button type="submit" name="action" value="advance" class="mr-btn mr-btn--primary mr-btn--block">
               <img src="presentation/assets/images/icons/filled/ffffff/checkmark.png" alt="">
-              Confirm Handover
+              <?= $mr_next_label ?>
             </button>
-            <button type="button" class="mr-btn mr-btn--ghost mr-btn--block" data-modal-open="mr-issue-form-modal">Report an issue</button>
-          </div>
+          </form>
+          <?php endif; ?>
 
-          <section class="mr-card mr-dash-card">
-            <div class="mr-dash-card__head">
-              <h2>Reported issues</h2>
-              <span class="mr-badge mr-badge--accent">1 open</span>
-            </div>
-
-            <div class="mr-order-row">
-              <span class="mr-icon-badge mr-icon-badge--accent">
-                <img src="presentation/assets/images/icons/filled/dd8e1c/error--v1.png" alt="">
-              </span>
-              <div class="mr-order-row__info">
-                <strong>Recipient not reachable</strong>
-                <span class="mr-eyebrow">09:20 AM &middot; Called twice, no answer.</span>
-              </div>
-            </div>
-
-            <div class="mr-request-card__actions">
-              <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-open="mr-issue-form-modal" data-subject="Edit issue">Edit</button>
-              <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-open="mr-issue-withdraw-modal">Withdraw</button>
-            </div>
-          </section>
-
-          <section class="mr-card mr-dash-card">
-            <div class="mr-dash-card__head">
-              <h2>
-                <img class="mr-heading-icon" src="presentation/assets/images/icons/filled/757687/box.png" alt="">
-                Package Details
-              </h2>
-              <span class="mr-eyebrow mr-eyebrow--mono">3 items</span>
-            </div>
-
-            <div class="mr-profile-details">
-              <div class="mr-profile-details__item">
-                <span class="mr-eyebrow">Weight</span>
-                <strong>0.6 kg</strong>
-              </div>
-              <div class="mr-profile-details__item">
-                <span class="mr-eyebrow">Handling</span>
-                <strong>Standard</strong>
-              </div>
-              <div class="mr-profile-details__item">
-                <span class="mr-eyebrow">Payment Method</span>
-                <strong>Cash on Delivery</strong>
-              </div>
-              <div class="mr-profile-details__item">
-                <span class="mr-eyebrow">Recipient</span>
-                <strong>Nimal Perera</strong>
-              </div>
-            </div>
-          </section>
+          <?php if ($mr_task['status'] === 'assigned'): ?>
+          <form method="post" action="delivery-details.php?id=<?= $mr_task['delivery_id'] ?>">
+            <?= $mr_hidden ?>
+            <button type="submit" name="action" value="release" class="mr-btn mr-btn--danger-outline mr-btn--block"
+              data-confirm="Release this task?"
+              data-confirm-text="It goes back to the available list for any rider to accept. You can't undo this."
+              data-confirm-label="Release task">
+              Release task
+            </button>
+          </form>
+          <?php endif; ?>
 
         </div>
       </div>
     </main>
   </div>
-
-  <div class="mr-modal" id="mr-issue-form-modal">
-    <div class="mr-modal__backdrop" data-modal-close></div>
-    <div class="mr-modal__card mr-card">
-      <div class="mr-modal__head">
-        <h2><span data-subject-slot="Report an issue"></span></h2>
-        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
-        </button>
-      </div>
-
-      <p class="mr-modal__text">The pharmacy and the patient are notified so they can help sort it out.</p>
-
-      <form class="mr-auth-form mr-modal__form" data-toast="Issue saved — the pharmacy and patient have been notified.">
-        <label class="mr-field">
-          <span>What happened?</span>
-          <div class="mr-field__input">
-            <select required>
-              <option value="" disabled selected>Select...</option>
-              <option>Recipient not reachable</option>
-              <option>Wrong or incomplete address</option>
-              <option>Package damaged</option>
-              <option>Recipient refused the order</option>
-              <option>Something else</option>
-            </select>
-          </div>
-        </label>
-        <label class="mr-field">
-          <span>Note</span>
-          <textarea rows="3" placeholder="e.g. Called twice, no answer..." required></textarea>
-        </label>
-
-        <div class="mr-modal__actions">
-          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="mr-modal" id="mr-issue-withdraw-modal">
-    <div class="mr-modal__backdrop" data-modal-close></div>
-    <div class="mr-modal__card mr-card">
-      <div class="mr-modal__head">
-        <h2>Withdraw this issue?</h2>
-        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
-        </button>
-      </div>
-
-      <p class="mr-modal__text">Use this once the problem is sorted — for example, the recipient called back.</p>
-
-      <div class="mr-modal__actions">
-        <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-        <button type="button" class="mr-btn mr-btn--danger-outline mr-btn--sm" data-modal-close data-toast="Issue withdrawn.">Withdraw</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="mr-modal" id="mr-handover-modal">
-    <div class="mr-modal__backdrop" data-modal-close></div>
-    <div class="mr-modal__card mr-card">
-      <div class="mr-modal__head">
-        <h2>Confirm Handover</h2>
-        <button type="button" class="mr-modal__close" data-modal-close aria-label="Close">
-          <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
-        </button>
-      </div>
-
-      <form class="mr-modal__form" id="mr-handover-form" data-toast="Delivery confirmed — cash collection recorded.">
-        <p>Confirm delivery of order <strong>#ORD-9921</strong> to <strong>Nimal Perera</strong> and collection of <strong>LKR 4,500.00</strong> cash on delivery.</p>
-
-        <label class="mr-auth-terms">
-          <input type="checkbox" required>
-          I confirm the package was handed over and payment was collected.
-        </label>
-
-        <div class="mr-modal__actions">
-          <button type="button" class="mr-btn mr-btn--ghost mr-btn--sm" data-modal-close>Cancel</button>
-          <button type="submit" class="mr-btn mr-btn--primary mr-btn--sm">Confirm</button>
-        </div>
-      </form>
-    </div>
-  </div>
+  
