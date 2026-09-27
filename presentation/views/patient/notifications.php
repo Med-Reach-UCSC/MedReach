@@ -26,7 +26,7 @@ $active = 'notifications';
               <span class="mr-eyebrow">Today</span>
             </div>
 
-            <a class="mr-notif-item is-unread" data-read="false" href="track-order-status.php">
+            <a class="mr-notif-item is-unread" data-status="success" data-read="false" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--success">
                 <img src="presentation/assets/images/icons/filled/1f9d6b/checkmark.png" alt="">
               </span>
@@ -37,7 +37,7 @@ $active = 'notifications';
               <span class="mr-notif-item__dot" aria-hidden="true"></span>
             </a>
 
-            <a class="mr-notif-item is-unread" data-read="false" href="track-order-status.php">
+            <a class="mr-notif-item is-unread" data-status="info" data-read="false" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--info">
                 <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
               </span>
@@ -48,7 +48,7 @@ $active = 'notifications';
               <span class="mr-notif-item__dot" aria-hidden="true"></span>
             </a>
 
-            <a class="mr-notif-item" data-read="true" href="pharmacy-responses.php">
+            <a class="mr-notif-item" data-status="accent" data-read="true" href="pharmacy-responses.php">
               <span class="mr-icon-badge mr-icon-badge--accent">
                 <img src="presentation/assets/images/icons/filled/dd8e1c/pill.png" alt="">
               </span>
@@ -62,7 +62,7 @@ $active = 'notifications';
               <span class="mr-eyebrow">Earlier</span>
             </div>
 
-            <a class="mr-notif-item" data-read="true" href="order-history.php">
+            <a class="mr-notif-item" data-status="success" data-read="true" href="order-history.php">
               <span class="mr-icon-badge mr-icon-badge--success">
                 <img src="presentation/assets/images/icons/filled/1f9d6b/box.png" alt="">
               </span>
@@ -72,7 +72,7 @@ $active = 'notifications';
               <span class="mr-notif-item__time">Yesterday</span>
             </a>
 
-            <a class="mr-notif-item" data-read="true" href="track-order-status.php">
+            <a class="mr-notif-item" data-status="danger" data-read="true" href="track-order-status.php">
               <span class="mr-icon-badge mr-icon-badge--danger">
                 <img src="presentation/assets/images/icons/filled/d6534a/redo.png" alt="">
               </span>
@@ -82,7 +82,7 @@ $active = 'notifications';
               <span class="mr-notif-item__time">Yesterday</span>
             </a>
 
-            <a class="mr-notif-item" data-read="true" href="order-history.php">
+            <a class="mr-notif-item" data-status="muted" data-read="true" href="order-history.php">
               <span class="mr-icon-badge mr-icon-badge--muted">
                 <img src="presentation/assets/images/icons/filled/454655/document.png" alt="">
               </span>

@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var detailName = document.querySelector('.mr-pharm-detail__name');
   var detailAddr = document.querySelector('.mr-pharm-detail__addr');
   var detailWait = document.querySelector('.mr-pharm-detail__wait');
+  var detail = document.querySelector('.mr-pharm-detail');
   var infoClose = document.querySelector('.mr-pharm-info__close');
   var backdrop = document.querySelector('.mr-pharm-backdrop');
   var isMobile = window.matchMedia('(max-width: 992px)');
@@ -197,6 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (detailName) detailName.textContent = card.dataset.name;
     if (detailAddr) detailAddr.lastChild.textContent = ' ' + card.dataset.addr;
     if (detailWait) detailWait.textContent = card.dataset.wait;
+    if (detail) detail.dataset.status = card.dataset.status;
 
     if (isMobile.matches && info && backdrop) {
       info.classList.add('is-open');
@@ -614,6 +616,9 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('change', function () {
       var output = document.querySelector('[data-file-name]');
       var error = input.files.length && mrFileError(input, input.files[0]);
+      var notice = document.querySelector('.mr-dropzone + .mr-auth-notice');
+      if (notice) notice.remove();
+      if (output) output.hidden = true;
       if (error) {
         input.value = '';
         mrError('File not attached', error);
@@ -754,32 +759,6 @@ document.addEventListener('DOMContentLoaded', function () {
     'mr-role-chart': function (canvas) {
       mrDoughnut(canvas, canvas.dataset.values.split(',').map(Number), [primary, '#bdc2ff', mrColor('--mr-color-accent'), mrColor('--mr-color-text-muted')], ['Patients', 'Pharmacists', 'Delivery', 'Admins']);
     },
-    'mr-adherence-chart': function (canvas) {
-      var values = [30, 45, 40, 60, 55, 75, 90];
-      new Chart(canvas, {
-        type: 'bar',
-        data: {
-          labels: values.map(function (_, i) { return 'Day ' + (i + 1); }),
-          datasets: [{
-            data: values,
-            backgroundColor: values.map(function (_, i) {
-              return i === values.length - 1 ? primary : 'rgba(45, 63, 215, 0.55)';
-            }),
-            borderRadius: 3,
-            maxBarThickness: 18
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false }, tooltip: { enabled: false } },
-          scales: {
-            x: { display: false },
-            y: { display: false, beginAtZero: true }
-          }
-        }
-      });
-    }
   };
 
   Object.keys(charts).forEach(function (id) {
