@@ -1,6 +1,16 @@
 <?php
-$title = 'Delivery Dashboard — MedReach';
+$title  = 'Delivery Dashboard — MedReach';
 $active = 'dashboard';
+
+$mr_available = mr_delivery_available_tasks();
+$mr_mine      = mr_delivery_my_tasks();
+$mr_cash      = array_sum(array_column($mr_mine, 'cod_amount'));
+$mr_csrf      = '<input type="hidden" name="csrf" value="' . mr_csrf_token() . '">';
+
+$mr_mine_badge = [
+  'assigned'  => 'mr-badge--accent',
+  'picked_up' => 'mr-badge--primary',
+];
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -8,34 +18,20 @@ $active = 'dashboard';
     <main class="mr-dash-main">
       <header class="mr-dash-header">
         <div>
-          <h1>Good afternoon, Kasun</h1>
-          <p class="mr-eyebrow">2 stops assigned today</p>
-        </div>
-
-        <div class="mr-dash-header__actions">
-          <div class="mr-dash-stats">
-            <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--active">8</strong>
-              <span>Deliveries today</span>
-            </div>
-            <div class="mr-dash-stat">
-              <strong class="mr-dash-stat__value mr-dash-stat__value--delivered">96%</strong>
-              <span>On-time rate</span>
-            </div>
-          </div>
-
-          <label class="mr-switch" title="Available for deliveries" data-duty-toggle data-on-text="You're available — new delivery requests will reach you." data-off-text="Off duty — you won't receive new delivery requests.">
-            <input type="checkbox" aria-label="Available for deliveries" checked>
-            <span class="mr-switch__track"></span>
-          </label>
+          <h1>Good Day, <?= htmlspecialchars($_SESSION['name'] ?? 'Rider') ?></h1>
+          <p class="mr-eyebrow"><?= count($mr_mine) ?> active in your manifest &middot; <?= count($mr_available) ?> waiting to be accepted</p>
         </div>
       </header>
+
+      <?php if ($flash): ?>
+        <span hidden data-flash-toast="<?= htmlspecialchars($flash['text']) ?>" data-flash-error="<?= $flash['type'] === 'error' ? 'true' : 'false' ?>"></span>
+      <?php endif; ?>
 
       <div class="mr-stat-grid-3">
         <section class="mr-card mr-mini-stat">
           <div>
-            <span class="mr-eyebrow mr-eyebrow--mono">Active Delivery</span>
-            <strong>#ORD-9921</strong>
+            <span class="mr-eyebrow mr-eyebrow--mono">Available Tasks</span>
+            <strong><?= count($mr_available) ?></strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--info mr-icon-badge--lg">
             <img src="presentation/assets/images/icons/filled/2d3fd7/delivery.png" alt="">
@@ -44,18 +40,18 @@ $active = 'dashboard';
 
         <section class="mr-card mr-mini-stat">
           <div>
-            <span class="mr-eyebrow mr-eyebrow--mono">Est. Arrival</span>
-            <strong>14:22</strong>
+            <span class="mr-eyebrow mr-eyebrow--mono">My Active Tasks</span>
+            <strong><?= count($mr_mine) ?></strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--success mr-icon-badge--lg">
-            <img src="presentation/assets/images/icons/filled/1f9d6b/clock.png" alt="">
+            <img src="presentation/assets/images/icons/filled/1f9d6b/checklist.png" alt="">
           </span>
         </section>
 
         <section class="mr-card mr-mini-stat mr-mini-stat--accent">
           <div>
             <span class="mr-eyebrow mr-eyebrow--mono">Cash to Collect</span>
-            <strong>LKR 4,500</strong>
+            <strong>LKR <?= number_format($mr_cash, 2) ?></strong>
           </div>
           <span class="mr-icon-badge mr-icon-badge--accent mr-icon-badge--lg">
             <img src="presentation/assets/images/icons/filled/dd8e1c/cash.png" alt="">
@@ -68,61 +64,78 @@ $active = 'dashboard';
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>Delivery requests</h2>
-              <span class="mr-badge mr-badge--accent" data-request-count>1 new</span>
+              <h2>Available deliveries</h2>
+              <span class="mr-badge mr-badge--pill mr-badge--case-normal">Total: <?= count($mr_available) ?></span>
             </div>
 
-            <div data-request-list>
-              <div class="mr-card mr-request-card">
-                <div class="mr-request-card__head">
-                  <span class="mr-icon-badge mr-icon-badge--accent">
-                    <img src="presentation/assets/images/icons/filled/dd8e1c/delivery.png" alt="">
-                  </span>
-                  <div>
-                    <span class="mr-eyebrow mr-eyebrow--accent">#ORD-9947 &middot; 3.2 km</span>
-                    <h4>CityHealth Pharmacy &rarr; Nugegoda</h4>
-                  </div>
-                </div>
-                <p class="mr-eyebrow mr-eyebrow--mono">Pickup ready &middot; Collect LKR 2,150 cash</p>
-                <div class="mr-request-card__actions">
-                  <button type="button" class="mr-btn mr-btn--muted mr-btn--sm" data-request-action="decline" data-toast="Declined — the task will be reassigned to another courier.">Decline</button>
-                  <button type="button" class="mr-btn mr-btn--dark mr-btn--sm" data-request-action="accept" data-toast="Accepted — #ORD-9947 added to your manifest.">Accept</button>
-                </div>
-              </div>
+            <div class="mr-pay-table-wrap">
+              <table class="mr-pay-table">
+                <thead>
+                  <tr>
+                    <th>Pharmacy</th>
+                    <th>City</th>
+                    <th>Drop-off address</th>
+                    <th class="mr-pay-table__amount">COD</th>
+                    <th class="mr-pay-table__amount">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($mr_available as $t): ?>
+                  <tr>
+                    <td><strong><?= htmlspecialchars($t['pharmacy_name']) ?></strong></td>
+                    <td><?= htmlspecialchars($t['pharmacy_city']) ?></td>
+                    <td><?= htmlspecialchars($t['dropoff_address']) ?></td>
+                    <td class="mr-pay-table__amount">LKR <?= $t['cod_display'] ?></td>
+                    <td class="mr-pay-table__amount">
+                      <form method="post" action="delivery-dashboard.php">
+                        <?= $mr_csrf ?>
+                        <input type="hidden" name="delivery_id" value="<?= (int) $t['delivery_id'] ?>">
+                        <button type="submit" name="action" value="accept" class="mr-btn mr-btn--dark mr-btn--sm">Accept</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
             </div>
 
-            <p class="mr-resp-grid__empty" data-request-empty hidden style="text-align: center; margin-top: 1rem;">
-              No new delivery requests.
-            </p>
+            <p class="mr-roster-empty"<?= $mr_available ? ' hidden' : '' ?>>No available deliveries right now. Check back soon.</p>
           </section>
 
           <section class="mr-card mr-dash-card">
             <div class="mr-dash-card__head">
-              <h2>Manifest queue</h2>
-              <span class="mr-badge mr-badge--pill mr-badge--case-normal">2 stops</span>
+              <h2>My deliveries</h2>
+              <span class="mr-badge mr-badge--pill mr-badge--case-normal">Total: <?= count($mr_mine) ?></span>
             </div>
 
-            <a class="mr-order-row" href="delivery-details.php">
-              <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="presentation/assets/images/icons/filled/454655/hospital-3.png" alt="">
-              </span>
-              <span class="mr-order-row__info">
-                <span>General Hospital Pharmacy</span>
-                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9934 &middot; 2.4 km</span>
-              </span>
-              <span class="mr-badge mr-badge--accent mr-badge--case-normal">Pending</span>
-            </a>
+            <div class="mr-pay-table-wrap">
+              <table class="mr-pay-table">
+                <thead>
+                  <tr>
+                    <th>Pharmacy</th>
+                    <th>Drop-off address</th>
+                    <th class="mr-pay-table__amount">COD</th>
+                    <th>Status</th>
+                    <th class="mr-pay-table__amount">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($mr_mine as $t): $mr_badge = $mr_mine_badge[$t['status']] ?? 'mr-badge--pill'; ?>
+                  <tr>
+                    <td><strong><?= htmlspecialchars($t['pharmacy_name']) ?></strong></td>
+                    <td><?= htmlspecialchars($t['dropoff_address']) ?></td>
+                    <td class="mr-pay-table__amount">LKR <?= $t['cod_display'] ?></td>
+                    <td><span class="mr-badge <?= $mr_badge ?>"><span class="mr-badge__dot"></span><?= $t['status_label'] ?></span></td>
+                    <td class="mr-pay-table__amount">
+                      <a class="mr-btn mr-btn--light mr-btn--sm" href="delivery-details.php?id=<?= (int) $t['delivery_id'] ?>">View</a>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
 
-            <a class="mr-order-row" href="delivery-details.php">
-              <span class="mr-icon-badge mr-icon-badge--muted">
-                <img src="presentation/assets/images/icons/filled/454655/pill.png" alt="">
-              </span>
-              <span class="mr-order-row__info">
-                <span>Dr. Silva Clinic</span>
-                <span class="mr-eyebrow mr-eyebrow--mono">#ORD-9941 &middot; 5.1 km</span>
-              </span>
-              <span class="mr-badge mr-badge--pill mr-badge--case-normal">Queued</span>
-            </a>
+            <p class="mr-roster-empty"<?= $mr_mine ? ' hidden' : '' ?>>You have no active deliveries. Accept one from the list above.</p>
           </section>
 
         </div>
@@ -131,32 +144,31 @@ $active = 'dashboard';
 
           <section class="mr-card mr-courier-card mr-payment-card">
             <span class="mr-payment-card__label">
-              <img src="presentation/assets/images/icons/filled/ffffff/warning-shield.png" alt="">
-              Handling Note
+              <img src="presentation/assets/images/icons/filled/ffffff/checklist.png" alt="">
+              How it works
             </span>
-            <h2>Temperature-Sensitive Cargo</h2>
-            <p>Insulin shipment on board. Keep the cargo box sealed and refrigerated until drop-off.</p>
+            <h2>Accept &rarr; Pick up &rarr; Deliver</h2>
+            <p>Accept a task to add it to your manifest. Open it to mark it picked up and, once handed over with cash collected, delivered. You can still release a task back to the pool before you pick it up.</p>
           </section>
 
-          <section class="mr-card mr-med-stats">
-            <h2>This week's performance</h2>
-
-            <div class="mr-med-stats__row">
-              <div class="mr-med-stats__label">
-                <span>Completion Rate</span>
-                <strong>98.4%</strong>
-              </div>
-              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 98.4%;"></div></div>
+          <section class="mr-card mr-dash-card">
+            <div class="mr-dash-card__head">
+              <h2>Status guide</h2>
             </div>
-
-            <div class="mr-med-stats__row">
-              <div class="mr-med-stats__label">
-                <span>On-Time Delivery</span>
-                <strong>92.1%</strong>
+            <div class="mr-profile-details">
+              <div class="mr-profile-details__item">
+                <span class="mr-eyebrow">Assigned</span>
+                <strong>Accepted, not yet picked up</strong>
               </div>
-              <div class="mr-med-stats__bar"><div class="mr-med-stats__fill" style="width: 92.1%; opacity: .8;"></div></div>
+              <div class="mr-profile-details__item">
+                <span class="mr-eyebrow">Picked Up</span>
+                <strong>On the way to drop-off</strong>
+              </div>
+              <div class="mr-profile-details__item">
+                <span class="mr-eyebrow">Delivered</span>
+                <strong>Cash collected, task complete</strong>
+              </div>
             </div>
-
           </section>
 
         </div>

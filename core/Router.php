@@ -38,8 +38,8 @@ const MR_ROUTES = [
   'pharmacy-earnings'    => ['pharmacist', 'pharmacy/earnings'],
   'pharmacy-settings'    => ['pharmacist', 'pharmacy/settings'],
 
-  'delivery-dashboard'   => ['delivery', 'delivery/dashboard'],
-  'delivery-details'     => ['delivery', 'delivery/details'],
+  'delivery-dashboard'   => ['delivery', 'delivery/dashboard', 'mr_page_delivery_dashboard'],
+  'delivery-details'     => ['delivery', 'delivery/details', 'mr_page_delivery_details'],
   'delivery-earnings'    => ['delivery', 'delivery/earnings'],
   'delivery-profile'     => ['delivery', 'delivery/profile'],
 
