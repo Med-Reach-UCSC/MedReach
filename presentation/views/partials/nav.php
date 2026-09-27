@@ -17,8 +17,13 @@
       <a href="index.php#site-footer">Careers</a>
     </nav>
     <div class="mr-nav__actions">
+      <?php if ($home = mr_signed_in_home()): ?>
+      <a class="mr-link" href="sign-out.php">Sign out</a>
+      <a class="mr-btn mr-btn--dark mr-btn--sm" href="<?= $home ?>">Dashboard</a>
+      <?php else: ?>
       <a class="mr-link" href="sign-in.php">Login</a>
       <a class="mr-btn mr-btn--dark mr-btn--sm" href="sign-up.php">Sign Up</a>
+      <?php endif; ?>
     </div>
   </div>
 </div>

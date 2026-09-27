@@ -98,6 +98,15 @@ function mr_redirect_if_signed_in(): void
   }
 }
 
+function mr_signed_in_home(): ?string
+{
+  if (!isset($_COOKIE[session_name()])) {
+    return null;
+  }
+  mr_session();
+  return MR_ROLE_HOME[$_SESSION['role'] ?? ''] ?? null;
+}
+
 function mr_log_in(array $user): never
 {
   session_regenerate_id(true);
