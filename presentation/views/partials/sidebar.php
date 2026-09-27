@@ -10,7 +10,7 @@ $mr_nav = [
       'family'     => ['label' => 'Family',     'icon' => 'family', 'href' => 'guardian-dashboard.php'],
       'orders'     => ['label' => 'Orders',     'icon' => 'list',   'href' => 'patient-order.php'],
       'pharmacies' => ['label' => 'Pharmacies', 'icon' => 'shop',   'href' => 'nearby-pharmacies.php'],
-      'payments'   => ['label' => 'Payments',   'icon' => 'cash',   'href' => 'payments.php'],
+      'payments'   => ['label' => 'Payments',   'icon' => 'wallet',   'href' => 'payments.php'],
     ],
   ],
   'pharmacist' => [

@@ -18,7 +18,7 @@ const MR_ROUTES = [
 
   'patient-dashboard'    => ['patient', 'patient/dashboard'],
   'guardian-dashboard'   => ['patient', 'patient/guardian-dashboard'],
-  'manage-patients'      => ['patient', 'patient/manage-patients'],
+  'manage-patients'      => ['patient', 'patient/manage-patients', 'mr_page_manage_patients'],
   'patient-order'        => ['patient', 'patient/order', 'mr_page_patient_order'],
   'pharmacy-responses'   => ['patient', 'patient/pharmacy-responses'],
   'finalize-order'       => ['patient', 'patient/finalize-order'],

@@ -2,6 +2,14 @@
 $title = 'Nearby Pharmacies — MedReach';
 $bodyClass = 'mr-page-nearby';
 $active = 'pharmacies';
+
+$mr_status_labels = ['open' => 'Open now', 'closing' => 'Closing soon', 'closed' => 'Closed'];
+$mr_pharmacies = [
+    ['name' => 'Osu Sala', 'addr' => '123 Galle Rd, Colombo 03', 'phone' => '070 633 0224', 'km' => '1.3', 'rating' => '4.8', 'status' => 'open', 'hours' => 'Closes 9:00 PM', 'wait' => '10 min'],
+    ['name' => 'Healthguard Pharmacy', 'addr' => '45 Havelock Rd, Colombo 05', 'phone' => '070 214 8890', 'km' => '1.9', 'rating' => '4.5', 'status' => 'closing', 'hours' => 'Closes 6:30 PM', 'wait' => '15 min'],
+    ['name' => 'Union Chemists', 'addr' => '78 High Level Rd, Nugegoda', 'phone' => '071 402 5567', 'km' => '4.0', 'rating' => '4.9', 'status' => 'open', 'hours' => 'Closes 10:00 PM', 'wait' => '8 min'],
+    ['name' => 'Lanka Pharmacy', 'addr' => '10 Duplication Rd, Colombo 04', 'phone' => '077 815 9902', 'km' => '5.0', 'rating' => '4.2', 'status' => 'closed', 'hours' => 'Opens 8:00 AM', 'wait' => '—'],
+];
 ?>
   <div class="mr-dashboard">
     <?php require __DIR__ . '/../partials/sidebar.php'; ?>
@@ -40,89 +48,33 @@ $active = 'pharmacies';
 
           <div class="mr-pharm-list">
 
-          <article class="mr-card mr-pharm-card is-selected" data-name="Osu Sala" data-addr="123 Galle Rd, Colombo 03" data-wait="10 min" data-status="open" tabindex="0">
+          <?php foreach ($mr_pharmacies as $i => $p): ?>
+          <article class="mr-card mr-pharm-card<?= $i === 0 ? ' is-selected' : '' ?>" data-name="<?= $p['name'] ?>" data-addr="<?= $p['addr'] ?>" data-wait="<?= $p['wait'] ?>" data-status="<?= $p['status'] ?>" tabindex="0">
             <div class="mr-pharm-card__head">
-              <div class="mr-pharm-card__info">
-                <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
-                <h2>Osu Sala</h2>
-                <p class="mr-pharm-card__addr">123 Galle Rd, Colombo 03</p>
-                <p class="mr-pharm-card__phone">070 633 0224</p>
-              </div>
-              <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">1.3 km</span>
-                <span class="mr-pharm-rating">
-                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
-                  4.8
-                </span>
-                <span class="mr-badge mr-badge--success mr-badge--case-normal">Open Now</span>
-                <span class="mr-pharm-card__hours">Closes 9:00 PM</span>
-              </div>
+              <h2><?= $p['name'] ?></h2>
+              <span class="mr-pharm-status"><?= $mr_status_labels[$p['status']] ?></span>
             </div>
-            <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
+            <p class="mr-pharm-card__addr"><?= $p['addr'] ?> <span aria-hidden="true">·</span> <span class="mr-pharm-card__phone"><?= $p['phone'] ?></span></p>
+            <ul class="mr-pharm-card__meta">
+              <li class="mr-pharm-card__distance">
+                <img src="presentation/assets/images/icons/filled/454655/marker.png" alt="">
+                <?= $p['km'] ?> km
+              </li>
+              <li>
+                <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
+                <?= $p['rating'] ?>
+              </li>
+              <li>
+                <img src="presentation/assets/images/icons/filled/454655/clock.png" alt="">
+                <?= $p['hours'] ?>
+              </li>
+              <li class="mr-pharm-card__tags">
+                <img src="presentation/assets/images/icons/filled/454655/delivery.png" alt="">
+                Delivery · Cash on delivery
+              </li>
+            </ul>
           </article>
-
-          <article class="mr-card mr-pharm-card" data-name="Healthguard Pharmacy" data-addr="45 Havelock Rd, Colombo 05" data-wait="15 min" data-status="closing" tabindex="0">
-            <div class="mr-pharm-card__head">
-              <div class="mr-pharm-card__info">
-                <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
-                <h2>Healthguard Pharmacy</h2>
-                <p class="mr-pharm-card__addr">45 Havelock Rd, Colombo 05</p>
-                <p class="mr-pharm-card__phone">070 214 8890</p>
-              </div>
-              <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">1.9 km</span>
-                <span class="mr-pharm-rating">
-                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
-                  4.5
-                </span>
-                <span class="mr-badge mr-badge--accent mr-badge--case-normal">Closing Soon</span>
-                <span class="mr-pharm-card__hours">Closes 6:30 PM</span>
-              </div>
-            </div>
-            <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
-          </article>
-
-          <article class="mr-card mr-pharm-card" data-name="Union Chemists" data-addr="78 High Level Rd, Nugegoda" data-wait="8 min" data-status="open" tabindex="0">
-            <div class="mr-pharm-card__head">
-              <div class="mr-pharm-card__info">
-                <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
-                <h2>Union Chemists</h2>
-                <p class="mr-pharm-card__addr">78 High Level Rd, Nugegoda</p>
-                <p class="mr-pharm-card__phone">071 402 5567</p>
-              </div>
-              <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">4.0 km</span>
-                <span class="mr-pharm-rating">
-                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
-                  4.9
-                </span>
-                <span class="mr-badge mr-badge--success mr-badge--case-normal">Open Now</span>
-                <span class="mr-pharm-card__hours">Closes 10:00 PM</span>
-              </div>
-            </div>
-            <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
-          </article>
-
-          <article class="mr-card mr-pharm-card" data-name="Lanka Pharmacy" data-addr="10 Duplication Rd, Colombo 04" data-wait="—" data-status="closed" tabindex="0">
-            <div class="mr-pharm-card__head">
-              <div class="mr-pharm-card__info">
-                <span class="mr-eyebrow mr-pharm-card__category">Pharmacy</span>
-                <h2>Lanka Pharmacy</h2>
-                <p class="mr-pharm-card__addr">10 Duplication Rd, Colombo 04</p>
-                <p class="mr-pharm-card__phone">077 815 9902</p>
-              </div>
-              <div class="mr-pharm-card__side">
-                <span class="mr-badge mr-badge--info mr-badge--case-normal">5.0 km</span>
-                <span class="mr-pharm-rating">
-                  <img src="presentation/assets/images/icons/filled/dd8e1c/star.png" alt="">
-                  4.2
-                </span>
-                <span class="mr-badge mr-badge--danger mr-badge--case-normal">Closed</span>
-                <span class="mr-pharm-card__hours">Opens 8:00 AM</span>
-              </div>
-            </div>
-            <p class="mr-pharm-card__tags">Delivery · Cash on Delivery</p>
-          </article>
+          <?php endforeach; ?>
 
           </div>
         </div>
@@ -133,7 +85,7 @@ $active = 'pharmacies';
             <img src="presentation/assets/images/icons/filled/1a1b24/multiply.png" alt="">
           </button>
 
-          <section class="mr-card mr-dash-card mr-pharm-detail">
+          <section class="mr-card mr-dash-card mr-pharm-detail" data-status="<?= $mr_pharmacies[0]['status'] ?>">
             <div class="mr-dash-card__head">
               <h2 class="mr-pharm-detail__name">Osu Sala</h2>
             </div>

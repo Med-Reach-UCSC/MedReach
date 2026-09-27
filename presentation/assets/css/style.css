@@ -83,6 +83,11 @@ img {
   max-width: 100%;
 }
 
+/* Author display rules (like img above) beat the browser's own [hidden] style, so restate it. */
+[hidden] {
+  display: none !important;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -2218,6 +2223,66 @@ a {
   background-color: var(--mr-color-primary);
 }
 
+/* Solid surface so the list reads against the gradient, same as the status-bar cards. */
+.mr-notif-list,
+.mr-page-notifications .mr-card {
+  overflow: hidden;
+  border: 1px solid #e6e6f0;
+  background-color: var(--mr-color-surface-solid);
+  backdrop-filter: none;
+}
+
+.mr-notif-list .mr-notif-list__section {
+  background-color: #f7f6fd;
+}
+
+.mr-notif-list .mr-notif-item:last-child {
+  border-bottom: none;
+}
+
+/* Per-type bar: one colour per notification kind, reusing the status-bar variable. */
+.mr-notif-item[data-status="success"] {
+  --mr-pharm-status: var(--mr-color-success);
+}
+
+.mr-notif-item[data-status="info"] {
+  --mr-pharm-status: var(--mr-color-primary);
+}
+
+.mr-notif-item[data-status="accent"] {
+  --mr-pharm-status: var(--mr-color-accent);
+}
+
+.mr-notif-item[data-status="danger"] {
+  --mr-pharm-status: var(--mr-color-danger);
+}
+
+.mr-notif-item[data-status="muted"] {
+  --mr-pharm-status: #b5b6c8;
+}
+
+.mr-notif-item[data-status] {
+  padding-left: calc(1.5rem + 6px);
+}
+
+.mr-notif-item[data-status]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 6px;
+  background-color: var(--mr-pharm-status);
+}
+
+.mr-notif-list .mr-notif-item.is-unread {
+  background-color: #eef0ff;
+}
+
+.mr-notif-list .mr-notif-item.is-unread .mr-notif-item__title {
+  font-weight: 600;
+}
+
 .mr-switch {
   position: relative;
   display: inline-block;
@@ -2985,26 +3050,6 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-.mr-resp-grid [data-status] {
-  border-left-width: 4px;
-  border-left-style: solid;
-}
-
-.mr-resp-grid [data-status="available"] {
-  border-left-color: var(--mr-color-success);
-  background-color: rgba(228, 246, 238, 0.35);
-}
-
-.mr-resp-grid [data-status="suggestion"] {
-  border-left-color: var(--mr-color-accent);
-  background-color: rgba(252, 240, 220, 0.35);
-}
-
-.mr-resp-grid [data-status="unavailable"] {
-  border-left-color: var(--mr-color-danger);
-  background-color: rgba(253, 233, 231, 0.35);
-}
-
 .mr-pharm-toolbar {
   display: flex;
   align-items: center;
@@ -3475,78 +3520,211 @@ a {
     align-items: stretch;
   }
 
-  .mr-page-order .mr-order-footer {
-    margin-top: auto;
-  }
 }
 
+/* Icons sit centred on the rail, so shift it by half an icon to line up with the text above. */
+.mr-page-order .mr-timeline {
+  margin-left: 1rem;
+}
+
+/* Solid list card: status lives in a pill, not a tinted background or thick side stripe. */
 .mr-pharm-card {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.25rem;
+  background-color: var(--mr-color-surface-solid);
+  border: 1px solid #e6e6f0;
+  backdrop-filter: none;
+  box-shadow: 0 1px 2px rgba(20, 22, 56, 0.04);
   cursor: pointer;
-  border-left-width: 4px;
-  border-left-style: solid;
-  transition: box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.mr-pharm-card.is-selected {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+.mr-pharm-card:hover {
+  border-color: #d4d6f2;
+  box-shadow: 0 8px 20px rgba(20, 22, 56, 0.08);
+  transform: translateY(-1px);
 }
 
-.mr-pharm-card[data-status="open"] {
-  border-left-width: 6px;
-  border-left-color: var(--mr-color-success);
-  background-color: rgba(228, 246, 238, 0.5);
+.mr-pharm-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(45, 63, 215, 0.25);
 }
 
-.mr-pharm-card[data-status="closing"] {
-  border-left-width: 6px;
-  border-left-color: var(--mr-color-accent);
-  background-color: rgba(252, 240, 220, 0.5);
+/* One status colour drives the bar, border, selected glow and the detail panel tint. */
+[data-status="open"] {
+  --mr-pharm-status: var(--mr-color-success);
+}
+
+[data-status="closing"] {
+  --mr-pharm-status: var(--mr-color-accent);
+}
+
+[data-status="closed"],
+.mr-danger-card {
+  --mr-pharm-status: var(--mr-color-danger);
+}
+
+.mr-resp-grid [data-status="available"] {
+  --mr-pharm-status: var(--mr-color-success);
+}
+
+.mr-resp-grid [data-status="suggestion"],
+.mr-help-card--alert {
+  --mr-pharm-status: var(--mr-color-accent);
+}
+
+.mr-resp-grid [data-status="unavailable"] {
+  --mr-pharm-status: var(--mr-color-danger);
+}
+
+/* Status-bar card: solid surface with a thick bar drawn inside (not as a border) so the outline stays even. */
+.mr-pharm-card[data-status],
+.mr-resp-grid [data-status],
+.mr-danger-card,
+.mr-help-card--alert {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e6e6f0;
+  background-color: var(--mr-color-surface-solid);
+  backdrop-filter: none;
+}
+
+.mr-pharm-card[data-status]::before,
+.mr-resp-grid [data-status]::before,
+.mr-danger-card::before,
+.mr-help-card--alert::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  background-color: var(--mr-pharm-status);
+}
+
+/* Each card keeps its own padding, plus room for the bar. */
+.mr-pharm-card[data-status] {
+  padding-left: calc(1.25rem + 20px);
+}
+
+.mr-resp-grid [data-status],
+.mr-danger-card {
+  padding-left: calc(1.5rem + 20px);
+}
+
+.mr-help-card--alert {
+  padding-left: calc(1.5rem + 20px);
+}
+
+/* Red-tinted "off" state, shared by closed pharmacies and unavailable items. */
+.mr-resp-grid [data-status="unavailable"] {
+  background-color: #fdf0ef;
+}
+
+.mr-resp-grid [data-status="unavailable"] h2,
+.mr-resp-grid [data-status="unavailable"] .mr-resp-meta {
+  color: var(--mr-color-text-soft);
+}
+
+.mr-danger-card {
+  background-color: #fdf0ef;
+}
+
+/* Border grows 1px → 3px, so padding shrinks by 2px to keep the content from shifting. */
+.mr-pharm-card[data-status].is-selected {
+  padding: calc(1.1rem - 2px) calc(1.25rem - 2px) calc(1.1rem - 2px) calc(1.25rem + 20px - 2px);
+  border: 3px solid var(--mr-pharm-status);
+  box-shadow: 0 10px 24px rgba(20, 22, 56, 0.1);
 }
 
 .mr-pharm-card[data-status="closed"] {
-  border-left-width: 6px;
-  border-left-color: var(--mr-color-danger);
-  background-color: rgba(253, 233, 231, 0.5);
-  opacity: 0.7;
+  background-color: #fdf0ef;
 }
 
-.mr-pharm-card.is-selected[data-status="open"] {
-  box-shadow: 0 0 0 2px var(--mr-color-success), 0 12px 28px rgba(0, 0, 0, 0.12);
+.mr-pharm-detail[data-status] {
+  background-color: color-mix(in srgb, var(--mr-pharm-status) 50%, #fff);
+  border-color: var(--mr-pharm-status);
+  backdrop-filter: none;
+  transition: background-color 0.2s ease;
 }
 
-.mr-pharm-card.is-selected[data-status="closing"] {
-  box-shadow: 0 0 0 2px var(--mr-color-accent), 0 12px 28px rgba(0, 0, 0, 0.12);
+/* Muted greys fail on the strong tint, so the panel's text goes full-strength. */
+.mr-pharm-detail[data-status],
+.mr-pharm-detail[data-status] .mr-resp-meta,
+.mr-pharm-detail[data-status] .mr-eyebrow {
+  color: var(--mr-color-text);
 }
 
-.mr-pharm-card.is-selected[data-status="closed"] {
-  box-shadow: 0 0 0 2px var(--mr-color-danger), 0 12px 28px rgba(0, 0, 0, 0.12);
+.mr-pharm-card[data-status="closed"] h2,
+.mr-pharm-card[data-status="closed"] .mr-pharm-card__addr,
+.mr-pharm-card[data-status="closed"] .mr-pharm-card__meta,
+.mr-pharm-card[data-status="closed"] .mr-pharm-card__distance {
+  color: var(--mr-color-text-soft);
+}
+
+.mr-pharm-card[data-status="closed"] .mr-pharm-card__meta {
+  border-top-color: #f3dcda;
+}
+
+.mr-pharm-card[data-status="closed"] .mr-pharm-card__meta img {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-pharm-card:hover {
+    transform: none;
+  }
 }
 
 .mr-pharm-card__head {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
 }
 
-.mr-pharm-card__info {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.mr-pharm-card__side {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.4rem;
-  flex-shrink: 0;
-}
-
 .mr-pharm-card__head h2 {
-  font-size: 1.125rem;
+  min-width: 0;
+  font-size: 1.0625rem;
   font-weight: 650;
   letter-spacing: -0.01em;
+}
+
+.mr-pharm-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--mr-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.mr-pharm-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+[data-status="open"] .mr-pharm-status {
+  background-color: #e4f6ee;
+  color: #17805a;
+}
+
+[data-status="closing"] .mr-pharm-status {
+  background-color: #fcf0dc;
+  color: #a86509;
+}
+
+[data-status="closed"] .mr-pharm-status {
+  background-color: #fce8e8;
+  color: #b8433b;
 }
 
 .mr-pharm-card__addr {
@@ -3554,40 +3732,41 @@ a {
   color: var(--mr-color-text-muted);
 }
 
-.mr-pharm-card__category {
-  margin-bottom: 0.2rem;
-}
-
 .mr-pharm-card__phone {
-  margin-top: 0.15rem;
-  font-family: var(--mr-font-mono);
-  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.mr-pharm-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.6rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ececf4;
+  list-style: none;
+  font-size: 0.8125rem;
   color: var(--mr-color-text-muted);
 }
 
-.mr-pharm-card__hours {
-  font-size: 0.8rem;
-  color: var(--mr-color-text-muted);
+.mr-pharm-card__meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mr-pharm-card__meta img {
+  width: 14px;
+  height: 14px;
+}
+
+.mr-pharm-card__distance {
+  font-weight: 600;
+  color: var(--mr-color-text);
 }
 
 .mr-pharm-card__tags {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--mr-color-text-muted);
-}
-
-.mr-pharm-rating {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-family: var(--mr-font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.mr-pharm-rating img {
-  width: 12px;
-  height: 12px;
+  margin-left: auto;
 }
 
 .mr-pharm-detail__addr {
@@ -4460,16 +4639,10 @@ a {
   grid-column: span 2;
 }
 
-.mr-danger-card {
-  border-color: rgba(214, 83, 74, 0.5);
-  border-left: 4px solid var(--mr-color-danger);
-  background-color: rgba(214, 83, 74, 0.12);
-}
-
 .mr-danger-card h2 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--mr-color-danger);
+  color: #b8433b;
   margin-bottom: 0.5rem;
 }
 
@@ -4544,9 +4717,10 @@ a {
 .mr-modal__backdrop {
   position: absolute;
   inset: 0;
-  background-color: rgba(26, 27, 36, 0.45);
+  background-color: rgba(20, 22, 56, 0.5);
 }
 
+/* Solid surface — overrides the glass .mr-card look so forms read cleanly. */
 .mr-modal__card {
   position: relative;
   z-index: 1;
@@ -4558,13 +4732,35 @@ a {
   flex-direction: column;
   gap: 1.5rem;
   padding: 1.75rem;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  background-color: var(--mr-color-surface-solid);
+  border: 1px solid #e6e6f0;
+  backdrop-filter: none;
+  box-shadow: 0 2px 6px rgba(20, 22, 56, 0.06), 0 24px 56px rgba(20, 22, 56, 0.22);
+}
+
+.mr-modal.is-open .mr-modal__card {
+  animation: mr-modal-in 0.18s ease-out;
+}
+
+@keyframes mr-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-modal.is-open .mr-modal__card {
+    animation: none;
+  }
 }
 
 .mr-modal__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #ececf4;
 }
 
 .mr-modal__head h2 {
@@ -4579,12 +4775,44 @@ a {
   justify-content: center;
   width: 32px;
   height: 32px;
+  border: none;
   border-radius: 50%;
+  background-color: #f2f2f8;
   cursor: pointer;
 }
 
 .mr-modal__close:hover {
-  background-color: rgba(74, 91, 240, 0.08);
+  background-color: #e6e7f5;
+}
+
+/* Inputs are white-on-glass elsewhere; on the solid card give them a tinted fill and visible edge. */
+.mr-modal .mr-field__input input,
+.mr-modal .mr-field__input select,
+.mr-modal .mr-field textarea {
+  border-color: #e3e3ee;
+  background-color: #f7f7fb;
+  box-shadow: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mr-modal .mr-btn--ghost,
+.mr-help-card--alert .mr-btn--ghost {
+  border-color: #dcdce8;
+  background-color: var(--mr-color-surface-solid);
+}
+
+.mr-modal .mr-btn--ghost:hover,
+.mr-help-card--alert .mr-btn--ghost:hover {
+  background-color: #f2f2f8;
+}
+
+.mr-modal .mr-field__input input:focus,
+.mr-modal .mr-field__input select:focus,
+.mr-modal .mr-field textarea:focus {
+  outline: none;
+  border-color: var(--mr-color-primary);
+  background-color: var(--mr-color-surface-solid);
+  box-shadow: 0 0 0 3px rgba(45, 63, 215, 0.15);
 }
 
 .mr-modal__close img {
@@ -4601,6 +4829,8 @@ a {
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #ececf4;
 }
 
 @media (max-width: 576px) {
@@ -4649,10 +4879,6 @@ a {
   .mr-stat-grid-4 {
     grid-template-columns: 1fr;
   }
-}
-
-.mr-help-card--alert {
-  border-left: 4px solid var(--mr-color-accent);
 }
 
 @media (max-width: 576px) {
@@ -4786,8 +5012,7 @@ a {
 }
 
 .mr-mini-bars {
-  display: block;
-  width: 100%;
+  position: relative;
   height: 48px;
   margin-top: 1.25rem;
 }

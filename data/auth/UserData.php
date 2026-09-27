@@ -29,8 +29,9 @@ function mr_account_create(array $u, array $extra): int
     $userId = $stmt->insert_id;
 
     if ($u['role'] === 'patient') {
-      $stmt = $db->prepare('INSERT INTO PATIENT (user_id, date_of_birth, address, is_guardian) VALUES (?, ?, ?, ?)');
-      $stmt->bind_param('issi', $userId, $extra['date_of_birth'], $extra['address'], $extra['is_guardian']);
+      $guardianId = $extra['managed_by_patient_id'] ?? null;
+      $stmt = $db->prepare('INSERT INTO PATIENT (user_id, date_of_birth, address, is_guardian, managed_by_patient_id) VALUES (?, ?, ?, ?, ?)');
+      $stmt->bind_param('issii', $userId, $extra['date_of_birth'], $extra['address'], $extra['is_guardian'], $guardianId);
       $stmt->execute();
     } elseif ($u['role'] === 'pharmacist') {
       $stmt = $db->prepare('INSERT INTO PHARMACY (name, licence_no, address, city, operating_hours) VALUES (?, ?, ?, ?, ?)');
