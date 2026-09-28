@@ -129,7 +129,9 @@ function mr_handle_prescription_action(array $in): array
       mr_redirect('order-history.php');
 
     case 'cancel':
-      mr_prescription_cancel($id);
+      if (!mr_prescription_cancel($id)) {
+        return mr_error('This request can no longer be changed.');
+      }
       mr_flash('success', 'Request cancelled.');
       mr_redirect('order-history.php');
   }

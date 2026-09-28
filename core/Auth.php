@@ -3,7 +3,7 @@ require_once __DIR__ . '/../data/auth/UserData.php';
 
 const MR_EMAIL_PATTERN = '[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}';
 const MR_NAME_PATTERN  = "[\p{L} .'\-]+";
-const MR_PHONE_PATTERN = '\+?[0-9 ]{9,15}';
+const MR_PHONE_PATTERN = '(\+94 ?|0)[1-9][0-9]( ?[0-9]){7}';
 
 const MR_ROLE_HOME = [
   'patient'    => 'patient-dashboard.php',
@@ -12,13 +12,29 @@ const MR_ROLE_HOME = [
   'admin'      => 'admin-dashboard.php',
 ];
 
+// Signed-in sessions expire after this many seconds without a request.
+const MR_SESSION_TTL = 1800;
+
 function mr_session(): void
 {
-  if (session_status() === PHP_SESSION_NONE) {
-    ini_set('session.use_strict_mode', '1');
-    session_set_cookie_params(['httponly' => true, 'samesite' => 'Lax']);
-    session_start();
+  if (session_status() !== PHP_SESSION_NONE) {
+    return;
   }
+  ini_set('session.use_strict_mode', '1');
+  ini_set('session.gc_maxlifetime', (string) MR_SESSION_TTL);
+  session_set_cookie_params(['httponly' => true, 'samesite' => 'Lax']);
+  session_start();
+
+  if (!isset($_SESSION['role'])) {
+    return;
+  }
+  if (($_SESSION['expires_at'] ?? 0) < time()) {
+    session_regenerate_id(true);
+    $_SESSION = [];
+    mr_flash('error', 'Your session expired. Please sign in again.');
+    return;
+  }
+  $_SESSION['expires_at'] = time() + MR_SESSION_TTL;
 }
 
 function mr_redirect(string $url): never
@@ -114,6 +130,7 @@ function mr_log_in(array $user): never
   $_SESSION['user_id'] = (int) $user['user_id'];
   $_SESSION['role']    = $user['role'];
   $_SESSION['name']    = $user['first_name'];
+  $_SESSION['expires_at'] = time() + MR_SESSION_TTL;
   mr_redirect(MR_ROLE_HOME[$user['role']]);
 }
 

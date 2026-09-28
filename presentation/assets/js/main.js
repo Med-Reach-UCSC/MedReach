@@ -943,7 +943,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var MR_PATTERNS = {
   email: '[A-Za-z0-9._%+\\-]+@[A-Za-z0-9\\-]+(\\.[A-Za-z0-9\\-]+)*\\.[A-Za-z]{2,}',
-  tel: '\\+?[0-9 ]{9,15}'
+  tel: '(\\+94 ?|0)[1-9][0-9]( ?[0-9]){7}'
 };
 
 function mrFieldMessage(el) {
@@ -1029,3 +1029,26 @@ document.addEventListener('click', function (e) {
   };
   modal.classList.add('is-open');
 }, true);
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.mr-field__input input[type="password"]').forEach(function (input) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'mr-field__reveal';
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Show password');
+    var icon = document.createElement('img');
+    icon.src = 'presentation/assets/images/icons/filled/757687/visible.png';
+    icon.alt = '';
+    btn.appendChild(icon);
+    btn.addEventListener('click', function () {
+      var show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      icon.src = 'presentation/assets/images/icons/filled/757687/' + (show ? 'hide' : 'visible') + '.png';
+      btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+    input.after(btn);
+    input.classList.add('mr-field__input--has-reveal');
+  });
+});
