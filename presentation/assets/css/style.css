@@ -5545,6 +5545,12 @@ body:has(.mr-modal.is-open) {
   color: var(--mr-color-text-muted);
 }
 
+.mr-field__hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--mr-color-text-muted);
+}
+
 .mr-field__error {
   margin: 0;
   font-size: 0.8125rem;

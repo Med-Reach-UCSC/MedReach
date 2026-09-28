@@ -123,9 +123,10 @@ function mr_password_error(array $in): ?string
 {
   $password = $in['password'] ?? '';
   return match (true) {
-    strlen($password) < 8 || strlen($password) > 72 => 'Password must be 8 to 72 characters.',
-    $password !== ($in['confirm_password'] ?? '')    => 'Passwords do not match.',
-    default                                          => null,
+    strlen($password) < 8 || strlen($password) > 72,
+    !preg_match('/^' . MR_PASSWORD_PATTERN . '$/', $password) => MR_PASSWORD_RULES,
+    $password !== ($in['confirm_password'] ?? '')             => 'Passwords do not match.',
+    default                                                   => null,
   };
 }
 
