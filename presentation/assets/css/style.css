@@ -5597,3 +5597,29 @@ body:has(.mr-modal.is-open) {
     flex-basis: 100%;
   }
 }
+
+.mr-field__input input.mr-field__input--has-reveal {
+  padding-right: 2.75rem;
+}
+
+.mr-field__reveal {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  padding: 6px;
+  border: 0;
+  border-radius: var(--mr-radius-sm);
+  background: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.mr-field__reveal:hover,
+.mr-field__reveal:focus-visible {
+  opacity: 1;
+}
+
+.mr-field__reveal img {
+  width: 16px;
+  height: 16px;
+}
