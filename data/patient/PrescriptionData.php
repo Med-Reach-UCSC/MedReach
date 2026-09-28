@@ -69,9 +69,10 @@ function mr_prescription_update_note(int $id, ?string $note): void
   $stmt->execute();
 }
 
-function mr_prescription_cancel(int $id): void
+function mr_prescription_cancel(int $id): bool
 {
   $stmt = mr_db()->prepare("UPDATE PRESCRIPTION SET status = 'cancelled' WHERE prescription_id = ? AND status = 'pending'");
   $stmt->bind_param('i', $id);
   $stmt->execute();
+  return $stmt->affected_rows > 0;
 }
