@@ -4,6 +4,8 @@ require_once __DIR__ . '/../data/auth/UserData.php';
 const MR_EMAIL_PATTERN = '[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}';
 const MR_NAME_PATTERN  = "[\p{L} .'\-]+";
 const MR_PHONE_PATTERN = '(\+94 ?|0)[1-9][0-9]( ?[0-9]){7}';
+const MR_PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).*';
+const MR_PASSWORD_RULES   = 'Use 8 to 72 characters with an uppercase letter, a lowercase letter, a number and a symbol.';
 
 const MR_ROLE_HOME = [
   'patient'    => 'patient-dashboard.php',

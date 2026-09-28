@@ -101,14 +101,15 @@ $mr_old = fn (string $key) => htmlspecialchars($_POST[$key] ?? '');
             <div class="mr-field">
               <label for="password">Password</label>
               <div class="mr-field__input">
-                <input type="password" id="password" name="password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
+                <input type="password" id="password" name="password" placeholder="At least 8 characters" minlength="8" maxlength="72" autocomplete="new-password" pattern="<?= htmlspecialchars(MR_PASSWORD_PATTERN) ?>" title="<?= MR_PASSWORD_RULES ?>" aria-describedby="password-hint" required>
               </div>
+              <p class="mr-field__hint" id="password-hint"><?= MR_PASSWORD_RULES ?></p>
             </div>
 
             <div class="mr-field">
               <label for="confirm_password">Confirm password</label>
               <div class="mr-field__input">
-                <input type="password" id="confirm_password" name="confirm_password" data-match="password" placeholder="••••••••" minlength="8" maxlength="72" autocomplete="new-password" required>
+                <input type="password" id="confirm_password" name="confirm_password" data-match="password" placeholder="Re-enter your password" minlength="8" maxlength="72" autocomplete="new-password" required>
               </div>
             </div>
 
